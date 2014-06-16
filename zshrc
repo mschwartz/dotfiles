@@ -53,11 +53,13 @@ export LSCOLORS=exfxcxdxbxexexabagacad
 export EDITOR='/usr/bin/vim'
 
 cdpath=( ~ )
+alias dionysus='ssh -X dionysus'
 alias bytor='ssh -X bytor'
 alias presto='ssh -X presto'
 alias server7='ssh -X mykes@server7.sportstwo.com'
 alias vi='/usr/bin/vim'
 alias df='df -P'
+alias nw="/Applications/node-webkit.app/Contents/MacOS/node-webkit"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 source $(rvm 1.9.3 do rvm env --path)
