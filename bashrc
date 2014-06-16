@@ -104,16 +104,19 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-#export PATH=/Users/mschwartz/bin/Sencha/Cmd/3.0.0.250:$PATH
-#export SENCHA_CMD_3_0_0="/Users/mschwartz/bin/Sencha/Cmd/4.0.3.74"
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+PATH="$HOME/vert.x-2.1RC3/bin:$PATH"
 
-source $(rvm 1.9.3 do rvm env --path)
-export PATH=/Users/mschwartz/bin/Sencha/Cmd/3.1.2.342:$PATH
+#export PATH=$HOME/bin/Sencha/Cmd/3.0.0.250:$PATH
+#export SENCHA_CMD_3_0_0="$HOME/bin/Sencha/Cmd/4.0.3.74"
 
-export PATH=/Users/mschwartz/bin/Sencha/Cmd/4.0.0.203:$PATH
+#source $(rvm 1.9.3 do rvm env --path)
+export PATH=$HOME/bin/Sencha/Cmd/3.1.2.342:$PATH
+
+export PATH=$HOME/bin/Sencha/Cmd/4.0.0.203:$PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-export PATH=/Users/mschwartz/bin/Sencha/Cmd/4.0.2.67:$PATH
+export PATH=$HOME/bin/Sencha/Cmd/4.0.2.67:$PATH
 
-export PATH=/Users/mschwartz/bin/Sencha/Cmd/4.0.3.74:$PATH
+export PATH=$HOME/bin/Sencha/Cmd/4.0.3.74:$PATH
