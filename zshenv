@@ -1,2 +1,2 @@
-echo zshenv
+#echo zshenv
 
