@@ -1,3 +1,5 @@
+echo bashrc
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -84,10 +86,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -105,18 +103,18 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-PATH="$HOME/vert.x-2.1RC3/bin:$PATH"
+#PATH="$HOME/vert.x-2.1RC3/bin:$PATH"
 
 #export PATH=$HOME/bin/Sencha/Cmd/3.0.0.250:$PATH
 #export SENCHA_CMD_3_0_0="$HOME/bin/Sencha/Cmd/4.0.3.74"
 
 #source $(rvm 1.9.3 do rvm env --path)
-export PATH=$HOME/bin/Sencha/Cmd/3.1.2.342:$PATH
+#export PATH=$HOME/bin/Sencha/Cmd/3.1.2.342:$PATH
 
-export PATH=$HOME/bin/Sencha/Cmd/4.0.0.203:$PATH
+#export PATH=$HOME/bin/Sencha/Cmd/4.0.0.203:$PATH
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-export PATH=$HOME/bin/Sencha/Cmd/4.0.2.67:$PATH
+#export PATH=$HOME/bin/Sencha/Cmd/4.0.2.67:$PATH
 
-export PATH=$HOME/bin/Sencha/Cmd/4.0.3.74:$PATH
+#export PATH=$HOME/bin/Sencha/Cmd/4.0.3.74:$PATH

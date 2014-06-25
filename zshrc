@@ -1,3 +1,6 @@
+echo zshrc
+echo $PATH
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -42,12 +45,11 @@ DEFAULT_USER=mschwartz
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git colorize bower brew coffee colored-man node npm osx profiles redis-cli rvm screen sublime terminalapp themes)
+plugins=(git colorize bower brew coffee colored-man node npm osx redis-cli rvm screen sublime terminalapp themes)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-#export PATH=$PATH:/Users/mschwartz/bin/Sencha/Cmd/4.0.0.203:/Users/mschwartz/bin/Sencha/Cmd/3.1.2.342:/Users/mschwartz/.rvm/gems/ruby-1.9.3-p448/bin:/Users/mschwartz/.rvm/gems/ruby-1.9.3-p448@global/bin:/Users/mschwartz/.rvm/rubies/ruby-1.9.3-p448/bin:/Users/mschwartz/.rvm/bin:/Users/mschwartz/bin:/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/mschwartz/.rvm/bin:/Users/mschwartz/apache-ant-1.9.2/bin:/Users/mschwartz/android-sdk-macosx/tools:/Users/mschwartz/android-sdk-macosx/platform-tools:/Users/mschwartz/.rvm/bin
 export LSCOLORS=exfxcxdxbxexexabagacad
 
 export EDITOR='/usr/bin/vim'
@@ -61,8 +63,8 @@ alias vi='/usr/bin/vim'
 alias df='df -P'
 alias nw="/Applications/node-webkit.app/Contents/MacOS/node-webkit"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
-source $(rvm 1.9.3 do rvm env --path)
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+#source $(rvm 1.9.3 do rvm env --path)
 
 export ANDROID_HOME='/Users/mschwartz/android-sdk-macosx'
 

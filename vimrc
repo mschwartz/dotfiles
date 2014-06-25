@@ -56,6 +56,9 @@ map <A-1> <C-W>c<F5><C-W><Right>
 map <A-0> <C-W>o<F5><C-W><Right>
 map <C-s> <ESC>:w<CR>
 map <C-F> <ESC>:1,$!jsbeautifier.js<CR>
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
 "inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
 "nnoremap <C-P>:call PhpDocSingle()<CR>
 "vnoremap <C-P>:call PhpDocRange()<CR>

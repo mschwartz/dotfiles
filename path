@@ -1,0 +1,27 @@
+echo PATH
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+source $(rvm 1.9.3 do rvm env --path)
+
+#export PATH=/Users/mschwartz/bin:/usr/local/mysql/bin:$PATH
+# ANT
+#export ANT_HOME='/Users/mschwartz/apache-ant-1.9.2'
+#export PATH=$PATH:$ANT_HOME/bin
+# ANDROID SDK
+#export ANDROID_SDK_HOME='/Users/mschwartz/android-sdk-macosx'
+#export PATH=$PATH:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/platform-tools
+#
+
+DOT_PATH_FILE=~/.path
+if [ -e "$DOT_PATH_FILE" ]; then
+	export PATH=$PATH:`awk '/^[^#]/{printf "%s",(++x!=1?":":"")$0}' $DOT_PATH_FILE`
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+export PATH
+echo $PATH
+

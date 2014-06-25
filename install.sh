@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="profile bashrc bash_aliases vimrc vim zlogin zshrc"    # list of files/folders to symlink in homedir
+files="profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zprofile zshenv"    # list of files/folders to symlink in homedir
 
 ##########
 

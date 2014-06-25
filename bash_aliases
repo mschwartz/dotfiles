@@ -13,11 +13,4 @@ alias ldd='otool -L'
 #export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a Terminal"'
 export EDITOR=/usr/bin/vim
 #. ~/.nvm/nvm.sh
-export PATH=/Users/mschwartz/bin:/usr/local/mysql/bin:$PATH
-# ANT
-export ANT_HOME='/Users/mschwartz/apache-ant-1.9.2'
-export PATH=$PATH:$ANT_HOME/bin
-# ANDROID SDK
-export ANDROID_SDK_HOME='/Users/mschwartz/android-sdk-macosx'
-export PATH=$PATH:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/platform-tools
 

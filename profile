@@ -8,20 +8,14 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-source $(rvm 1.9.3 do rvm env --path)
+echo "profile"
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
+	echo bash
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
 	. "$HOME/.bashrc"
     fi
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
 fi
 
