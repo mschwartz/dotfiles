@@ -1,6 +1,31 @@
 call pathogen#infect()
-set tabstop=4
-set shiftwidth=4
+"set guifont=Source\ Code\ Pro\ Light:h14
+set guifont=PT\ Mono:h12
+set antialias
+"set expandtab
+
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+    " Use filetype detection and file-based automatic indenting.
+    filetype plugin indent on
+
+    " Use actual tab chars in Makefiles.
+    autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+endif
+
+    filetype plugin indent on
+" For everything else, use a tab width of 4 space chars.
+set tabstop=4       " The width of a TAB is set to 4.
+                    " Still it is a \t. It is just that
+                    " Vim will interpret it to be having
+                    " a width of 4.
+set shiftwidth=4    " Indents will have a width of 4.
+set softtabstop=4   " Sets the number of columns for a TAB.
+set expandtab       " Expand TABs to spaces.
+
+"set softtabstop=4
+"set tabstop=4
+"set shiftwidth=4
 set ls=2
 set showcmd
 set hlsearch
@@ -20,9 +45,9 @@ syntax enable
 set background=light
 "colorscheme solarized
 " solarized options 
-let g:solarized_termcolors = 16 
-"let g:solarized_visibility = "high" 
-"let g:solarized_contrast = "high" 
+let g:solarized_termcolors = 256
+let g:solarized_visibility = "high" 
+let g:solarized_contrast = "high" 
 colorscheme solarized 
 "Show menu with possible tab completions
 set wildmenu
