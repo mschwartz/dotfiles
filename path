@@ -1,5 +1,5 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-source $(rvm 1.9.3 do rvm env --path)
+#source $(rvm 1.9.3 do rvm env --path)
 
 #export PATH=/Users/mschwartz/bin:/usr/local/mysql/bin:$PATH
 # ANT
