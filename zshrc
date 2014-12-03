@@ -54,6 +54,7 @@ export EDITOR='/usr/bin/vim'
 cdpath=( ~ )
 alias dionysus='ssh -X dionysus'
 alias bytor='ssh -X bytor'
+alias snowdog='ssh -X snowdog'
 alias presto='ssh -X presto'
 alias server7='ssh -X mykes@server7.sportstwo.com'
 alias vi='/usr/bin/vim'

@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/mschwartz/gallo/ui/config'
-let g:netrw_dirhist_2='/Users/mschwartz/Documents/keys'
-let g:netrw_dirhist_3='/Users/mschwartz/modus/www/intuit-im2/extras'
-let g:netrw_dirhist_4='/Users/mschwartz/modus/www/intuit-im2'
-let g:netrw_dirhist_5='/Users/mschwartz/github/ModusCreateOrg/decaf/modules/phpjs'
-let g:netrw_dirhist_6='/Users/mschwartz/github/ModusCreateOrg/decaf/modules/phpjs/lib'
-let g:netrw_dirhist_7='/Users/mschwartz/github/ModusCreateOrg/decaf/modules/phpjs'
-let g:netrw_dirhist_8='/Users/mschwartz/github/ModusCreateOrg/decaf/modules/phpjs/lib'
-let g:netrw_dirhist_9='/Users/mschwartz/dotfiles/vim/unused-plugins'
+let g:netrw_dirhist_cnt =0

@@ -106,7 +106,7 @@ fi
 #PATH="$HOME/vert.x-2.1RC3/bin:$PATH"
 
 #export PATH=$HOME/bin/Sencha/Cmd/3.0.0.250:$PATH
-#export SENCHA_CMD_3_0_0="$HOME/bin/Sencha/Cmd/4.0.3.74"
+#export SENCHA_CMD_3_0_0="/Users/mschwartz/bin/Sencha/Cmd/5.0.0.160"
 
 #source $(rvm 1.9.3 do rvm env --path)
 #export PATH=$HOME/bin/Sencha/Cmd/3.1.2.342:$PATH
@@ -118,3 +118,5 @@ fi
 #export PATH=$HOME/bin/Sencha/Cmd/4.0.2.67:$PATH
 
 #export PATH=$HOME/bin/Sencha/Cmd/4.0.3.74:$PATH
+
+export PATH=/Users/mschwartz/bin/Sencha/Cmd/5.0.0.160:$PATH
