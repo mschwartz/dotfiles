@@ -52,14 +52,15 @@ export LSCOLORS=exfxcxdxbxexexabagacad
 export EDITOR='/usr/bin/vim'
 
 cdpath=( ~ )
-alias dionysus='ssh -X dionysus'
-alias bytor='ssh -X bytor'
 alias snowdog='ssh -X snowdog'
+alias xanadu='ssh -X xanadu'
 alias presto='ssh -X presto'
-alias server7='ssh -X mykes@server7.sportstwo.com'
 alias vi='/usr/bin/vim'
 alias df='df -P'
-alias nw="/Applications/node-webkit.app/Contents/MacOS/node-webkit"
+
+if [ -f $HOME/.zshrc.local ]; then
+    source $HOME/.zshrc.local
+fi
 
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 #source $(rvm 1.9.3 do rvm env --path)
