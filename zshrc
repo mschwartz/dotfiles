@@ -55,6 +55,8 @@ cdpath=( ~ )
 alias snowdog='ssh -X snowdog'
 alias xanadu='ssh -X xanadu'
 alias presto='ssh -X presto'
+alias dreamline='ssh -X dreamline'
+
 alias vi='/usr/bin/vim'
 alias df='df -P'
 
