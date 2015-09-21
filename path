@@ -1,6 +1,9 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 #source $(rvm 1.9.3 do rvm env --path)
 
+#export NVM_DIR=~/.nvm
+#source $(brew --prefix nvm)/nvm.sh
+
 export PATH=/Users/mschwartz/bin:/usr/local/mysql/bin:$PATH
 # ANT
 #export ANT_HOME='/Users/mschwartz/apache-ant-1.9.2'
