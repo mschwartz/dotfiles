@@ -242,7 +242,7 @@ set noswapfile
 "  n... : where to save the viminfo files
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
-set javascript_enable_domhtmlcss=1
+let javascript_enable_domhtmlcss=1
 
 " when we reload, tell vim to restore the cursor to the saved position
 augroup JumpCursorOnEdit
