@@ -18,9 +18,6 @@ export PATH=/Users/mschwartz/bin/Sencha/Cmd/5.0.0.160:$PATH
 
 #export PATH=/Users/mschwartz/bin/Sencha/Cmd/4.0.5.87:$PATH
 
-#export PATH=/Users/mschwartz/bin/Sencha/Cmd/5.1.3.61:$PATH
-export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.0.2.14/..:$PATH"
-
 ###-tns-completion-start-###
 if [ -f /Users/mschwartz/.tnsrc ]; then 
     source /Users/mschwartz/.tnsrc 
