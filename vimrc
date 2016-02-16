@@ -1,4 +1,4 @@
-call pathogen#infect()
+execute pathogen#infect()
 "set guifont=Source\ Code\ Pro\ Light:h14
 set guifont=PT\ Mono:h12
 set antialias
@@ -48,7 +48,7 @@ set background=light
 let g:solarized_termcolors = 256
 let g:solarized_visibility = "high" 
 let g:solarized_contrast = "high" 
-colorscheme solarized 
+"colorscheme solarized 
 "Show menu with possible tab completions
 set wildmenu
 "Ignore these files when completing names and in Explorer
@@ -140,7 +140,12 @@ map <leader>s :source ~/.vimrc<cr>
 "Fast editing of .vimrc
 map <leader>e :e! ~/.vimrc<cr>
 "When .vimrc is edited, reload it
-autocmd! bufwritepost .vimrc source ~/.vimrc
+"autocmd! bufwritepost .vimrc source ~/.vimrc
+augroup reload_vimrc
+    autocmd!
+    autocmd bufwritepost ~/.vimrc nested source ~/.vimrc
+augroup END
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM userinterface
@@ -269,3 +274,62 @@ augroup JumpCursorOnEdit
  \ unlet b:doopenfold |
  \ endif
 augroup END
+
+"set encoding=utf-8
+"scriptencoding utf-8
+
+let g:lightline = {
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+            \ },
+            \ 'component_function': {
+            \   'fugitive': 'LightLineFugitive',
+            \   'readonly': 'LightLineReadonly',
+            \   'modified': 'LightLineModified',
+            \   'filename': 'LightLineFilename'
+            \ },
+            \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+            \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+            \ }
+
+function! LightLineModified()
+    if &filetype == "help"
+        return ""
+    elseif &modified
+        return "+"
+    elseif &modifiable
+        return ""
+    else
+        return ""
+    endif
+endfunction
+
+function! LightLineReadonly()
+    if &filetype == "help"
+        return ""
+    elseif &readonly
+        return "⭤"
+    else
+        return ""
+    endif
+endfunction
+
+function! LightLineFugitive()
+    if exists('*fugitive#head')
+        let _ = fugitive#head()
+        return strlen(_) ? ("\ue0a0 " . _) : ''
+    endif
+    return ''
+"    return exists('*fugitive#head') ? ("\ue0a0" . fugitive#head()) : ''
+endfunction
+
+function! LightLineFilename()
+    return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+                \ ('' != expand('%:f') ? expand('%:f') : '[No Name]') .
+                \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
+
+set noshowmode
+colorscheme PaperColor
+"colorscheme solarized
