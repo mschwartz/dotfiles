@@ -76,3 +76,9 @@ export ANDROID_HOME='/Users/mschwartz/android-sdk-macosx'
 setopt no_share_history
 fpath=(~/dotfiles/completions/zsh/hub $fpath)
 
+
+###-tns-completion-start-###
+if [ -f /Users/mschwartz/.tnsrc ]; then 
+    source /Users/mschwartz/.tnsrc 
+fi
+###-tns-completion-end-###
