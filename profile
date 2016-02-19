@@ -21,9 +21,9 @@ fi
 
 #export PATH=/Users/mschwartz/bin/Sencha/Cmd/4.0.5.87:$PATH
 
-#export PATH=/Users/mschwartz/bin/Sencha/Cmd/5.1.3.61:$PATH
-
 #export SENCHA_CMD_3_0_0="/Users/mschwartz/bin/Sencha/Cmd/5.1.3.61"
+
+#export PATH=/Users/mschwartz/bin/Sencha/Cmd/5.1.3.61:$PATH
 
 export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.0.2.14/..:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/SenchaCmd-6.1.0.54-osx/:$PATH"
