@@ -53,7 +53,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 export LSCOLORS=exfxcxdxbxexexabagacad
 
-export EDITOR='/usr/bin/vim'
+export EDITOR='/usr/local/bin/vim'
 
 cdpath=( ~ )
 alias snowdog='ssh -X snowdog'
@@ -61,7 +61,7 @@ alias xanadu='ssh -X xanadu'
 alias presto='ssh -X presto'
 alias dreamline='ssh -X dreamline'
 
-alias vi='/usr/bin/vim'
+alias vi='/usr/local/bin/vim'
 alias df='df -P'
 
 if [ -f $HOME/.zshrc.local ]; then
