@@ -339,19 +339,24 @@ if executable('ag')
 endif
 
 " vim-easytags
-set tags=./.vimtags;
-let g:easytags_file = '~/.vimtags'
-let g:easytags_dynamic_files = 2
-"let g:easytags_by_filetype = 1
-let g:easytags_updatetime_warn = 0
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
+"set tags=./.vimtags;
+"let g:easytags_file = '~/.vimtags'
+"let g:easytags_dynamic_files = 2
+""let g:easytags_by_filetype = 1
+"let g:easytags_updatetime_warn = 0
+"let g:easytags_events = ['BufReadPost', 'BufWritePost']
 
-let g:easytags_languages = {
-            \   'javascript': {
-            \       'cmd': 'jsctags',
-            \       'args': [],
-            \       'fileoutput_opt': '-f',
-            \       'stdout_opt': '-f-',
-            \       'recurse_flag': '-R'
-            \   }
-            \}
+"let g:easytags_languages = {
+"            \   'javascript': {
+"            \       'cmd': 'jsctags',
+"            \       'args': [],
+"            \       'fileoutput_opt': '-f',
+"            \       'stdout_opt': '-f-',
+"            \       'recurse_flag': '-R'
+"            \   }
+"            \}
+
+
+" Syntastic
+let g:syntastic_check_on_open=1
+
