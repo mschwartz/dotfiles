@@ -124,6 +124,7 @@ endif
 
 "Enable filetype plugin
 filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 "filetype indent on
 
 "Set mapleader
@@ -359,4 +360,5 @@ endif
 
 " Syntastic
 let g:syntastic_check_on_open=1
+
 
