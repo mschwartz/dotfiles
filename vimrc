@@ -134,6 +134,8 @@ let g:mapleader = ","
 "Fast saving
 nmap <leader>w :w!<cr>
 nmap <leader>f :find<cr>
+"nnoremap F :grep! "\b<C-R><C-W>\b"<CR> :cw<CR>
+
 
 map <leader>t :helptags ~/.vim/doc<cr>
 "Fast reloading of the .vimrc
@@ -337,6 +339,9 @@ colorscheme PaperColor
 
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_use_caching = 0
 endif
 
 " vim-easytags
