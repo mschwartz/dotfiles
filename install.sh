@@ -30,3 +30,10 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+
+mkdir -p $HOME/bin
+for bin in `ls $HOME/dotfiles/bin`; do
+    ln -sf $HOME/dotfiles/bin/$bin $HOME/bin/$bin
+done
+
+
