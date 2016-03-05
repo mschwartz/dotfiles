@@ -84,5 +84,5 @@ if [ -f /Users/mschwartz/.tnsrc ]; then
 fi
 ###-tns-completion-end-###
 
-source ~/.iterm2_shell_itegration.`basename $SHELL`
+source ~/.iterm2_shell_integration.`basename $SHELL`
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
