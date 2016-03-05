@@ -57,6 +57,7 @@ export EDITOR='/usr/local/bin/vim'
 
 cdpath=( ~ )
 alias snowdog='ssh -X snowdog'
+alias bytor='ssh -X bytor'
 alias xanadu='ssh -X xanadu'
 alias presto='ssh -X presto'
 alias dreamline='ssh -X dreamline'
