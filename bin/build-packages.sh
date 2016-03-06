@@ -20,6 +20,7 @@ done
 cd ..
 git checkout -- ext/licenses
 git checkout -- packages
+git checkout -- ext/examples/kitchensink/device-en.json
 
 REPO=$1
 case $REPO in

@@ -106,28 +106,50 @@ EOF
             echo "5.0 complete"
             ;;
         SDK6.0)
-            echo git checkout sencha-6.0.x
-            echo git pull upstream
-            echo sencha ant refresh
-            echo cd ext
-            echo sencha package build
-            echo cd $HOME/sencha/projects
-            echo sencha -sdk ../github/SDK6.0/ext generate app test $ISSUE_ID-6.0
-            echo cd $ISSUE_ID-6.0
-            echo mv ext xxx
-            echo ln -s ../github/$path/ext ext
+            ISSUE_DIR="$ISSUE_ID-6.0"
+            git checkout sencha-6.0.x
+            git pull upstream
+            sencha ant refresh
+#            cd ext
+#            sencha package build
+            cd $HOME/sencha/projects
+            sencha -sdk ../github/SDK6.0/ext generate app test $ISSUE_DIR
+            cd $ISSUE_DIR
+            cd packages
+            for package in `ls ../../../github/$path/packages`; do
+                ln -sf ../../../github/$path/packages/$package .
+#                cd $package
+#                sencha package build
+#                cd ..
+            done
+            cd ..
+            sencha app build development
+            mv ext xxx
+            ln -s ../github/$path/ext ext
+            echo "6.0 complete"
             ;;
         SDK6.1)
+            ISSUE_DIR="$ISSUE_ID-6.1"
             echo git checkout ext-6.1.x
             echo git pull upstream
             echo sencha ant refresh
-            echo cd ext
-            echo sencha package build
+#            echo cd ext
+#            echo sencha package build
             echo cd $HOME/sencha/projects
-            echo sencha -sdk ../github/SDK6.1/ext generate app test $ISSUE_ID-6.1
-            echo cd $ISSUE_ID-6.1
+            echo sencha -sdk ../github/SDK6.1/ext generate app test $ISSUE_DIR
+            echo cd $ISSUE_DIR
             echo mv ext xxx
             echo ln -s ../github/$path/ext ext
+            cd packages
+            for package in `ls ../../../github/$path/packages`; do
+                ln -sf ../../../github/$path/packages/$package .
+#                cd $package
+#                sencha package build
+#                cd ..
+            done
+            cd ..
+            sencha app build development
+            echo "6.1 complete"
             ;;
         *)
             echo "Unknown version $path"
