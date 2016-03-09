@@ -26,19 +26,6 @@ for path in $REPOS; do
             git pull upstream
             git checkout -b $ISSUE_DIR
 
-            # is this necessary?  sencha ant extjs takes a LONG time to run
-#            ln -sf ext extjs
-#            sencha ant extjs
-
-#            cd ext
-#            sencha package build
-#            cd ../packages
-#            for package in `ls`; do
-#                echo $package
-#                cd $package
-#                sencha package build
-#                cd ..
-#            done
             cd $HOME/sencha/projects
             sencha -sdk ../github/$path/ext generate app test $ISSUE_DIR
             cd $ISSUE_DIR
@@ -47,15 +34,9 @@ for path in $REPOS; do
             cd packages
             for package in `ls ../../../github/$path/packages`; do
                 ln -sf ../../../github/$path/packages/$package .
-#                cd $package
-#                sencha package build
-#                cd ..
             done
             cd ..
             sencha app build development
-#            cd $HOME/sencha/github/SDK5
-#            git checkout -- ext/licenses
-#            git checkout -- packages
 
 # fix index.html to load each .js file individually.
 
@@ -109,46 +90,39 @@ EOF
             ISSUE_DIR="$ISSUE_ID-6.0"
             git checkout sencha-6.0.x
             git pull upstream
-            sencha ant refresh
-#            cd ext
-#            sencha package build
+            git checkout -b $ISSUE_DIR
+#            sencha ant refresh
             cd $HOME/sencha/projects
             sencha -sdk ../github/SDK6.0/ext generate app test $ISSUE_DIR
             cd $ISSUE_DIR
             cd packages
             for package in `ls ../../../github/$path/packages`; do
-                ln -sf ../../../github/$path/packages/$package .
-#                cd $package
-#                sencha package build
-#                cd ..
+                ln -sf ../../github/$path/packages/$package .
             done
             cd ..
             sencha app build development
             mv ext xxx
-            ln -s ../github/$path/ext ext
+            ln -s ../../github/$path/ext ext
             echo "6.0 complete"
             ;;
         SDK6.1)
             ISSUE_DIR="$ISSUE_ID-6.1"
-            echo git checkout ext-6.1.x
-            echo git pull upstream
-            echo sencha ant refresh
-#            echo cd ext
-#            echo sencha package build
-            echo cd $HOME/sencha/projects
-            echo sencha -sdk ../github/SDK6.1/ext generate app test $ISSUE_DIR
-            echo cd $ISSUE_DIR
-            echo mv ext xxx
-            echo ln -s ../github/$path/ext ext
+            git checkout ext-6.1.x
+            git pull upstream
+            git checkout -b $ISSUE_DIR
+#            sencha ant refresh
+            cd $HOME/sencha/projects
+            echo "------- generate app"
+            sencha -sdk ../github/SDK6.1/ext generate app test $ISSUE_DIR
+            cd $ISSUE_DIR
             cd packages
             for package in `ls ../../../github/$path/packages`; do
-                ln -sf ../../../github/$path/packages/$package .
-#                cd $package
-#                sencha package build
-#                cd ..
+                ln -sf ../../github/$path/packages/$package .
             done
             cd ..
             sencha app build development
+            mv ext xxx
+            ln -s ../../github/$path/ext ext
             echo "6.1 complete"
             ;;
         *)
