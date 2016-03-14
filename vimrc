@@ -348,10 +348,10 @@ endif
 let g:easytags_cmd = '/usr/local/bin/ctags'
 let g:easytags_file = '~/.vimtags'
 
-set tags=~/.vimtags;
-let g:easytags_dynamic_files = 1
-let g:easytags_by_filetype = 1
-let g:easytags_async = 1
+set tags=./.vimtags;
+"let g:easytags_dynamic_files = 1
+"let g:easytags_by_filetype = 1
+"let g:easytags_async = 1
 "let g:easytags_autorecurse = 1
 "let g:easytags_include_members = 1
 "let g:easytags_resolve_links = 1
