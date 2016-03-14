@@ -353,14 +353,14 @@ endif
 "let g:easytags_events = ['BufReadPost', 'BufWritePost']
 
 "let g:easytags_languages = {
-"            \   'javascript': {
-"            \       'cmd': 'jsctags',
-"            \       'args': [],
-"            \       'fileoutput_opt': '-f',
-"            \       'stdout_opt': '-f-',
-"            \       'recurse_flag': '-R'
-"            \   }
-"            \}
+            "\   'javascript': {
+            "\       'cmd': 'jsctags',
+            "\       'args': [],
+            "\       'fileoutput_opt': '-f',
+            "\       'stdout_opt': '-f-',
+            "\       'recurse_flag': '-R'
+            "\   }
+            "\}
 
 
 " Syntastic
