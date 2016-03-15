@@ -386,4 +386,18 @@ nnoremap <F2> :TagbarToggle<CR>
 " Syntastic
 let g:syntastic_check_on_open=1
 
+" nergdtree-git-plugin
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
 
+" vimagit
+nnoremap <F3> :Magit<CR>
