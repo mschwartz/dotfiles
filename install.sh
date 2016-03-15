@@ -36,4 +36,8 @@ for bin in `ls $HOME/dotfiles/bin`; do
     ln -sf $HOME/dotfiles/bin/$bin $HOME/bin/$bin
 done
 
+cd vim
+git submodule update --init --recursive
+cd bundle/tern_for_vim
+npm install
 
