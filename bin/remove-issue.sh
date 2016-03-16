@@ -30,7 +30,7 @@ for path in $REPOS; do
             exit 1
     esac
     cd $HOME/sencha/projects
-    mkdir archive
+    mkdir -p archive
     mv $ISSUE_DIR archive/ || true
     echo "$path complete"
 done
