@@ -40,4 +40,6 @@ cd vim
 git submodule update --init --recursive
 cd bundle/tern_for_vim
 npm install
+cd ../YouCompleteMe
+./install.py --tern-completer
 
