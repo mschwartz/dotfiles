@@ -52,9 +52,3 @@
 [submodule "vim/bundle/vimagit"]
 	path = vim/bundle/vimagit
 	url = git@github.com:jreybert/vimagit.git
-[submodule "vim/bundle/vim-gutentags"]
-	path = vim/bundle/vim-gutentags
-	url = git@github.com:ludovicchabant/vim-gutentags.git
-[submodule "vim/bundle/taglist.vim"]
-	path = vim/bundle/taglist.vim
-	url = git@github.com:vim-scripts/taglist.vim.git
