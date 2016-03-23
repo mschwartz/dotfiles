@@ -28,11 +28,13 @@ for path in $REPOS; do
         SDK6.0)
             ISSUE_DIR="$ISSUE_ID-6.0"
             git checkout $ISSUE_DIR
+            sencha ant refresh
             echo "6.0 complete"
             ;;
         SDK6.1)
             ISSUE_DIR="$ISSUE_ID-6.1"
             git checkout $ISSUE_DIR
+            sencha ant refresh
             echo "6.1 complete"
             ;;
         *)
