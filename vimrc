@@ -345,27 +345,27 @@ if executable('ag')
 endif
 
 " vim-easytags
-let g:easytags_cmd = '/usr/local/bin/ctags'
-let g:easytags_file = '~/.vimtags'
+"let g:easytags_cmd = '/usr/local/bin/ctags'
+"let g:easytags_file = '~/.vimtags'
 
-set tags=./.vimtags;
-"let g:easytags_dynamic_files = 1
-"let g:easytags_by_filetype = 1
-"let g:easytags_async = 1
-"let g:easytags_autorecurse = 1
-"let g:easytags_include_members = 1
-"let g:easytags_resolve_links = 1
-"let g:easytags_updatetime_warn = 0
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
-let g:easytags_languages = {
-      \   'javascript': {
-      \       'cmd': g:easytags_cmd,
-      \       'args': [],
-      \       'fileoutput_opt': '-f',
-      \       'stdout_opt': '-f-',
-      \       'recurse_flag': '-R'
-      \   }
-  \}
+"set tags=./.vimtags;
+""let g:easytags_dynamic_files = 1
+""let g:easytags_by_filetype = 1
+""let g:easytags_async = 1
+""let g:easytags_autorecurse = 1
+""let g:easytags_include_members = 1
+""let g:easytags_resolve_links = 1
+""let g:easytags_updatetime_warn = 0
+"let g:easytags_events = ['BufReadPost', 'BufWritePost']
+"let g:easytags_languages = {
+      "\   'javascript': {
+      "\       'cmd': g:easytags_cmd,
+      "\       'args': [],
+      "\       'fileoutput_opt': '-f',
+      "\       'stdout_opt': '-f-',
+      "\       'recurse_flag': '-R'
+      "\   }
+  "\}
 
 "let g:easytags_languages = {
             "\   'javascript': {
