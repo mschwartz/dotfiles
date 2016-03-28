@@ -37,6 +37,7 @@ for bin in `ls $HOME/dotfiles/bin`; do
 done
 
 cd vim
+npm install -g jsctags
 git submodule update --init --recursive
 cd bundle/tern_for_vim
 npm install
