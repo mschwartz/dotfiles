@@ -52,3 +52,6 @@
 [submodule "vim/bundle/vimagit"]
 	path = vim/bundle/vimagit
 	url = git@github.com:jreybert/vimagit.git
+[submodule "vim/bundle/nerdcommenter"]
+	path = vim/bundle/nerdcommenter
+	url = git@github.com:scrooloose/nerdcommenter.git
