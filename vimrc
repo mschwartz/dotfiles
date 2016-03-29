@@ -230,7 +230,7 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Command-/ to toggle comments
 "map <C-/>NERDComAlignedComment<CR>
-"nmap <C-/> <plug>NERDCommenterToggle<CR>
+nmap <C-/> :NERDCommenterToggle<CR>
 "imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
 
 

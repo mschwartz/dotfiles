@@ -55,3 +55,12 @@
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
 	url = git@github.com:scrooloose/nerdcommenter.git
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = git@github.com:scrooloose/nerdtree.git
+[submodule "vim/bundle/vim-gitbranch"]
+	path = vim/bundle/vim-gitbranch
+	url = git@github.com:itchyny/vim-gitbranch.git
+[submodule "vim/bundle/lightline.vim"]
+	path = vim/bundle/lightline.vim
+	url = git@github.com:itchyny/lightline.vim.git
