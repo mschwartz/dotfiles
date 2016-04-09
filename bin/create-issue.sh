@@ -23,7 +23,7 @@ for path in $REPOS; do
         SDK5)
             ISSUE_DIR="$ISSUE_ID-5.0"
             git checkout sencha-5.0.x
-            git pull upstream
+            git pull upstream sencha-5.0.x
             git checkout -b $ISSUE_DIR
 
             cd $HOME/sencha/projects
@@ -89,7 +89,7 @@ EOF
         SDK6.0)
             ISSUE_DIR="$ISSUE_ID-6.0"
             git checkout sencha-6.0.x
-            git pull upstream
+            git pull upstream sencha-6.0.x
             git checkout -b $ISSUE_DIR
 #            sencha ant refresh
             cd $HOME/sencha/projects
@@ -110,7 +110,7 @@ EOF
         SDK6.1)
             ISSUE_DIR="$ISSUE_ID-6.1"
             git checkout ext-6.1.x
-            git pull upstream
+            git pull upstream ext-6.1.x
             git checkout -b $ISSUE_DIR
 #            sencha ant refresh
             cd $HOME/sencha/projects
