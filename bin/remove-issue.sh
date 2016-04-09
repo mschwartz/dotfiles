@@ -14,16 +14,19 @@ for path in $REPOS; do
             ISSUE_DIR="$ISSUE_ID-5.0"
             git checkout sencha-5.0.x || true
             git branch -D $ISSUE_DIR || true
+            git push origin --delete $ISSUE_DIR
             ;;
         SDK6.0)
             ISSUE_DIR="$ISSUE_ID-6.0"
             git checkout sencha-6.0.x || true
             git branch -D $ISSUE_DIR || true
+            git push origin --delete $ISSUE_DIR
             ;;
         SDK6.1)
             ISSUE_DIR="$ISSUE_ID-6.1"
             git checkout ext-6.1.x || true
             git branch -D $ISSUE_DIR || true
+            git push origin --delete $ISSUE_DIR
             ;;
         *)
             echo "Unknown version $path"
