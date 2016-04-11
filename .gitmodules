@@ -4,9 +4,6 @@
 [submodule "vim/bundle/ag.vim"]
 	path = vim/bundle/ag.vim
 	url = git@github.com:rking/ag.vim.git
-[submodule "vim/bundle/ctrlp.vim"]
-	path = vim/bundle/ctrlp.vim
-	url = git@github.com:kien/ctrlp.vim.git
 [submodule "vim/bundle/delimitMate"]
 	path = vim/bundle/delimitMate
 	url = git@github.com:Raimondi/delimitMate.git
