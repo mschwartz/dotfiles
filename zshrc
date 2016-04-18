@@ -92,4 +92,5 @@ function = {
     calc="${@//x/*}"
     bc -l <<<"scale=10;$calc"
 }
-export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.2.15/..:$PATH"
+#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.2.15/..:$PATH"
+export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.3/..:$PATH"
