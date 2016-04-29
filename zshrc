@@ -55,13 +55,22 @@ export LSCOLORS=exfxcxdxbxexexabagacad
 
 export EDITOR='/usr/local/bin/vim'
 
-cdpath=( ~ )
+cdpath=( ~ ~/sencha/github ~/sencha/projects )
 alias snowdog='ssh snowdog'
 alias bytor='ssh bytor'
 alias xanadu='ssh xanadu'
 alias presto='ssh -X presto'
 alias dreamline='ssh -X dreamline'
-
+alias x5='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/5/"`'
+alias x6.0='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.0/"`'
+alias x60='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.0/"`'
+alias x6.1='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.1/"`'
+alias x61='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.1/"`'
+alias tmongoose='tmux new -A -s mongoose'
+alias tvim='tmux new -A -s vim'
+alias ttmongoose='tmux -CC new -A -s mongoose'
+alias ttvim='tmux -CC new -A -s vim'
+alias tlist='tmux list-sessions'
 alias vi='/usr/local/bin/vim'
 alias df='df -P'
 
