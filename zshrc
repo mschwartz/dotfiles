@@ -73,7 +73,6 @@ alias ttvim='tmux -CC new -A -s vim'
 alias tlist='tmux list-sessions'
 alias vi='/usr/local/bin/vim'
 alias df='df -P'
-
 if [ -f $HOME/.zshrc.local ]; then
     source $HOME/.zshrc.local
 fi

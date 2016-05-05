@@ -9,7 +9,7 @@ ISSUE_ID=$1
 shift
 
 if [ "$1" == "" ]; then
-    REPOS="SDK5 SDK6.0 SDK6.1"
+    REPOS="SDK6.1"
 else
     REPOS=""
     while [ "$1" ]
