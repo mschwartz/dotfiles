@@ -20,8 +20,8 @@ echo "Processing: ISSUE_ID=$ISSUE_ID REPOS=$REPOS"
 for path in $REPOS; do
     cd $HOME/sencha/github/$path
     case $path in
-        SDK5)
-            ISSUE_DIR="$ISSUE_ID-5.0"
+        SDK5.x)
+            ISSUE_DIR="$ISSUE_ID-5.x"
             git checkout $ISSUE_DIR
             echo "5.0 complete"
             ;;
@@ -31,8 +31,8 @@ for path in $REPOS; do
             sencha ant refresh
             echo "6.0 complete"
             ;;
-        SDK6.1)
-            ISSUE_DIR="$ISSUE_ID-6.1"
+        SDK6.2)
+            ISSUE_DIR="$ISSUE_ID-6.2"
             git checkout $ISSUE_DIR
             sencha ant refresh
             echo "6.1 complete"

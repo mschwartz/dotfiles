@@ -10,8 +10,8 @@ echo "Processing: ISSUE_ID=$ISSUE_ID REPOS=$REPOS"
 for path in $REPOS; do
     cd $HOME/sencha/github/$path
     case $path in
-        SDK5)
-            ISSUE_DIR="$ISSUE_ID-5.0"
+        SDK5.x)
+            ISSUE_DIR="$ISSUE_ID-5.x"
             git checkout sencha-5.0.x || true
             git branch -D $ISSUE_DIR || true
             git push origin --delete $ISSUE_DIR
@@ -22,9 +22,9 @@ for path in $REPOS; do
             git branch -D $ISSUE_DIR || true
             git push origin --delete $ISSUE_DIR
             ;;
-        SDK6.1)
-            ISSUE_DIR="$ISSUE_ID-6.1"
-            git checkout ext-6.1.x || true
+        SDK6.2)
+            ISSUE_DIR="$ISSUE_ID-6.2"
+            git checkout ext-6.2.x || true
             git branch -D $ISSUE_DIR || true
             git push origin --delete $ISSUE_DIR
             ;;

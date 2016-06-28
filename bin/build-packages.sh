@@ -34,7 +34,7 @@ fi
 
 REPO=$1
 case $REPO in
-    SDK5)
+    SDK5.x)
         link_sencha_core
         ln -sf ext extjs
         sencha ant extjs
@@ -44,7 +44,7 @@ case $REPO in
         ln -sf ext extjs
         sencha ant extjs
         ;;
-    5.0)
+    5.x)
         link_sencha_core
         ln -sf ext extjs
         sencha ant extjs

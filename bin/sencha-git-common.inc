@@ -9,7 +9,7 @@ ISSUE_ID=$1
 shift
 
 if [ "$1" == "" ]; then
-    REPOS="SDK6.1"
+    REPOS="SDK6.2"
 else
     REPOS=""
     while [ "$1" ]
@@ -17,13 +17,13 @@ else
         REPO=$1
         case $REPO in
             SDK5)
-                REPO="SDK5"
+                REPO="SDK5.x"
                 ;;
             5)
-                REPO="SDK5"
+                REPO="SDK5.x"
                 ;;
             5.0)
-                REPO="SDK5"
+                REPO="SDK5.x"
                 ;;
             SDK6)
                 REPO="SDK6.0"
@@ -37,11 +37,11 @@ else
             6.0)
                 REPO="SDK6.0"
                 ;;
-            SDK6.1)
-                REPO="SDK6.1"
+            SDK6.2)
+                REPO="SDK6.2"
                 ;;
-            6.1)
-                REPO="SDK6.1"
+            6.2)
+                REPO="SDK6.2"
                 ;;
         esac
         if [ -z $REPOS ]; then
