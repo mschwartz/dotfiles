@@ -35,7 +35,7 @@ for path in $REPOS; do
             ISSUE_DIR="$ISSUE_ID-6.2"
             git checkout $ISSUE_DIR
             sencha ant refresh
-            echo "6.1 complete"
+            echo "6.2 complete"
             ;;
         *)
             echo "Unknown version $path"
