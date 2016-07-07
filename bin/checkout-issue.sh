@@ -34,6 +34,7 @@ for path in $REPOS; do
         SDK6.2)
             ISSUE_DIR="$ISSUE_ID-6.2"
             git checkout $ISSUE_DIR
+            git pull upstream ext-6.2.x
             sencha ant refresh
             echo "6.2 complete"
             ;;
