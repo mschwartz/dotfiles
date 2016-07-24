@@ -9,7 +9,7 @@ ZSH_THEME="agnoster"
 #ZSH_THEME="clean"
 DEFAULT_USER=mschwartz
 
-unalias run-help
+unalias run-help || false
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
@@ -102,6 +102,6 @@ function = {
 }
 export HOMEBREW_GITHUB_API_TOKEN="ba96499d931bf7bd240dfa3cd5f200f7bcbc324b"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.2.15/..:$PATH"
-export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.3/..:$PATH"
-export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.23/..:$PATH"
+#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.3/..:$PATH"
+#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.23/..:$PATH"
 export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.46/..:$PATH"
