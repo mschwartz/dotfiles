@@ -1,0 +1,10 @@
+--type-set=md=.md
+--type-set=json=.json
+
+--ignore-file=ext:png
+--ignore-file=ext:jpg
+--ignore-file=ext:psd
+--ignore-file=ext:svg
+
+--ignore-dir=.git
+

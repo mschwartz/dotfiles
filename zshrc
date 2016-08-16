@@ -9,7 +9,7 @@ ZSH_THEME="agnoster"
 #ZSH_THEME="clean"
 DEFAULT_USER=mschwartz
 
-unalias run-help
+unalias run-help || false
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
@@ -61,11 +61,11 @@ alias bytor='ssh bytor'
 alias xanadu='ssh xanadu'
 alias presto='ssh -X presto'
 alias dreamline='ssh -X dreamline'
-alias x5='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/5/"`'
+alias x5='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/5.x/"`'
 alias x6.0='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.0/"`'
 alias x60='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.0/"`'
-alias x6.1='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.1/"`'
-alias x61='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.1/"`'
+alias x6.2='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.2/"`'
+alias x62='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.2/"`'
 alias tmongoose='tmux new -A -s mongoose'
 alias tvim='tmux new -A -s vim'
 alias ttmongoose='tmux -CC new -A -s mongoose'
@@ -100,6 +100,8 @@ function = {
     calc="${@//x/*}"
     bc -l <<<"scale=10;$calc"
 }
+export HOMEBREW_GITHUB_API_TOKEN="ba96499d931bf7bd240dfa3cd5f200f7bcbc324b"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.2.15/..:$PATH"
-export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.3/..:$PATH"
+#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.3/..:$PATH"
+#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.23/..:$PATH"
 export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.46/..:$PATH"

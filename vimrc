@@ -134,6 +134,14 @@ let g:mapleader = ","
 "Fast saving
 nmap <leader>w :w!<cr>
 nmap <leader>f :find<cr>
+nmap <C-s> : w!<cr>
+nmap <C-S> : w!<cr>
+map <C-s> : w!<cr>
+map <C-S> : w!<cr>
+map <D-S> : w!<cr>
+map <D-s> : w!<cr>
+map <M-S> : w!<cr>
+map <M-s> : w!<cr>
 "nnoremap F :grep! "\b<C-R><C-W>\b"<CR> :cw<CR>
 
 

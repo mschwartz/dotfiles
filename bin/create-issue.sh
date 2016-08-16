@@ -20,8 +20,8 @@ echo "Processing: ISSUE_ID=$ISSUE_ID REPOS=$REPOS"
 for path in $REPOS; do
     cd $HOME/sencha/github/$path
     case $path in
-        SDK5)
-            ISSUE_DIR="$ISSUE_ID-5.0"
+        SDK5.x)
+            ISSUE_DIR="$ISSUE_ID-5.x"
             git checkout sencha-5.0.x
             git pull upstream sencha-5.0.x
             git checkout -b $ISSUE_DIR
@@ -84,7 +84,7 @@ Ext.application({
 });
 EOF
 
-            echo "5.0 complete"
+            echo "5.x complete"
             ;;
         SDK6.0)
             ISSUE_DIR="$ISSUE_ID-6.0"
@@ -107,15 +107,15 @@ EOF
             ln -s ../../github/$path/ext ext
             echo "6.0 complete"
             ;;
-        SDK6.1)
-            ISSUE_DIR="$ISSUE_ID-6.1"
-            git checkout ext-6.1.x
-            git pull upstream ext-6.1.x
+        SDK6.2)
+            ISSUE_DIR="$ISSUE_ID-6.2"
+            git checkout ext-6.2.x
+            git pull upstream ext-6.2.x
             git checkout -b $ISSUE_DIR
 #            sencha ant refresh
             cd $HOME/sencha/projects
             echo "------- generate app"
-            sencha -sdk ../github/SDK6.1/ext generate app test $ISSUE_DIR
+            sencha -sdk ../github/SDK6.2/ext generate app test $ISSUE_DIR
             cd $ISSUE_DIR
             cd packages
             for package in `ls ../../../github/$path/packages`; do
@@ -127,7 +127,7 @@ EOF
             sencha app build development
             mv ext xxx
             ln -s ../../github/$path/ext ext
-            echo "6.1 complete"
+            echo "6.2 complete"
             ;;
         *)
             echo "Unknown version $path"
