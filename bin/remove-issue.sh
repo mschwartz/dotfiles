@@ -28,6 +28,12 @@ for path in $REPOS; do
             git branch -D $ISSUE_DIR || true
             git push origin --delete $ISSUE_DIR
             ;;
+        SDK7.0)
+            ISSUE_DIR="$ISSUE_ID-7.0"
+            git checkout ext-7.0.x || true
+            git branch -D $ISSUE_DIR || true
+            git push origin --delete $ISSUE_DIR
+            ;;
         *)
             echo "Unknown version $path"
             exit 1

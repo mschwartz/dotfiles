@@ -21,6 +21,11 @@ for path in $REPOS; do
             git checkout -b $ISSUE_ID || git checkout $ISSUE_ID
             git pull upstream ext-6.2.x
             ;;
+        SDK7.0)
+            git checkout ext-7.0.x
+            git checkout -b $ISSUE_ID || git checkout $ISSUE_ID
+            git pull upstream ext-7.0.x
+            ;;
         *)
             echo "Unknown SDK  $path"
     esac        

@@ -129,6 +129,28 @@ EOF
             ln -s ../../github/$path/ext ext
             echo "6.2 complete"
             ;;
+        SDK7.0)
+            ISSUE_DIR="$ISSUE_ID-7.0"
+            git checkout ext-7.0.x
+            git pull upstream ext-7.0.x
+            git checkout -b $ISSUE_DIR
+#            sencha ant refresh
+            cd $HOME/sencha/projects
+            echo "------- generate app"
+            sencha -sdk ../github/SDK7.0/ext generate app test $ISSUE_DIR
+            cd $ISSUE_DIR
+            cd packages
+            for package in `ls ../../../github/$path/packages`; do
+                ln -sf ../../github/$path/packages/$package .
+            done
+            cd ..
+            sed -i '' '/ext-all-rtl-debug.js/s/^/\/\//' app.json
+            sed -i '' '/ext-modern-all-debug.js/s/^/\/\//' app.json
+            sencha app build development
+            mv ext xxx
+            ln -s ../../github/$path/ext ext
+            echo "7.0 complete"
+            ;;
         *)
             echo "Unknown version $path"
     esac
