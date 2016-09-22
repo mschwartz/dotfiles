@@ -38,6 +38,13 @@ for path in $REPOS; do
             sencha ant refresh
             echo "6.2 complete"
             ;;
+        SDK7.0)
+            ISSUE_DIR="$ISSUE_ID-7.0"
+            git checkout $ISSUE_DIR
+            git pull upstream ext-7.0.x
+            sencha ant refresh
+            echo "7.0 complete"
+            ;;
         *)
             echo "Unknown version $path"
     esac

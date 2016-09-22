@@ -9,7 +9,7 @@ ISSUE_ID=$1
 shift
 
 if [ "$1" == "" ]; then
-    REPOS="SDK6.2"
+    REPOS="SDK7.0"
 else
     REPOS=""
     while [ "$1" ]
@@ -42,6 +42,12 @@ else
                 ;;
             6.2)
                 REPO="SDK6.2"
+                ;;
+            SDK7.0)
+                REPO="SDK7.0"
+                ;;
+            7.0)
+                REPO="SDK7.0"
                 ;;
         esac
         if [ -z $REPOS ]; then
