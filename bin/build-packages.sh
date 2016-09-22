@@ -5,7 +5,8 @@ link_sencha_core() {
     ln -sf ../../packages/sencha-core .
 }
 
-git pull upstream
+cd ~/sencha/github/SDK6.2
+git pull upstream ext-6.2.x
 
 cd ext
 sencha package build
