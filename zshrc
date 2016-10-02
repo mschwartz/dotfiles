@@ -9,7 +9,7 @@ ZSH_THEME="agnoster"
 #ZSH_THEME="clean"
 DEFAULT_USER=mschwartz
 
-unalias run-help || false
+unalias run-help 2>/dev/null
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
