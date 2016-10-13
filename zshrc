@@ -9,7 +9,7 @@ ZSH_THEME="agnoster"
 #ZSH_THEME="clean"
 DEFAULT_USER=mschwartz
 
-unalias run-help || false
+unalias run-help 2>/dev/null
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
@@ -92,7 +92,7 @@ if [ -f /Users/mschwartz/.tnsrc ]; then
 fi
 ###-tns-completion-end-###
 
-source ~/.iterm2_shell_integration.`basename $SHELL`
+#source ~/.iterm2_shell_integration.`basename $SHELL`
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 #
 #
