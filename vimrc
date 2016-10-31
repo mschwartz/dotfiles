@@ -1,3 +1,4 @@
+imap jj <Esc>
 execute pathogen#infect()
 "set guifont=Source\ Code\ Pro\ Light:h14
 set guifont=PT\ Mono:h12
@@ -140,9 +141,10 @@ map <C-s> : w!<cr>
 map <C-S> : w!<cr>
 map <D-S> : w!<cr>
 map <D-s> : w!<cr>
-map <M-S> : w!<cr>
-map <M-s> : w!<cr>
 "nnoremap F :grep! "\b<C-R><C-W>\b"<CR> :cw<CR>
+
+map <M-s> :wckEnter>
+imap <M-s> <Esc>:wckEnter>i
 
 nmap <f1> :echo<CR>
 imap <f1> <C-o>:echo<CR>
@@ -412,3 +414,4 @@ let g:NERDTreeIndicatorMapCustom = {
 
 " vimagit
 nnoremap <F3> :Magit<CR>
+
