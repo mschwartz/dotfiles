@@ -1,0 +1,18 @@
+imap jj <Esc>
+set showmode
+set ignorecase
+set smartcase
+set incsearch
+
+let mapleader = ","
+map <leader>s :source ~/.ideavimrc<CR>
+map <leader>w :action SaveAll<CR>
+
+"When .vimrc is edited, reload it
+"autocmd! bufwritepost .vimrc source ~/.vimrc
+augroup reload_vimrc
+    autocmd!
+    autocmd bufwritepost ~/.vimrc nested source ~/.vimrc
+augroup END
+
+

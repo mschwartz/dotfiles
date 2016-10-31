@@ -9,7 +9,7 @@ ZSH_THEME="agnoster"
 #ZSH_THEME="clean"
 DEFAULT_USER=mschwartz
 
-unalias run-help || false
+unalias run-help 2>/dev/null
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
@@ -59,8 +59,8 @@ cdpath=( ~ ~/sencha/github ~/sencha/projects )
 alias snowdog='ssh snowdog'
 alias bytor='ssh bytor'
 alias xanadu='ssh xanadu'
-alias presto='ssh -X presto'
-alias dreamline='ssh -X dreamline'
+alias presto='ssh -Y presto'
+alias dreamline='ssh -Y dreamline'
 alias x5='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/5.x/"`'
 alias x6.0='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.0/"`'
 alias x60='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.0/"`'
@@ -92,7 +92,7 @@ if [ -f /Users/mschwartz/.tnsrc ]; then
 fi
 ###-tns-completion-end-###
 
-source ~/.iterm2_shell_integration.`basename $SHELL`
+#source ~/.iterm2_shell_integration.`basename $SHELL`
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 #
 #
@@ -104,4 +104,5 @@ export HOMEBREW_GITHUB_API_TOKEN="ba96499d931bf7bd240dfa3cd5f200f7bcbc324b"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.2.15/..:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.3/..:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.23/..:$PATH"
-export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.46/..:$PATH"
+#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.46/..:$PATH"
+export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.103/..:$PATH"
