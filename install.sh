@@ -31,11 +31,13 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
+rm -rf $HOMEdotfiles/bin/node_modules
 mkdir -p $HOME/bin
 for bin in `ls $HOME/dotfiles/bin`; do
     ln -sf $HOME/dotfiles/bin/$bin $HOME/bin/$bin
 done
 pushd $HOME/bin
+rm -rf ./node_modules
 npm install
 popd
 
