@@ -53,7 +53,7 @@ let g:solarized_contrast = "high"
 "Show menu with possible tab completions
 set wildmenu
 "Ignore these files when completing names and in Explorer
-set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
+set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,xxx/*
 
 "colorscheme blue
 "colorscheme darkslategray
@@ -353,10 +353,12 @@ colorscheme PaperColor
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
     set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_user_command = 'ag %s -l --nocolor --follow --ignore xxx -g ""'
     let g:ctrlp_use_caching = 0
 endif
 
+let g:ctrlp_follow_symlinks = 2
+let g:ctrlp_custom_ignore = 'xxx'
 " vim-easytags
 "let g:easytags_cmd = '/usr/local/bin/ctags'
 "let g:easytags_file = '~/.vimtags'
