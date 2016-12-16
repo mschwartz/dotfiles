@@ -59,6 +59,7 @@ cdpath=( ~ ~/sencha/github ~/sencha/projects )
 alias snowdog='ssh snowdog'
 alias bytor='ssh bytor'
 alias xanadu='ssh xanadu'
+alias coldfire='ssh -Y coldfire'
 alias presto='ssh -Y presto'
 alias dreamline='ssh -Y dreamline'
 alias x5='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/5.x/"`'
