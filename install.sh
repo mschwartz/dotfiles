@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="path profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zprofile zshenv ctags tmux.conf ackrc"    # list of files/folders to symlink in homedir
+files="path profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zprofile zshenv ctags tmux.conf ackrc ideavimrc"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -31,10 +31,15 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
+rm -rf $HOMEdotfiles/bin/node_modules
 mkdir -p $HOME/bin
 for bin in `ls $HOME/dotfiles/bin`; do
     ln -sf $HOME/dotfiles/bin/$bin $HOME/bin/$bin
 done
+pushd $HOME/bin
+rm -rf ./node_modules
+npm install
+popd
 
 cd vim
 npm install -g jsctags

@@ -1,12 +1,14 @@
 #!/bin/sh
 
+. $HOME/bin/sencha-git-common.inc
+
 link_sencha_core() {
     cd ext/packages
     ln -sf ../../packages/sencha-core .
 }
 
-cd ~/sencha/github/SDK6.2
-git pull upstream ext-6.2.x
+cd ~/sencha/github/$REPO
+git pull upstream $BRANCH
 
 cd ext
 sencha package build
