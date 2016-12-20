@@ -56,6 +56,7 @@ export LSCOLORS=exfxcxdxbxexexabagacad
 export EDITOR='/usr/local/bin/vim'
 
 cdpath=( ~ ~/sencha/github ~/sencha/projects )
+
 alias snowdog='ssh snowdog'
 alias bytor='ssh bytor'
 alias xanadu='ssh xanadu'
