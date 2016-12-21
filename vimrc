@@ -417,3 +417,5 @@ let g:NERDTreeIndicatorMapCustom = {
 " vimagit
 nnoremap <F3> :Magit<CR>
 
+let g:tmuxline_preset = 'powerline'
+autocmd VimEnter * Tmuxline vim_statusline_2
