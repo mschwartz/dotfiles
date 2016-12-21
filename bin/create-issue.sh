@@ -117,11 +117,11 @@ EOF
             echo "------- generate app"
             sencha -sdk ../github/SDK6.2/ext generate app test $ISSUE_DIR
             cd $ISSUE_DIR
-            cd packages
-            for package in `ls ../../../github/$path/packages`; do
-                ln -sf ../../github/$path/packages/$package .
-            done
-            cd ..
+            #cd packages
+            #for package in `ls ../../../github/$path/packages`; do
+                #ln -sf ../../github/$path/packages/$package .
+            #done
+            #cd ..
             sed -i '' '/ext-all-rtl-debug.js/s/^/\/\//' app.json
             sed -i '' '/ext-modern-all-debug.js/s/^/\/\//' app.json
             sencha app build development
