@@ -73,3 +73,9 @@
 [submodule "vim/bundle/vim-javascript"]
 	path = vim/bundle/vim-javascript
 	url = git@github.com:pangloss/vim-javascript
+[submodule "vim/bundle/vim-pug"]
+	path = vim/bundle/vim-pug
+	url = git@github.com:digitaltoad/vim-pug
+[submodule "vim/bundle/vim-pug-complete"]
+	path = vim/bundle/vim-pug-complete
+	url = git@github.com:dNitro/vim-pug-complete
