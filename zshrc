@@ -46,7 +46,7 @@ HELPDIR=/usr/local/share/zsh/help
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git colorize bower brew coffee colored-man node npm osx redis-cli rvm screen sublime terminalapp themes tmux)
+plugins=(git colorize bower brew coffee colored-man node npm osx redis-cli rvm screen sublime terminalapp themes tmux docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
