@@ -42,7 +42,7 @@ set modeline
 set modelines=3
 set mouse=a
 "syntax on
-"syntax enable
+syntax enable
 set background=light
 "colorscheme solarized
 " solarized options 
