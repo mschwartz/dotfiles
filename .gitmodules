@@ -79,3 +79,6 @@
 [submodule "vim/bundle/vim-pug-complete"]
 	path = vim/bundle/vim-pug-complete
 	url = git@github.com:dNitro/vim-pug-complete
+[submodule "vim/bundle/vim-mustache-handlebars"]
+	path = vim/bundle/vim-mustache-handlebars
+	url = git@github.com:mustache/vim-mustache-handlebars
