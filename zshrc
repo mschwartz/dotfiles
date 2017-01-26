@@ -89,6 +89,13 @@ export ANDROID_HOME='/Users/mschwartz/android-sdk-macosx'
 setopt no_share_history
 fpath=(~/dotfiles/completions/zsh/hub $fpath)
 
+grefresh () {
+    git checkout $1
+    git fetch -p upstream
+    git pull upstream $1
+    git push origin $1
+    git fetch origin
+}
 
 ###-tns-completion-start-###
 if [ -f /Users/mschwartz/.tnsrc ]; then 
