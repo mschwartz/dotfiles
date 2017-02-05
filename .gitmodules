@@ -31,15 +31,6 @@
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/vim-fugitive
 	url = git@github.com:tpope/vim-fugitive.git
-[submodule "vim/bundle/vim-javascript"]
-	path = vim/bundle/vim-javascript
-	url = git@github.com:pangloss/vim-javascript.git
-[submodule "vim/bundle/vim-javascript-syntax"]
-	path = vim/bundle/vim-javascript-syntax
-	url = git@github.com:jelera/vim-javascript-syntax.git
-[submodule "vim/bundle/vim-jsx"]
-	path = vim/bundle/vim-jsx
-	url = git@github.com:mxw/vim-jsx.git
 [submodule "vim/bundle/vim-misc"]
 	path = vim/bundle/vim-misc
 	url = git@github.com:xolox/vim-misc.git
@@ -73,3 +64,21 @@
 [submodule "vim/bundle/tmuxline.vim"]
 	path = vim/bundle/tmuxline.vim
 	url = git@github.com:edkolev/tmuxline.vim
+[submodule "vim/bundle/tlib_vim"]
+	path = vim/bundle/tlib_vim
+	url = git@github.com:tomtom/tlib_vim.git
+[submodule "vim/bundle/vim-addon-mw-utils"]
+	path = vim/bundle/vim-addon-mw-utils
+	url = git@github.com:MarcWeber/vim-addon-mw-utils
+[submodule "vim/bundle/vim-javascript"]
+	path = vim/bundle/vim-javascript
+	url = git@github.com:pangloss/vim-javascript
+[submodule "vim/bundle/vim-pug"]
+	path = vim/bundle/vim-pug
+	url = git@github.com:digitaltoad/vim-pug
+[submodule "vim/bundle/vim-pug-complete"]
+	path = vim/bundle/vim-pug-complete
+	url = git@github.com:dNitro/vim-pug-complete
+[submodule "vim/bundle/vim-mustache-handlebars"]
+	path = vim/bundle/vim-mustache-handlebars
+	url = git@github.com:mustache/vim-mustache-handlebars

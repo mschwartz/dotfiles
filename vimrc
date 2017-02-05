@@ -14,7 +14,7 @@ if has("autocmd")
     autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 endif
 
-    filetype plugin indent on
+filetype plugin indent on
 " For everything else, use a tab width of 4 space chars.
 set tabstop=4       " The width of a TAB is set to 4.
                     " Still it is a \t. It is just that
@@ -41,7 +41,7 @@ set ttyfast
 set modeline
 set modelines=3
 set mouse=a
-syntax on
+"syntax on
 syntax enable
 set background=light
 "colorscheme solarized
@@ -61,6 +61,7 @@ set autoindent
 set smartindent
 filetype on
 au BufRead,BufNewFile *.sjs		setfiletype javascript
+au BufRead,BufNewFile *.js		setfiletype javascript
 
 "cd ~/pwp2
 let Tlist_Use_Right_Window = 1
@@ -418,4 +419,5 @@ let g:NERDTreeIndicatorMapCustom = {
 nnoremap <F3> :Magit<CR>
 
 let g:tmuxline_preset = 'powerline'
-autocmd VimEnter * Tmuxline vim_statusline_2
+autocmd VimEnter * silent! Tmuxline vim_statusline_2
+

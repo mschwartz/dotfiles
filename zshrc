@@ -46,7 +46,7 @@ HELPDIR=/usr/local/share/zsh/help
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git colorize bower brew coffee colored-man node npm osx redis-cli rvm screen sublime terminalapp themes tmux)
+plugins=(git colorize bower brew coffee colored-man node npm osx redis-cli rvm screen sublime terminalapp themes tmux docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -61,7 +61,7 @@ alias snowdog='ssh snowdog'
 alias bytor='ssh bytor'
 alias xanadu='ssh xanadu'
 alias coldfire='ssh -Y coldfire'
-alias pd='ssh -L 3000:localhost:3000 pd.ddns.us'
+alias pd='ssh -Y -L 3000:localhost:3000 pd.ddns.us'
 alias presto='ssh -Y presto'
 alias dreamline='ssh -Y dreamline'
 alias bigmoney='ssh -Y bigmoney'
@@ -71,6 +71,7 @@ alias x60='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.0/"`'
 alias x6.2='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.2/"`'
 alias x62='cd `pwd | sed "s/[0-9]*\.*[0-9]*$/6.2/"`'
 alias tmongoose='tmux new -A -s mongoose'
+alias tshell='tmux new -A -s shell'
 alias tvim='tmux new -A -s vim'
 alias ttmongoose='tmux -CC new -A -s mongoose'
 alias ttvim='tmux -CC new -A -s vim'
@@ -89,6 +90,13 @@ export ANDROID_HOME='/Users/mschwartz/android-sdk-macosx'
 setopt no_share_history
 fpath=(~/dotfiles/completions/zsh/hub $fpath)
 
+grefresh () {
+    git checkout $1
+    git fetch -p upstream
+    git pull upstream $1
+    git push origin $1
+    git fetch origin
+}
 
 ###-tns-completion-start-###
 if [ -f /Users/mschwartz/.tnsrc ]; then 
@@ -109,4 +117,6 @@ export HOMEBREW_GITHUB_API_TOKEN="ba96499d931bf7bd240dfa3cd5f200f7bcbc324b"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.3/..:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.23/..:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.46/..:$PATH"
-export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.103/..:$PATH"
+#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.103/..:$PATH"
+export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.5.0.42/..:$PATH"
+export PATH="/home/mschwartz/bin/Sencha/Cmd:$PATH"
