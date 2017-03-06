@@ -360,6 +360,8 @@ endif
 
 let g:ctrlp_follow_symlinks = 2
 let g:ctrlp_custom_ignore = 'xxx'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 " vim-easytags
 "let g:easytags_cmd = '/usr/local/bin/ctags'
 "let g:easytags_file = '~/.vimtags'
