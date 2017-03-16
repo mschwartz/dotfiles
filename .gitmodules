@@ -85,6 +85,3 @@
 [submodule "vim/bundle/scss-syntax.vim"]
 	path = vim/bundle/scss-syntax.vim
 	url = git@github.com:cakebaker/scss-syntax.vim
-[submodule "tmux/tpm"]
-	path = tmux/tpm
-	url = git@github.com:tmux-plugins/tpm
