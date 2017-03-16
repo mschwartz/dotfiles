@@ -54,6 +54,7 @@ let g:solarized_contrast = "high"
 set wildmenu
 "Ignore these files when completing names and in Explorer
 set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,xxx/*
+set wildignore+=*.json
 
 "colorscheme blue
 "colorscheme darkslategray
@@ -352,14 +353,16 @@ colorscheme PaperColor
 "colorscheme solarized
 
 if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag --vimgrep --path-to-agignore ~/.agignore'
     set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor --follow --ignore xxx -g ""'
+    let g:ctrlp_user_command = 'ag %s -l --nocolor --follow --ignore *.json -g ""'
     let g:ctrlp_use_caching = 0
 endif
 
 let g:ctrlp_follow_symlinks = 2
 let g:ctrlp_custom_ignore = 'xxx'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 " vim-easytags
 "let g:easytags_cmd = '/usr/local/bin/ctags'
 "let g:easytags_file = '~/.vimtags'
@@ -421,3 +424,6 @@ nnoremap <F3> :Magit<CR>
 let g:tmuxline_preset = 'powerline'
 autocmd VimEnter * silent! Tmuxline vim_statusline_2
 
+" bind \ (backward slash) to grep shortcut
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
+nnoremap \ :Ag<SPACE>

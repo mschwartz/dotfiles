@@ -1,0 +1,9 @@
+*.json
+*.jsonp
+*.xml
+bootstrap*.js
+ext*all*.js
+attic
+*.rb
+build
+xxx
