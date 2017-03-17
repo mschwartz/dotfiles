@@ -3,6 +3,7 @@ execute pathogen#infect()
 "set guifont=Source\ Code\ Pro\ Light:h14
 set guifont=PT\ Mono:h12
 set antialias
+set autoread
 "set expandtab
 
 " Only do this part when compiled with support for autocommands.
