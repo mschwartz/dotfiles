@@ -7,3 +7,4 @@ attic
 *.rb
 build
 xxx
+node_modules
