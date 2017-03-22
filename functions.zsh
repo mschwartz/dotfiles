@@ -8,6 +8,10 @@ grefresh () {
     git fetch origin
 }
 
+gbranch() {
+    git checkout -b $1 || git checkout $1
+}
+
 issue () {
     if (( $# == 0 ))
     then 
