@@ -1,5 +1,7 @@
 #!/usr/bin/zsh
 
+export UPSTREAM=ext-6.5.x
+
 grefresh () {
     git checkout $1
     git fetch -p upstream
@@ -10,6 +12,8 @@ grefresh () {
 
 gbranch() {
     git checkout -b $1 || git checkout $1
+    git pull upstream $UPSTREAM
+    time sencha ant refresh
 }
 
 issue () {
@@ -44,3 +48,4 @@ ssh() {
     fi
 }
 
+alias 6.5='cd ~/sencha/github/SDK6.5'
