@@ -50,6 +50,7 @@ ssh() {
 
 alias 6.5='cd ~/sencha/github/SDK6.5'
 alias snowdog='ssh snowdog'
+alias dionysus='ssh dionysus'
 alias bytor='ssh bytor'
 alias xanadu='ssh xanadu'
 alias coldfire='ssh -Y coldfire'
