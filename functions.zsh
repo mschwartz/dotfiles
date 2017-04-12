@@ -3,17 +3,25 @@
 export UPSTREAM=ext-6.5.x
 
 grefresh () {
+    cd ~/sencha/github/SDK6.5
+    git checkout $UPSTREAM
     git checkout $1
     git fetch -p upstream
-    git pull upstream $1
-    git push origin $1
+    git pull upstream $UPSTREAM
+    git push origin $UPSTREAM
     git fetch origin
 }
 
 gbranch() {
+    cd ~/sencha/github/SDK6.5
     git checkout -b $1 || git checkout $1
     git pull upstream $UPSTREAM
     time sencha ant refresh
+}
+
+ks() {
+    cd ~/sencha/github/SDK6.5/ext/examples/kitchensink
+    sencha app build --dev material en
 }
 
 issue () {
