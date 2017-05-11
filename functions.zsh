@@ -39,8 +39,9 @@ issue () {
     fi
     sencha -sdk ../github/SDK6.5/ext generate app test $p
     cd $p
-    sed -i '' '/ext-all-rtl-debug.js/s/^/\/\//' app.json
-    sed -i '' '/ext-modern-all-debug.js/s/^/\/\//' app.json
+    cp ~/dotfiles/sencha/app.json app.json
+    cp ~/dotfiles/sencha/app.js app.js
+    cp ~/dotfiles/sencha/Application.js app/Application.js
     sencha app build development
     mv ext xxx
     ln -s ../../github/SDK6.5/ext ext
