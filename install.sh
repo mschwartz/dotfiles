@@ -7,9 +7,32 @@
 ########## Variables
 
 type=`uname -m`
+unamestr=`uname`
+platform='unknown'
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform='macos'
+fi
+
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 files="path profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zprofile zshenv functions.zsh ctags tmux tmux.conf ackrc ideavimrc agignore"    # list of files/folders to symlink in homedir
+
+echo "installing prerequisites $platform"
+if [[ $platform == 'linux' ]]; then
+    echo ...nodejs
+    curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+    sudo apt-get update
+    sudo apt-get install -y nodejs
+    npm config set prefix '/usr/local'
+    sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+    #sudo chown mschwartz.mschwartz /usr/local /usr/local/bin /usr/local/lib
+    sudo apt-get install -y build-essential speedtest-cli zsh vim cmake vim-youcompleteme python-dev libboost-all-dev
+elif [[ $platform == 'macos' ]]; then
+    echo ...nodejs
+    # brew install nodejs etc
+fi
 
 ##########
 
