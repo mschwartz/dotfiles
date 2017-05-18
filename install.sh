@@ -24,6 +24,7 @@ if [[ $platform == 'linux' ]]; then
     echo ...nodejs
     curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
     sudo apt-get update
+    sudo apt-get -y dist-upgrade
     sudo apt-get install -y nodejs
     npm config set prefix '/usr/local'
     sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
@@ -49,6 +50,7 @@ echo "...done"
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
+    rm -rf $olddir
     echo mv ~/.$file $olddir/.$file
     mv ~/.$file $olddir/.$file
     echo "Creating symlink to $file in home directory."
@@ -70,11 +72,13 @@ npm install -g jsctags
 git submodule update --init --recursive
 cd bundle/tern_for_vim
 npm install
-cd ../YouCompleteMe
-if [ "$type" = "armv71" ]; then
-    export YCM_CORES=1
-    YCM_CORES=1 ./install.py --tern-completer --system-boost
-else
-    ./install.py --tern-completer --system-boost
+if [[ "$platform" == 'macos ']]; then
+    cd ../YouCompleteMe
+    if [ "$type" = "armv71" ]; then
+        export YCM_CORES=1
+        YCM_CORES=1 ./install.py --tern-completer --system-boost
+    else
+        ./install.py --tern-completer --system-boost
+    fi
 fi
 
