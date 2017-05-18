@@ -72,7 +72,7 @@ npm install -g jsctags
 git submodule update --init --recursive
 cd bundle/tern_for_vim
 npm install
-if [[ "$platform" == 'macos ']]; then
+if [[ "$platform" == "macos" ]]; then
     cd ../YouCompleteMe
     if [ "$type" = "armv71" ]; then
         export YCM_CORES=1
