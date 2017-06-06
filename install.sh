@@ -11,6 +11,8 @@ unamestr=`uname`
 platform='unknown'
 if [[ "$unamestr" == 'Linux' ]]; then
     platform='linux'
+elif [[ "$unamestr" == 'armv7' ]]; then
+    platform='linux'
 elif [[ "$unamestr" == 'Darwin' ]]; then
     platform='macos'
 fi
@@ -27,6 +29,7 @@ if [[ $platform == 'linux' ]]; then
     sudo apt-get -y dist-upgrade
     sudo apt-get install -y nodejs
     npm config set prefix '/usr/local'
+    sudo mkdir -p $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
     sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
     #sudo chown mschwartz.mschwartz /usr/local /usr/local/bin /usr/local/lib
     sudo apt-get install -y build-essential speedtest-cli zsh vim cmake vim-youcompleteme python-dev libboost-all-dev
