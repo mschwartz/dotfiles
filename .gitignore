@@ -3,5 +3,5 @@ tags.lock
 tags.temp
 node_modules
 .AppleDouble
-vim/bundle/Session.vim
+vim/bundle/YouCompleteme
 tmux/resurrect
