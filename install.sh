@@ -31,8 +31,8 @@ if [[ $platform == 'linux' ]]; then
     npm config set prefix '/usr/local'
     sudo mkdir -p $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
     sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
-    #sudo chown mschwartz.mschwartz /usr/local /usr/local/bin /usr/local/lib
-    sudo apt-get install -y build-essential speedtest-cli zsh vim cmake vim-youcompleteme python-dev libboost-all-dev
+    sudo apt-get install -y build-essential speedtest-cli zsh vim cmake vim-youcompleteme python-dev libboost-all-dev tmux
+    chsh -s $(which zsh)
 elif [[ $platform == 'macos' ]]; then
     echo ...nodejs
     # brew install nodejs etc
@@ -51,16 +51,16 @@ cd $dir
 echo "...done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
+rm -rf $olddir/*
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    rm -rf $olddir
     echo mv ~/.$file $olddir/.$file
     mv ~/.$file $olddir/.$file
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
 
-rm -rf $HOMEdotfiles/bin/node_modules
+rm -rf $HOME/dotfiles/bin/node_modules
 mkdir -p $HOME/bin
 for bin in `ls $HOME/dotfiles/bin`; do
     ln -sf $HOME/dotfiles/bin/$bin $HOME/bin/$bin
@@ -85,3 +85,5 @@ if [[ "$platform" == "macos" ]]; then
     fi
 fi
 
+# oh my zsh
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
