@@ -43,6 +43,7 @@ fi
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
+rm -rf $olddir/*
 echo "...done"
 
 # change to the dotfiles directory
@@ -50,8 +51,11 @@ echo "Changing to the $dir directory"
 cd $dir
 echo "...done"
 
+sudo mkdir -p /etc/dnsmasq.d
+sudo cp dnsmasq.conf /etc/dnsmasq.conf
+sudo cp dnsmasq.hosts.conf /etc/dnsmasq.d/
+
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
-rm -rf $olddir/*
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     echo mv ~/.$file $olddir/.$file
