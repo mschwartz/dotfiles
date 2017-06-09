@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 type=`uname -m`
 unamestr=`uname`
