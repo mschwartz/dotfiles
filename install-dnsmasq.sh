@@ -13,7 +13,7 @@ fi
 
 if [[ $platform == 'linux' ]]; then
     sudo apt-get install -y dnsmasq
-    sudo cp dnsmasq.conf /etc/dnsmasq.conf
-    sudo cp dhcp.conf /etc/dnsmasq.d/
-    sudo cp dnsmasq.hosts.conf /etc/dnsmasq.hosts.conf
+    sudo cp dnsmasq/dnsmasq.conf /etc/dnsmasq.conf
+    sudo cp dnsmasq/dhcp.conf /etc/dnsmasq.d/
+    sudo cp dnsmasq/dnsmasq.hosts.conf /etc/dnsmasq.hosts.conf
 fi
