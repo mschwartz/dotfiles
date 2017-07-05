@@ -1,5 +1,9 @@
 #!/usr/bin/zsh
 
+sssh() {
+    /usr/bin/ssh -t $@ -t "tmux attach || tmux new"
+}
+
 export UPSTREAM=ext-6.5.x
 
 grefresh () {
