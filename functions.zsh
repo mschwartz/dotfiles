@@ -1,9 +1,5 @@
 #!/usr/bin/zsh
 
-sssh() {
-    /usr/bin/ssh -t $@ -t "tmux attach || tmux new"
-}
-
 export UPSTREAM=ext-6.5.x
 
 grefresh () {
@@ -86,5 +82,10 @@ alias lvim='tmux new -A -s lvim'
 alias ttmongoose='tmux -CC new -A -s mongoose'
 alias ttvim='tmux -CC new -A -s vim'
 alias tlist='tmux list-sessions'
+alias ttmux='tmux new -A -s $HOST-$$'
 alias vi='/usr/local/bin/vim'
 alias df='df -P'
+
+sssh() {
+    /usr/bin/ssh -Y -t $@ -t "tmux new -A -s $HOST-$$"
+}
