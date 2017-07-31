@@ -152,7 +152,7 @@ imap <M-s> <Esc>:wckEnter>i
 nmap <f1> :echo<CR>
 imap <f1> <C-o>:echo<CR>
 
-map <leader>t :helptags ~/.vim/doc<cr>
+"#map <leader>t :helptags ~/.vim/doc<cr>
 "Fast reloading of the .vimrc
 map <leader>s :source ~/.vimrc<cr>
 "Fast editing of .vimrc
