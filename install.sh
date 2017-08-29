@@ -19,7 +19,7 @@ files="path profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zpro
 
 echo "installing prerequisites $platform"
 if [[ $platform == 'linux' ]]; then
-    sudo apt-get install -y build-essential speedtest-cli zsh vim cmake vim-youcompleteme python-dev libboost-all-dev tmux curl
+    sudo apt-get install -y build-essential speedtest-cli zsh vim cmake vim-youcompleteme python-dev libboost-all-dev tmux curl ruby-dev
     echo ...nodejs
     curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
     sudo apt-get update
@@ -59,6 +59,9 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
 
 rm -rf $HOME/dotfiles/bin/node_modules
 mkdir -p $HOME/bin

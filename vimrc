@@ -1,7 +1,7 @@
 set nocompatible 
 filetype off
 
-set rtp+=~/vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 "
@@ -32,7 +32,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
 " Language Support
-Plugin 'vim-syntastic/syntastic'
+"Plugin 'vim-syntastic/syntastic'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'pangloss/vim-javascript'
@@ -41,6 +41,7 @@ Plugin 'leshill/vim-json'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'dNitro/vim-pug-complete'
+Plugin 'w0rp/ale'
 
 "
 call vundle#end()
@@ -227,3 +228,25 @@ map <Esc>[0d <C-LEFT>>
     
 set encoding=utf-8
 scriptencoding utf-8
+
+" Put this in vimrc or a plugin file of your own.
+" After this is configured, :ALEFix will try and fix your JS code with ESLint.
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+
+" Set this setting in vimrc if you want to fix files automatically on save.
+" This is off by default.
+let g:ale_fix_on_save = 1
+
+" Enable completion where available.
+let g:ale_completion_enabled = 1
+
+" Put these lines at the very end of your vimrc file.
+
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
