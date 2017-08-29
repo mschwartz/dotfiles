@@ -4,4 +4,5 @@ tags.temp
 node_modules
 .AppleDouble
 vim/bundle/YouCompleteme
+vim/bundle/Session.vim
 tmux/resurrect
