@@ -229,6 +229,8 @@ map <Esc>[0d <C-LEFT>>
 set encoding=utf-8
 scriptencoding utf-8
 
+autocmd FileType javascript set formatprg=prettier\ --stdin
+
 " Put this in vimrc or a plugin file of your own.
 " After this is configured, :ALEFix will try and fix your JS code with ESLint.
 let g:ale_fixers = {
