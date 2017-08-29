@@ -19,15 +19,15 @@ files="path profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zpro
 
 echo "installing prerequisites $platform"
 if [[ $platform == 'linux' ]]; then
+    sudo apt-get install -y build-essential speedtest-cli zsh vim cmake vim-youcompleteme python-dev libboost-all-dev tmux curl
     echo ...nodejs
-    curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
     sudo apt-get update
     sudo apt-get -y dist-upgrade
     sudo apt-get install -y nodejs
     npm config set prefix '/usr/local'
     sudo mkdir -p $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
     sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
-    sudo apt-get install -y build-essential speedtest-cli zsh vim cmake vim-youcompleteme python-dev libboost-all-dev tmux
     chsh -s $(which zsh)
 elif [[ $platform == 'macos' ]]; then
     echo ...nodejs

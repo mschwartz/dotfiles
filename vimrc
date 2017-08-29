@@ -4,6 +4,7 @@ execute pathogen#infect()
 set guifont=PT\ Mono:h12
 set antialias
 set autoread
+set clipboard=unnamed
 "set expandtab
 
 " Only do this part when compiled with support for autocommands.
