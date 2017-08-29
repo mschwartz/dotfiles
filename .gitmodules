@@ -4,15 +4,3 @@
 [submodule "vim/bundle/vim-easytags"]
 	path = vim/bundle/vim-easytags
 	url = git@github.com:xolox/vim-easytags.git
-[submodule "tmux/plugins/tpm"]
-	path = tmux/plugins/tpm
-	url = git@github.com:tmux-plugins/tpm
-[submodule "tmux/plugins/tmux-sensible"]
-	path = tmux/plugins/tmux-sensible
-	url = git@github.com:tmux-plugins/tmux-sensible
-[submodule "tmux/plugins/tmux-resurrect"]
-	path = tmux/plugins/tmux-resurrect
-	url = git@github.com:tmux-plugins/tmux-resurrect
-[submodule "tmux/plugins/tmux-continuum"]
-	path = tmux/plugins/tmux-continuum
-	url = git@github.com:tmux-plugins/tmux-continuum
