@@ -46,7 +46,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git colorize bower brew coffee colored-man node npm osx redis-cli rvm screen sublime terminalapp themes tmux docker docker-compose)
+plugins=(vi-mode git colorize bower brew coffee colored-man node npm osx redis-cli rvm screen sublime terminalapp themes tmux docker docker-compose zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,3 +93,6 @@ export HOMEBREW_GITHUB_API_TOKEN="ba96499d931bf7bd240dfa3cd5f200f7bcbc324b"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.103/..:$PATH"
 export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.5.0.42/..:$PATH"
 export PATH="/home/mschwartz/bin/Sencha/Cmd:$PATH"
+
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
