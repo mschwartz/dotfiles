@@ -15,7 +15,7 @@ fi
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="path profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zprofile zshenv functions.zsh ctags tmux tmux.conf ackrc ideavimrc agignore"    # list of files/folders to symlink in homedir
+files="path profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zprofile zshenv functions.zsh ctags tmux tmux.conf ackrc ideavimrc agignore eslintrc.js"    # list of files/folders to symlink in homedir
 
 echo "installing prerequisites $platform"
 if [[ $platform == 'linux' ]]; then
@@ -37,10 +37,10 @@ fi
 ##########
 
 # create dotfiles_old in homedir
-echo "Creating $olddir for backup of any existing dotfiles in ~"
-mkdir -p $olddir
-rm -rf $olddir/*
-echo "...done"
+#echo "Creating $olddir for backup of any existing dotfiles in ~"
+#mkdir -p $olddir
+#rm -rf $olddir/*
+#echo "...done"
 
 # change to the dotfiles directory
 echo "Changing to the $dir directory"
@@ -53,11 +53,15 @@ sudo cp dnsmasq.hosts.conf /etc/dnsmasq.d/
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    echo mv ~/.$file $olddir/.$file
-    mv ~/.$file $olddir/.$file
+    #echo "Moving any existing dotfiles from ~ to $olddir"
+    #echo mv ~/.$file $olddir/.$file
+    #mv ~/.$file $olddir/.$file
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
+    echo rm -f ~/.$file
+    rm -f ~/.$file
+    ls -ldg ~/.$file
+    echo ln -sf $dir/$file ~/.$file
+    ln -sf $dir/$file ~/.$file
 done
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
