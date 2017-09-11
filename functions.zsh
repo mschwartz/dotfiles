@@ -88,7 +88,11 @@ alias ttmux='tmux new -A -s $HOST-$$'
 alias vi='/usr/local/bin/vim'
 alias df='df -P'
 
-export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+if [ -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
+  export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+else
+  export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
+fi
 export LESS=' -R '
 
 sssh() {
