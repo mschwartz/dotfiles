@@ -175,7 +175,9 @@ autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 " VIM options
 set ttyfast
 set autoread
-set clipboard=unnamed
+"if $TMUX ==''
+  set clipboard=unnamed
+"endif
 set ls=1
 set showcmd
 set shiftwidth=2
