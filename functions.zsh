@@ -1,9 +1,9 @@
 #!/usr/bin/zsh
 
-export UPSTREAM=ext-6.6.x
+export UPSTREAM=ext-6.5.x
 
 grefresh () {
-    cd ~/sencha/github/SDK6.6
+    cd ~/sencha/github/SDK6.5
     git checkout $UPSTREAM
     git checkout $1
     git fetch -p upstream
@@ -13,14 +13,14 @@ grefresh () {
 }
 
 gbranch() {
-    cd ~/sencha/github/SDK6.6
+    cd ~/sencha/github/SDK6.5
     git checkout -b $1 || git checkout $1
     git pull upstream $UPSTREAM
     time sencha ant refresh
 }
 
 ks() {
-    cd ~/sencha/github/SDK6.6/ext/examples/kitchensink
+    cd ~/sencha/github/SDK6.5/ext/examples/kitchensink
     sencha app build --dev material en
 }
 
@@ -37,14 +37,18 @@ issue () {
         echo "***" $p "exists"
         return
     fi
-    sencha -sdk ../github/SDK6.6/ext generate app test $p
+    sencha -sdk ../github/SDK6.5/ext generate app test $p
     cd $p
     cp ~/dotfiles/sencha/app.json app.json
     cp ~/dotfiles/sencha/app.js app.js
     cp ~/dotfiles/sencha/Application.js app/Application.js
     sencha app build development
     mv ext xxx
-    ln -s ../../github/SDK6.6/ext ext
+    ln -s ../../github/SDK6.5/ext ext
+}
+
+cd() {
+  builtin cd "$@" && ls
 }
 
 ssh() {
@@ -57,6 +61,8 @@ ssh() {
     fi
 }
 
+alias ..='cd ..'
+alias ...='cd ../..'
 alias 6.5='cd ~/sencha/github/SDK6.5'
 alias 6.6='cd ~/sencha/github/SDK6.6'
 alias snowdog='ssh snowdog'

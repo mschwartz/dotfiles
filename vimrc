@@ -1,4 +1,6 @@
 set nocompatible 
+"set fileformat=unix
+"set ma
 filetype off
 
 " set leader
@@ -14,6 +16,7 @@ map <leader>pi :PluginInstall<cr>
 map <leader>ip <esc>iimport PropTypes from 'prop-types'<cr><esc>
 map <leader>ir <esc>iimport React, {Component} from 'react'<cr><esc>
 map <C-n> :NERDTreeToggle<CR>
+map <C-_> <leader>cij
 imap jj <Esc>
 nmap <F1> :echo<CR>
 
@@ -24,23 +27,38 @@ call vundle#begin()
 " Plugins
 " 
 Plugin 'vundleVim/Vundle.vim'
+    nmap <silent> <leader>p :PluginInstall<cr>
+
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'mileszs/ack.vim'
 Plugin 'wincent/command-t'
-let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
-Plugin 'ctrlpvim/ctrlp.vim'
+    let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
+"Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'jlanzarotta/bufexplorer'
-Plugin 'tpope/vim-obsession'
+Plugin 'wesQ3/vim-windowswap'
+"Plugin 'tpope/vim-obsession'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
+    let g:easytags_languages = {
+      \   'javascript': {
+      \       'cmd': 'jsctags',
+      \       'args': ['-f'],
+      \       'fileoutput_opt': '-f',
+      \       'stdout_opt': '-f-',
+      \       'recurse_flag': '-R'
+      \   }
+      \}
+
 Plugin 'xolox/vim-session'
-let g:session_autoload = 'yes'
-let g:session_autosave = 'yes'
-let g:session_autosave_to = 'default'
-let g:session_verbose_messages = 0
+    let g:session_autoload = 'yes'
+    let g:session_autosave = 'yes'
+    let g:session_autosave_to = 'default'
+    let g:session_verbose_messages = 0
+
 Plugin 'Raimondi/delimitMate'
+"Plugin 'jiangmiao/auto-pairs'
 
 " mode line
 Plugin 'itchyny/lightline.vim'
@@ -54,8 +72,8 @@ Plugin 'airblade/vim-gitgutter'
 "Plugin 'vim-syntastic/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ternjs/tern_for_vim'
-let g:tern_show_argument_hints='on_hold'
-let g:tern_map_keys=1
+    let g:tern_show_argument_hints='on_hold'
+    let g:tern_map_keys=1
 
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'hail2u/vim-css3-syntax'
@@ -75,53 +93,72 @@ Plugin 'itmammoth/doorboy.vim'
 hi link javaScriptTemplateDelim String
 hi link javaScriptTemplateVar Text
 hi link javaScriptTemplateString String
+
 Plugin 'Yggdroot/indentLine'
 
 "Plugin 'nathanaelkane/vim-indent-guides'
-"let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_guide_size = 1
-"let g:indent_guides_start_level = 2
+    "let g:indent_guides_enable_on_vim_startup = 1
+    "let g:indent_guides_guide_size = 1
+    "let g:indent_guides_start_level = 2
 
 """""" ale
 Plugin 'w0rp/ale'
-" Put this in vimrc or a plugin file of your own.
-" After this is configured, :ALEFix will try and fix your JS code with ESLint.
+    " Put this in vimrc or a plugin file of your own.
+    " After this is configured, :ALEFix will try and fix your JS code with ESLint.
 
-let g:ale_fixers = {
-            \   'javascript': ['eslint'],
-            \}
+    let g:ale_fixers = {
+                \   'javascript': ['eslint'],
+                \}
 
-" Set this setting in vimrc if you want to fix files automatically on save.
-" This is off by default.
-let g:ale_fix_on_save = 1
+    " Set this setting in vimrc if you want to fix files automatically on save.
+    " This is off by default.
+    let g:ale_fix_on_save = 1
 
-" Enable completion where available.
-let g:ale_completion_enabled = 1
+    " Enable completion where available.
+    let g:ale_completion_enabled = 1
+
+    let g:ale_set_loclist = 0
+    let g:ale_set_quickfix = 1
 
 """""" test runner
 "Plugin 'janko-m/vim-test'
-"let g:test#javascript#jest#file_pattern = '\.test\.js$'
-"nmap <silent> <leader>tt :TestSuite<cr>
-"nmap <silent> <leader>t. :TestFile<cr>
-nmap <silent> <leader>p :PluginInstall<cr>
+    "let g:test#javascript#jest#file_pattern = '\.test\.js$'
+    "nmap <silent> <leader>tt :TestSuite<cr>
+    "nmap <silent> <leader>t. :TestFile<cr>
 
 Plugin 'scrooloose/nerdcommenter'
+    " Use compact syntax for prettified multi-line comments
+    "let g:NERDCompactSexyComs = 1
+
+    " Align line-wise comment delimiters flush left instead of following code indentation
+    let g:NERDDefaultAlign = 'start'
+
+    " Allow commenting and inverting empty lines (useful when commenting a region)
+    "let g:NERDCommentEmptyLines = 1
+
+    " Enable trimming of trailing whitespace when uncommenting
+    "let g:NERDTrimTrailingWhitespace = 1
 
 " NERDTree
 Plugin 'scrooloose/nerdtree'
 let g:NERDTreeShowHidden = 1
+let g:NERDTreeIgnore=['.git', 'node_modules']
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-let s:brown = "905532"
-let g:NERDTreeExtensionHighlightColor = {}
-let g:NERDTreeExactMatchHighlightColor = {}
-let g:NERDTreeExtensionHighlightColor['js'] = s:brown
-let g:NERDTreeExtensionHighlightColor['yml'] = ''
-let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
+    let g:NERDTreeFileExtensionHighlightFullName = 1
+    let g:NERDTreeExactMatchHighlightFullName = 1
+    let g:NERDTreePatternMatchHighlightFullName = 1
+    let s:brown = "905532"
+    let g:NERDTreeExtensionHighlightColor = {}
+    let g:NERDTreeExactMatchHighlightColor = {}
+    let g:NERDTreeExtensionHighlightColor['js'] = s:brown
+    let g:NERDTreeExtensionHighlightColor['yml'] = ''
+    let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -136,6 +173,7 @@ autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 "
 
 " VIM options
+set ttyfast
 set autoread
 set clipboard=unnamed
 set ls=1
