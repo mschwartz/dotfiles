@@ -1,263 +1,216 @@
+set nocompatible 
+"set fileformat=unix
+"set ma
+filetype off
+
+" set leader
+let mapleader=","
+let g:mapleader=","
+
+" key bindings
+nmap <leader>w :w!<cr>
+map <leader>s :source ~/.vimrc<cr>
+map <leader>e :e! ~/.vimrc<cr>
+map <leader>f :ALEFix<cr>
+map <leader>pi :PluginInstall<cr>
+map <leader>ip <esc>iimport PropTypes from 'prop-types'<cr><esc>
+map <leader>ir <esc>iimport React, {Component} from 'react'<cr><esc>
+map <C-n> :NERDTreeToggle<CR>
+map <C-_> <leader>cij
 imap jj <Esc>
-execute pathogen#infect()
-"set guifont=Source\ Code\ Pro\ Light:h14
-set guifont=PT\ Mono:h12
-set antialias
-set autoread
-set clipboard=unnamed
-"set expandtab
+nmap <F1> :echo<CR>
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-    " Use filetype detection and file-based automatic indenting.
-    filetype plugin indent on
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-    " Use actual tab chars in Makefiles.
-    autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-endif
+"
+" Plugins
+" 
+Plugin 'vundleVim/Vundle.vim'
+    nmap <silent> <leader>p :PluginInstall<cr>
 
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'mileszs/ack.vim'
+Plugin 'wincent/command-t'
+    let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
+"Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'wesQ3/vim-windowswap'
+"Plugin 'tpope/vim-obsession'
+Plugin 'ConradIrwin/vim-bracketed-paste'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+    let g:easytags_languages = {
+      \   'javascript': {
+      \       'cmd': 'jsctags',
+      \       'args': ['-f'],
+      \       'fileoutput_opt': '-f',
+      \       'stdout_opt': '-f-',
+      \       'recurse_flag': '-R'
+      \   }
+      \}
+
+Plugin 'xolox/vim-session'
+    let g:session_autoload = 'yes'
+    let g:session_autosave = 'yes'
+    let g:session_autosave_to = 'default'
+    let g:session_verbose_messages = 0
+
+Plugin 'Raimondi/delimitMate'
+"Plugin 'jiangmiao/auto-pairs'
+
+" mode line
+Plugin 'itchyny/lightline.vim'
+Plugin 'edkolev/tmuxline.vim'
+
+" Git
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+
+" Language Support
+"Plugin 'vim-syntastic/syntastic'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'ternjs/tern_for_vim'
+    let g:tern_show_argument_hints='on_hold'
+    let g:tern_map_keys=1
+
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'ap/vim-css-color'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'leshill/vim-json'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'dNitro/vim-pug-complete'
+Plugin 'heavenshell/vim-jsdoc'
+nmap <leader>j :JsDoc<cr>
+Plugin 'othree/jsdoc-syntax.vim'
+Plugin 'itmammoth/doorboy.vim'
+
+" Highlight ES6 template strings
+hi link javaScriptTemplateDelim String
+hi link javaScriptTemplateVar Text
+hi link javaScriptTemplateString String
+
+Plugin 'Yggdroot/indentLine'
+
+"Plugin 'nathanaelkane/vim-indent-guides'
+    "let g:indent_guides_enable_on_vim_startup = 1
+    "let g:indent_guides_guide_size = 1
+    "let g:indent_guides_start_level = 2
+
+"""""" ale
+Plugin 'w0rp/ale'
+    " Put this in vimrc or a plugin file of your own.
+    " After this is configured, :ALEFix will try and fix your JS code with ESLint.
+
+    let g:ale_fixers = {
+                \   'javascript': ['eslint'],
+                \}
+
+    " Set this setting in vimrc if you want to fix files automatically on save.
+    " This is off by default.
+    let g:ale_fix_on_save = 1
+
+    " Enable completion where available.
+    let g:ale_completion_enabled = 1
+
+    let g:ale_set_loclist = 0
+    let g:ale_set_quickfix = 1
+
+"""""" test runner
+"Plugin 'janko-m/vim-test'
+    "let g:test#javascript#jest#file_pattern = '\.test\.js$'
+    "nmap <silent> <leader>tt :TestSuite<cr>
+    "nmap <silent> <leader>t. :TestFile<cr>
+
+Plugin 'scrooloose/nerdcommenter'
+    " Use compact syntax for prettified multi-line comments
+    "let g:NERDCompactSexyComs = 1
+
+    " Align line-wise comment delimiters flush left instead of following code indentation
+    let g:NERDDefaultAlign = 'start'
+
+    " Allow commenting and inverting empty lines (useful when commenting a region)
+    "let g:NERDCommentEmptyLines = 1
+
+    " Enable trimming of trailing whitespace when uncommenting
+    "let g:NERDTrimTrailingWhitespace = 1
+
+" NERDTree
+Plugin 'scrooloose/nerdtree'
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeIgnore=['.git', 'node_modules']
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+    let g:NERDTreeFileExtensionHighlightFullName = 1
+    let g:NERDTreeExactMatchHighlightFullName = 1
+    let g:NERDTreePatternMatchHighlightFullName = 1
+    let s:brown = "905532"
+    let g:NERDTreeExtensionHighlightColor = {}
+    let g:NERDTreeExactMatchHighlightColor = {}
+    let g:NERDTreeExtensionHighlightColor['js'] = s:brown
+    let g:NERDTreeExtensionHighlightColor['yml'] = ''
+    let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" End of Plugins
+call vundle#end()
 filetype plugin indent on
-" For everything else, use a tab width of 4 space chars.
-set tabstop=4       " The width of a TAB is set to 4.
-                    " Still it is a \t. It is just that
-                    " Vim will interpret it to be having
-                    " a width of 4.
-set shiftwidth=4    " Indents will have a width of 4.
-set softtabstop=4   " Sets the number of columns for a TAB.
-set expandtab       " Expand TABs to spaces.
+set omnifunc=syntaxcomplete#Complete
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"set softtabstop=4
-"set tabstop=4
-"set shiftwidth=4
-set ls=2
+" Use actual tab chars in Makefiles.
+autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+"
+
+" VIM options
+set ttyfast
+set autoread
+"if $TMUX ==''
+  set clipboard=unnamed
+"endif
+set ls=1
 set showcmd
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set expandtab
 set hlsearch
 set incsearch
 set ruler
 set nobackup
+set directory=$HOME/.vim/swapfiles//
+set undodir=~/.vim/undo-dir
+set undofile
 set number
 set ignorecase
-set smartcase
 set title
 set ttyfast
 set modeline
 set modelines=3
 set mouse=a
-"syntax on
 syntax enable
-set background=light
-"colorscheme solarized
-" solarized options 
-let g:solarized_termcolors = 256
-let g:solarized_visibility = "high" 
-let g:solarized_contrast = "high" 
-"colorscheme solarized 
-"Show menu with possible tab completions
 set wildmenu
-"Ignore these files when completing names and in Explorer
-set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,xxx/*
-set wildignore+=*.json
-
-"colorscheme blue
-"colorscheme darkslategray
-set autoindent
-set smartindent
-filetype on
-au BufRead,BufNewFile *.sjs		setfiletype javascript
-au BufRead,BufNewFile *.js		setfiletype javascript
-
-"cd ~/pwp2
-let Tlist_Use_Right_Window = 1
-map <F8> <ESC>:NERDTreeToggle<CR>
-map <F5> <ESC>:NERDTree<CR>B
-map <F11> <ESC>:TlistToggle<CR>
-map <F12> <ESC>:Ex<CR>
 set cursorline
-"set guioptions=acg
-map <C-DOWN> <C-W><Down>
-map <C-UP> <C-W><Up>
-map <C-LEFT> <C-W><Left>
-map <C-RIGHT> <C-W><Right>
-map <C-X> "+x
-map <C-C> "+y
-map <C-V> "+gP
-map <A-2> <C-W>s
-map <A-1> <C-W>c<F5><C-W><Right>
-map <A-0> <C-W>o<F5><C-W><Right>
-map <C-s> <ESC>:w<CR>
-map <C-F> <ESC>:1,$!jsbeautifier.js<CR>
-" <Ctrl-l> redraws the screen and removes any search highlighting.
-nnoremap <silent> <C-l> :nohl<CR><C-l>
-
-"inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
-"nnoremap <C-P>:call PhpDocSingle()<CR>
-"vnoremap <C-P>:call PhpDocRange()<CR>
-"set nowrap
-if has("gui_running")
-	set lines=75
-	set columns=160
-"	set guifont=DejaVu\ Sans\ Mono\ 8
-"	colorscheme ChocolateLiquor
-	set guioptions-=T
-else
-	set t_Co=256
-"	set wrap!
-"	colorscheme tabula
-	map <Esc>[0c <C-RIGHT>
-	map <Esc>[0d <C-LEFT>>
-endif
-"set statusline=%<%f\ %{VCSCommandGetStatusLine()}\ %h%m%r%=%l,%c%V\ %P
-
-"map <MouseDown> <C-Y>
-"map <S-MouseDown> <C-U>
-"map <MouseUp> <C-E>
-"map <S-MouseUp> <C-D>
-"map <M-Esc>[62~ <MouseDown>
-"map! <M-Esc>[62~ <MouseDown>
-"map <M-Esc>[63~ <MouseUp>
-"map! <M-Esc>[63~ <MouseUp>
-"map <M-Esc>[64~ <S-Mousemow>
-"map! <M-Esc>[64~ <S-MouseDown>
-"map <M-Esc>[65~ <S-MouseUp>
-"map! <M-Esc>[65~ <S-MouseUp>
-"map! <Esc>[A <C-E>
-"map! <Esc>[B <C-Y>
-"map! <M-Esc>[A <C-E>
-"map! <M-Esc>[B <C-Y>
-
-" ---------------------------------------------------------------------
-
-"Enable filetype plugin
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-"filetype indent on
-
-"Set mapleader
-let mapleader = ","
-let g:mapleader = ","
-
-"Fast saving
-nmap <leader>w :w!<cr>
-nmap <leader>f :find<cr>
-nmap <C-s> : w!<cr>
-nmap <C-S> : w!<cr>
-map <C-s> : w!<cr>
-map <C-S> : w!<cr>
-map <D-S> : w!<cr>
-map <D-s> : w!<cr>
-"nnoremap F :grep! "\b<C-R><C-W>\b"<CR> :cw<CR>
-
-map <M-s> :wckEnter>
-imap <M-s> <Esc>:wckEnter>i
-
-nmap <f1> :echo<CR>
-imap <f1> <C-o>:echo<CR>
-
-"#map <leader>t :helptags ~/.vim/doc<cr>
-"Fast reloading of the .vimrc
-map <leader>s :source ~/.vimrc<cr>
-"Fast editing of .vimrc
-map <leader>e :e! ~/.vimrc<cr>
-"When .vimrc is edited, reload it
-"autocmd! bufwritepost .vimrc source ~/.vimrc
-augroup reload_vimrc
-    autocmd!
-    autocmd bufwritepost ~/.vimrc nested source ~/.vimrc
-augroup END
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VIM userinterface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Set 7 lines to the curors - when moving vertical..
 set so=7
-
-"Turn on WiLd menu
-set wildmenu
-
-"Always show current position
-set ruler
-
-"The commandbar is 2 high
 set cmdheight=2
-
-"Show line number
-set nu
-
-"Do not redraw, when running macros.. lazyredraw
 set lz
-
-"Change buffer - without saving
 set hid
-
-"Set backspace
-"set backspace=eol,start,indent
-
-"Bbackspace and cursor keys wrap to
 set whichwrap+=<,>,h,l
-
-"Ignore case when searching
-set ignorecase
-set incsearch
-
-"Set magic on
-"set magic
-
-"No sound on errors.
 set noerrorbells
 set novisualbell
 set t_vb=
-
-"show matching bracets
 set showmatch
-
-"How many tenths of a second to blink
 set mat=2
-
-"Highlight search things
-set hlsearch
-
-
-  """"""""""""""""""""""""""""""
-  " Statusline
-  """"""""""""""""""""""""""""""
-  "Always hide the statusline
-  set laststatus=2
-
-  function! CurDir()
-     let curdir = substitute(getcwd(), '/Users/mschwartz/', "~/", "g")
-     return curdir
-  endfunction
-
-  "Format the statusline
-  set statusline=%#Warningmsg#
-"  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c\ %{VCSCommandGetStatusLine()}
-
-
-"Switch to current dir
-map <leader>cd :cd %:p:h<cr>
-
-"Move a line of text using control
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-" Command-/ to toggle comments
-"map <C-/>NERDComAlignedComment<CR>
-nmap <C-/> :NERDCommenterToggle<CR>
-"imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Files and backups
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Turn backup off
-set nobackup
-set nowb
-set noswapfile
-
 
 " Tell vim to remember certain things when we exit
 "  '10 : marks will be remembered for up to 10 previously edited files
@@ -266,52 +219,55 @@ set noswapfile
 "  % : saves and restores the buffer list
 "  n... : where to save the viminfo files
 set viminfo='10,\"100,:20,%,n~/.viminfo
+'
 
-let javascript_enable_domhtmlcss=1
+"Format the statusline
+function! CurDir()
+    let curdir = substitute(getcwd(), '/Users/mschwartz/', "~/", "g")
+    return curdir
+endfunction
 
-" when we reload, tell vim to restore the cursor to the saved position
-augroup JumpCursorOnEdit
- au!
- autocmd BufReadPost *
- \ if expand("<afile>:p:h") !=? $TEMP |
- \ if line("'\"") > 1 && line("'\"") <= line("$") |
- \ let JumpCursorOnEdit_foo = line("'\"") |
- \ let b:doopenfold = 1 |
- \ if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo - 1)) |
- \ let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
- \ let b:doopenfold = 2 |
- \ endif |
- \ exe JumpCursorOnEdit_foo |
- \ endif |
- \ endif
- " Need to postpone using "zv" until after reading the modelines.
- autocmd BufWinEnter *
- \ if exists("b:doopenfold") |
- \ exe "normal zv" |
- \ if(b:doopenfold > 1) |
- \ exe "+".1 |
- \ endif |
- \ unlet b:doopenfold |
- \ endif
+"set statusline=%#Warningmsg#
+""  set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c\ %{VCSCommandGetStatusLine()}}
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+" variable settings
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+
+augroup reload_vimrc
+    autocmd!
+    autocmd bufwritepost ~/.vimrc nested source ~/.vimrc
 augroup END
 
-"set encoding=utf-8
-"scriptencoding utf-8
-
 let g:lightline = {
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-            \ },
-            \ 'component_function': {
-            \   'fugitive': 'LightLineFugitive',
-            \   'readonly': 'LightLineReadonly',
-            \   'modified': 'LightLineModified',
-            \   'filename': 'LightLineFilename'
-            \ },
-            \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-            \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-            \ }
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'fugitive': 'LightLineFugitive',
+    \   'readonly': 'LightLineReadonly',
+    \   'modified': 'LightLineModified',
+    \   'filename': 'LightLineFilename'
+    \ },
+    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+    \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+    \ }
+
 
 function! LightLineModified()
     if &filetype == "help"
@@ -350,82 +306,67 @@ function! LightLineFilename()
                 \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
-set noshowmode
+set background=light
 colorscheme PaperColor
-"colorscheme solarized
 
-if executable('ag')
-    let g:ackprg = 'ag --vimgrep --path-to-agignore ~/.agignore'
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor --follow --ignore *.json -g ""'
-    let g:ctrlp_use_caching = 0
+let javascript_enable_domhtmlcss=1
+
+" when we reload, tell vim to restore the cursor to the saved position
+augroup JumpCursorOnEdit
+ au!
+ autocmd BufReadPost *
+ \ if expand("<afile>:p:h") !=? $TEMP |
+ \ if line("'\"") > 1 && line("'\"") <= line("$") |
+ \ let JumpCursorOnEdit_foo = line("'\"") |
+ \ let b:doopenfold = 1 |
+ \ if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo - 1)) |
+ \ let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
+ \ let b:doopenfold = 2 |
+ \ endif |
+ \ exe JumpCursorOnEdit_foo |
+ \ endif |
+ \ endif
+ " Need to postpone using "zv" until after reading the modelines.
+ autocmd BufWinEnter *
+ \ if exists("b:doopenfold") |
+ \ exe "normal zv" |
+ \ if(b:doopenfold > 1) |
+ \ exe "+".1 |
+ \ endif |
+ \ unlet b:doopenfold |
+ \ endif
+augroup END
+
+set t_Co=256
+map <Esc>[0c <C-RIGHT>
+map <Esc>[0d <C-LEFT>>
+    
+set encoding=utf-8
+scriptencoding utf-8
+
+autocmd FileType javascript set formatprg=prettier\ --stdin
+
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+
+" after a re-source, fix syntax matching issues (concealing brackets):
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
 endif
 
-let g:ctrlp_follow_symlinks = 2
-let g:ctrlp_custom_ignore = 'xxx'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-" vim-easytags
-"let g:easytags_cmd = '/usr/local/bin/ctags'
-"let g:easytags_file = '~/.vimtags'
+" Put these lines at the very end of your vimrc file.
 
-"set tags=./.vimtags;
-""let g:easytags_dynamic_files = 1
-""let g:easytags_by_filetype = 1
-""let g:easytags_async = 1
-""let g:easytags_autorecurse = 1
-""let g:easytags_include_members = 1
-""let g:easytags_resolve_links = 1
-""let g:easytags_updatetime_warn = 0
-"let g:easytags_events = ['BufReadPost', 'BufWritePost']
-"let g:easytags_languages = {
-      "\   'javascript': {
-      "\       'cmd': g:easytags_cmd,
-      "\       'args': [],
-      "\       'fileoutput_opt': '-f',
-      "\       'stdout_opt': '-f-',
-      "\       'recurse_flag': '-R'
-      "\   }
-  "\}
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
 
-"let g:easytags_languages = {
-            "\   'javascript': {
-            "\       'cmd': 'jsctags',
-            "\       'args': [],
-            "\       'fileoutput_opt': '-f',
-            "\       'stdout_opt': '-f-',
-            "\       'recurse_flag': '-R'
-            "\   }
-            "\}
-
-
-" tagbar
-let g:tagbar_show_linenumbers = 1
-let g:tagbar_compact = 1
-let g:tagbar_autoshowtag = 1
-nnoremap <F2> :TagbarToggle<CR>
-" Syntastic
-let g:syntastic_check_on_open=1
-
-" nergdtree-git-plugin
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
-
-" vimagit
-nnoremap <F3> :Magit<CR>
-
-let g:tmuxline_preset = 'powerline'
-autocmd VimEnter * silent! Tmuxline vim_statusline_2
-
-" bind \ (backward slash) to grep shortcut
-command! -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
-nnoremap \ :Ag<SPACE>
