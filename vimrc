@@ -18,6 +18,7 @@ map <leader>ir <esc>iimport React, {Component} from 'react'<cr><esc>
 map <C-n> :NERDTreeToggle<CR>
 map <C-_> <leader>cij
 imap jj <Esc>
+imap jk <Esc>
 nmap <F1> :echo<CR>
 
 set rtp+=~/.vim/bundle/Vundle.vim
