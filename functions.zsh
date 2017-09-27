@@ -1,7 +1,5 @@
 #!/usr/bin/zsh
 
-#export UPSTREAM=ext-6.5.x
-
 cd() {
   builtin cd "$@" && ls
 }
