@@ -107,9 +107,10 @@ Plugin 'w0rp/ale'
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
 
-    let g:ale_fixers = {
-                \   'javascript': ['eslint'],
-                \}
+"    let g:ale_fixers = {
+"                \   'javascript': ['eslint'],
+"                \   'objc': [ 'clang' ],
+"                \}
 
     " Set this setting in vimrc if you want to fix files automatically on save.
     " This is off by default.
