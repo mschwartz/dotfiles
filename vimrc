@@ -107,10 +107,10 @@ Plugin 'w0rp/ale'
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
 
-"    let g:ale_fixers = {
-"                \   'javascript': ['eslint'],
-"                \   'objc': [ 'clang' ],
-"                \}
+    let g:ale_fixers = {
+                \   'javascript': ['eslint'],
+                \   'objc': [ 'clang' ],
+                \}
 
     " Set this setting in vimrc if you want to fix files automatically on save.
     " This is off by default.
@@ -174,9 +174,13 @@ set omnifunc=syntaxcomplete#Complete
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 "
 
+"
 " VIM options
+"
+
 set ttyfast
 set autoread
+set nolazyredraw
 "if $TMUX ==''
   set clipboard=unnamed
 "endif
@@ -186,8 +190,12 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set expandtab
+
+" searching
+set smartcase
 set hlsearch
 set incsearch
+
 set ruler
 set nobackup
 set directory=$HOME/.vim/swapfiles//
@@ -308,7 +316,7 @@ function! LightLineFilename()
                 \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
-set background=light
+set background=dark
 colorscheme PaperColor
 
 let javascript_enable_domhtmlcss=1
