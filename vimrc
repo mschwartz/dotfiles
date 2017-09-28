@@ -306,7 +306,7 @@ function! LightLineFilename()
                 \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
-set background=light
+set background=dark
 colorscheme PaperColor
 
 let javascript_enable_domhtmlcss=1
