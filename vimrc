@@ -18,6 +18,7 @@ map <leader>ir <esc>iimport React, {Component} from 'react'<cr><esc>
 map <C-n> :NERDTreeToggle<CR>
 map <C-_> <leader>cij
 imap jj <Esc>
+imap jk <Esc>
 nmap <F1> :echo<CR>
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -108,6 +109,7 @@ Plugin 'w0rp/ale'
 
     let g:ale_fixers = {
                 \   'javascript': ['eslint'],
+                \   'objc': [ 'clang' ],
                 \}
 
     " Set this setting in vimrc if you want to fix files automatically on save.
@@ -172,9 +174,13 @@ set omnifunc=syntaxcomplete#Complete
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 "
 
+"
 " VIM options
+"
+
 set ttyfast
 set autoread
+set nolazyredraw
 "if $TMUX ==''
   set clipboard=unnamed
 "endif
@@ -184,8 +190,12 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set expandtab
+
+" searching
+set smartcase
 set hlsearch
 set incsearch
+
 set ruler
 set nobackup
 set directory=$HOME/.vim/swapfiles//
