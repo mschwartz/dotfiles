@@ -81,6 +81,7 @@ Plugin 'hail2u/vim-css3-syntax'
 Plugin 'ap/vim-css-color'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+    let g:jsx_ext_required = 0
 Plugin 'leshill/vim-json'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'digitaltoad/vim-pug'
