@@ -1,51 +1,51 @@
 #!/usr/bin/zsh
 
-export UPSTREAM=ext-6.5.x
+#export UPSTREAM=ext-6.5.x
 
-grefresh () {
-    cd ~/sencha/github/SDK6.5
-    git checkout $UPSTREAM
-    git checkout $1
-    git fetch -p upstream
-    git pull upstream $UPSTREAM
-    git push origin $UPSTREAM
-    git fetch origin
-}
+#grefresh () {
+#    cd ~/sencha/github/SDK6.5
+#    git checkout $UPSTREAM
+#    git checkout $1
+#    git fetch -p upstream
+#    git pull upstream $UPSTREAM
+#    git push origin $UPSTREAM
+#    git fetch origin
+#}
 
-gbranch() {
-    cd ~/sencha/github/SDK6.5
-    git checkout -b $1 || git checkout $1
-    git pull upstream $UPSTREAM
-    time sencha ant refresh
-}
+#gbranch() {
+#    cd ~/sencha/github/SDK6.5
+#    git checkout -b $1 || git checkout $1
+#    git pull upstream $UPSTREAM
+#    time sencha ant refresh
+#}
 
-ks() {
-    cd ~/sencha/github/SDK6.5/ext/examples/kitchensink
-    sencha app build --dev material en
-}
+#ks() {
+#    cd ~/sencha/github/SDK6.5/ext/examples/kitchensink
+#    sencha app build --dev material en
+#}
 
-issue () {
-    if (( $# == 0 ))
-    then 
-        p=test
-    else 
-        p=$1
-    fi
+#issue () {
+#    if (( $# == 0 ))
+#    then 
+#        p=test
+#    else 
+#        p=$1
+#    fi
 
-    cd ~/sencha/projects
-    if [[ -a "$p" ]]; then
-        echo "***" $p "exists"
-        return
-    fi
-    sencha -sdk ../github/SDK6.5/ext generate app test $p
-    cd $p
-    cp ~/dotfiles/sencha/app.json app.json
-    cp ~/dotfiles/sencha/app.js app.js
-    cp ~/dotfiles/sencha/Application.js app/Application.js
-    sencha app build development
-    mv ext xxx
-    ln -s ../../github/SDK6.5/ext ext
-}
+#    cd ~/sencha/projects
+#    if [[ -a "$p" ]]; then
+#        echo "***" $p "exists"
+#        return
+#    fi
+#    sencha -sdk ../github/SDK6.5/ext generate app test $p
+#    cd $p
+#    cp ~/dotfiles/sencha/app.json app.json
+#    cp ~/dotfiles/sencha/app.js app.js
+#    cp ~/dotfiles/sencha/Application.js app/Application.js
+#    sencha app build development
+#    mv ext xxx
+#    ln -s ../../github/SDK6.5/ext ext
+#}
 
 cd() {
   builtin cd "$@" && ls
@@ -59,6 +59,10 @@ ssh() {
     else
         command ssh "$@"
     fi
+}
+
+vi3() {
+  vi ~/.config/i3/config
 }
 
 alias ..='cd ..'
