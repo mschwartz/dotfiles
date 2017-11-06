@@ -11,6 +11,7 @@ let g:mapleader=","
 nmap <leader>w :w!<cr>
 map <leader>s :source ~/.vimrc<cr>
 map <leader>e :e! ~/.vimrc<cr>
+map <leader>3 :e! ~/.config/i3/config<cr>
 map <leader>f :ALEFix<cr>
 map <leader>l :nohlsearch<cr>
 map <leader>pi :PluginInstall<cr>
