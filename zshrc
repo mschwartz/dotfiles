@@ -96,3 +96,4 @@ export PATH="/home/mschwartz/bin/Sencha/Cmd:$PATH"
 
 #source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+screenfetch
