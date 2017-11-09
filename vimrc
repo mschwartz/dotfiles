@@ -3,6 +3,8 @@ set nocompatible
 "set ma
 filetype off
 
+autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
+
 " set leader
 let mapleader=","
 let g:mapleader=","
@@ -128,6 +130,8 @@ Plugin 'w0rp/ale'
 
     let g:ale_set_loclist = 0
     let g:ale_set_quickfix = 1
+
+    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
 
 """""" test runner
 "Plugin 'janko-m/vim-test'
