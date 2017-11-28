@@ -14,6 +14,10 @@ ssh() {
     fi
 }
 
+vi3() {
+  vi ~/.config/i3/config
+}
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias snowdog='ssh snowdog'

@@ -11,15 +11,20 @@ let g:mapleader=","
 nmap <leader>w :w!<cr>
 map <leader>s :source ~/.vimrc<cr>
 map <leader>e :e! ~/.vimrc<cr>
+map <leader>3 :e! ~/.config/i3/config<cr>
 map <leader>f :ALEFix<cr>
+map <leader>l :nohlsearch<cr>
 map <leader>pi :PluginInstall<cr>
 map <leader>ip <esc>iimport PropTypes from 'prop-types'<cr><esc>
 map <leader>ir <esc>iimport React, {Component} from 'react'<cr><esc>
+map <leader>itc <esc>otry {<cr>}<cr>catch(e) {<cr>console.log('exception', e)<cr><esc>ddjddkkkk==ko
 map <C-n> :NERDTreeToggle<CR>
 map <C-_> <leader>cij
+map <C-\> :Ack! 
 imap jj <Esc>
 imap jk <Esc>
 nmap <F1> :echo<CR>
+
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -32,6 +37,7 @@ Plugin 'vundleVim/Vundle.vim'
 
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'mileszs/ack.vim'
+map <leader>a :Ack! 
 Plugin 'wincent/command-t'
     let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
 "Plugin 'ctrlpvim/ctrlp.vim'
@@ -180,11 +186,12 @@ autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 "
 
 set ttyfast
+set nowrap
 set autoread
 set nolazyredraw
-"if $TMUX ==''
+if $TMUX ==''
   set clipboard=unnamed
-"endif
+endif
 set ls=1
 set showcmd
 set shiftwidth=2
@@ -247,6 +254,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 " variable settings
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
 set laststatus=2
 let g:lightline = {
       \ 'colorscheme': 'PaperColor',
