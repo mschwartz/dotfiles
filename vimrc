@@ -10,11 +10,15 @@ let mapleader=","
 let g:mapleader=","
 
 " key bindings
+nmap <F1> <nop>
 nmap <leader>w :w!<cr>
+map <leader>j :j<cr>
+map <leader>ai :ALEInfo<cr>
+map <leader>ad :ALEDetail<cr>
+map <leader>f :ALEFix<cr>
 map <leader>s :source ~/.vimrc<cr>
 map <leader>e :e! ~/.vimrc<cr>
 map <leader>3 :e! ~/.config/i3/config<cr>
-map <leader>f :ALEFix<cr>
 map <leader>l :nohlsearch<cr>
 map <leader>pi :PluginInstall<cr>
 map <leader>ip <esc>iimport PropTypes from 'prop-types'<cr><esc>
@@ -25,6 +29,7 @@ map <C-_> <leader>cij
 map <C-\> :Ack! 
 imap jj <Esc>
 imap jk <Esc>
+imap kkk <Esc>
 nmap <F1> :echo<CR>
 
 
@@ -80,6 +85,7 @@ Plugin 'airblade/vim-gitgutter'
 " Language Support
 "Plugin 'vim-syntastic/syntastic'
 Plugin 'Valloric/YouCompleteMe'
+let g:ycm_auto_trigger = 0
 Plugin 'ternjs/tern_for_vim'
     let g:tern_show_argument_hints='on_hold'
     let g:tern_map_keys=1
@@ -95,7 +101,7 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'dNitro/vim-pug-complete'
 Plugin 'heavenshell/vim-jsdoc'
-nmap <leader>j :JsDoc<cr>
+"nmap <leader>j :JsDoc<cr>
 Plugin 'othree/jsdoc-syntax.vim'
 Plugin 'itmammoth/doorboy.vim'
 
@@ -115,12 +121,33 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'w0rp/ale'
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
+if has('unix') 
+    let g:ale_cpp_gcc_executable='/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-g++'
+    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
+      \ -mmcu=atmega32u4 
+      \ -DF_CPU=16000000L 
+      \ -DARDUINO=10612 
+      \ -DARDUINO_AVR_ARDUBOY 
+      \ -DARDUINO_ARCH_AVR  
+      \ -DARDUBOY_10 -DUSB_VID=0x2341 
+      \ -DUSB_PID=0x8036 
+      \ -DUSB_MANUFACTURER="Unknown"
+      \ -DUSB_PRODUCT="Arduboy"
+      \ -I/home/mschwartz/Arduino/libraries/Arduboy2/src 
+      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino 
+      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/variants/leonardo
+      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/libraries/EEPROM/src
+      \ -I/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
+      \'
+  endif
 
     let g:ale_fixers = {
                 \   'javascript': ['eslint'],
-                \   'objc': [ 'clang' ],
+                \   'objc': ['clang'],
+                \   'cpp': ['clang-format'],
                 \}
 
+"                \   'cpp': [ 'g++' ],
     " Set this setting in vimrc if you want to fix files automatically on save.
     " This is off by default.
     let g:ale_fix_on_save = 1
