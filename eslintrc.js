@@ -25,7 +25,7 @@ module.exports = {
     'no-debugger':                        0,
     'jsx-quotes':                         1,
     //'class-properties/semi: ["error", "never"]',
-    //'react/display-name':                 0,
+    'react/display-name':                 0,
     //'react/forbid-prop-types':            0,
     'react/jsx-boolean-value':            1,
     'react/jsx-closing-bracket-location': 1,

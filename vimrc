@@ -11,6 +11,7 @@ let g:mapleader=","
 nmap <leader>w :w!<cr>
 map <leader>s :source ~/.vimrc<cr>
 map <leader>e :e! ~/.vimrc<cr>
+map <leader>l :nohl<cr>
 map <leader>f :ALEFix<cr>
 map <leader>pi :PluginInstall<cr>
 map <leader>ip <esc>iimport PropTypes from 'prop-types'<cr><esc>
@@ -31,7 +32,12 @@ Plugin 'vundleVim/Vundle.vim'
     nmap <silent> <leader>p :PluginInstall<cr>
 
 Plugin 'christoomey/vim-tmux-navigator'
+
 Plugin 'mileszs/ack.vim'
+      if executable('ag') 
+        let g:ackprg = 'ag --vimgrep'
+      endif
+
 Plugin 'wincent/command-t'
     let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
 "Plugin 'ctrlpvim/ctrlp.vim'
@@ -178,10 +184,14 @@ autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 "
 " VIM options
 "
-
 set ttyfast
 set autoread
 set nolazyredraw
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set textwidth=80
+set colorcolumn=+1
+
+call matchadd('ColorColumn', '\%81v', 100)
 "if $TMUX ==''
   set clipboard=unnamed
 "endif
@@ -367,6 +377,8 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
+
+map <C-\> <Esc>:Ack 
 " after a re-source, fix syntax matching issues (concealing brackets):
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
