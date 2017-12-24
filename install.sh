@@ -19,7 +19,7 @@ files="path profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zpro
 
 echo "installing prerequisites $platform"
 if [[ $platform == 'linux' ]]; then
-    sudo apt-get install -y build-essential speedtest-cli zsh vim cmake vim-youcompleteme python-dev libboost-all-dev tmux curl ruby-dev
+    sudo apt-get install -y build-essential speedtest-cli zsh vim cmake vim-youcompleteme python-dev libboost-all-dev tmux curl ruby-dev ctags screenfetch net-tools
     echo ...nodejs
     curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
     sudo apt-get update
@@ -31,6 +31,7 @@ if [[ $platform == 'linux' ]]; then
     chsh -s $(which zsh)
 elif [[ $platform == 'macos' ]]; then
     echo ...nodejs
+    brew install screenfetch
     # brew install nodejs etc
 fi
 
@@ -63,6 +64,8 @@ for file in $files; do
     echo ln -sf $dir/$file ~/.$file
     ln -sf $dir/$file ~/.$file
 done
+
+mkdir -p ~/.vim/swapfiles
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
