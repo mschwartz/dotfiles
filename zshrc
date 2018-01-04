@@ -93,7 +93,7 @@ export HOMEBREW_GITHUB_API_TOKEN="ba96499d931bf7bd240dfa3cd5f200f7bcbc324b"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.103/..:$PATH"
 export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.5.0.42/..:$PATH"
 export PATH="/home/mschwartz/bin/Sencha/Cmd:$PATH"
-
+export GMAIL_CREDENTIALS="$HOME/Dropbox/credentials/gmail"
 #source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 screenfetch
