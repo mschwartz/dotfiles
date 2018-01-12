@@ -97,4 +97,4 @@ export PATH="/home/mschwartz/bin/Sencha/Cmd:$PATH"
 export GMAIL_CREDENTIALS="$HOME/Dropbox/credentials/gmail"
 #source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-screenfetch
+neofetch
