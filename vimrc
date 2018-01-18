@@ -69,6 +69,9 @@ Plugin 'xolox/vim-easytags'
       \   }
       \}
 
+Plugin 'majutsushi/tagbar'
+    nmap <C-b> :TagbarToggle<CR>
+
 Plugin 'xolox/vim-session'
     let g:session_autoload = 'yes'
     let g:session_autosave = 'yes'
