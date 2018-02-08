@@ -10,6 +10,7 @@ ZSH_THEME="agnoster"
 #ZSH_THEME="clean"
 DEFAULT_USER=mschwartz
 
+TERMINAL=urxvt
 unalias run-help 2>/dev/null
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
@@ -37,7 +38,7 @@ HELPDIR=/usr/local/share/zsh/help
 # DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment following line if you want to disable marking untracked files under
 # VCS as dirty. This makes repository status check for large repositories much,
@@ -51,26 +52,17 @@ plugins=(vi-mode git colorize bower brew coffee colored-man node npm osx redis-c
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-export LSCOLORS=exfxcxdxbxexexabagacad
-
-export EDITOR='/usr/local/bin/vim'
-
-cdpath=( ~ ~/sencha/github )
-
-if [ -f $HOME/.zshrc.local ]; then
-    source $HOME/.zshrc.local
-fi
 
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 #source $(rvm 1.9.3 do rvm env --path)
 
-export ANDROID_HOME='/Users/mschwartz/android-sdk-macosx'
 
 setopt no_share_history
 fpath=(~/dotfiles/completions/zsh/hub $fpath)
 
-source ~/.functions.zsh
+source ~/dotfiles/zsh/env.zsh
+source ~/dotfiles/zsh/functions.zsh
+source ~/dotfiles/zsh/aliases.zsh
 
 ###-tns-completion-start-###
 if [ -f /Users/mschwartz/.tnsrc ]; then 
@@ -82,19 +74,8 @@ fi
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 #
 #
-function = {
-    calc="${@//x/*}"
-    bc -l <<<"scale=10;$calc"
-}
-export HOMEBREW_GITHUB_API_TOKEN="ba96499d931bf7bd240dfa3cd5f200f7bcbc324b"
-#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.2.15/..:$PATH"
-#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.3/..:$PATH"
-#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.23/..:$PATH"
-#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.46/..:$PATH"
-#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.103/..:$PATH"
-export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.5.0.42/..:$PATH"
-export PATH="/home/mschwartz/bin/Sencha/Cmd:$PATH"
-export GMAIL_CREDENTIALS="$HOME/Dropbox/credentials/gmail"
-#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f $HOME/.zshrc.local ]; then
+    source $HOME/.zshrc.local
+fi
 
 neofetch
