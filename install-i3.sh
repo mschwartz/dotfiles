@@ -18,6 +18,7 @@ sudo apt-get install -y $PACKAGES_TO_INSTALL
 mkdir -p ~/.config
 mkdir -p ~/dotfiles_old/config
 for file in ./config/*; do
+  echo ln -sf ~/dotfiles/config/$(basename $file) ~/.config/$(basename $file)
   ln -sf ~/dotfiles/config/$(basename $file) ~/.config/$(basename $file)
 done
 
