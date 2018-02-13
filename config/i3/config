@@ -9,6 +9,12 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+ #---Basic Definitions---# #
+#Needed for i3-gaps
+for_window [class="^.*"] border pixel 3
+gaps inner 15
+gaps outer 15
+
 set $mod Mod1
 
 exec export TERMINAL=urxvt
