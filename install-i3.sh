@@ -1,18 +1,32 @@
 #!/bin/bash
 
-PACKAGES_TO_INSTALL= \
-  conky \
-  i3blocks \
-  ssh \
-  i3exit \
-  i3lock \
-  ranger \
-  rxvt-unicode-256color \
-  w3m-img \
-  feh \
-  xclip
+type=`uname -m`
+unamestr=`uname`
+platform='unknown'
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+elif [[ "$unamestr" == 'armv7' ]]; then
+    platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform='macos'
+fi
 
-sudo apt-get install -y $PACKAGES_TO_INSTALL
+if [[ $platform == 'linux' ]]; then
+  echo "installing prerequisites $platform"
+  PACKAGES_TO_INSTALL= \
+    conky \
+    i3blocks \
+    ssh \
+    i3exit \
+    i3lock \
+    ranger \
+    rxvt-unicode-256color \
+    w3m-img \
+    feh \
+    xclip
+
+  sudo apt-get install -y $PACKAGES_TO_INSTALL
+fi
 
 # i3 config files
 mkdir -p ~/.config
