@@ -32,7 +32,8 @@ if [[ $platform == 'linux' ]]; then
     screenfetch \
     net-tools \
     neofetch \
-    fonts-font-awesome
+    fonts-font-awesome \
+    urlview
 
 
   sudo apt-get install -y $PACKAGES_TO_INSTALL
@@ -56,7 +57,7 @@ fi
 # create dotfiles_old in homedir
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="path profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zprofile zshenv ctags tmux tmux.conf ackrc ideavimrc agignore eslintrc.js"    # list of files/folders to symlink in homedir
+files="inputrc profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zprofile zshenv Xresources ctags tmux tmux.conf ackrc ideavimrc agignore eslintrc.js"    # list of files/folders to symlink in homedir
 
 #echo "Creating $olddir for backup of any existing dotfiles in ~"
 #mkdir -p $olddir
