@@ -3,6 +3,7 @@ set nocompatible
 "set ma
 filetype off
 
+" for arduino
 autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
 
 " set leader
