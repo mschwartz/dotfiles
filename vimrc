@@ -147,6 +147,7 @@ if has('unix')
       \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/libraries/EEPROM/src
       \ -I/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
       \'
+    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
   endif
 
     let g:ale_fixers = {
@@ -166,7 +167,6 @@ if has('unix')
     let g:ale_set_loclist = 0
     let g:ale_set_quickfix = 1
 
-    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
 
 """""" test runner
 "Plugin 'janko-m/vim-test'
