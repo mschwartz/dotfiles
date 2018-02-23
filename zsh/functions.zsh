@@ -28,3 +28,10 @@ function = {
     calc="${@//x/*}"
     bc -l <<<"scale=10;$calc"
 }
+
+# alias tmuxx='echo $1; ! tmux -2 detach-client -s $1; tmux -2 new -A -s $1'
+tmuxx() {
+  echo "$1"
+  tmux -2 detach-client -s $1
+  tmux -2 new -A -s $1
+}
