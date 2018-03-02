@@ -66,6 +66,11 @@ URxvt.shading:       20
 *color7: #a8a19f
 *color15: #f1efee
 
+URxvt.keysym.C-Up:     perl:font-size:increase
+URxvt.keysym.C-Down:   perl:font-size:decrease
+URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+URxvt.keysym.C-S-Down: perl:font-size:decglobal
+
 URxvt.intensityStyles:	false
 !URxvt.background:       [70]#000000
 URxvt.depth:		32
@@ -76,7 +81,7 @@ URxvt.scrollBar:	false
 URxvt.cursorColor:	white
 
 !! Extensions
-URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select
+URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select,font-size
 URxvt.colorUL:		#4682B4
 !! url-select
 URxvt.keysym.M-u:	perl:url-select:select_next
