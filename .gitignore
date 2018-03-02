@@ -9,3 +9,6 @@ vim/bundle/Session.vim
 tmux/resurrect
 sessions/
 swapfiles/
+bookmarks
+history
+tagged
