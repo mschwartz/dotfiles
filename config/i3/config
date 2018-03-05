@@ -16,7 +16,7 @@ gaps inner 15
 gaps outer 15
 
 set $mod Mod1
-set $term --no-startup-id stterm
+set $term --no-startup-id /usr/local/bin/st
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -87,8 +87,6 @@ bindsym $mod+t split toggle
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-bindsym $mod+m exec /opt/wavebox/Wavebox
-
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
@@ -145,9 +143,11 @@ bindsym $mod+y resize grow height 10 px or 10ppt
 bindsym $mod+Shift+y resize shrink height 10 px or 10ppt
 
 # shortcuts to run programs
-bindsym $mod+g exec google-chrome
 bindsym $mod+b exec qutebrowser
-bindsym $mod+r exec urxvt -e ranger
+bindsym $mod+c exec slack
+bindsym $mod+g exec google-chrome
+bindsym $mod+m exec /opt/wavebox/Wavebox
+bindsym $mod+r exec $term -e ranger
 
 # color defines for zenburn styled i3
 set $bg     #2c2c2e
