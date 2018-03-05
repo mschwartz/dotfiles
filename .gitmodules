@@ -4,3 +4,6 @@
 [submodule "vim/bundle/vim-easytags"]
 	path = vim/bundle/vim-easytags
 	url = git@github.com:xolox/vim-easytags.git
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = git@github.com:tmux-plugins/tpm
