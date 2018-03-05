@@ -1,17 +1,114 @@
+" vim:fdm=marker
+
+" VIM options {{{
 set nocompatible 
-"set fileformat=unix
-"set ma
-filetype off
-
-" for arduino
-autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
-
 " set leader
 let mapleader=","
 let g:mapleader=","
 
-" key bindings
+"set fileformat=unix
+"set ma
+
+" for arduino
+autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
+
+" Use actual tab chars in Makefiles.
+autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+
+set ttyfast
+set nowrap
+set autoread
+set nolazyredraw
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set textwidth=80
+set colorcolumn=+1
+
+call matchadd('ColorColumn', '\%81v', 100)
+if $TMUX ==''
+  set clipboard=unnamed
+endif
+set ls=1
+set showcmd
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set expandtab
+
+" searching
+set smartcase
+set hlsearch
+set incsearch
+
+set ruler
+set nobackup
+set directory=$HOME/.vim/swapfiles//
+set undodir=~/.vim/undo-dir
+set undofile
+set number
+set ignorecase
+set title
+set ttyfast
+set modeline
+set modelines=3
+set mouse=a
+syntax enable
+set wildmenu
+set cursorline
+set so=7
+set cmdheight=2
+set lz
+set hid
+set whichwrap+=<,>,h,l
+set noerrorbells
+set novisualbell
+set t_vb=
+set showmatch
+set mat=2
+
+" Tell vim to remember certain things when we exit
+"  '10 : marks will be remembered for up to 10 previously edited files
+"  "100 : will save up to 100 lines for each register
+"  :20 : up to 20 lines of command-line history will be remembered
+"  % : saves and restores the buffer list
+"  n... : where to save the viminfo files
+set viminfo='10,\"100,:20,%,n~/.viminfo
+" when we reload, tell vim to restore the cursor to the saved position
+augroup JumpCursorOnEdit
+ au!
+ autocmd BufReadPost *
+ \ if expand("<afile>:p:h") !=? $TEMP |
+ \ if line("'\"") > 1 && line("'\"") <= line("$") |
+ \ let JumpCursorOnEdit_foo = line("'\"") |
+ \ let b:doopenfold = 1 |
+ \ if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo - 1)) |
+ \ let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
+ \ let b:doopenfold = 2 |
+ \ endif |
+ \ exe JumpCursorOnEdit_foo |
+ \ endif |
+ \ endif
+ " Need to postpone using "zv" until after reading the modelines.
+ autocmd BufWinEnter *
+ \ if exists("b:doopenfold") |
+ \ exe "normal zv" |
+ \ if(b:doopenfold > 1) |
+ \ exe "+".1 |
+ \ endif |
+ \ unlet b:doopenfold |
+ \ endif
+augroup END
+
+set t_Co=256
+map <Esc>[0c <C-RIGHT>
+map <Esc>[0d <C-LEFT>>
+    
+set encoding=utf-8
+scriptencoding utf-8
+" }}}
+
+" key bindings {{{
 nmap <F1> <nop>
+nmap <leader>, za
 nmap <leader>w :w!<cr>
 map <leader>j :j<cr>
 map <leader>ai :ALEInfo<cr>
@@ -32,14 +129,14 @@ imap jj <Esc>
 imap jk <Esc>
 imap kkk <Esc>
 nmap <F1> :echo<CR>
+" }}}
 
-
+" Plugins {{{
+" 
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-"
-" Plugins
-" 
 Plugin 'vundleVim/Vundle.vim'
     nmap <silent> <leader>p :PluginInstall<cr>
 
@@ -215,74 +312,10 @@ call vundle#end()
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
 
-" Use actual tab chars in Makefiles.
-autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-"
+" statusline {{{
 
-"
-" VIM options
-"
-set ttyfast
-set nowrap
-set autoread
-set nolazyredraw
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set textwidth=80
-set colorcolumn=+1
-
-call matchadd('ColorColumn', '\%81v', 100)
-if $TMUX ==''
-  set clipboard=unnamed
-endif
-set ls=1
-set showcmd
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-set expandtab
-
-" searching
-set smartcase
-set hlsearch
-set incsearch
-
-set ruler
-set nobackup
-set directory=$HOME/.vim/swapfiles//
-set undodir=~/.vim/undo-dir
-set undofile
-set number
-set ignorecase
-set title
-set ttyfast
-set modeline
-set modelines=3
-set mouse=a
-syntax enable
-set wildmenu
-set cursorline
-set so=7
-set cmdheight=2
-set lz
-set hid
-set whichwrap+=<,>,h,l
-set noerrorbells
-set novisualbell
-set t_vb=
-set showmatch
-set mat=2
-
-" Tell vim to remember certain things when we exit
-"  '10 : marks will be remembered for up to 10 previously edited files
-"  "100 : will save up to 100 lines for each register
-"  :20 : up to 20 lines of command-line history will be remembered
-"  % : saves and restores the buffer list
-"  n... : where to save the viminfo files
-set viminfo='10,\"100,:20,%,n~/.viminfo
-'
-
-"Format the statusline
 function! CurDir()
     let curdir = substitute(getcwd(), '/Users/mschwartz/', "~/", "g")
     return curdir
@@ -367,44 +400,15 @@ function! LightLineFilename()
                 \ ('' != expand('%:f') ? expand('%:f') : '[No Name]') .
                 \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
+" }}}
 
+" Theme {{{
 set background=dark
 colorscheme PaperColor
+" }}}
 
 let javascript_enable_domhtmlcss=1
 
-" when we reload, tell vim to restore the cursor to the saved position
-augroup JumpCursorOnEdit
- au!
- autocmd BufReadPost *
- \ if expand("<afile>:p:h") !=? $TEMP |
- \ if line("'\"") > 1 && line("'\"") <= line("$") |
- \ let JumpCursorOnEdit_foo = line("'\"") |
- \ let b:doopenfold = 1 |
- \ if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo - 1)) |
- \ let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
- \ let b:doopenfold = 2 |
- \ endif |
- \ exe JumpCursorOnEdit_foo |
- \ endif |
- \ endif
- " Need to postpone using "zv" until after reading the modelines.
- autocmd BufWinEnter *
- \ if exists("b:doopenfold") |
- \ exe "normal zv" |
- \ if(b:doopenfold > 1) |
- \ exe "+".1 |
- \ endif |
- \ unlet b:doopenfold |
- \ endif
-augroup END
-
-set t_Co=256
-map <Esc>[0c <C-RIGHT>
-map <Esc>[0d <C-LEFT>>
-    
-set encoding=utf-8
-scriptencoding utf-8
 
 autocmd FileType javascript set formatprg=prettier\ --stdin
 

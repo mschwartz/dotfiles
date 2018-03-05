@@ -31,6 +31,7 @@ alias tlist='tmux list-sessions'
 alias ttmux='tmux new -A -s $HOST-$$'
 # vim
 alias i3c='vi ~/.config/i3/config'
+alias vi3='vi ~/.config/i3/config'
 if [ -f /usr/local/bin/vim ]; then
   alias vi='/usr/local/bin/vim'
 fi
