@@ -57,6 +57,9 @@ bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
+bindsym $mod+Control+Left workspace prev
+bindsym $mod+Control+Right workspace next
+
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -83,6 +86,8 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+
+bindsym $mod+m exec /opt/wavebox/Wavebox
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -132,33 +137,17 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # lock i3 screen
-bindsym $mod+Shift+x exec ~/.config/i3/lock.sh ~/Pictures/Icons/lock-512.png
+bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh ~/Pictures/Icons/lock-512.png
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+bindsym $mod+x resize grow width 10 px or 10ppt
+bindsym $mod+Shift+x resize shrink width 10 px or 10ppt
+bindsym $mod+y resize grow height 10 px or 10ppt
+bindsym $mod+Shift+y resize shrink height 10 px or 10ppt
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-bindsym $mod+r mode "resize"
+# shortcuts to run programs
+bindsym $mod+g exec google-chrome
+bindsym $mod+b exec qutebrowser
+bindsym $mod+r exec urxvt -e ranger
 
 # color defines for zenburn styled i3
 set $bg     #2c2c2e
@@ -215,4 +204,6 @@ exec_always --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
 exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/kdi.jpg
 #exec_always --no-startup-id conky -c ~/.config/conky/conky.conf
 exec_always --no-startup-id synclient VertScrollDelta=-113
+exec --no-startup-id ~/.dropbox-dist/dropboxd
 exec --no-startup-id compton
+exec --no-startup-id unclutter
