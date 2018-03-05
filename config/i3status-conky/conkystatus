@@ -1,0 +1,140 @@
+#### Conky configuration file
+## to replace the i3status for i3bar
+# This script was partly stolen from a website I can't remember.
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+
+# Update interval in seconds
+update_interval 1.0
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Shortens units to a single character (kiB->k, GiB->G, etc.). Default is off.
+short_units yes
+
+# How strict should if_up be when testing an interface for being up?
+# The value is one of up, link or address, to check for the interface
+# being solely up, being up and having link or being up, having link
+# and an assigned IP address. 
+if_up_strictness address
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+# use_spacer should have an argument of left, right, or none
+use_spacer left
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# Stuff after 'TEXT' will be formatted on screen
+TEXT
+
+# JSON for i3bar
+[
+    # Free storage space in /home
+    { "full_text" : " ${fs_free /home} Free" , "color" : "\#ffffff" },
+    
+#    # RAM
+    { "full_text" : " ${mem}/${memmax}" , "color" : \
+    ${if_match ${memperc}<90}"\#ffffff"${else}"\#ff0000"${endif} }, 
+
+#    # CPU
+    { "full_text" : " ${cpu}% ${freq_g 1}GHz", "color" : \
+    ${if_match ${cpu}<90}"\#ffffff"${else}"\#ff0000"${endif}},
+    { "full_text" : "  ${cpu}% ", "color" : \
+    ${if_match ${cpu}<90}"\#ffffff"${else}"\#ff0000"${endif}},
+   
+
+    # Networking
+    # You might want to change wls2, ens3f1 ans enp0s20u1 to whatever
+    # your `ifconfig` command is saying.
+    # 
+    # For most debian/ubuntu changing wls2 to wlan0, ens3f1 to eth0 and
+    # enp0s20u1 should work.
+    ${if_up wlp2s0} { "full_text" : " (${wireless_essid wlp2s0}) ${addr wlp2s0}" , "color" : "\#00ff00" }, ${else}\
+        ${if_up eth0} { "full_text" : "Eth: ${addr eth0}" , "color" : "\#00ff00" }, ${else}\
+           ${if_up enp0s20u1} { "full_text" : "USB: ${addr enp0s20u1}" , "color" :"\#00ff00" }, ${else}\
+                { "full_text" : "No Network" , "color" : "\#ff0000" },\
+            ${endif}\
+        ${endif}\
+    ${endif}\
+    
+    # All the charges for the Battery
+    # This looks aweful because conky doesn't have an "else if"
+    # icon cheet sheet https://fortawesome.github.io/Font-Awesome/cheatsheet/
+#    ${if_match ${battery_percent}>15}\
+#        ${if_match ${battery_percent}>35}\
+#            ${if_match ${battery_percent}>60}\
+#                ${if_match ${battery_percent}>80}\
+#                    # 100% ish
+#                    { "full_text" : " ${battery_percent}%", "color" : "\#ffffff" }, \
+#                ${else}\
+#                    # less than 75% 
+#                    { "full_text" : " ${battery_percent}%", "color" : "\#ffffff" }, \
+#                ${endif}\
+#            ${else}\
+#                # less than 50%
+#                { "full_text" : " ${battery_percent}%", "color" : "\#ffffff" }, \
+#            ${endif}\
+#        ${else}\
+#            # 20ish % charge
+#            { "full_text" : " ${battery_percent}%", "color" : "\#ffffff" }, \
+#        ${endif}\
+#    ${else}\
+#        #empty battery
+#        { "full_text" : "  ${battery_percent}%", "color" : "\#ff0000" }, \
+#    ${endif}\
+
+    # Volume
+    { "full_text" : "  ${exec amixer get Master -M | grep -oE -m1 "[[:digit:]]*%"}", "color" : "\#ffffff"},
+    
+    # Time 
+#{ "full_text" : " ${time %H:%M:%S}" , "color" : "\#ff8800"},
+    { "full_text" : " ${time %H:%M:%S}" , "color" : "\#ff8800"},
+    # Date
+    { "full_text" : " ${time %m-%d %a}-${time %V}" , "color" : "\#ffffff" }
+    ],
+
+### output is printed to console -> i3bar
+#
+#out_to_x no
+#own_window no
+#out_to_console yes
+#background no
+#
+#update_interval 2.0
+#
+#if_up_strictness address
+#
+#
+#TEXT
+#[{ "full_text" : "Home ${fs_free /home} Free" , "color" : "\#ffffff" },
+#{ "full_text" : "RAM ${memperc}%" , "color" :
+#${if_match ${memperc}<90}"\#ffffff"${else}"\#ff0000"${endif} }]
+### show free space
+##${fs_free /home} |\
+### Network status
+##${if_up wls2} wls2: ${addr wls2} | ${endif}\
+##${if_up ens3f1} ens3f1: ${addr ens3f1} | ${endif}\
+### for debian users
+##${if_up wlan0} wlan0: ${addr wlan0} | ${endif}\
+##${if_up eth0} eth0: ${addr eth0} | ${endif}\
+##${if_up usb0} usb0: ${addr usb0} | ${endif}\
+##\
+### battery ram and cpu
+##bat: ${battery_percent BAT0}% | \
+##RAM: ${memperc}% | \
+##CPU ${cpu cpu1}% ${freq_g 1}GHz | \
+###CPU ${cpubar 1 10}\
+##\
+### time and date
+## ${time %a %d.%m.%y} penis ${time %H:%M}\
+#

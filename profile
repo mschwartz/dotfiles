@@ -28,3 +28,4 @@ fi
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.0.2.14/..:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/SenchaCmd-6.1.0.54-osx/:$PATH"
 export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.0.65/..:$PATH"
+export TERMINAL="stterm"
