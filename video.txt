@@ -1,0 +1,6 @@
+kdenlive
+gimp
+audacity
+simplescreenrecorder
+openbroadcaststudio obsproject.com
+
