@@ -49,8 +49,8 @@ TEXT
 #    # CPU
     { "full_text" : " ${cpu}% ${freq_g 1}GHz", "color" : \
     ${if_match ${cpu}<90}"\#ffffff"${else}"\#ff0000"${endif}},
-    { "full_text" : "  ${cpu}% ", "color" : \
-    ${if_match ${cpu}<90}"\#ffffff"${else}"\#ff0000"${endif}},
+#    { "full_text" : "  ${cpu}% ", "color" : \
+#    ${if_match ${cpu}<90}"\#ffffff"${else}"\#ff0000"${endif}},
    
 
     # Networking
@@ -94,7 +94,7 @@ TEXT
 #    ${endif}\
 
     # Volume
-    { "full_text" : "  ${exec amixer get Master -M | grep -oE -m1 "[[:digit:]]*%"}", "color" : "\#ffffff"},
+#    { "full_text" : "  ${exec amixer get Master -M | grep -oE -m1 "[[:digit:]]*%"}", "color" : "\#ffffff"},
     
     # Time 
 #{ "full_text" : " ${time %H:%M:%S}" , "color" : "\#ff8800"},
