@@ -4,7 +4,7 @@ tags.temp
 node_modules
 .AppleDouble
 vim/bundle/*
-tmux/plugins/*
+#tmux/plugins/*
 vim/bundle/Session.vim
 tmux/resurrect
 sessions/

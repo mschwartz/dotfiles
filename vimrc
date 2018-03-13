@@ -232,6 +232,7 @@ set ttyfast
 set nowrap
 set autoread
 set nolazyredraw
+set backspace=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set textwidth=80
 set colorcolumn=+1
