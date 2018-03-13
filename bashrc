@@ -134,3 +134,5 @@ if [ -f /Users/mschwartz/.tnsrc ]; then
     source /Users/mschwartz/.tnsrc 
 fi
 ###-tns-completion-end-###
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
