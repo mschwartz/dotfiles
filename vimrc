@@ -19,6 +19,8 @@ map <leader>ad :ALEDetail<cr>
 map <leader>f :ALEFix<cr>
 map <leader>s :source ~/.vimrc<cr>
 map <leader>e :e! ~/.vimrc<cr>
+map <leader>z :e! ~/.zshrc<cr>
+map <leader>a :e! ~/dotfiles/zsh/aliases.zsh<cr>
 map <leader>3 :e! ~/.config/i3/config<cr>
 map <leader>l :nohlsearch<cr>
 map <leader>pi :PluginInstall<cr>
