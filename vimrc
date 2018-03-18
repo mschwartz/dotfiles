@@ -5,6 +5,7 @@ filetype off
 
 " for arduino
 autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
+autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
 
 " set leader
 let mapleader=","
@@ -50,6 +51,7 @@ Plugin 'vundleVim/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'vimwiki/vimwiki'
+Plugin 'suan/vim-instant-markdown'
 
 Plugin 'mileszs/ack.vim'
       if executable('ag') 
