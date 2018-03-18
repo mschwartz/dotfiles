@@ -123,6 +123,9 @@ hi link javaScriptTemplateString String
 
 Plugin 'Yggdroot/indentLine'
 
+Plugin 'editorconfig/editorconfig-vim'"
+"Plugin 'vimwiki/vimwiki'
+
 "Plugin 'nathanaelkane/vim-indent-guides'
     "let g:indent_guides_enable_on_vim_startup = 1
     "let g:indent_guides_guide_size = 1
@@ -153,8 +156,15 @@ if has('unix')
     set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
   endif
 
+    let g:ale_linters = {
+                \   'javascript': ['eslint'],
+                \   'typescript': ['tslint'],
+                \   'objc': ['clang'],
+                \   'cpp': ['clang-format'],
+                \}
     let g:ale_fixers = {
                 \   'javascript': ['eslint'],
+                \   'typescript': ['tslint'],
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
                 \}
