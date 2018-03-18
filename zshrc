@@ -79,3 +79,5 @@ if [ -f $HOME/.zshrc.local ]; then
 fi
 
 neofetch
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
