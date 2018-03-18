@@ -81,6 +81,12 @@ fi
 neofetch
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+PATH="/home/mschwartz/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/mschwartz/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/mschwartz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/mschwartz/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/mschwartz/perl5"; export PERL_MM_OPT;
 # Must be sourced at end of .zshrc
 if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
