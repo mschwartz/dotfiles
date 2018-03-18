@@ -12,16 +12,18 @@ let g:mapleader=","
 
 " key bindings
 nmap <F1> <nop>
-nmap <leader>w :w!<cr>
+nmap <leader>s :w!<cr>
 map <leader>j :j<cr>
 map <leader>ai :ALEInfo<cr>
 map <leader>ad :ALEDetail<cr>
 map <leader>f :ALEFix<cr>
-map <leader>s :source ~/.vimrc<cr>
-map <leader>e :e! ~/.vimrc<cr>
-map <leader>z :e! ~/.zshrc<cr>
-map <leader>a :e! ~/dotfiles/zsh/aliases.zsh<cr>
-map <leader>3 :e! ~/.config/i3/config<cr>
+"map <leader>s :source ~/.vimrc<cr>
+map <leader>e3 :e! ~/.config/i3/config<cr>
+map <leader>ea :e! ~/dotfiles/zsh/aliases.zsh<cr>
+map <leader>ee :e! ~/dotfiles/zsh/env.zsh<cr>
+map <leader>ef :e! ~/dotfiles/zsh/functions.zsh<cr>
+map <leader>ev :e! ~/.vimrc<cr>
+map <leader>ez :e! ~/.zshrc<cr>
 map <leader>l :nohlsearch<cr>
 map <leader>pi :PluginInstall<cr>
 map <leader>ip <esc>iimport PropTypes from 'prop-types'<cr><esc>
@@ -46,6 +48,8 @@ Plugin 'vundleVim/Vundle.vim'
     nmap <silent> <leader>p :PluginInstall<cr>
 
 Plugin 'christoomey/vim-tmux-navigator'
+
+Plugin 'vimwiki/vimwiki'
 
 Plugin 'mileszs/ack.vim'
       if executable('ag') 
@@ -126,7 +130,6 @@ hi link javaScriptTemplateString String
 Plugin 'Yggdroot/indentLine'
 
 Plugin 'editorconfig/editorconfig-vim'"
-"Plugin 'vimwiki/vimwiki'
 
 "Plugin 'nathanaelkane/vim-indent-guides'
     "let g:indent_guides_enable_on_vim_startup = 1

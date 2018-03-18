@@ -2,12 +2,22 @@
 # env variables
 #
 
+# OS
+export OS=`uname -s`
+
 # Customize to your needs...
 export LSCOLORS=exfxcxdxbxexexabagacad
 
-export EDITOR='/usr/local/bin/vim'
+if [ "$OS" = 'Darwin' ]; then
+  export EDITOR='/usr/local/bin/vim'
+  if [ "$TERM" = "st-256color" ]; then
+    export TERM="xterm-256color"
+  fi
+else
+  export EDITOR='/usr/bin/vim'
+fi
 
-cdpath=( ~ ~/sencha/github )
+cdpath=( ~ ~/modus/github )
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.2.15/..:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.3/..:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.23/..:$PATH"
