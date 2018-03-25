@@ -4,7 +4,7 @@ set nocompatible
 filetype off
 
 " for arduino
-autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
+autocmd BufNewFile,BufReadPost *.cpp,*.h,*.ino,*.pde set filetype=cpp
 autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
 
 " set leader
@@ -161,19 +161,21 @@ if has('unix')
       \ -I/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
       \'
     set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
-  endif
+endif
 
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
                 \   'typescript': ['tslint'],
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
+                \   'h': ['clang-format'],
                 \}
     let g:ale_fixers = {
                 \   'javascript': ['eslint'],
                 \   'typescript': ['tslint'],
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
+                \   'h': ['clang-format'],
                 \}
 
 "                \   'cpp': [ 'g++' ],
