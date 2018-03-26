@@ -142,26 +142,26 @@ Plugin 'editorconfig/editorconfig-vim'"
 Plugin 'w0rp/ale'
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
-if has('unix') 
-    let g:ale_cpp_gcc_executable='/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-g++'
-    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
-      \ -mmcu=atmega32u4 
-      \ -DF_CPU=16000000L 
-      \ -DARDUINO=10612 
-      \ -DARDUINO_AVR_ARDUBOY 
-      \ -DARDUINO_ARCH_AVR  
-      \ -DARDUBOY_10 -DUSB_VID=0x2341 
-      \ -DUSB_PID=0x8036 
-      \ -DUSB_MANUFACTURER="Unknown"
-      \ -DUSB_PRODUCT="Arduboy"
-      \ -I/home/mschwartz/Arduino/libraries/Arduboy2/src 
-      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino 
-      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/variants/leonardo
-      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/libraries/EEPROM/src
-      \ -I/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
-      \'
-    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
-endif
+"if has('unix') 
+"    let g:ale_cpp_gcc_executable='/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-g++'
+"    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
+"      \ -mmcu=atmega32u4 
+"      \ -DF_CPU=16000000L 
+"      \ -DARDUINO=10612 
+"      \ -DARDUINO_AVR_ARDUBOY 
+"      \ -DARDUINO_ARCH_AVR  
+"      \ -DARDUBOY_10 -DUSB_VID=0x2341 
+"      \ -DUSB_PID=0x8036 
+"      \ -DUSB_MANUFACTURER="Unknown"
+"      \ -DUSB_PRODUCT="Arduboy"
+"      \ -I/home/mschwartz/Arduino/libraries/Arduboy2/src 
+"      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino 
+"      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/variants/leonardo
+"      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/libraries/EEPROM/src
+"      \ -I/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
+"      \'
+"    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
+"endif
 
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
@@ -240,7 +240,7 @@ set omnifunc=syntaxcomplete#Complete
 
 " Use actual tab chars in Makefiles.
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-"
+autocmd FileType cpp set tabstop=2 shiftwidth=2 softtabstop=0 expandtab
 
 "
 " VIM options
