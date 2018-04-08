@@ -24,6 +24,7 @@ map <leader>ea :e! ~/dotfiles/zsh/aliases.zsh<cr>
 map <leader>ee :e! ~/dotfiles/zsh/env.zsh<cr>
 map <leader>ef :e! ~/dotfiles/zsh/functions.zsh<cr>
 map <leader>ev :e! ~/.vimrc<cr>
+map <leader>et :e! ~/dotfiles/tmux.conf<cr>
 map <leader>ez :e! ~/.zshrc<cr>
 map <leader>l :nohlsearch<cr>
 map <leader>pi :PluginInstall<cr>
