@@ -4,8 +4,11 @@ tags.temp
 node_modules
 .AppleDouble
 vim/bundle/*
-tmux/plugins/*
+tmux/plugins/tmux-*
 vim/bundle/Session.vim
 tmux/resurrect
 sessions/
 swapfiles/
+bookmarks
+history
+tagged

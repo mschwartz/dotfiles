@@ -1,0 +1,110 @@
+!URxvt.font: xft:FuraCode Nerd Font:style=Regular:size=16:pixelsize=15
+!URxvt.boldFont: xft:FuraCode Nerd Font:style=Regular:size=16:pixelsize=15
+
+!URxvt*termName:         rxvt
+URxvt*background:       [80]#000000
+!URxvt*foreground:       #cccccc
+!URxvt*scrollBar:        false
+!URxvt*perl-lib:         /usr/lib/urxvt/perl/
+!URxvt*perl-ext-common:  default,matcher
+!URxvt*urlLauncher:      /usr/bin/jumanji
+!URxvt*matcher.button:   1
+
+Xft*dpi:                96
+Xft*antialias:          true
+Xft*hinting:            full
+
+URxvt.transparent:   true
+URxvt.tintColor:     white
+URxvt.shading:       20 
+ 
+!URxvt*color0:      #000000
+!URxvt*color1:      #9e1828
+!URxvt*color2:      #aece92
+!URxvt*color3:      #968a38
+!URxvt*color4:      #414171
+!URxvt*color5:      #963c59
+!URxvt*color6:      #418179
+!URxvt*color7:      #bebebe
+!URxvt*color8:      #666666
+!URxvt*color9:      #cf6171
+!URxvt*color10:     #c5f779
+!URxvt*color11:     #fff796
+!URxvt*color12:     #4186be
+!URxvt*color13:     #cf9ebe
+!URxvt*color14:     #71bebe
+!URxvt*color15:     #ffffff
+
+*foreground: #00cc00
+*foreground_bold: #a8a19f
+*cursor: #a8a19f
+*background:       #1b1918
+!!*background: rgba(0, 0, 0, .7)
+
+!! black
+*color0: #1b1918
+*color8: #766e6b
+!! red
+*color1: #f22c40
+*color9: #f22c40
+!! green
+*color2: #5ab738
+*color10: #5ab738
+!! yellow
+*color3: #d5911a
+*color11: #d5911a
+!! blue
+*color4: #407ee7
+*color12: #407ee7
+!! magenta
+*color5: #6666ea
+*color13: #6666ea
+!! cyan
+*color6: #00ad9c
+*color14: #00ad9c
+!! white
+*color7: #a8a19f
+*color15: #f1efee
+
+URxvt.keysym.C-Up:     perl:font-size:increase
+URxvt.keysym.C-Down:   perl:font-size:decrease
+URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+URxvt.keysym.C-S-Down: perl:font-size:decglobal
+
+URxvt.intensityStyles:	false
+!URxvt.background:       [70]#000000
+URxvt.depth:		32
+!URxvt.font: 		xft:monospace:size=11
+URxvt.font: xft:FuraCode Nerd Font:style=Regular:size=16:pixelsize=16
+URxvt.boldFont: xft:FuraCode Nerd Font:style=Regular:size=16:pixelsize=16
+URxvt.scrollBar:	false
+URxvt.cursorColor:	white
+
+!! Extensions
+URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select,font-size
+URxvt.colorUL:		#4682B4
+!! url-select
+URxvt.keysym.M-u:	perl:url-select:select_next
+URxvt.url-select.launcher: webview
+URxvt.url-select.underline: true
+!! keyboard-select:
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+!! resize-font
+URxvt.resize-font.smaller:	C-Down
+URxvt.resize-font.bigger:	C-Up
+!! Matcher
+URxvt.url-launcher:	webview
+URxvt.matcher.button:	1
+
+rofi.color-enabled:	true
+rofi.color-window:	#000, #000, #000
+rofi.color-normal:	#111, #819396, #222, #008ed4, #ffffff
+rofi.color-active:	#002b37, #008ed4, #003643, #008ed4, #66c6ff
+rofi.color-urgent:	#002b37, #da4281, #003643, #008ed4, #890661
+
+rofi.fake-transparency:	true
+rofi.lines:		3
+rofi.bw:		0
+rofi.opacity:		"10"
+rofi.hide-scrollbar:	true
+rofi.width:		30

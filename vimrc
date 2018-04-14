@@ -3,7 +3,9 @@ set nocompatible
 "set ma
 filetype off
 
-autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
+" for arduino
+autocmd BufNewFile,BufReadPost *.cpp,*.h,*.ino,*.pde set filetype=cpp
+autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
 
 " set leader
 let mapleader=","
@@ -11,14 +13,19 @@ let g:mapleader=","
 
 " key bindings
 nmap <F1> <nop>
-nmap <leader>w :w!<cr>
+nmap <leader>s :w!<cr>
 map <leader>j :j<cr>
 map <leader>ai :ALEInfo<cr>
 map <leader>ad :ALEDetail<cr>
 map <leader>f :ALEFix<cr>
-map <leader>s :source ~/.vimrc<cr>
-map <leader>e :e! ~/.vimrc<cr>
-map <leader>3 :e! ~/.config/i3/config<cr>
+"map <leader>s :source ~/.vimrc<cr>
+map <leader>e3 :e! ~/.config/i3/config<cr>
+map <leader>ea :e! ~/dotfiles/zsh/aliases.zsh<cr>
+map <leader>ee :e! ~/dotfiles/zsh/env.zsh<cr>
+map <leader>ef :e! ~/dotfiles/zsh/functions.zsh<cr>
+map <leader>ev :e! ~/.vimrc<cr>
+map <leader>et :e! ~/dotfiles/tmux.conf<cr>
+map <leader>ez :e! ~/.zshrc<cr>
 map <leader>l :nohlsearch<cr>
 map <leader>pi :PluginInstall<cr>
 map <leader>ip <esc>iimport PropTypes from 'prop-types'<cr><esc>
@@ -43,6 +50,9 @@ Plugin 'vundleVim/Vundle.vim'
     nmap <silent> <leader>p :PluginInstall<cr>
 
 Plugin 'christoomey/vim-tmux-navigator'
+
+Plugin 'vimwiki/vimwiki'
+Plugin 'suan/vim-instant-markdown'
 
 Plugin 'mileszs/ack.vim'
       if executable('ag') 
@@ -101,6 +111,9 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'ap/vim-css-color'
 Plugin 'pangloss/vim-javascript'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'Quramy/tsuquyomi'
 Plugin 'mxw/vim-jsx'
     let g:jsx_ext_required = 0
 Plugin 'leshill/vim-json'
@@ -119,6 +132,8 @@ hi link javaScriptTemplateString String
 
 Plugin 'Yggdroot/indentLine'
 
+Plugin 'editorconfig/editorconfig-vim'"
+
 "Plugin 'nathanaelkane/vim-indent-guides'
     "let g:indent_guides_enable_on_vim_startup = 1
     "let g:indent_guides_guide_size = 1
@@ -128,30 +143,40 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'w0rp/ale'
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
-if has('unix') 
-    let g:ale_cpp_gcc_executable='/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-g++'
-    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
-      \ -mmcu=atmega32u4 
-      \ -DF_CPU=16000000L 
-      \ -DARDUINO=10612 
-      \ -DARDUINO_AVR_ARDUBOY 
-      \ -DARDUINO_ARCH_AVR  
-      \ -DARDUBOY_10 -DUSB_VID=0x2341 
-      \ -DUSB_PID=0x8036 
-      \ -DUSB_MANUFACTURER="Unknown"
-      \ -DUSB_PRODUCT="Arduboy"
-      \ -I/home/mschwartz/Arduino/libraries/Arduboy2/src 
-      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino 
-      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/variants/leonardo
-      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/libraries/EEPROM/src
-      \ -I/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
-      \'
-  endif
+"if has('unix') 
+"    let g:ale_cpp_gcc_executable='/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-g++'
+"    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
+"      \ -mmcu=atmega32u4 
+"      \ -DF_CPU=16000000L 
+"      \ -DARDUINO=10612 
+"      \ -DARDUINO_AVR_ARDUBOY 
+"      \ -DARDUINO_ARCH_AVR  
+"      \ -DARDUBOY_10 -DUSB_VID=0x2341 
+"      \ -DUSB_PID=0x8036 
+"      \ -DUSB_MANUFACTURER="Unknown"
+"      \ -DUSB_PRODUCT="Arduboy"
+"      \ -I/home/mschwartz/Arduino/libraries/Arduboy2/src 
+"      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino 
+"      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/variants/leonardo
+"      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/libraries/EEPROM/src
+"      \ -I/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
+"      \'
+"    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
+"endif
 
-    let g:ale_fixers = {
+    let g:ale_linters = {
                 \   'javascript': ['eslint'],
+                \   'typescript': ['tslint'],
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
+                \   'h': ['clang-format'],
+                \}
+    let g:ale_fixers = {
+                \   'javascript': ['eslint'],
+                \   'typescript': ['tslint'],
+                \   'objc': ['clang'],
+                \   'cpp': ['clang-format'],
+                \   'h': ['clang-format'],
                 \}
 
 "                \   'cpp': [ 'g++' ],
@@ -165,7 +190,6 @@ if has('unix')
     let g:ale_set_loclist = 0
     let g:ale_set_quickfix = 1
 
-    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
 
 """""" test runner
 "Plugin 'janko-m/vim-test'
@@ -189,7 +213,7 @@ Plugin 'scrooloose/nerdcommenter'
 " NERDTree
 Plugin 'scrooloose/nerdtree'
 let g:NERDTreeShowHidden = 1
-let g:NERDTreeIgnore=['.git', 'node_modules']
+let g:NERDTreeIgnore=['.git', 'node_modules', '.o$', '.a$', '.depend']
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -217,7 +241,7 @@ set omnifunc=syntaxcomplete#Complete
 
 " Use actual tab chars in Makefiles.
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-"
+autocmd FileType cpp set tabstop=2 shiftwidth=2 softtabstop=0 expandtab
 
 "
 " VIM options
@@ -226,6 +250,7 @@ set ttyfast
 set nowrap
 set autoread
 set nolazyredraw
+set backspace=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set textwidth=80
 set colorcolumn=+1

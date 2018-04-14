@@ -5,14 +5,21 @@ set smartcase
 set incsearch
 
 let mapleader = ","
-map <leader>s :source ~/.ideavimrc<CR>
-map <leader>w :action SaveAll<CR>
+map <leader>e :e ~/.ideavimrc<CR>
+map <leader>x :source ~/.ideavimrc<CR>
+map <leader>j :j<cr>
+map <leader>s :action SaveAll<CR>
+map <leader>b :action Build<CR>
+map <leader>f :action ReformatCode<CR>
+map <leader>d :action Debug<CR>
+map <leader>r :action Run<CR>
+map \r :action ReformatCode<CR>
 
 "When .vimrc is edited, reload it
-"autocmd! bufwritepost .vimrc source ~/.vimrc
+autocmd! bufwritepost .ideavimrc source ~/.ideavimrc
 augroup reload_vimrc
     autocmd!
-    autocmd bufwritepost ~/.vimrc nested source ~/.vimrc
+    autocmd bufwritepost ~/.ideavimrc nested source ~/.ideavimrc
 augroup END
 
 
