@@ -204,3 +204,4 @@ exec_always --no-startup-id synclient VertScrollDelta=-113
 exec --no-startup-id ~/.dropbox-dist/dropboxd
 exec --no-startup-id compton
 exec --no-startup-id unclutter
+exec --no-startup-id xset s off -dpms

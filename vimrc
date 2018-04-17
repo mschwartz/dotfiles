@@ -24,6 +24,7 @@ map <leader>ea :e! ~/dotfiles/zsh/aliases.zsh<cr>
 map <leader>ee :e! ~/dotfiles/zsh/env.zsh<cr>
 map <leader>ef :e! ~/dotfiles/zsh/functions.zsh<cr>
 map <leader>ev :e! ~/.vimrc<cr>
+map <leader>et :e! ~/dotfiles/tmux.conf<cr>
 map <leader>ez :e! ~/.zshrc<cr>
 map <leader>l :nohlsearch<cr>
 map <leader>pi :PluginInstall<cr>
@@ -142,26 +143,26 @@ Plugin 'editorconfig/editorconfig-vim'"
 Plugin 'w0rp/ale'
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
-if has('unix') 
-    let g:ale_cpp_gcc_executable='/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-g++'
-    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
-      \ -mmcu=atmega32u4 
-      \ -DF_CPU=16000000L 
-      \ -DARDUINO=10612 
-      \ -DARDUINO_AVR_ARDUBOY 
-      \ -DARDUINO_ARCH_AVR  
-      \ -DARDUBOY_10 -DUSB_VID=0x2341 
-      \ -DUSB_PID=0x8036 
-      \ -DUSB_MANUFACTURER="Unknown"
-      \ -DUSB_PRODUCT="Arduboy"
-      \ -I/home/mschwartz/Arduino/libraries/Arduboy2/src 
-      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino 
-      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/variants/leonardo
-      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/libraries/EEPROM/src
-      \ -I/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
-      \'
-    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
-endif
+"if has('unix') 
+"    let g:ale_cpp_gcc_executable='/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-g++'
+"    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
+"      \ -mmcu=atmega32u4 
+"      \ -DF_CPU=16000000L 
+"      \ -DARDUINO=10612 
+"      \ -DARDUINO_AVR_ARDUBOY 
+"      \ -DARDUINO_ARCH_AVR  
+"      \ -DARDUBOY_10 -DUSB_VID=0x2341 
+"      \ -DUSB_PID=0x8036 
+"      \ -DUSB_MANUFACTURER="Unknown"
+"      \ -DUSB_PRODUCT="Arduboy"
+"      \ -I/home/mschwartz/Arduino/libraries/Arduboy2/src 
+"      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino 
+"      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/variants/leonardo
+"      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/libraries/EEPROM/src
+"      \ -I/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
+"      \'
+"    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
+"endif
 
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
@@ -212,7 +213,7 @@ Plugin 'scrooloose/nerdcommenter'
 " NERDTree
 Plugin 'scrooloose/nerdtree'
 let g:NERDTreeShowHidden = 1
-let g:NERDTreeIgnore=['.git', 'node_modules']
+let g:NERDTreeIgnore=['.git', 'node_modules', '.o$', '.a$', '.depend']
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -240,7 +241,7 @@ set omnifunc=syntaxcomplete#Complete
 
 " Use actual tab chars in Makefiles.
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-"
+autocmd FileType cpp set tabstop=2 shiftwidth=2 softtabstop=0 expandtab
 
 "
 " VIM options
