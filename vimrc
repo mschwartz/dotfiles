@@ -302,8 +302,11 @@ set mat=2
 "  :20 : up to 20 lines of command-line history will be remembered
 "  % : saves and restores the buffer list
 "  n... : where to save the viminfo files
-set viminfo='10,\"100,:20,%,n~/.viminfo
-'
+if !has('nvim')
+	set viminfo='10,\"100,:20,%,n~/.viminfo
+"    set viminfo+=~/.vim/viminfo
+endif
+
 
 "Format the statusline
 function! CurDir()
