@@ -24,6 +24,7 @@ map <leader>ea :e! ~/dotfiles/zsh/aliases.zsh<cr>
 map <leader>ee :e! ~/dotfiles/zsh/env.zsh<cr>
 map <leader>ef :e! ~/dotfiles/zsh/functions.zsh<cr>
 map <leader>ev :e! ~/.vimrc<cr>
+map <leader>et :e! ~/dotfiles/tmux.conf<cr>
 map <leader>ez :e! ~/.zshrc<cr>
 map <leader>l :nohlsearch<cr>
 map <leader>pi :PluginInstall<cr>
@@ -212,7 +213,7 @@ Plugin 'scrooloose/nerdcommenter'
 " NERDTree
 Plugin 'scrooloose/nerdtree'
 let g:NERDTreeShowHidden = 1
-let g:NERDTreeIgnore=['.git', 'node_modules', '.o$']
+let g:NERDTreeIgnore=['.git', 'node_modules', '.o$', '.a$', '.depend']
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
