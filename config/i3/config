@@ -181,10 +181,11 @@ client.urgent               $rd        $rd         $tx
 bar {
   font pango:System San Francisco Display 18
   position top
-  status_command /home/$USER/.config/i3status-conky/i3status.sh
-#  status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#  status_command /home/$USER/.config/i3status-conky/i3status.sh
+  status_command i3blocks -c ~/.config/i3/i3blocks.conf
 #    status_command i3status --config ~/.i3/i3status.conf
 #    status_command i3status 
+#    status_command ~/.config/polybar/launch.sh
 
     colors {
         background          $bg
@@ -198,7 +199,8 @@ bar {
 }
 
 exec_always --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
-exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/kdi.jpg
+#exec_always --no-startup-id /home/mschwartz/.config/polybar/launch.sh
+#exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/kdi.jpg
 #exec_always --no-startup-id conky -c ~/.config/conky/conky.conf
 exec_always --no-startup-id synclient VertScrollDelta=-113
 exec --no-startup-id ~/.dropbox-dist/dropboxd
