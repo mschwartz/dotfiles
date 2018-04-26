@@ -93,3 +93,7 @@ if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; 
 elif [ -f /usr/share/zsh-syntax-highlighting.zsh ]; then
   source /usr/share/zsh-syntax-highlighting.zsh
 fi
+
+if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
+  source $HOME/github/other/emsdk/emsdk_env.sh
+fi
