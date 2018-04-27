@@ -32,4 +32,12 @@ if [ -e /Applications ]; then
   export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 fi
 export PATH=~/bin/:$PATH
-export TERMINAL="stterm"
+if [ `wmctrl -m | grep i3 | wc -l` = 1 ]; then
+  export TERMINAL="stterm"
+  export TERM="stterm"
+fi
+
+
+if [ "$DISPLAY" = "" ]; then
+  export DISPLAY=:0.0
+fi
