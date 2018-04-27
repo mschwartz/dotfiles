@@ -148,6 +148,7 @@ bindsym $mod+F1 exec google-chrome
 bindsym $mod+F2 exec "firefox"
 bindsym $mod+Shift+F2 exec "firefox -private-window"
 bindsym $mod+F3 exec qutebrowser
+bindsym $mod+F12 exec /usr/local/bin/webstorm
 bindsym $mod+F9 exec slack
 bindsym $mod+F10 exec /opt/wavebox/Wavebox
 bindsym $mod+r exec $term -e ranger
