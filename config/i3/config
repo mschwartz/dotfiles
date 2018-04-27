@@ -20,7 +20,7 @@ set $term --no-startup-id /usr/local/bin/st
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:SystemFontAwesome 16
+font pango:System San Francisco Display 16, FontAwesome 16
 
 focus_follows_mouse no
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -180,12 +180,13 @@ client.urgent               $rd        $rd         $tx
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  font pango:System San Francisco 10
+  font pango:System San Francisco Display 18
   position top
-  status_command /home/$USER/.config/i3status-conky/i3status.sh
-#  status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#  status_command /home/$USER/.config/i3status-conky/i3status.sh
+  status_command i3blocks -c ~/.config/i3/i3blocks.conf
 #    status_command i3status --config ~/.i3/i3status.conf
 #    status_command i3status 
+#    status_command ~/.config/polybar/launch.sh
 
     colors {
         background          $bg
@@ -199,7 +200,8 @@ bar {
 }
 
 exec_always --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
-exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/kdi.jpg
+#exec_always --no-startup-id /home/mschwartz/.config/polybar/launch.sh
+#exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/kdi.jpg
 #exec_always --no-startup-id conky -c ~/.config/conky/conky.conf
 exec_always --no-startup-id synclient VertScrollDelta=-113
 exec --no-startup-id ~/.dropbox-dist/dropboxd
