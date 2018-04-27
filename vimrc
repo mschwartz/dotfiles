@@ -21,6 +21,7 @@ map <leader>f :ALEFix<cr>
 "map <leader>s :source ~/.vimrc<cr>
 map <leader>e3 :e! ~/.config/i3/config<cr>
 map <leader>ea :e! ~/dotfiles/zsh/aliases.zsh<cr>
+map <leader>eb :e! ~/dotfiles/config/i3/i3blocks.conf<cr>
 map <leader>ee :e! ~/dotfiles/zsh/env.zsh<cr>
 map <leader>ef :e! ~/dotfiles/zsh/functions.zsh<cr>
 map <leader>ev :e! ~/.vimrc<cr>
