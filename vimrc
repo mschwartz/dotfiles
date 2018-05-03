@@ -13,6 +13,7 @@ let g:mapleader=","
 
 " key bindings
 nmap <F1> <nop>
+imap <F1> <nop>
 nmap <leader>s :w!<cr>
 map <leader>j :j<cr>
 map <leader>ai :ALEInfo<cr>
