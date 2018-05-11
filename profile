@@ -28,11 +28,11 @@ fi
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.0.2.14/..:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/SenchaCmd-6.1.0.54-osx/:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.0.65/..:$PATH"
-if [ -e /Applications ]; then
+if [ -e "/Applications/Visual Studio Code.app" ]; then
   export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 fi
 export PATH=~/bin/:$PATH
-if [ `wmctrl -m | grep i3 | wc -l` = 1 ]; then
+if [ ! -v ITERM_PROFILE ]; then
   export TERMINAL="stterm"
   export TERM="stterm"
 fi

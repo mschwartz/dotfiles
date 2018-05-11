@@ -36,5 +36,9 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 
 echo cd $INSTALL_PWD
 cd $INSTALL_PWD
+
+echo "DOCKER"
 source ./install-scripts/install-docker.sh
+echo "ANGULAR/TYPESCRIPT"
+source ./install-scripts/install-ng.sh
 
