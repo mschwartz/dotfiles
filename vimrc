@@ -13,6 +13,7 @@ let g:mapleader=","
 
 " key bindings
 nmap <F1> <nop>
+imap <F1> <nop>
 nmap <leader>s :w!<cr>
 map <leader>j :j<cr>
 map <leader>ai :ALEInfo<cr>
@@ -21,6 +22,7 @@ map <leader>f :ALEFix<cr>
 "map <leader>s :source ~/.vimrc<cr>
 map <leader>e3 :e! ~/.config/i3/config<cr>
 map <leader>ea :e! ~/dotfiles/zsh/aliases.zsh<cr>
+map <leader>eb :e! ~/dotfiles/config/i3/i3blocks.conf<cr>
 map <leader>ee :e! ~/dotfiles/zsh/env.zsh<cr>
 map <leader>ef :e! ~/dotfiles/zsh/functions.zsh<cr>
 map <leader>ev :e! ~/.vimrc<cr>
@@ -31,6 +33,7 @@ map <leader>pi :PluginInstall<cr>
 map <leader>ip <esc>iimport PropTypes from 'prop-types'<cr><esc>
 map <leader>ir <esc>iimport React, {Component} from 'react'<cr><esc>
 map <leader>itc <esc>otry {<cr>}<cr>catch(e) {<cr>console.log('exception', e)<cr><esc>ddjddkkkk==ko
+map <leader>v <esc>:read !xsel<cr>
 map <C-n> :NERDTreeToggle<CR>
 map <C-_> <leader>cij
 map <C-\> :Ack! 
@@ -303,8 +306,11 @@ set mat=2
 "  :20 : up to 20 lines of command-line history will be remembered
 "  % : saves and restores the buffer list
 "  n... : where to save the viminfo files
-set viminfo='10,\"100,:20,%,n~/.viminfo
-'
+if !has('nvim')
+	set viminfo='10,\"100,:20,%,n~/.viminfo
+"    set viminfo+=~/.vim/viminfo
+endif
+
 
 "Format the statusline
 function! CurDir()
