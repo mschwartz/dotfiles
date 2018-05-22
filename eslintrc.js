@@ -24,7 +24,7 @@ module.exports = {
     'linebreak-style':                    ['error', 'unix'],
     quotes:                               ['error', 'single'],
     semi:                                 ['error', 'always'],
-    'multiline-comment-style':            ['error', 'starred-block'],
+    //    'multiline-comment-style':            ['error', 'starred-block'],
     'no-constant-condition':              ['error', { 'checkLoops': false  }],
     'no-debugger':                        0,
     'jsx-quotes':                         1,
