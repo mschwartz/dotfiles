@@ -9,8 +9,8 @@ if [[ $platform == 'linux' ]]; then
     sudo cp dnsmasq/dnsmasq.hosts.conf /etc/dnsmasq.hosts.conf
 
     sudo mkdir -p /etc/dnsmasq.d
-    sudo cp dnsmasq.conf /etc/dnsmasq.conf
-    sudo cp dnsmasq.hosts.conf /etc/dnsmasq.d/
+    sudo cp dnsmasq/dnsmasq.conf /etc/dnsmasq.conf
+    sudo cp dnsmasq/dnsmasq.hosts.conf /etc/dnsmasq.d/
 elif [[ $platform == 'macos' ]]; then
     echo not implemented
 fi
