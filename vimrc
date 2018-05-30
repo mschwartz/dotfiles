@@ -101,8 +101,8 @@ Plugin 'airblade/vim-gitgutter'
 
 " Language Support
 "Plugin 'vim-syntastic/syntastic'
-Plugin 'Valloric/YouCompleteMe'
-let g:ycm_auto_trigger = 0
+"Plugin 'Valloric/YouCompleteMe'
+"let g:ycm_auto_trigger = 0
 Plugin 'ternjs/tern_for_vim'
     let g:tern_show_argument_hints='on_hold'
     let g:tern_map_keys=1
@@ -172,8 +172,8 @@ Plugin 'w0rp/ale'
                 \   'h': ['clang-format'],
                 \}
     let g:ale_fixers = {
-                \   'javascript': ['eslint'],
-                \   'typescript': ['tslint'],
+                \   'javascript': ['eslint', 'prettier'],
+                \   'typescript': ['tslint', 'prettier'],
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
                 \   'h': ['clang-format'],
