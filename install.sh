@@ -17,7 +17,7 @@ vim +PluginInstall +qall
 source ./install-scripts/install-bin.sh
 
 cd vim
-npm install -g jsctags
+npm install -g jsctags eslint prettier eslint-plugin-prettier
 git submodule update --init --recursive
 cd bundle/tern_for_vim
 npm install
