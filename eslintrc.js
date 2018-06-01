@@ -22,11 +22,11 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     //    "key-spacing": ["error", { align: "value" }],
-    indent: [
-      "error",
-      2,
-      { VariableDeclarator: { var: 2, let: 2, const: 3 }, SwitchCase: 1 }
-    ],
+    //    indent: [
+    //      "error",
+    //      2,
+    //      { VariableDeclarator: { var: 2, let: 2, const: 3 }, SwitchCase: 1 }
+    //    ],
     "linebreak-style": ["error", "unix"],
     //    quotes: ["error", "single"],
     semi: ["error", "always"],
