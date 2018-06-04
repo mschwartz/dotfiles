@@ -2,12 +2,16 @@
 
 . ~/Dropbox/credentials/gmail.sh
 
-#echo
-#curl -u $GMAIL_USERNAME:$GMAIL_PASSWORD --silent "https://mail.google.com/mail/feed/atom" 
-#|  grep -oPm1 "(?<=<title>)[^<]+" | sed '1d'
+case "$1" in
+  2) U=$GMAIL_USERNAME2
+     P=$GMAIL_PASSWORD2
+     ;;
+  *)
+     U=$GMAIL_USERNAME
+     P=$GMAIL_PASSWORD
+     ;;
+esac
 
-
-#MAILCOUNTER=`curl -u $GMAIL_USERNAME:$GMAIL_PASSWORD --silent "https://mail.google.com/mail/feed/atom" \ | xmllint --format - \ | sed -n 's#<fullcount>\(.*\)</fullcount>#\1#p'`
-MAILCOUNTER=`curl -u $GMAIL_USERNAME:$GMAIL_PASSWORD --silent "https://mail.google.com/mail/feed/atom" \ | xmllint --nowarning --format - \ | sed -n 's#<fullcount>\(.*\)</fullcount>#\1#p'`
+MAILCOUNTER=`curl -u $U:$P --silent "https://mail.google.com/mail/feed/atom" \ | xmllint --nowarning --format - \ | sed -n 's#<fullcount>\(.*\)</fullcount>#\1#p'`
 echo $MAILCOUNTER
 echo >/tmp/foo $MAILCOUNTER

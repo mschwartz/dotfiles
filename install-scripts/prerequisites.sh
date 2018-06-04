@@ -37,6 +37,7 @@ if [[ $platform == 'linux' ]]; then
 elif [[ $platform == 'macos' ]]; then
   echo ...nodejs
   brew install neofetch
+  brew install boost boost-python boost-python3
   # brew install nodejs etc
 fi
 
