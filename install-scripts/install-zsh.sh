@@ -7,6 +7,7 @@ echo ">>> INSTALLING ZSH"
 if [[ $platform == 'linux' ]]; then
   sudp apt-get install -y zsh
   sudo chown -R $(whoami) /usr/local/share/zsh/site-functions
+  compaudit | xargs chmod g-w,o-w
 elif [[ $platform == 'macos' ]]; then
   install "zsh"
 fi
