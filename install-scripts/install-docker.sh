@@ -1,9 +1,8 @@
 #!/bin/sh
 
-if [[ $platform == 'linux' ]]; then
-  # Docker
-  echo "Docker"
+echo ">>> INSTALLING DOCKER"
 
+if [[ $platform == 'linux' ]]; then
   sudo apt-get install -y \
     apt-transport-https \
     ca-certificates \
@@ -17,8 +16,7 @@ if [[ $platform == 'linux' ]]; then
     stable"
   sudo apt-get update
   sudo apt-get install -y docker-ce
-  sudo apt-get install -y python-pip -y
-  echo "PIP"
+  sudo apt-get install -y python-pip
   sudo -H pip install docker-compose
   sudo groupadd docker
   sudo usermod -aG docker $USER

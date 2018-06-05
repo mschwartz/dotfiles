@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo ">>> INSTALLING DOTFILES"
+
 # create dotfiles_old in homedir
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
