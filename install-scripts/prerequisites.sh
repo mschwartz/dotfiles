@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 . ~/dotfiles/install-scripts/lib/platform.sh
 
