@@ -21,16 +21,8 @@ module.exports = {
   plugins: ["prettier"],
   rules: {
     "prettier/prettier": "error",
-    //    "key-spacing": ["error", { align: "value" }],
-    indent: [
-      "error",
-      2,
-      { VariableDeclarator: { var: 2, let: 2, const: 3 }, SwitchCase: 1 }
-    ],
     "linebreak-style": ["error", "unix"],
-    //    quotes: ["error", "single"],
     semi: ["error", "always"],
-    //    'multiline-comment-style':            ['error', 'starred-block'],
     "no-constant-condition": ["error", { checkLoops: false }],
     "no-debugger": 0,
     "jsx-quotes": 1,

@@ -32,7 +32,7 @@ if [ -e "/Applications/Visual Studio Code.app" ]; then
   export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 fi
 export PATH=~/bin/:$PATH
-if [ "$TERM_PROGRAM" != "iTerm.app" ]; then
+if [ -e /usr/local/bin/st ]; then
 #if [ ! -v ITERM_PROFILE ]; then
   export TERMINAL="stterm"
   export TERM="stterm"
