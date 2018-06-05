@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ~/dotfiles/install-scripts/lib/platform.sh
+
 echo ">>> INSTALLING DOCKER"
 
 if [[ $platform == 'linux' ]]; then
