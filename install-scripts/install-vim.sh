@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+echo ">>> INSTALLING VIM"
 
 mkdir -p ~/.vim/swapfiles
 

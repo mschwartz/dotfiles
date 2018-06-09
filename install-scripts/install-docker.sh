@@ -1,9 +1,10 @@
-#!/bin/sh
+#!/bin/bash
+
+. ~/dotfiles/install-scripts/lib/platform.sh
+
+echo ">>> INSTALLING DOCKER"
 
 if [[ $platform == 'linux' ]]; then
-  # Docker
-  echo "Docker"
-
   sudo apt-get install -y \
     apt-transport-https \
     ca-certificates \
@@ -14,11 +15,10 @@ if [[ $platform == 'linux' ]]; then
   sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
     $(lsb_release -cs) \
-    stable"
+    edge"
   sudo apt-get update
   sudo apt-get install -y docker-ce
-  sudo apt-get install -y python-pip -y
-  echo "PIP"
+  sudo apt-get install -y python-pip
   sudo -H pip install docker-compose
   sudo groupadd docker
   sudo usermod -aG docker $USER
