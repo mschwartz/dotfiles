@@ -1,25 +1,27 @@
 #!/bin/bash
 
-INSTALL_PWD=`pwd`
+export INSTALL_PWD=`pwd`
+
 ########## Variables
-. ./install-scripts/lib/platform.sh
+. ~/dotfiles/install-scripts/lib/platform.sh
+
+cd $INSTALL_PWD
 source ./install-scripts/prerequisites.sh
 
 ##########
 
+cd $INSTALL_PWD
+source ./install-scripts/install-zsh.sh
+cd $INSTALL_PWD
 source ./install-scripts/install-dotfiles.sh
+cd $INSTALL_PWD
 source ./install-scripts/install-bin.sh
+cd $INSTALL_PWD
 source ./install-scripts/install-vim.sh
 
-
-# oh my zsh
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-
-echo cd $INSTALL_PWD
 cd $INSTALL_PWD
-
-echo "DOCKER"
 source ./install-scripts/install-docker.sh
 echo "ANGULAR/TYPESCRIPT"
+cd $INSTALL_PWD
 source ./install-scripts/install-ng.sh
 
