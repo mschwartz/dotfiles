@@ -7,7 +7,6 @@ if [[ $platform == 'linux' ]]; then
     speedtest-cli \
     source-highlight \
     zsh \
-    vim-nox \
     cmake \
     vim-youcompleteme \
     python-dev \
@@ -15,11 +14,9 @@ if [[ $platform == 'linux' ]]; then
     tmux \
     curl \
     ruby-dev \
-    ctags \
     screenfetch \
     net-tools \
     neofetch \
-    fonts-font-awesome \
     urlview
     "
 
