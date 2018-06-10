@@ -1,5 +1,10 @@
 #!/bin/bash
 
+. ~/dotfiles/install-scripts/lib/platform.sh
+
+if [[ $platform == 'linux' ]]; then
+  sudo apt-get install -y vim-nox ctags fonts-font-awesome
+fi
 echo ">>> INSTALLING VIM"
 
 mkdir -p ~/.vim/swapfiles
