@@ -18,4 +18,4 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     }
 fi
 export platform
-
+export hostname=`hostname -s`
