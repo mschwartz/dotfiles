@@ -4,6 +4,7 @@ echo ">>> INSTALLING NODEJS"
 
 . ~/dotfiles/install-scripts/lib/platform.sh
 
+echo $platform
 if [[ $platform == 'linux' ]]; then
   curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
   sudo apt-get update
