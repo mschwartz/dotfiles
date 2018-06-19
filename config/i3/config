@@ -16,7 +16,7 @@ gaps inner 15
 gaps outer 15
 
 set $mod Mod1
-set $term --no-startup-id /usr/local/bin/st
+set $term --no-startup-id /usr/bin/konsole
 
 # These windows require specific rules to display in floating mode
 #
