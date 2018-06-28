@@ -36,6 +36,7 @@ alias aliases.zsh='vi ~/dotfiles/zsh/aliases.zsh'
 alias zshrc='vi ~/.zshrc'
 alias env.zsh='vi ~/dotfiles/zsh/env.zsh'
 alias functions.zsh='vi ~/dotfiles/zsh/functions.zsh'
+alias node='/usr/bin/node'
 
 if [ -f /usr/local/bin/vim ]; then
   alias vi='/usr/local/bin/vim'

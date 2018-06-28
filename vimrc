@@ -86,7 +86,7 @@ Plugin 'majutsushi/tagbar'
     nmap <C-b> :TagbarToggle<CR>
 
 Plugin 'xolox/vim-session'
-    let g:session_autoload = 'yes'
+    let g:session_autoload = 'prompt'
     let g:session_autosave = 'yes'
     let g:session_autosave_to = 'default'
     let g:session_verbose_messages = 0
@@ -255,7 +255,7 @@ set autoread
 set nolazyredraw
 set backspace=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set textwidth=80
+set textwidth=120
 set colorcolumn=+1
 
 call matchadd('ColorColumn', '\%81v', 100)
