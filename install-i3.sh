@@ -4,7 +4,7 @@
 
 if [[ $platform == 'linux' ]]; then
   echo "installing prerequisites $platform"
-  PACKAGES_TO_INSTALL="conky i3blocks ssh i3lock ranger rxvt-unicode-256color w3m-img feh xclip dmenu"
+  PACKAGES_TO_INSTALL="compton unclutter scrot conky i3blocks ssh i3lock ranger rxvt-unicode-256color w3m-img feh xclip dmenu"
   echo $PACKAGES_TO_INSTALL
   sudo apt-get install -y $PACKAGES_TO_INSTALL
   sudo apt-get install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake

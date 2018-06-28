@@ -208,7 +208,7 @@ exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
 exec_always --no-startup-id /home/mschwartz/.config/i3/trackpad.sh
 #exec_always --no-startup-id /home/mschwartz/.config/polybar/launch.sh
-#exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/kdi.jpg
+exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
 #exec_always --no-startup-id conky -c ~/.config/conky/conky.conf
 exec_always --no-startup-id synclient VertScrollDelta=-113
 exec_always --no-startup-id synclient PalmDetect=1
