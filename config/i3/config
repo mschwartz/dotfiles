@@ -212,6 +212,7 @@ exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
 #exec_always --no-startup-id conky -c ~/.config/conky/conky.conf
 exec_always --no-startup-id synclient VertScrollDelta=-113
 exec_always --no-startup-id synclient PalmDetect=1
+exec_always --no-startup-id libinput-gestures-setup restart
 exec --no-startup-id ~/.dropbox-dist/dropboxd
 exec --no-startup-id compton
 exec --no-startup-id unclutter
