@@ -168,47 +168,47 @@ endif
 if expand("$ORDOIDGO_TOOLCHAIN") != ""
     let g:ale_cpp_gcc_executable='$ODROIDGO_TOOLCHAIN/xtensa-esp32-elf-g++'
     let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
-      \ /home/mschwartz/Arduino/hardware/espressif/esp32/tools/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++
+      \ $ARDUINO_ROOT/hardware/espressif/esp32/tools/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++
       \ -DESP_PLATFORM 
       \ -DMBEDTLS_CONFIG_FILE="mbedtls/esp_config.h" 
-      \ -DHAVE_CONFIG_H -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/config 
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/bluedroid
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/app_trace
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/app_update
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/bootloader_support
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/bt
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/driver
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/esp32
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/esp_adc_cal
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/ethernet
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/fatfs
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/freertos
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/heap
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/jsmn
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/log
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/mdns
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/mbedtls
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/mbedtls_port
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/newlib
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/nvs_flash
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/openssl
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/spi_flash
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/sdmmc
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/spiffs
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/tcpip_adapter
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/ulp
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/vfs
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/wear_levelling
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/xtensa-debug-module
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/coap
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/console
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/expat
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/json
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/lwip
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/newlib
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/nghttp
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/soc
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/tools/sdk/include/wpa_supplicant 
+      \ -DHAVE_CONFIG_H -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/config 
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/bluedroid
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/app_trace
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/app_update
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/bootloader_support
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/bt
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/driver
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/esp32
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/esp_adc_cal
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/ethernet
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/fatfs
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/freertos
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/heap
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/jsmn
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/log
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/mdns
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/mbedtls
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/mbedtls_port
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/newlib
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/nvs_flash
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/openssl
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/spi_flash
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/sdmmc
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/spiffs
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/tcpip_adapter
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/ulp
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/vfs
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/wear_levelling
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/xtensa-debug-module
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/coap
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/console
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/expat
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/json
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/lwip
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/newlib
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/nghttp
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/soc
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/wpa_supplicant 
       \ -std=gnu++11 
       \ -fno-exceptions 
       \ -Os 
@@ -239,8 +239,8 @@ if expand("$ORDOIDGO_TOOLCHAIN") != ""
       \ -DARDUINO_VARIANT="odroid_esp32"  
       \ -DESP32 
       \ -DCORE_DEBUG_LEVEL=0 
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/cores/esp32
-      \ -I/home/mschwartz/Arduino/hardware/espressif/esp32/variants/odroid_esp32
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/cores/esp32
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/variants/odroid_esp32
       \'
 
     set path+=$ODROID_TOOLCHAIN
@@ -394,7 +394,7 @@ endif
 
 "Format the statusline
 function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/mschwartz/', "~/", "g")
+    let curdir = substitute(getcwd(), '$HOME', "~/", "g")
     return curdir
 endfunction
 
