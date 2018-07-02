@@ -133,6 +133,17 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+bindsym $mod+x resize grow width 10 px or 10ppt
+bindsym $mod+Shift+x resize shrink width 10 px or 10ppt
+bindsym $mod+y resize grow height 10 px or 10ppt
+bindsym $mod+Shift+y resize shrink height 10 px or 10ppt
+
+# volume controls
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
+
+#
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -141,11 +152,6 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # lock i3 screen
 bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh ~/Pictures/Icons/lock-512.png
-
-bindsym $mod+x resize grow width 10 px or 10ppt
-bindsym $mod+Shift+x resize shrink width 10 px or 10ppt
-bindsym $mod+y resize grow height 10 px or 10ppt
-bindsym $mod+Shift+y resize shrink height 10 px or 10ppt
 
 # shortcuts to run programs
 bindsym $mod+F1 exec google-chrome
