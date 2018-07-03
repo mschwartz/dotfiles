@@ -133,6 +133,17 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+bindsym $mod+x resize grow width 10 px or 10ppt
+bindsym $mod+Shift+x resize shrink width 10 px or 10ppt
+bindsym $mod+y resize grow height 10 px or 10ppt
+bindsym $mod+Shift+y resize shrink height 10 px or 10ppt
+
+# volume controls
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
+
+#
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -142,19 +153,15 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # lock i3 screen
 bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh ~/Pictures/Icons/lock-512.png
 
-bindsym $mod+x resize grow width 10 px or 10ppt
-bindsym $mod+Shift+x resize shrink width 10 px or 10ppt
-bindsym $mod+y resize grow height 10 px or 10ppt
-bindsym $mod+Shift+y resize shrink height 10 px or 10ppt
-
 # shortcuts to run programs
 bindsym $mod+F1 exec google-chrome
 bindsym $mod+F2 exec "firefox"
 bindsym $mod+Shift+F2 exec "firefox -private-window"
 bindsym $mod+F3 exec qutebrowser
-bindsym $mod+F12 exec /usr/local/bin/webstorm
 bindsym $mod+F9 exec slack
 bindsym $mod+F10 exec /opt/wavebox/Wavebox
+bindsym $mod+F11 exec ~/Downloads/arduino-1.8.5/arduino
+bindsym $mod+F12 exec /usr/local/bin/webstorm
 bindsym $mod+r exec $term -e ranger
 #bindsym Print exec --release scrot -s >/tmp/screenshot.png
 #bindsym $mod+Shift+Print exec scrot >/tmp/screenshot.png
@@ -208,10 +215,11 @@ exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
 exec_always --no-startup-id /home/mschwartz/.config/i3/trackpad.sh
 #exec_always --no-startup-id /home/mschwartz/.config/polybar/launch.sh
-#exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/kdi.jpg
+exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
 #exec_always --no-startup-id conky -c ~/.config/conky/conky.conf
 exec_always --no-startup-id synclient VertScrollDelta=-113
 exec_always --no-startup-id synclient PalmDetect=1
+exec_always --no-startup-id libinput-gestures-setup restart
 exec --no-startup-id ~/.dropbox-dist/dropboxd
 exec --no-startup-id compton -b --vsync none -f -c
 exec --no-startup-id unclutter

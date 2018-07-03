@@ -98,7 +98,7 @@ Plugin 'majutsushi/tagbar'
     nmap <C-b> :TagbarToggle<CR>
 
 Plugin 'xolox/vim-session'
-    let g:session_autoload = 'yes'
+    let g:session_autoload = 'prompt'
     let g:session_autosave = 'yes'
     let g:session_autosave_to = 'default'
     let g:session_verbose_messages = 0
@@ -156,29 +156,109 @@ Plugin 'editorconfig/editorconfig-vim'"
 
 """""" ale
 Plugin 'w0rp/ale'
+if expand("$ARDUBOY_TOOLCHAIN") != ""
+    let g:ale_cpp_gcc_executable='$HOME/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-g++'
+    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
+      \ -mmcu=atmega32u4 
+      \ -DF_CPU=16000000L 
+      \ -DARDUINO=10612 
+      \ -DARDUINO_AVR_ARDUBOY 
+      \ -DARDUINO_ARCH_AVR  
+      \ -DARDUBOY_10 -DUSB_VID=0x2341 
+      \ -DUSB_PID=0x8036 
+      \ -DUSB_MANUFACTURER="Unknown"
+      \ -DUSB_PRODUCT="Arduboy"
+      \ -I$HOME/gArduino/libraries/Arduboy2/src 
+      \ -I$HOME/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino 
+      \ -I$HOME/.arduino15/packages/arduino/hardware/avr/1.6.20/variants/leonardo
+      \ -I$HOME/.arduino15/packages/arduino/hardware/avr/1.6.20/libraries/EEPROM/src
+      \ -I$HOME/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
+      \'
+    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
+endif
+
+if expand("$ORDOIDGO_TOOLCHAIN") != ""
+    let g:ale_cpp_gcc_executable='$ODROIDGO_TOOLCHAIN/xtensa-esp32-elf-g++'
+    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
+      \ $ARDUINO_ROOT/hardware/espressif/esp32/tools/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++
+      \ -DESP_PLATFORM 
+      \ -DMBEDTLS_CONFIG_FILE="mbedtls/esp_config.h" 
+      \ -DHAVE_CONFIG_H -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/config 
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/bluedroid
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/app_trace
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/app_update
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/bootloader_support
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/bt
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/driver
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/esp32
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/esp_adc_cal
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/ethernet
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/fatfs
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/freertos
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/heap
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/jsmn
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/log
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/mdns
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/mbedtls
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/mbedtls_port
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/newlib
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/nvs_flash
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/openssl
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/spi_flash
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/sdmmc
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/spiffs
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/tcpip_adapter
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/ulp
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/vfs
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/wear_levelling
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/xtensa-debug-module
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/coap
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/console
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/expat
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/json
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/lwip
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/newlib
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/nghttp
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/soc
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/wpa_supplicant 
+      \ -std=gnu++11 
+      \ -fno-exceptions 
+      \ -Os 
+      \ -g3 
+      \ -Wpointer-arith 
+      \ -fexceptions 
+      \ -fstack-protector 
+      \ -ffunction-sections 
+      \ -fdata-sections
+      \ -fstrict-volatile-bitfields
+      \ -mlongcalls 
+      \ -nostdlib 
+      \ -w 
+      \ -Wno-error=unused-function 
+      \ -Wno-error=unused-but-set-variable 
+      \ -Wno-error=unused-variable 
+      \ -Wno-error=deprecated-declarations 
+      \ -Wno-unused-parameter 
+      \ -Wno-sign-compare 
+      \ -fno-rtti 
+      \ -MMD 
+      \ -c 
+      \ -DF_CPU=240000000L 
+      \ -DARDUINO=10805 
+      \ -DARDUINO_ODROID_ESP32 
+      \ -DARDUINO_ARCH_ESP32 
+      \ -DARDUINO_BOARD="ODROID_ESP32" 
+      \ -DARDUINO_VARIANT="odroid_esp32"  
+      \ -DESP32 
+      \ -DCORE_DEBUG_LEVEL=0 
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/cores/esp32
+      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/variants/odroid_esp32
+      \'
+
+    set path+=$ODROID_TOOLCHAIN
+endif
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
-"if has('unix') 
-"    let g:ale_cpp_gcc_executable='/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-g++'
-"    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
-"      \ -mmcu=atmega32u4 
-"      \ -DF_CPU=16000000L 
-"      \ -DARDUINO=10612 
-"      \ -DARDUINO_AVR_ARDUBOY 
-"      \ -DARDUINO_ARCH_AVR  
-"      \ -DARDUBOY_10 -DUSB_VID=0x2341 
-"      \ -DUSB_PID=0x8036 
-"      \ -DUSB_MANUFACTURER="Unknown"
-"      \ -DUSB_PRODUCT="Arduboy"
-"      \ -I/home/mschwartz/Arduino/libraries/Arduboy2/src 
-"      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino 
-"      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/variants/leonardo
-"      \ -I/home/mschwartz/.arduino15/packages/arduino/hardware/avr/1.6.20/libraries/EEPROM/src
-"      \ -I/home/mschwartz/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
-"      \'
-"    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
-"endif
-
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
                 \   'json': ['eslint'],
@@ -327,7 +407,7 @@ endif
 
 "Format the statusline
 function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/mschwartz/', "~/", "g")
+    let curdir = substitute(getcwd(), '$HOME', "~/", "g")
     return curdir
 endfunction
 
