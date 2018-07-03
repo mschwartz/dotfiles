@@ -1,3 +1,8 @@
+" File              : /home/mschwartz/.vimrc
+" Author            : Michael Schwartz <mykesx@gmail.com>
+" Date              : 21.06.2018
+" Last Modified Date: 21.06.2018
+" Last Modified By  : Michael Schwartz <mykesx@gmail.com>
 set nocompatible 
 "set fileformat=unix
 "set ma
@@ -56,6 +61,13 @@ Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'vimwiki/vimwiki'
 Plugin 'suan/vim-instant-markdown'
+
+Plugin 'fadein/vim-FIGlet'
+Plugin 'alpertuna/vim-header'
+    let g:header_field_author = 'Michael Schwartz'
+    let g:header_field_author_email = 'mykesx@gmail.com'
+    let g:header_auto_add_header = 0
+    map <F4>:AddHeader<CR>
 
 Plugin 'mileszs/ack.vim'
       if executable('ag') 
@@ -169,6 +181,7 @@ Plugin 'w0rp/ale'
 
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
+                \   'json': ['eslint'],
                 \   'typescript': ['tslint'],
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
@@ -176,6 +189,7 @@ Plugin 'w0rp/ale'
                 \}
     let g:ale_fixers = {
                 \   'javascript': ['eslint', 'prettier'],
+                \   'json': ['eslint', 'prettier'],
                 \   'typescript': ['tslint', 'prettier'],
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
@@ -192,7 +206,6 @@ Plugin 'w0rp/ale'
 
     let g:ale_set_loclist = 0
     let g:ale_set_quickfix = 1
-
 
 """""" test runner
 "Plugin 'janko-m/vim-test'
