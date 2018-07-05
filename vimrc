@@ -242,7 +242,7 @@ if expand("$ORDOIDGO_TOOLCHAIN") != ""
       \ -I$ARDUINO_ROOT/hardware/espressif/esp32/cores/esp32
       \ -I$ARDUINO_ROOT/hardware/espressif/esp32/variants/odroid_esp32
       \'
-
+    " set path to all ESP-IDF includes here!
     set path+=$ODROID_TOOLCHAIN
 endif
     " Put this in vimrc or a plugin file of your own.
