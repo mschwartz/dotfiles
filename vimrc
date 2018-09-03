@@ -11,6 +11,7 @@ filetype off
 " for arduino
 autocmd BufNewFile,BufReadPost *.cpp,*.h,*.ino,*.pde set filetype=cpp
 autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
+autocmd BufNewFile,BufReadPost *.fth,*.4th set filetype=forth
 
 " set leader
 let mapleader=","
@@ -119,6 +120,7 @@ Plugin 'airblade/vim-gitgutter'
 "Plugin 'vim-syntastic/syntastic'
 "Plugin 'Valloric/YouCompleteMe'
 "let g:ycm_auto_trigger = 0
+Plugin 'vim-scripts/forth.vim'
 Plugin 'ternjs/tern_for_vim'
     let g:tern_show_argument_hints='on_hold'
     let g:tern_map_keys=1
@@ -255,7 +257,7 @@ if expand("$ORDOIDGO_TOOLCHAIN") != ""
       \ -I$ARDUINO_ROOT/hardware/espressif/esp32/cores/esp32
       \ -I$ARDUINO_ROOT/hardware/espressif/esp32/variants/odroid_esp32
       \'
-
+    " set path to all ESP-IDF includes here!
     set path+=$ODROID_TOOLCHAIN
 endif
     " Put this in vimrc or a plugin file of your own.
