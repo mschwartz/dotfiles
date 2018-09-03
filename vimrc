@@ -24,7 +24,7 @@ map <leader>j :j<cr>
 map <leader>ai :ALEInfo<cr>
 map <leader>ad :ALEDetail<cr>
 map <leader>f :ALEFix<cr>
-"map <leader>s :source ~/.vimrc<cr>
+"  map <leader>s :source ~/.vimrc<cr>
 map <leader>e3 :e! ~/.config/i3/config<cr>
 map <leader>ea :e! ~/dotfiles/zsh/aliases.zsh<cr>
 map <leader>eb :e! ~/dotfiles/config/i3/i3blocks.conf<cr>
@@ -67,7 +67,8 @@ Plugin 'alpertuna/vim-header'
     let g:header_field_author = 'Michael Schwartz'
     let g:header_field_author_email = 'mykesx@gmail.com'
     let g:header_auto_add_header = 0
-    map <F4>:AddHeader<CR>
+    " broken on macos
+    "map <f4>:AddHeader<cr>
 
 Plugin 'mileszs/ack.vim'
       if executable('ag') 
