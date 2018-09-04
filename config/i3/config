@@ -52,6 +52,7 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec rofi -show run
 bindsym $mod+Tab exec rofi -show window
+bindsym $mod+m exec ~/bin/set-resolution.sh
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
