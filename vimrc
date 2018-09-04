@@ -249,6 +249,8 @@ if expand("$ORDOIDGO_TOOLCHAIN") != ""
 endif
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
+    let g:ale_c_clangformat_executable='/usr/bin/clang-format'
+    let g:ale_cpp_clangformat_executable='/usr/bin/clang-format'
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
                 \   'typescript': ['tslint'],
