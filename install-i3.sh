@@ -15,19 +15,21 @@ mkdir -p ~/.config
 mkdir -p ~/dotfiles_old/config
 for file in ./config/*; do
   echo ln -sf ~/dotfiles/config/$(basename $file) ~/.config/$(basename $file)
-  unlink ~/.config/$(basename $file)
+  rm -rf ~/.config/$(basename $file)
   ln -sf ~/dotfiles/config/$(basename $file) ~/.config/$(basename $file)
 done
 
-if [[ ! -e ~/github/other/i3-gaps ]]; then
-mkdir -p ~/github/other
-cd ~/github/other
-git clone git@github.com:Airblader/i3 i3-gaps
+if [[ $platform == 'linux' ]]; then
+  if [[ ! -e ~/github/other/i3-gaps ]]; then
+    mkdir -p ~/github/other
+    cd ~/github/other
+    git clone git@github.com:Airblader/i3 i3-gaps
+  fi
+  cd ~/github/other/i3-gaps
+  autoreconf --force --install
+  rm -rf build/
+  mkdir -p build && cd build/
+  ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+  make
+  sudo make install
 fi
-cd ~/github/other/i3-gaps
-autoreconf --force --install
-rm -rf build/
-mkdir -p build && cd build/
-../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-make
-sudo make install

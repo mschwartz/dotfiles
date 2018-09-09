@@ -21,9 +21,9 @@ source ./install-scripts/install-node.sh
 cd $INSTALL_PWD
 source ./install-scripts/install-vim.sh
 
-cd $INSTALL_PWD
-source ./install-scripts/install-docker.sh
-echo "ANGULAR/TYPESCRIPT"
-cd $INSTALL_PWD
-source ./install-scripts/install-ng.sh
+#cd $INSTALL_PWD
+#source ./install-scripts/install-docker.sh
+#echo "ANGULAR/TYPESCRIPT"
+#cd $INSTALL_PWD
+#source ./install-scripts/install-ng.sh
 
