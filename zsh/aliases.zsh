@@ -31,6 +31,11 @@ alias ttvim='tmux -CC new -A -s vim'
 alias tlist='tmux list-sessions'
 alias ttmux='tmux new -A -s $HOST-$$'
 # vim
+if [ -f /usr/local/bin/vim ]; then
+  alias vi='/usr/local/bin/vim'
+elif [ -f /usr/bin/vim ]; then
+  alias vi='/usr/bin/vim'
+fi
 alias i3config='vi ~/.config/i3/config'
 alias aliases.zsh='vi ~/dotfiles/zsh/aliases.zsh'
 alias zshrc='vi ~/.zshrc'
@@ -38,9 +43,6 @@ alias env.zsh='vi ~/dotfiles/zsh/env.zsh'
 alias functions.zsh='vi ~/dotfiles/zsh/functions.zsh'
 alias node='/usr/bin/node'
 
-if [ -f /usr/local/bin/vim ]; then
-  alias vi='/usr/local/bin/vim'
-fi
 alias df='df -P'
 alias slack slack-term
 

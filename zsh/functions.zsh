@@ -39,3 +39,10 @@ tmuxx() {
 1password() {
   eval $(op signin my)
 }
+
+cls() {
+  clear;
+  if [ "$TMUX" != "" ]; then
+    tmux clear-history;
+  fi
+}

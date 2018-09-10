@@ -1,3 +1,8 @@
+" File              : /home/mschwartz/.vimrc
+" Author            : Michael Schwartz <mykesx@gmail.com>
+" Date              : 21.06.2018
+" Last Modified Date: 21.06.2018
+" Last Modified By  : Michael Schwartz <mykesx@gmail.com>
 set nocompatible 
 "set fileformat=unix
 "set ma
@@ -20,7 +25,7 @@ map <leader>j :j<cr>
 map <leader>ai :ALEInfo<cr>
 map <leader>ad :ALEDetail<cr>
 map <leader>f :ALEFix<cr>
-"map <leader>s :source ~/.vimrc<cr>
+"  map <leader>s :source ~/.vimrc<cr>
 map <leader>e3 :e! ~/.config/i3/config<cr>
 map <leader>ea :e! ~/dotfiles/zsh/aliases.zsh<cr>
 map <leader>eb :e! ~/dotfiles/config/i3/i3blocks.conf<cr>
@@ -57,6 +62,14 @@ Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'vimwiki/vimwiki'
 Plugin 'suan/vim-instant-markdown'
+
+Plugin 'fadein/vim-FIGlet'
+Plugin 'alpertuna/vim-header'
+    let g:header_field_author = 'Michael Schwartz'
+    let g:header_field_author_email = 'mykesx@gmail.com'
+    let g:header_auto_add_header = 0
+    " broken on macos
+    "map <f4>:AddHeader<cr>
 
 Plugin 'mileszs/ack.vim'
       if executable('ag') 
@@ -249,8 +262,11 @@ if expand("$ORDOIDGO_TOOLCHAIN") != ""
 endif
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
+    let g:ale_c_clangformat_executable='/usr/bin/clang-format'
+    let g:ale_cpp_clangformat_executable='/usr/bin/clang-format'
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
+                \   'json': ['eslint'],
                 \   'typescript': ['tslint'],
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
@@ -258,6 +274,7 @@ endif
                 \}
     let g:ale_fixers = {
                 \   'javascript': ['eslint', 'prettier'],
+                \   'json': ['eslint', 'prettier'],
                 \   'typescript': ['tslint', 'prettier'],
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
@@ -274,7 +291,6 @@ endif
 
     let g:ale_set_loclist = 0
     let g:ale_set_quickfix = 1
-
 
 """""" test runner
 "Plugin 'janko-m/vim-test'
