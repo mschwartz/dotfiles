@@ -18,6 +18,8 @@ if [[ $platform == 'linux' ]]; then
     ruby-dev \
     net-tools \
     neofetch \
+    imagemagick \
+    scrot \
     urlview
   "
 
@@ -29,9 +31,16 @@ elif [[ $platform == 'arch' ]]; then
   PACKAGES_TO_INSTALL="\
     speedtest-cli \
     source-highlight \
+    imagemagick \
+    chromium \
+    firefox \
+    ranger \
+    scrot \
     wget \
     "
   sudo pacman -S --noconfirm $PACKAGES_TO_INSTALL
+  ln -sf /usr/bin/chromium /usr/local/bin/google-chrome
+
 elif [[ $platform == 'macos' ]]; then
   install neofetch 
   install ctags
