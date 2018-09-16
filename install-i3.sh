@@ -7,7 +7,7 @@ if [[ $platform == 'linux' ]]; then
   PACKAGES_TO_INSTALL="compton unclutter scrot conky i3blocks ssh i3lock ranger rxvt-unicode-256color w3m-img feh xclip dmenu"
   echo $PACKAGES_TO_INSTALL
   sudo apt-get install -y $PACKAGES_TO_INSTALL
-  sudo apt-get install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake
+  sudo apt-get install -y  libpango1.0-dev libyajl-dev libstartup-notification0-dev libev-dev autoconf automake
 fi
 
 if [[ $platform == 'arch' ]]; then
@@ -24,9 +24,10 @@ for file in ./config/*; do
 done
 
 if [[ $platform == 'linux' ]]; then
+  mkdir -p ~/github/other
   # i3 gaps
+  echo i3gaps
   if [[ ! -e ~/github/other/i3-gaps ]]; then
-    mkdir -p ~/github/other
     cd ~/github/other
     git clone git@github.com:Airblader/i3 i3-gaps
   fi
@@ -36,15 +37,24 @@ if [[ $platform == 'linux' ]]; then
   mkdir -p build && cd build/
   ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
   make
-  sudo make install
+  sudo make -j `nproc` install
   # polybar
+  echo POLYBAR
+  # dependencies per https://github.com/jaagr/polybar/wiki/Compiling
+  sudo apt install -y xcb-proto cmake cmake-data pkg-config 
+  sudo apt install -y libcairo2-dev 
+  sudo apt install -y libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-util-cursor-dev
+  sudo apt install -y python-xcbgen xcb-proto
+  sudo apt install -y libxcb-image0-dev
+  sudo apt install -y libxcb-ewmh-dev libxcb-icccm4-dev
+  sudo apt install -y libjsoncpp-dev
+  sudo apt install -y libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev libxcb-xrm0 libxcb-xrm-dev
   if [[ ! -e ~/github/other/polybar ]]; then
-    mkdir -p ~/github/other
-    cd ~/github/other
-    git clone --branch 3.2 --recursivegit@github.com:jaagr/polybar
-    mkdir polybar/build
-    cd polybar/build
-    cmake ..
-    sudo make install
+    git clone --branch 3.2 --recursive git@github.com:jaagr/polybar
   fi
+  cd ~/github/other
+  mkdir polybar/build
+  cd polybar/build
+  cmake ..
+  sudo make -j `nproc` install
 fi
