@@ -215,7 +215,7 @@ bar {
 
 exec_always --no-startup-id xmodmap -e "clear lock"
 exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
-exec_always --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
+exec --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
 exec_always --no-startup-id /home/mschwartz/.config/i3/trackpad.sh
 #exec_always --no-startup-id /home/mschwartz/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
