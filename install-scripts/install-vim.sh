@@ -3,9 +3,9 @@
 . ~/dotfiles/install-scripts/lib/platform.sh
 
 if [[ $platform == 'linux' ]]; then
-  sudo apt-get install -y vim-nox ctags fonts-font-awesome
+  sudo apt-get install -y vim-nox ctags fonts-font-awesome nvim
 elif [[ $platform == 'arch' ]]; then
-  sudo pacman -S --noconfirm vim ttf-font-awesome ctags
+  sudo pacman -S --noconfirm vim ttf-font-awesome ctags nvim
 fi
 echo ">>> INSTALLING VIM"
 
