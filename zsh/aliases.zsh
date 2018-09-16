@@ -33,8 +33,16 @@ alias ttmux='tmux new -A -s $HOST-$$'
 # vim
 if [ -f /usr/local/bin/vim ]; then
   alias vi='/usr/local/bin/vim'
+  alias vim='/usr/local/bin/vim'
 elif [ -f /usr/bin/vim ]; then
   alias vi='/usr/bin/vim'
+  alias vim='/usr/bin/vim'
+fi
+# nvim
+if [ -f /usr/local/bin/nvim ]; then
+  alias vi='/usr/local/bin/nvim'
+elif [ -f /usr/bin/nvim ]; then
+  alias vi='/usr/bin/nvim'
 fi
 alias i3config='vi ~/.config/i3/config'
 alias aliases.zsh='vi ~/dotfiles/zsh/aliases.zsh'
