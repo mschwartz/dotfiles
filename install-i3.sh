@@ -11,7 +11,7 @@ if [[ $platform == 'linux' ]]; then
 fi
 
 if [[ $platform == 'arch' ]]; then
-sudo pacman -S i3blocks i3status
+sudo pacman -S i3blocks i3status polybar
 fi
 
 # i3 config files
@@ -24,6 +24,7 @@ for file in ./config/*; do
 done
 
 if [[ $platform == 'linux' ]]; then
+  # i3 gaps
   if [[ ! -e ~/github/other/i3-gaps ]]; then
     mkdir -p ~/github/other
     cd ~/github/other
@@ -36,4 +37,14 @@ if [[ $platform == 'linux' ]]; then
   ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
   make
   sudo make install
+  # polybar
+  if [[ ! -e ~/github/other/polybar ]]; then
+    mkdir -p ~/github/other
+    cd ~/github/other
+    git clone --branch 3.2 --recursivegit@github.com:jaagr/polybar
+    mkdir polybar/build
+    cd polybar/build
+    cmake ..
+    sudo make install
+  fi
 fi
