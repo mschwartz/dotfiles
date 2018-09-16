@@ -203,7 +203,7 @@ bar {
 #    status_command ~/.config/polybar/launch.sh
 
     colors {
-        background          $bg
+        background          $bg  
         statusline          $fg
         separator           $hi
         focused_workspace   $gn        $bg        $ac
@@ -224,7 +224,7 @@ exec_always --no-startup-id synclient VertScrollDelta=-113
 exec_always --no-startup-id synclient PalmDetect=1
 exec_always --no-startup-id libinput-gestures-setup restart
 exec --no-startup-id ~/.dropbox-dist/dropboxd
-exec --no-startup-id compton -b --vsync none -f -c
+exec --no-startup-id compton -b --vsync none -f -c --backend xrender
 exec --no-startup-id unclutter
 exec --no-startup-id xset s off -dpms
 exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
