@@ -195,7 +195,7 @@ client.urgent               $rd        $rd         $tx
 # finds out, if available)
 bar {
   font pango:System San Francisco Display 14
-  position top
+  position bottom
 #  status_command /home/$USER/.config/i3status-conky/i3status.sh
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
 #    status_command i3status --config ~/.i3/i3status.conf
@@ -213,6 +213,7 @@ bar {
     }
 }
 
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id xmodmap -e "clear lock"
 exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
