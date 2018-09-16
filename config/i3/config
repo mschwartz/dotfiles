@@ -195,7 +195,7 @@ client.urgent               $rd        $rd         $tx
 # finds out, if available)
 bar {
   font pango:System San Francisco Display 14
-  position top
+  position bottom
 #  status_command /home/$USER/.config/i3status-conky/i3status.sh
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
 #    status_command i3status --config ~/.i3/i3status.conf
@@ -203,7 +203,7 @@ bar {
 #    status_command ~/.config/polybar/launch.sh
 
     colors {
-        background          $bg
+        background          $bg  
         statusline          $fg
         separator           $hi
         focused_workspace   $gn        $bg        $ac
@@ -213,6 +213,7 @@ bar {
     }
 }
 
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id xmodmap -e "clear lock"
 exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
@@ -224,6 +225,7 @@ exec_always --no-startup-id synclient VertScrollDelta=-113
 exec_always --no-startup-id synclient PalmDetect=1
 exec_always --no-startup-id libinput-gestures-setup restart
 exec --no-startup-id ~/.dropbox-dist/dropboxd
-exec --no-startup-id compton
+exec --no-startup-id compton -b --vsync none -f -c --backend xrender
 exec --no-startup-id unclutter
 exec --no-startup-id xset s off -dpms
+exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
