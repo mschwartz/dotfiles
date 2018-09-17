@@ -55,7 +55,8 @@ font-3 = MaterialIcons:size=15,-1
 
 modules-left = i3 mpd
 modules-center = xwindow
-modules-right = home filesystem memory cpu battery temperature wlan backlight-acpi volume date powermenu 
+modules-right = home filesystem memory cpu battery temperature wlan volume date
+#backlight-acpi 
 
 tray-position = right
 tray-padding = 2
@@ -277,17 +278,18 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date =
-date-alt = " %Y-%m-%d"
+date = " %a %m-%d-%Y"
+;date-alt = " %a %m-%d-%Y"
 
-time = %H:%M
-time-alt = %H:%M:%S
+;time = %H:%M
+;time-alt = %H:%M:%S
+time = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
-label = %date% %time%
+label = %date% %time%
 
 [module/volume]
 type = internal/volume

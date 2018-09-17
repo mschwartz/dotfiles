@@ -31,6 +31,7 @@ map <leader>ea :e! ~/dotfiles/zsh/aliases.zsh<cr>
 map <leader>eb :e! ~/dotfiles/config/i3/i3blocks.conf<cr>
 map <leader>ee :e! ~/dotfiles/zsh/env.zsh<cr>
 map <leader>ef :e! ~/dotfiles/zsh/functions.zsh<cr>
+map <leader>ep :e ~/dotfiles/config/polybar/config<cr>
 map <leader>ev :e! ~/.vimrc<cr>
 map <leader>et :e! ~/dotfiles/tmux.conf<cr>
 map <leader>ez :e! ~/.zshrc<cr>

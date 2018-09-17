@@ -18,6 +18,7 @@ if [[ $platform == 'linux' ]]; then
     ruby-dev \
     net-tools \
     neofetch \
+    xscreensaver \
     imagemagick \
     scrot \
     urlview
@@ -29,9 +30,11 @@ if [[ $platform == 'linux' ]]; then
 
 elif [[ $platform == 'arch' ]]; then
   PACKAGES_TO_INSTALL="\
+    xscreensaver \
     speedtest-cli \
     source-highlight \
     imagemagick \
+    dolphin \
     chromium \
     firefox \
     ranger \
