@@ -49,6 +49,7 @@ if [[ $platform == 'linux' ]]; then
   sudo apt install -y libxcb-ewmh-dev libxcb-icccm4-dev
   sudo apt install -y libjsoncpp-dev
   sudo apt install -y libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev libxcb-xrm0 libxcb-xrm-dev
+  sudo apt install -y wireless-tools libiw-dev libcurlpp-dev
   if [[ ! -e ~/github/other/polybar ]]; then
     git clone --branch 3.2 --recursive git@github.com:jaagr/polybar
   fi
