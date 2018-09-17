@@ -1,3 +1,8 @@
+" File              : /home/mschwartz/.vimrc
+" Author            : Michael Schwartz <mykesx@gmail.com>
+" Date              : 21.06.2018
+" Last Modified Date: 21.06.2018
+" Last Modified By  : Michael Schwartz <mykesx@gmail.com>
 set nocompatible 
 "set fileformat=unix
 "set ma
@@ -6,6 +11,7 @@ filetype off
 " for arduino
 autocmd BufNewFile,BufReadPost *.c,*.cpp,*.h,*.ino,*.pde set filetype=cpp
 autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
+autocmd BufNewFile,BufReadPost *.fth,*.4th set filetype=forth
 
 " set leader
 let mapleader=","
@@ -19,12 +25,13 @@ map <leader>j :j<cr>
 map <leader>ai :ALEInfo<cr>
 map <leader>ad :ALEDetail<cr>
 map <leader>f :ALEFix<cr>
-"map <leader>s :source ~/.vimrc<cr>
+"  map <leader>s :source ~/.vimrc<cr>
 map <leader>e3 :e! ~/.config/i3/config<cr>
 map <leader>ea :e! ~/dotfiles/zsh/aliases.zsh<cr>
 map <leader>eb :e! ~/dotfiles/config/i3/i3blocks.conf<cr>
 map <leader>ee :e! ~/dotfiles/zsh/env.zsh<cr>
 map <leader>ef :e! ~/dotfiles/zsh/functions.zsh<cr>
+map <leader>ep :e ~/dotfiles/config/polybar/config<cr>
 map <leader>ev :e! ~/.vimrc<cr>
 map <leader>et :e! ~/dotfiles/tmux.conf<cr>
 map <leader>ez :e! ~/.zshrc<cr>
@@ -56,6 +63,14 @@ Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'vimwiki/vimwiki'
 Plugin 'suan/vim-instant-markdown'
+
+Plugin 'fadein/vim-FIGlet'
+Plugin 'alpertuna/vim-header'
+    let g:header_field_author = 'Michael Schwartz'
+    let g:header_field_author_email = 'mykesx@gmail.com'
+    let g:header_auto_add_header = 0
+    " broken on macos
+    "map <f4>:AddHeader<cr>
 
 Plugin 'mileszs/ack.vim'
       if executable('ag') 
@@ -106,6 +121,7 @@ Plugin 'airblade/vim-gitgutter'
 "Plugin 'vim-syntastic/syntastic'
 "Plugin 'Valloric/YouCompleteMe'
 "let g:ycm_auto_trigger = 0
+Plugin 'vim-scripts/forth.vim'
 Plugin 'ternjs/tern_for_vim'
     let g:tern_show_argument_hints='on_hold'
     let g:tern_map_keys=1
@@ -247,8 +263,11 @@ if expand("$ORDOIDGO_TOOLCHAIN") != ""
 endif
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
+    let g:ale_c_clangformat_executable='/usr/bin/clang-format'
+    let g:ale_cpp_clangformat_executable='/usr/bin/clang-format'
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
+                \   'json': ['eslint'],
                 \   'typescript': ['tslint'],
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
@@ -256,6 +275,7 @@ endif
                 \}
     let g:ale_fixers = {
                 \   'javascript': ['eslint', 'prettier'],
+                \   'json': ['eslint', 'prettier'],
                 \   'typescript': ['tslint', 'prettier'],
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
@@ -272,7 +292,6 @@ endif
 
     let g:ale_set_loclist = 0
     let g:ale_set_quickfix = 1
-
 
 """""" test runner
 "Plugin 'janko-m/vim-test'

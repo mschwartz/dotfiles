@@ -18,12 +18,31 @@ if [[ $platform == 'linux' ]]; then
     ruby-dev \
     net-tools \
     neofetch \
+    xscreensaver \
+    imagemagick \
+    scrot \
     urlview
   "
 
   sudo apt-get update
   sudo apt-get -y dist-upgrade
   sudo apt-get install -y $PACKAGES_TO_INSTALL
+
+elif [[ $platform == 'arch' ]]; then
+  PACKAGES_TO_INSTALL="\
+    xscreensaver \
+    speedtest-cli \
+    source-highlight \
+    imagemagick \
+    dolphin \
+    chromium \
+    firefox \
+    ranger \
+    scrot \
+    wget \
+    "
+  sudo pacman -S --noconfirm $PACKAGES_TO_INSTALL
+  ln -sf /usr/bin/chromium /usr/local/bin/google-chrome
 
 elif [[ $platform == 'macos' ]]; then
   install neofetch 

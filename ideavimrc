@@ -4,6 +4,10 @@ set ignorecase
 set smartcase
 set incsearch
 
+set tabstop=2
+set softabstap=2
+set expandtab
+
 let mapleader = ","
 map <leader>e :e ~/.ideavimrc<CR>
 map <leader>x :source ~/.ideavimrc<CR>
