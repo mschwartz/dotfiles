@@ -38,7 +38,6 @@ if [ -e /usr/local/bin/st ]; then
   export TERM="stterm"
 fi
 
-
 if [ "$DISPLAY" = "" ]; then
   export DISPLAY=:0.0
 fi

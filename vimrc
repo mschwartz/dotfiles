@@ -4,7 +4,7 @@ set nocompatible
 filetype off
 
 " for arduino
-autocmd BufNewFile,BufReadPost *.cpp,*.h,*.ino,*.pde set filetype=cpp
+autocmd BufNewFile,BufReadPost *.c,*.cpp,*.h,*.ino,*.pde set filetype=cpp
 autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
 
 " set leader
@@ -242,7 +242,7 @@ if expand("$ORDOIDGO_TOOLCHAIN") != ""
       \ -I$ARDUINO_ROOT/hardware/espressif/esp32/cores/esp32
       \ -I$ARDUINO_ROOT/hardware/espressif/esp32/variants/odroid_esp32
       \'
-    " set path to all ESP-IDF includes here!
+"     set path to all ESP-IDF includes here!
     set path+=$ODROID_TOOLCHAIN
 endif
     " Put this in vimrc or a plugin file of your own.

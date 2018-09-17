@@ -10,7 +10,8 @@ map <leader>x :source ~/.ideavimrc<CR>
 map <leader>j :j<cr>
 map <leader>s :action SaveAll<CR>
 map <leader>b :action Build<CR>
-map <leader>f :action Javascript.Linters.EsLint.Fix<CR>
+#map <leader>f :action Javascript.Linters.EsLint.Fix<CR>
+map <leader>f :action ReformatCode<CR>
 map <leader>d :action Debug<CR>
 map <leader>r :action Run<CR>
 map <leader>ci :action CommentByLineComment<CR>
