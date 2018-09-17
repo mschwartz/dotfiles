@@ -42,18 +42,25 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=14;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-0 = FontAwesome:size=14;0
+font-1 = Roboto:size=14;0
+font-2 = Hack:size=14;0
+font-3 = MaterialIcons:size=15,-1
+;font-0 = fixed:pixelsize=14;1
+;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+;font-2 = siji:pixelsize=10;1
+;font-3 = Font Awesome 5 Free:pixelsize=10;3
+;font-4 = Font Awesome 5 Free Solid:pixelsize=10;3
+;font-5 = Font Awesome 5 Brands:pixelsize=10;3
 
-modules-left = bspwm i3
-modules-center = 
-modules-right = filesystem xbacklight volume xkeyboard memory cpu battery temperature date powermenu
+modules-left = i3 mpd
+modules-center = xwindow
+modules-right = home filesystem memory cpu battery temperature wlan backlight-acpi volume date powermenu 
 
 tray-position = right
 tray-padding = 2
 ;tray-transparent = true
-;tray-background = #0063ff
+tray-background = #0063ff
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -63,8 +70,8 @@ tray-padding = 2
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
 
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -97,6 +104,17 @@ mount-0 = /
 
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/home]
+type = internal/fs
+interval = 25
+
+mount-0 = /home
+
+label-mounted = %{F#0a81f5}~%{F-}: %percentage_used%%
+;label-unmounted =  %mountpoint% not mounted
+label-unmounted =  
 label-unmounted-foreground = ${colors.foreground-alt}
 
 [module/bspwm]
@@ -169,7 +187,7 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label> <bar>
-label = BL
+label = 
 
 bar-width = 10
 bar-indicator = |
@@ -195,7 +213,9 @@ interval = 0.5
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
-label = CPU %percentage:2%%
+;label = CPU %percentage:2%%
+label= %percentage::2%%
+;label=  %percentage:2%%
 
 ramp-coreload-0 = ▁
 ramp-coreload-1 = ▂
@@ -212,16 +232,17 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
-label = %percentage_used%%
+label =  %gb_used%/%gb_total%    %gb_swap_used%/%gb_swap_total%
+;label = RAM %gb_used%/%gb_total%
 
 [module/wlan]
 type = internal/network
-interface = 
-interval = 3.0
+interface = wlp2s0
+interval = 1.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = #9f78e1
-label-connected = %essid%
+label-connected = %local_ip% %essid%   %downspeed:9%  %upspeed:9%   %signal%%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -272,12 +293,13 @@ label = %date% %time%
 type = internal/volume
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL
+;label-volume = VOL
+label-volume = 
 label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
+label-muted = 
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -298,18 +320,20 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
-battery = BAT0
-adapter = ADP0
+battery = BAT1
+adapter = ACAD
 full-at = 98
 poll-interval= 5
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+#format-charging-underline = #ffb52a
+format-charging-underline = #ffffff
+label-charging =  %percentage%%
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
-
+label-discharging = Battery %percentage%%
 ;label-charging = " "
-;label-full = " "
+label-full =  %percentage%%
 ;label-discharging = " "
 
 format-full-prefix = " "
@@ -337,7 +361,7 @@ format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature%
+label =  %temperature%
 label-warn = %temperature%
 label-warn-foreground = ${colors.secondary}
 
@@ -353,7 +377,9 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 
+label-open = POWER
+
+
 label-open-foreground = ${colors.secondary}
 label-close =  cancel
 label-close-foreground = ${colors.secondary}
@@ -383,7 +409,7 @@ screenchange-reload = true
 ;compositing-border = over
 
 [global/wm]
-;margin-top = 5
-;margin-bottom = 5
+margin-top = 5
+margin-bottom = 5
 
 ; vim:ft=dosini
