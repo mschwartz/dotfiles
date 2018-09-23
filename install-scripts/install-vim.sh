@@ -5,8 +5,18 @@
 if [[ $platform == 'linux' ]]; then
   sudo apt-get install -y vim-nox ctags fonts-font-awesome nvim
 elif [[ $platform == 'arch' ]]; then
-  sudo pacman -S --noconfirm vim ttf-font-awesome ctags nvim
+  sudo pacman -S --noconfirm vim ttf-font-awesome ctags neovim
+
 fi
+echo "NERD FONTS"
+if [[ ! -e ~/github/other/nerd-fonts ]]; then
+  mkdir -p ~/github/other
+  cd ~/github/other
+  git clone --depth 1 git@github.com:ryanoasis/nerd-fonts
+fi
+cd ~/github/other/nerd-fonts
+./install.sh
+
 echo ">>> INSTALLING VIM"
 
 mkdir -p ~/.vim/swapfiles
