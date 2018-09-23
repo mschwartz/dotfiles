@@ -168,7 +168,7 @@ bindsym $mod+Shift+F2 exec "firefox -private-window"
 bindsym $mod+F3 exec qutebrowser
 bindsym $mod+F9 exec slack
 bindsym $mod+F10 exec /opt/wavebox/Wavebox
-bindsym $mod+F11 exec ~/Downloads/arduino-1.8.5/arduino
+#bindsym $mod+F11 exec ~/Downloads/arduino-1.8.5/arduino
 bindsym $mod+F12 exec /usr/local/bin/webstorm
 bindsym $mod+r exec $term -e ranger
 #bindsym Print exec --release scrot -s >/tmp/screenshot.png
@@ -218,6 +218,10 @@ bar {
     }
 }
 
+exec_always xinput --set-prop 12 'libinput Accel Speed' .5
+exec_always xinput --set-prop 12 'libinput Accel Speed Default' .5
+exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled' 1
+exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled Default' 1
 exec --no-startup-id /usr/bin/xscreensaver
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id xmodmap -e "clear lock"

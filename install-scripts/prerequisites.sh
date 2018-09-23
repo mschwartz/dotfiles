@@ -44,6 +44,8 @@ elif [[ $platform == 'arch' ]]; then
     firefox \
     ranger \
     scrot \
+    thermald \
+    tlp
     wget \
     "
   sudo pacman -S --noconfirm $PACKAGES_TO_INSTALL
@@ -55,6 +57,8 @@ elif [[ $platform == 'arch' ]]; then
     cd yay
     makepkg -si
   fi
+  sudo systemctl enable thermald.service
+  sudo systemctl enable tlp.service
 
 elif [[ $platform == 'macos' ]]; then
   install neofetch 
