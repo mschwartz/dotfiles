@@ -11,7 +11,10 @@ if [[ $platform == 'linux' ]]; then
 fi
 
 if [[ $platform == 'arch' ]]; then
-sudo pacman -S i3blocks i3status polybar
+  sudo pacman -S --noconfirm xorg xorg-server xorg-xrandr xterm xorg-xinit i3-gaps i3blocks i3status konsole compton \
+    scrot ranger w3m feh xclip rofi qutebrowser sddm jsoncpp jsoncpp
+  yay -S --noconfirm polybar
+  sudo systemctl enable sddm.service
 fi
 
 # i3 config files
@@ -59,3 +62,12 @@ if [[ $platform == 'linux' ]]; then
   cmake ..
   sudo make -j `nproc` install
 fi
+
+if [[ ! -e ~/github/other/wallpapers ]]; then
+  mkdir -p ~/github/other
+  cd ~/github/other
+  git clone git@github.com:LukeSmithxyz/wallpapers
+fi
+
+cd ~/dotfiles/src/rez
+make

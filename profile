@@ -38,7 +38,6 @@ export PATH=~/bin/:$PATH
 #  export TERM="stterm"
 #fi
 
-
 if [ "$DISPLAY" = "" ]; then
   export DISPLAY=:0.0
 fi

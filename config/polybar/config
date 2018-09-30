@@ -43,9 +43,12 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = FontAwesome:size=14;0
-font-1 = Roboto:size=14;0
-font-2 = Hack:size=14;0
-font-3 = MaterialIcons:size=15,-1
+font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=14;1"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=14;1"
+font-3 = "Font Awesome 5 Brands:style=Regular:pixelsize=14;1"
+;font-1 = Roboto:size=14;0
+;font-2 = Hack:size=14;0
+;font-3 = MaterialIcons:size=15,-1
 ;font-0 = fixed:pixelsize=14;1
 ;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 ;font-2 = siji:pixelsize=10;1
