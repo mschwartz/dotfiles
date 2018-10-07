@@ -13,3 +13,5 @@ bookmarks
 history
 tagged
 undo-dir
+*.o
+rez

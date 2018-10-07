@@ -1,5 +1,22 @@
 #!/bin/bash
 
+. ~/dotfiles/install-scripts/lib/platform.sh
+
+if [[ $platform == 'linux' ]]; then
+  sudo apt-get install -y vim-nox ctags fonts-font-awesome nvim
+elif [[ $platform == 'arch' ]]; then
+  sudo pacman -S --noconfirm vim ttf-font-awesome ctags neovim
+
+fi
+echo "NERD FONTS"
+if [[ ! -e ~/github/other/nerd-fonts ]]; then
+  mkdir -p ~/github/other
+  cd ~/github/other
+  git clone --depth 1 git@github.com:ryanoasis/nerd-fonts
+fi
+cd ~/github/other/nerd-fonts
+./install.sh
+
 echo ">>> INSTALLING VIM"
 
 mkdir -p ~/.vim/swapfiles
@@ -12,7 +29,7 @@ npm install -g jsctags eslint prettier eslint-plugin-prettier
 git submodule update --init --recursive
 cd bundle/tern_for_vim
 npm install
-#if [[ "$platform" == "macos" ]]; then
+if [[ "$platform" == "macos" ]]; then
   cd ../YouCompleteMe
   if [ "$type" = "armv71" ]; then
     export YCM_CORES=1
@@ -20,4 +37,4 @@ npm install
   else
     YCM_CORES=8 ./install.py --tern-completer --clang-completer --system-libclang
   fi
-#fi
+fi

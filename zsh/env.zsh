@@ -13,6 +13,10 @@ if [ "$OS" = 'Darwin' ]; then
   if [ "$TERM" = "st-256color" ]; then
     export TERM="xterm-256color"
   fi
+  if [ "$KONSOLE_PROFILE_NAME" != "" ]; then
+    echo "KONSOLE"
+    export TERM=konsole-256-color
+  fi
 else
   export EDITOR='/usr/bin/vim'
 fi
@@ -34,6 +38,8 @@ fi
 
 if [ -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
   export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+elif [ -f /usr/bin/src-hilite-lesspipe.sh ]; then
+  export LESSOPEN="|/usr/bin/src-hilite-lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 else
   export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 fi

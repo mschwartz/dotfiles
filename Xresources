@@ -1,6 +1,7 @@
 !URxvt.font: xft:FuraCode Nerd Font:style=Regular:size=16:pixelsize=15
 !URxvt.boldFont: xft:FuraCode Nerd Font:style=Regular:size=16:pixelsize=15
 
+Xcursor.size:  48       !  32, 48 or 64 may also be good values
 !URxvt*termName:         rxvt
 URxvt*background:       [80]#000000
 !URxvt*foreground:       #cccccc
