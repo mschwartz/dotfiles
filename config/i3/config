@@ -221,8 +221,8 @@ bar {
 # TRACKPAD SETTINGS
 exec_always xinput --set-prop 12 'libinput Accel Speed' .5
 exec_always xinput --set-prop 12 'libinput Accel Speed Default' .5
-exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled' 1
-exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled Default' 1
+exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled' 0
+exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled Default' 0
 # background processes
 exec --no-startup-id /usr/bin/xscreensaver
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
