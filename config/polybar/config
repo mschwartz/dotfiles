@@ -47,6 +47,8 @@ font-1 = FontAwesome:size=16;0
 font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=16;1"
 font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=16;1"
 font-4 = "Font Awesome 5 Brands:style=Regular:pixelsize=16;1"
+font-5 = siji:pixelsize=14;1
+font-6 = WunconSiji:pixelsize=14;0
 
 ;font-1 = Roboto:size=14;0
 ;font-2 = Hack:size=14;0
@@ -60,7 +62,7 @@ font-4 = "Font Awesome 5 Brands:style=Regular:pixelsize=16;1"
 
 modules-left = i3 mpd
 modules-center = xwindow
-modules-right = home filesystem memory cpu battery temperature wlan volume date
+modules-right = home filesystem memory cpu battery temperature wlan eth volume date
 #backlight-acpi 
 
 tray-position = right
@@ -216,11 +218,11 @@ type = internal/cpu
 
 format = <label> <ramp-coreload>
 interval = 0.5
-format-prefix = " "
+;format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 ;label = CPU %percentage:2%%
-label= %percentage::2%%
+label= %percentage:2%%
 ;label=  %percentage:2%%
 
 ramp-coreload-0 = ▁
@@ -265,7 +267,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = 
+interface = enp0s3
 interval = 3.0
 
 format-connected-underline = #55aa55
