@@ -32,6 +32,7 @@ map <leader>eb :e! ~/dotfiles/config/i3/i3blocks.conf<cr>
 map <leader>ee :e! ~/dotfiles/zsh/env.zsh<cr>
 map <leader>ef :e! ~/dotfiles/zsh/functions.zsh<cr>
 map <leader>ep :e ~/dotfiles/config/polybar/config<cr>
+map <leader>er :e! ~/dotfiles/config/ranger/rc.conf<cr>
 map <leader>ev :e! ~/.vimrc<cr>
 map <leader>et :e! ~/dotfiles/tmux.conf<cr>
 map <leader>ez :e! ~/.zshrc<cr>
@@ -348,6 +349,7 @@ autocmd FileType cpp set tabstop=2 shiftwidth=2 softtabstop=0 expandtab
 "
 " VIM options
 "
+set guicursor=
 set ttyfast
 set nowrap
 set autoread
