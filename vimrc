@@ -346,6 +346,8 @@ set omnifunc=syntaxcomplete#Complete
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 autocmd FileType cpp set tabstop=2 shiftwidth=2 softtabstop=0 expandtab
 
+autocmd FileType sh set formatoptions-=t
+
 "
 " VIM options
 "
