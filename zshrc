@@ -97,3 +97,6 @@ fi
 if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
   source $HOME/github/other/emsdk/emsdk_env.sh
 fi
+# disable ctrl-s (xon/xoff)
+stty -ixon
+
