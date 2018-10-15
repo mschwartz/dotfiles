@@ -243,7 +243,7 @@ exec --no-startup-id compton -b --vsync none -f -c --backend xrender
 exec --no-startup-id unclutter
 exec --no-startup-id /usr/bin/xscreensaver
 exec --no-startup-id /usr/bin/dropbox
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #
 exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
 
