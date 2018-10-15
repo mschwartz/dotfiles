@@ -6,10 +6,12 @@ echo ">>> INSTALLING ZSH"
 
 if [[ $platform == 'linux' ]]; then
   sudo apt-get install -y zsh
-  sudo chown -R $(whoami) /usr/local/share/zsh/site-functions
+elif [[ $platform == 'arch' ]]; then
+  sudo pacman --noconfirm -S zsh
 elif [[ $platform == 'macos' ]]; then
   install "zsh"
 fi
+sudo chown -R $(whoami) /usr/local/share/zsh/site-functions
 chsh -s $(which zsh)
 # oh my zsh
 cd ~

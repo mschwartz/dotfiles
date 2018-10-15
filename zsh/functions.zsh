@@ -35,3 +35,14 @@ tmuxx() {
   tmux -2 detach-client -s $1
   tmux -2 new -A -s $1
 }
+
+1password() {
+  eval $(op signin my)
+}
+
+cls() {
+  clear;
+  if [ "$TMUX" != "" ]; then
+    tmux clear-history;
+  fi
+}

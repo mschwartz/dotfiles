@@ -10,12 +10,12 @@ fi
 echo "DAILY BACKUP"
 sudo mount /backup
 echo "*** Backing up /etc"
-sudo rsync -av --delete /etc/ /backup/daily/etc
+sudo rsync -avO --delete /etc/ /backup/daily/etc
 echo "*** Backing up /opt"
-sudo rsync -av --delete /opt/ /backup/daily/opt
+sudo rsync -avO --delete /opt/ /backup/daily/opt
 echo "*** Backing up /var"
-sudo rsync -av --delete /var/ /backup/daily/var
+sudo rsync -avO --delete /var/ /backup/daily/var
 echo "*** Backing up /usr/local"
-sudo rsync -av --delete /usr/local/ /backup/daily/usr.local
+sudo rsync -avO --delete /usr/local/ /backup/daily/usr.local
 echo "*** Backing up /home"
-sudo rsync -av --delete /home/ /backup/daily/home
+sudo rsync -avO --delete /home/ /backup/daily/home

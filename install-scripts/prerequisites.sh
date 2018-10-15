@@ -5,6 +5,7 @@
 echo ">>> INSTALLING PREREQUISITES FOR $platform"
 if [[ $platform == 'linux' ]]; then
   PACKAGES_TO_INSTALL="\
+    git \
     build-essential \
     speedtest-cli \
     source-highlight \
@@ -18,12 +19,46 @@ if [[ $platform == 'linux' ]]; then
     ruby-dev \
     net-tools \
     neofetch \
+    xscreensaver \
+    imagemagick \
+    scrot \
     urlview
   "
 
   sudo apt-get update
   sudo apt-get -y dist-upgrade
   sudo apt-get install -y $PACKAGES_TO_INSTALL
+
+elif [[ $platform == 'arch' ]]; then
+  PACKAGES_TO_INSTALL="\
+    git \
+    man-pages \
+    xscreensaver \
+    tmux \
+    neofetch \
+    speedtest-cli \
+    source-highlight \
+    imagemagick \
+    dolphin \
+    chromium \
+    firefox \
+    ranger \
+    scrot \
+    thermald \
+    tlp
+    wget \
+    "
+  sudo pacman -S --noconfirm $PACKAGES_TO_INSTALL
+  ln -sf /usr/bin/chromium /usr/local/bin/google-chrome
+  if [[ ! -e ~/github/arch/yay ]]; then
+    mkdir -p ~/github/arch
+    cd ~/github/arch
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+  fi
+  sudo systemctl enable thermald.service
+  sudo systemctl enable tlp.service
 
 elif [[ $platform == 'macos' ]]; then
   install neofetch 
