@@ -18,6 +18,7 @@ map <leader>b :action Build<CR>
 map <leader>f :action ReformatCode<CR>
 map <leader>d :action Debug<CR>
 map <leader>r :action Run<CR>
+map <leader>x :action CMake.ReloadCMakeProject<CR>
 map <leader>ci :action CommentByLineComment<CR>
 map \r :action ReformatCode<CR>
 
