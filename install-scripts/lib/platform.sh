@@ -1,11 +1,11 @@
 #!/bin/bash
 
-type=`uname -m`
+platform_type=`uname -m`
 unamestr=`uname`
 platform='unknown'
 if [[ "$unamestr" == 'Linux' ]]; then
     platform='linux'
-elif [[ "$unamestr" == 'armv7' ]]; then
+elif [[ "$unamestr" == 'armv71' ]]; then
     platform='linux'
 elif [[ "$unamestr" == 'Darwin' ]]; then
     platform='macos'
@@ -17,5 +17,6 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
       fi
     }
 fi
+export platform_type
 export platform
 export hostname=`hostname -s`
