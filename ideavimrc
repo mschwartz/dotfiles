@@ -4,15 +4,21 @@ set ignorecase
 set smartcase
 set incsearch
 
+set tabstop=2
+set softabstap=2
+set expandtab
+
 let mapleader = ","
 map <leader>e :e ~/.ideavimrc<CR>
 map <leader>x :source ~/.ideavimrc<CR>
 map <leader>j :j<cr>
 map <leader>s :action SaveAll<CR>
 map <leader>b :action Build<CR>
-map <leader>f :action Javascript.Linters.EsLint.Fix<CR>
+#map <leader>f :action Javascript.Linters.EsLint.Fix<CR>
+map <leader>f :action ReformatCode<CR>
 map <leader>d :action Debug<CR>
 map <leader>r :action Run<CR>
+map <leader>x :action CMake.ReloadCMakeProject<CR>
 map <leader>ci :action CommentByLineComment<CR>
 map \r :action ReformatCode<CR>
 

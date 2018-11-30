@@ -10,6 +10,7 @@ alias so='source'
 alias snowdog='ssh snowdog'
 alias dionysus='ssh dionysus'
 alias pi='ssh pi'
+alias ubnt='ssh 192.168.1.1'
 alias bytor='ssh bytor'
 alias xanadu='ssh xanadu'
 alias cygnus='ssh cygnus'
@@ -19,6 +20,7 @@ alias pd='ssh -Y -L 3000:localhost:3000 pd.ddns.us'
 alias presto='ssh -Y presto'
 alias dreamline='ssh -Y dreamline'
 alias bigmoney='ssh -Y bigmoney'
+alias robospeak='ssh robospeak'
 # tmux
 alias tmongoose='tmux new -A -s mongoose'
 alias tshell='tmux -2 new -A -s shell'
@@ -31,15 +33,26 @@ alias ttvim='tmux -CC new -A -s vim'
 alias tlist='tmux list-sessions'
 alias ttmux='tmux new -A -s $HOST-$$'
 # vim
+if [ -f /usr/local/bin/vim ]; then
+  alias vi='/usr/local/bin/vim'
+  alias vim='/usr/local/bin/vim'
+elif [ -f /usr/bin/vim ]; then
+  alias vi='/usr/bin/vim'
+  alias vim='/usr/bin/vim'
+fi
+# nvim
+if [ -f /usr/local/bin/nvim ]; then
+  alias vi='/usr/local/bin/nvim'
+elif [ -f /usr/bin/nvim ]; then
+  alias vi='/usr/bin/nvim'
+fi
 alias i3config='vi ~/.config/i3/config'
 alias aliases.zsh='vi ~/dotfiles/zsh/aliases.zsh'
 alias zshrc='vi ~/.zshrc'
 alias env.zsh='vi ~/dotfiles/zsh/env.zsh'
 alias functions.zsh='vi ~/dotfiles/zsh/functions.zsh'
+alias node='/usr/bin/node'
 
-if [ -f /usr/local/bin/vim ]; then
-  alias vi='/usr/local/bin/vim'
-fi
 alias df='df -P'
 alias slack slack-term
 

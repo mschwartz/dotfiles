@@ -10,7 +10,7 @@ ZSH_THEME="agnoster"
 #ZSH_THEME="clean"
 DEFAULT_USER=mschwartz
 
-TERMINAL=urxvt
+#TERMINAL=urxvt
 unalias run-help 2>/dev/null
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
@@ -48,7 +48,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(vi-mode git colorize bower brew coffee colored-man node npm osx redis-cli rvm screen sublime terminalapp themes tmux docker docker-compose zsh-syntax-highlighting)
+plugins=(z vi-mode git sudo colorize bower brew colored-man node npm jsontools osx redis-cli rvm sublime terminalapp themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,3 +97,6 @@ fi
 if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
   source $HOME/github/other/emsdk/emsdk_env.sh
 fi
+# disable ctrl-s (xon/xoff)
+stty -ixon
+

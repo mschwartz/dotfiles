@@ -5,7 +5,10 @@ unamestr=`uname`
 platform='unknown'
 if [[ "$unamestr" == 'Linux' ]]; then
     platform='linux'
-elif [[ "$unamestr" == 'armv71' ]]; then
+    if [[ -e "/etc/arch-release" ]]; then
+	platform='arch'
+    fi
+elif [[ "$unamestr" == 'armv7' ]]; then
     platform='linux'
 elif [[ "$unamestr" == 'Darwin' ]]; then
     platform='macos'
