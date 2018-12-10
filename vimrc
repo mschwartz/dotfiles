@@ -383,6 +383,7 @@ set directory=$HOME/.vim/swapfiles//
 set undodir=~/.vim/undo-dir
 set undofile
 set number
+set relativenumber
 set ignorecase
 set title
 set ttyfast
