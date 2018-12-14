@@ -4,6 +4,7 @@
 " Last Modified Date: 21.06.2018
 " Last Modified By  : Michael Schwartz <mykesx@gmail.com>
 set nocompatible 
+set secure exrc
 "set fileformat=unix
 "set ma
 filetype off
@@ -16,6 +17,8 @@ autocmd BufNewFile,BufReadPost *.fth,*.4th set filetype=forth
 " set leader
 let mapleader=","
 let g:mapleader=","
+
+let g:easytags_suppress_ctags_warning=1
 
 " key bindings
 nmap <F1> <nop>
@@ -382,7 +385,7 @@ set nobackup
 set directory=$HOME/.vim/swapfiles//
 set undodir=~/.vim/undo-dir
 set undofile
-set number
+set number relativenumber
 set ignorecase
 set title
 set ttyfast
