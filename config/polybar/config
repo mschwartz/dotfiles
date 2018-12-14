@@ -412,7 +412,8 @@ menu-3-1-exec = menu-open-0
 
 [module/resolution]
 type=custom/script
-exec=~/dotfiles/src/rez/rez
+;exec=~/dotfiles/src/rez/rez
+exec = xrandr | head -1 | sed 's/^.*current //' | sed 's/, .*$//' | sed 's/ //g'
 label= %output%
 
 [settings]
