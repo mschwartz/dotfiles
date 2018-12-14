@@ -9,6 +9,7 @@ set secure exrc
 "set ma
 filetype off
 
+
 " for arduino
 autocmd BufNewFile,BufReadPost *.c,*.cpp,*.h,*.ino,*.pde set filetype=cpp
 autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
@@ -52,7 +53,8 @@ imap jj <Esc>
 imap jk <Esc>
 imap kkk <Esc>
 nmap <F1> :echo<CR>
-
+vnoremap <C-c> "+y
+map <C-p> "+P
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -350,10 +352,13 @@ autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 autocmd FileType cpp set tabstop=2 shiftwidth=2 softtabstop=0 expandtab
 
 autocmd FileType sh set formatoptions-=t
-
+nnoremap S :%s//g<Left><Left>
 "
 " VIM options
 "
+set wildmode=longest,list,full
+  " Disables automatic commenting on newline:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set guicursor=
 set ttyfast
 set nowrap

@@ -238,7 +238,8 @@ exec_always --no-startup-id libinput-gestures-setup restart
 exec --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
 exec_always --no-startup-id /home/mschwartz/.config/i3/trackpad.sh
 
-# background processes
+# background processese
+exec --no-startup-id dunst
 exec --no-startup-id compton -b --vsync none -f -c --backend xrender
 exec --no-startup-id unclutter
 exec --no-startup-id /usr/bin/xscreensaver

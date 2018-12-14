@@ -20,6 +20,7 @@ alias pd='ssh -Y -L 3000:localhost:3000 pd.ddns.us'
 alias presto='ssh -Y presto'
 alias dreamline='ssh -Y dreamline'
 alias bigmoney='ssh -Y bigmoney'
+alias robospeak='ssh robospeak'
 # tmux
 alias tmongoose='tmux new -A -s mongoose'
 alias tshell='tmux -2 new -A -s shell'
