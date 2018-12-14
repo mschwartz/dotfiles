@@ -4,7 +4,14 @@
 
 echo ">>> INSTALLING DOCKER"
 
-if [[ $platform == 'linux' ]]; then
+if [[ $platform == 'arch' ]]; then
+  yay -Syy docker docker-machine docker-compose iptables iproute bridge-utils
+  echo "RESTART MAY BE REQUIRED"
+  sudo systemctl enable docker.service
+  sudo systemctl restart docker.service
+  sudo groupadd docker
+  sudo usermod -aG docker $USER
+elif [[ $platform == 'linux' ]]; then
   if [[ $platform_type == 'armv7l' ]]; then
     echo "SKIPPING ON PI"
   else
