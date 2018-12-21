@@ -21,6 +21,7 @@ alias presto='ssh -Y presto'
 alias dreamline='ssh -Y dreamline'
 alias bigmoney='ssh -Y bigmoney'
 alias nuc1='ssh nuc'
+alias robospeak='ssh robospeak'
 # tmux
 alias tmongoose='tmux new -A -s mongoose'
 alias tshell='tmux -2 new -A -s shell'

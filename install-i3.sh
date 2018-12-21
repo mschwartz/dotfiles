@@ -12,7 +12,7 @@ fi
 
 if [[ $platform == 'arch' ]]; then
   sudo pacman -S --noconfirm xorg xorg-server xorg-xrandr xterm xorg-xinit i3-gaps i3blocks i3status konsole compton \
-    scrot ranger w3m feh xclip rofi qutebrowser sddm jsoncpp jsoncpp
+    scrot ranger w3m feh xclip rofi qutebrowser sddm jsoncpp jsoncpp dunst libnotify
   yay -S --noconfirm polybar
   sudo systemctl enable sddm.service
 fi
