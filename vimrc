@@ -340,6 +340,7 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
     let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
 
 
+Plugin 'posva/vim-vue'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ End of Plugins
 call vundle#end()
