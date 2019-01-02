@@ -46,3 +46,7 @@ cls() {
     tmux clear-history;
   fi
 }
+
+find() {
+  /usr/bin/find $@ -not -path "./node_modules/*"
+}
