@@ -20,18 +20,12 @@ alias pd='ssh -Y -L 3000:localhost:3000 pd.ddns.us'
 alias presto='ssh -Y presto'
 alias dreamline='ssh -Y dreamline'
 alias bigmoney='ssh -Y bigmoney'
+alias nuc1='ssh nuc1'
 alias robospeak='ssh robospeak'
+
 # tmux
-alias tmongoose='tmux new -A -s mongoose'
-alias tshell='tmux -2 new -A -s shell'
-#alias tvim='tmux -2 new -A -s vim'
-alias tvim='! tmux -2 detach-client -s tvim; tmux -2 new -A -s tvim'
-alias lshell='! tmux -2 detach-client -s lshell; tmux -2 new -A -s lshell'
-alias lvim='! tmux -2 detach-client -s lvim; tmux -2 new -A -s lvim'
-alias ttmongoose='tmux -CC new -A -s mongoose'
-alias ttvim='tmux -CC new -A -s vim'
 alias tlist='tmux list-sessions'
-alias ttmux='tmux new -A -s $HOST-$$'
+
 # vim
 if [ -f /usr/local/bin/vim ]; then
   alias vi='/usr/local/bin/vim'
@@ -40,19 +34,24 @@ elif [ -f /usr/bin/vim ]; then
   alias vi='/usr/bin/vim'
   alias vim='/usr/bin/vim'
 fi
+
 # nvim
 if [ -f /usr/local/bin/nvim ]; then
   alias vi='/usr/local/bin/nvim'
 elif [ -f /usr/bin/nvim ]; then
   alias vi='/usr/bin/nvim'
 fi
+
+
 alias i3config='vi ~/.config/i3/config'
+alias vimrc='vi ~/.vimrc'
 alias aliases.zsh='vi ~/dotfiles/zsh/aliases.zsh'
 alias zshrc='vi ~/.zshrc'
 alias env.zsh='vi ~/dotfiles/zsh/env.zsh'
 alias functions.zsh='vi ~/dotfiles/zsh/functions.zsh'
 alias node='/usr/bin/node'
 
+# commands
 alias df='df -P'
 alias slack slack-term
 

@@ -3,7 +3,7 @@
 . ~/dotfiles/install-scripts/lib/platform.sh
 
 if [[ $platform == 'linux' ]]; then
-  sudo apt-get install -y vim-nox ctags fonts-font-awesome nvim
+  sudo apt-get install -y vim-nox ctags fonts-font-awesome neovim
 elif [[ $platform == 'arch' ]]; then
   sudo pacman -S --noconfirm vim ttf-font-awesome ctags neovim
 

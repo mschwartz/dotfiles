@@ -30,3 +30,10 @@ for file in $files; do
   ln -sf $dir/$file ~/.$file
 done
 
+mkdir -p ~/.config
+mkdir -p ~/dotfiles_old/config
+for file in ./config/*; do
+  echo ln -sf ~/dotfiles/config/$(basename $file) ~/.config/$(basename $file)
+  rm -rf ~/.config/$(basename $file)
+  ln -sf ~/dotfiles/config/$(basename $file) ~/.config/$(basename $file)
+done

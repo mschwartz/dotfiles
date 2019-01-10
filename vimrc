@@ -328,7 +328,9 @@ let g:NERDTreeIgnore=['.git', 'node_modules', '.o$', '.a$', '.depend']
 
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ryanoasis/vim-devicons'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+"    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+"    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = '﵂'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight
     let g:NERDTreeFileExtensionHighlightFullName = 1
     let g:NERDTreeExactMatchHighlightFullName = 1
     let g:NERDTreePatternMatchHighlightFullName = 1
@@ -340,6 +342,7 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
     let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
 
 
+Plugin 'posva/vim-vue'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ End of Plugins
 call vundle#end()
