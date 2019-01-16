@@ -330,7 +330,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ryanoasis/vim-devicons'
 "    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 "    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = '﵂'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
     let g:NERDTreeFileExtensionHighlightFullName = 1
     let g:NERDTreeExactMatchHighlightFullName = 1
     let g:NERDTreePatternMatchHighlightFullName = 1
