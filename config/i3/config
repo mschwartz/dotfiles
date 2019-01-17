@@ -165,7 +165,7 @@ bindsym $mod+b exec $term -e ranger ~/github/other/wallpapers
 bindsym $mod+w exec $term -e ranger ~/github/other/wallpapers
 
 # shortcuts to run programs
-bindsym $mod+F1 exec google-chrome
+bindsym $mod+F1 exec google-chrome-stable
 bindsym $mod+F2 exec "firefox"
 bindsym $mod+Shift+F2 exec "firefox -private-window"
 bindsym $mod+F3 exec qutebrowser
@@ -227,6 +227,12 @@ exec_always xinput --set-prop 12 'libinput Accel Speed' .5
 exec_always xinput --set-prop 12 'libinput Accel Speed Default' .5
 exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled' 1
 exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled Default' 1
+exec_always xinput --set-prop 15 'libinput Accel Speed' .5
+exec_always xinput --set-prop 15 'libinput Accel Speed Default' .5
+exec_always xinput --set-prop 15 'libinput Natural Scrolling Enabled' 1
+exec_always xinput --set-prop 15 'libinput Natural Scrolling Enabled Default' 1
+exec_always xinput --set-prop 15 'libinput Tapping Enabled' 1
+exec_always xinput --set-prop 15 'libinput Tapping Enabled Default' 1
 # background processes
 #exec --no-startup-id /usr/bin/xscreensaver
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -242,7 +248,7 @@ exec_always --no-startup-id /home/mschwartz/.config/i3/trackpad.sh
 exec --no-startup-id dunst
 exec --no-startup-id compton -b --vsync none -f -c --backend xrender
 exec --no-startup-id unclutter
-exec --no-startup-id /usr/bin/xscreensaver
+#exec --no-startup-id /usr/bin/xscreensaver
 exec --no-startup-id /usr/bin/dropbox
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #
