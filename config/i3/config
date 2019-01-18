@@ -174,12 +174,9 @@ bindsym $mod+F10 exec /opt/wavebox/Wavebox
 #bindsym $mod+F11 exec ~/Downloads/arduino-1.8.5/arduino
 bindsym $mod+F12 exec /usr/local/bin/webstorm
 bindsym $mod+r exec $term -e ranger
-#bindsym Print exec --release scrot -s >/tmp/screenshot.png
-#bindsym $mod+Shift+Print exec scrot >/tmp/screenshot.png
 
-bindsym --release Print exec scrot -s $HOME/Pictures/ScreenShots/`date +%Y-%m-%d_%H:%M:%S`.png
-bindsym Shift+Print exec scrot $HOME/Pictures/ScreenShots/`date +%Y-%m-%d_%H:%M:%S`.png
-bindsym $mod+Print exec scrot -u $HOME/Pictures/ScreenShots/`date +%Y-%m-%d_%H:%M:%S`.png
+# screen shots
+bindsym Shift+Print exec bash ~/bin/screenshot.sh
 
 # color defines for zenburn styled i3
 set $bg     #2c2c2e
@@ -233,6 +230,8 @@ exec_always xinput --set-prop 15 'libinput Natural Scrolling Enabled' 1
 exec_always xinput --set-prop 15 'libinput Natural Scrolling Enabled Default' 1
 exec_always xinput --set-prop 15 'libinput Tapping Enabled' 1
 exec_always xinput --set-prop 15 'libinput Tapping Enabled Default' 1
+exec_alwayx xinput --set-prop 14 'Device Enabled' 0
+
 # background processes
 #exec --no-startup-id /usr/bin/xscreensaver
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
