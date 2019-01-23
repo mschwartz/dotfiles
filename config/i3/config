@@ -142,9 +142,13 @@ bindsym $mod+y resize grow height 10 px or 10ppt
 bindsym $mod+Shift+y resize shrink height 10 px or 10ppt
 
 # volume controls
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+#bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+#bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+#bindsym XF86AudioMute exec amixer -q set Master toggle
+
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec pactl set-sink-mut 0 toggle
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -196,6 +200,16 @@ client.unfocused            $bg        $bg         $ia
 client.focused_inactive     $bg        $bg         $ac
 client.urgent               $rd        $rd         $tx
 
+bar {
+  position top
+  status_command bumblebee-status -m title cpu load memory amixer battery date time  -t iceberg-powerline -p interval=1
+}
+
+bar {
+  position bottom
+  tray_output primary
+  status_command bumblebee-status -m weather pacman arch-update disk nic traffic nvidiagpu sensors bluetooth -t iceberg-powerline
+}
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 #bar {
@@ -234,7 +248,7 @@ exec_alwayx xinput --set-prop 14 'Device Enabled' 0
 
 # background processes
 #exec --no-startup-id /usr/bin/xscreensaver
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id xmodmap -e "clear lock"
 exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id synclient VertScrollDelta=-113
