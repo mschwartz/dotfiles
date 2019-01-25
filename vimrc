@@ -271,6 +271,8 @@ endif
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
     let g:ale_c_clangformat_executable='/usr/bin/clang-format'
     let g:ale_cpp_clangformat_executable='/usr/bin/clang-format'
+"    let g:ale_linter_aliases = {'vue': 'typescript'}
+"                \   'vue': ['tsserver', 'eslint'],
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
                 \   'json': ['eslint'],
@@ -279,6 +281,7 @@ endif
                 \   'cpp': ['clang-format'],
                 \   'h': ['clang-format'],
                 \}
+"                \   'vue': ['eslint']
     let g:ale_fixers = {
                 \   'javascript': ['eslint', 'prettier'],
                 \   'json': ['eslint', 'prettier'],

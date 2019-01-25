@@ -27,6 +27,8 @@ set $term --no-startup-id /usr/bin/konsole
 font pango:System San Francisco Display 16, FontAwesome 16
 
 focus_follows_mouse no
+mouse_warping none
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
