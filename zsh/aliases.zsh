@@ -52,6 +52,8 @@ alias env.zsh='vi ~/dotfiles/zsh/env.zsh'
 alias functions.zsh='vi ~/dotfiles/zsh/functions.zsh'
 alias node='/usr/bin/node'
 
+alias grep='grep --exclude-dir={.bzr,CVS,.git,.hg,.svn,node_modules}'
+
 # commands
 alias df='df -P'
 alias slack slack-term
