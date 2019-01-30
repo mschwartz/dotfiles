@@ -16,6 +16,8 @@ gaps inner 15
 gaps outer 15
 
 set $mod Mod1
+set $sup Mod4
+
 set $term --no-startup-id /usr/bin/konsole
 
 # These windows require specific rules to display in floating mode
@@ -42,6 +44,8 @@ mouse_warping none
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+bindsym $sup+space exec ~/.config/i3/toggle-trackpad.sh
 
 # start a terminal
 bindsym $mod+Return exec $term
@@ -150,7 +154,7 @@ bindsym $mod+Shift+y resize shrink height 10 px or 10ppt
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec pactl set-sink-mut 0 toggle
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -171,7 +175,7 @@ bindsym $mod+b exec $term -e ranger ~/github/other/wallpapers
 bindsym $mod+w exec $term -e ranger ~/github/other/wallpapers
 
 # shortcuts to run programs
-bindsym $mod+F1 exec google-chrome-stable
+bindsym $mod+F1 exec "google-chrome-stable"
 bindsym $mod+F2 exec "firefox"
 bindsym $mod+Shift+F2 exec "firefox -private-window"
 bindsym $mod+F3 exec qutebrowser
