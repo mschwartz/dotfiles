@@ -9,10 +9,8 @@ if [[ $platform == 'linux' ]]; then
   curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
   sudo apt-get update
   sudo apt-get install -y nodejs
-  chsh -s $(which zsh)
 elif [[ $platform == 'arch' ]]; then
   sudo pacman -S --noconfirm nodejs npm
-  chsh -s $(which zsh)
 elif [[ $platform == 'macos' ]]; then
   install node
 fi
