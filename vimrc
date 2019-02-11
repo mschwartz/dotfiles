@@ -83,9 +83,9 @@ Plugin 'mileszs/ack.vim'
         let g:ackprg = 'ag --vimgrep'
       endif
 
-Plugin 'wincent/command-t'
-    let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
-"Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'wincent/command-t'
+"    let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'wesQ3/vim-windowswap'
