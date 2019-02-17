@@ -5,7 +5,7 @@
   "main": "build-packages.js",
   "dependencies": {
     "node-http-proxy": "^0.2.3",
-    "pty.js": "^0.3.1",
+    "node-pty": "^0.8.1",
     "shelljs": "^0.7.5"
   },
   "devDependencies": {},
