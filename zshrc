@@ -14,6 +14,7 @@ DEFAULT_USER=mschwartz
 unalias run-help 2>/dev/null
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
+export JOBS=`nproc`
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
