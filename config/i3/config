@@ -275,3 +275,5 @@ exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
 
 #exec_always --no-startup-id conky -c ~/.config/conky/conky.conf
 #exec --no-startup-id ~/.dropbox-dist/dropboxd
+
+exec_always --no-startup_id ~/.config/i3/reset-trackpad.sh
