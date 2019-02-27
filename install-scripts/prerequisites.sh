@@ -58,7 +58,8 @@ elif [[ $platform == 'arch' ]]; then
     makepkg -si
   fi
   # install AUR packages
-  yay -S --answerclean y --answerdiff y bumblebee-status
+  yay -S --noconfirm unzip unrar hwinfo mhwd tree fontconfig-infinality checkupdates pacman-contrib
+  yay -S --noconfirm google-chrome slack-desktop htop dropbox glxinfo traceroute wavebox
   # enable services
   sudo systemctl enable thermald.service
   sudo systemctl enable tlp.service
