@@ -32,7 +32,7 @@ for file in $files; do
 done
 
 mkdir -p ~/.config
-mkdir -p ~/dotfiles_old/config
+mkdir -p $olddir/config
 for file in ./config/*; do
   echo ln -sf ~/dotfiles/config/$(basename $file) ~/.config/$(basename $file)
   rm -rf ~/.config/$(basename $file)
