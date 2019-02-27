@@ -45,7 +45,7 @@ elif [[ $platform == 'arch' ]]; then
     ranger \
     scrot \
     thermald \
-    tlp
+    tlp \
     wget \
     "
   sudo pacman -S --noconfirm $PACKAGES_TO_INSTALL
@@ -57,6 +57,9 @@ elif [[ $platform == 'arch' ]]; then
     cd yay
     makepkg -si
   fi
+  # install AUR packages
+  yay -S --answerclean y --answerdiff y bumblebee-status
+  # enable services
   sudo systemctl enable thermald.service
   sudo systemctl enable tlp.service
 
