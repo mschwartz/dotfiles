@@ -13,7 +13,9 @@ fi
 if [[ $platform == 'arch' ]]; then
   sudo pacman -S --noconfirm xorg xorg-server xorg-xrandr xterm xorg-xinit i3-gaps i3blocks i3status konsole compton \
     scrot ranger w3m feh xclip rofi qutebrowser sddm jsoncpp jsoncpp dunst libnotify i3lock
-  yay -S --noconfirm polybar
+  yay -Syy --noconfirm bumblebee-status
+  yay -S --noconfirm ttf-font-awesome ttf-yosemite-san-francicso-font-git siji-git material-icons.git ttf-material-icons ttf-ms-fonts
+  yay -S --noconfirm rpm-org unclutter flameshot lxappearance wicd-patched dnf redshift bluez blueman
   sudo systemctl enable sddm.service
 fi
 
