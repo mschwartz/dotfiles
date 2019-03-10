@@ -148,6 +148,17 @@ Plugin 'dNitro/vim-pug-complete'
 Plugin 'heavenshell/vim-jsdoc'
 "nmap <leader>j :JsDoc<cr>
 Plugin 'othree/jsdoc-syntax.vim'
+"Plugin 'othree/xml.vim'
+Plugin 'alvan/vim-closetag'
+    let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js'
+    let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
+    let g:closetag_filetypes = 'html,xhtml,phtml,javascript,jsx'
+    let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+    let g:closetag_emptyTags_caseSensitive = 1
+    let g:closetag_regions = {
+        \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+        \ 'javascript.jsx': 'jsxRegion',
+        \ }
 Plugin 'itmammoth/doorboy.vim'
 
 " Highlight ES6 template strings
