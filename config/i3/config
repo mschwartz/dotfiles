@@ -206,6 +206,20 @@ client.unfocused            $bg        $bg         $ia
 client.focused_inactive     $bg        $bg         $ac
 client.urgent               $rd        $rd         $tx
 
+# General dropdown window traits. The order can matter.
+for_window [instance="dropdown_*"] floating enable
+for_window [instance="dropdown_*"] move scratchpad
+for_window [instance="dropdown_*"] sticky enable
+for_window [instance="dropdown_*"] scratchpad show
+for_window [instance="dropdown_tmuxdd"] resize set 625 450
+for_window [instance="dropdown_dropdowncalc"] resize set 800 300
+for_window [instance="dropdown_tmuxdd"] border pixel 3
+for_window [instance="dropdown_dropdowncalc"] border pixel 2
+for_window [instance="dropdown_*"] move position center
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
 bar {
   position top
   status_command bumblebee-status -m title cpu load memory amixer battery uptime date time -t iceberg-powerline -p interval=1
@@ -251,6 +265,16 @@ exec_always xinput --set-prop 15 'libinput Natural Scrolling Enabled Default' 1
 exec_always xinput --set-prop 15 'libinput Tapping Enabled' 1
 exec_always xinput --set-prop 15 'libinput Tapping Enabled Default' 1
 exec_alwayx xinput --set-prop 14 'Device Enabled' 0
+
+# General dropdown window traits. The order can matter.
+for_window [title="RoboDomo Home Automation"] floating enable
+for_window [title="RoboDomo Home Automation"] move scratchpad
+for_window [title="RoboDomo Home Automation"] sticky enable
+for_window [title="RoboDomo Home Automation"] scratchpad show
+for_window [title="RoboDomo Home Automation"] resize set 1280 900
+for_window [title="RoboDomo Home Automation"] move position center
+bindsym $sup+r exec --no-startup-id ~/bin/robodomo
+bindsym $sup+s exec --no-startup-id ddspawn tmux
 
 # background processes
 #exec --no-startup-id /usr/bin/xscreensaver
