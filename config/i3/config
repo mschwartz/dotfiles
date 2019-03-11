@@ -221,6 +221,7 @@ for_window [instance="dropdown_dropdowncalc"] border pixel 2
 for_window [instance="dropdown_*"] move position center
 
 bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+equal move scratchpad
 bindsym $mod+minus scratchpad show
 bindsym $sup+minus scratchpad show
 
