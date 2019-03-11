@@ -91,6 +91,9 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# move windows/containers to other monitor
+bindsym $sup+Left move workspace to output left
+bindsym $sup+Right move workspace to output right
 bindsym $mod+t split toggle
 # split in horizontal orientation
 #bindsym $mod+h split h
@@ -222,6 +225,7 @@ bindsym $mod+minus scratchpad show
 
 bar {
   position top
+  tray_output primary
   status_command bumblebee-status -m title cpu load memory amixer battery uptime date time -t iceberg-powerline -p interval=1
 }
 
@@ -262,8 +266,8 @@ exec_always xinput --set-prop 15 'libinput Accel Speed' .5
 exec_always xinput --set-prop 15 'libinput Accel Speed Default' .5
 exec_always xinput --set-prop 15 'libinput Natural Scrolling Enabled' 1
 exec_always xinput --set-prop 15 'libinput Natural Scrolling Enabled Default' 1
-exec_always xinput --set-prop 15 'libinput Tapping Enabled' 1
-exec_always xinput --set-prop 15 'libinput Tapping Enabled Default' 1
+exec_always xinput --set-prop 15 'libinput Tapping Enabled' 0
+exec_always xinput --set-prop 15 'libinput Tapping Enabled Default' 0
 exec_alwayx xinput --set-prop 14 'Device Enabled' 0
 
 # General dropdown window traits. The order can matter.
@@ -286,7 +290,9 @@ exec_always --no-startup-id synclient PalmDetect=1
 exec_always --no-startup-id libinput-gestures-setup restart
 exec --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
 exec_always --no-startup-id /home/mschwartz/.config/i3/trackpad.sh
-
+bindsym $mod+> exec xrandr --output HDMI-0 --right-of DP-2 --auto
+bindsym $mod+shift+comma exec xrandr --output HDMI-0 --left-of DP-2 --auto
+bindsym $mod+shift+period exec xrandr --output HDMI-0 --right-of DP-2 --auto
 # background processese
 exec --no-startup-id dunst
 exec --no-startup-id compton -b --vsync none -f -c --backend xrender
