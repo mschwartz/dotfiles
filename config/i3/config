@@ -278,7 +278,7 @@ for_window [title="RoboDomo Home Automation"] scratchpad show
 for_window [title="RoboDomo Home Automation"] resize set 1280 900
 for_window [title="RoboDomo Home Automation"] move position center
 bindsym $sup+r exec --no-startup-id ~/bin/robodomo
-bindsym $sup+s exec --no-startup-id ddspawn tmux
+bindsym $sup+s exec --no-startup-id ddspawn tmuxdd
 
 # background processes
 #exec --no-startup-id /usr/bin/xscreensaver
