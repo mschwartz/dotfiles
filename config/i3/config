@@ -66,9 +66,13 @@ bindsym $mod+m exec ~/bin/set-resolution.sh
 
 # change focus
 bindsym $mod+h focus left
+bindsym $sup+h focus left
 bindsym $mod+j focus down
+bindsym $sup+j focus down
 bindsym $mod+k focus up
+bindsym $sup+k focus up
 bindsym $mod+l focus right
+bindsym $sup+l focus right
 
 bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
@@ -309,3 +313,4 @@ exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
 #exec --no-startup-id ~/.dropbox-dist/dropboxd
 
 exec_always --no-startup_id ~/.config/i3/reset-trackpad.sh
+exec_always --no-startup-id xinput --map-to-output 'Wacom Pen and multitouch sensor Finger' DP-2
