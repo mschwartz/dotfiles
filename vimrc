@@ -124,8 +124,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
 " Language Support
-"Plugin 'vim-syntastic/syntastic'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'Valloric/YouCompleteMe'
 "let g:ycm_auto_trigger = 0
 Plugin 'vim-scripts/forth.vim'
 Plugin 'ternjs/tern_for_vim'
