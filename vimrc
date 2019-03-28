@@ -43,7 +43,7 @@ map <leader>ez :e! ~/.zshrc<cr>
 map <leader>l :nohlsearch<cr>
 map <leader>pi :PluginInstall<cr>
 map <leader>ip <esc>iimport PropTypes from 'prop-types'<cr><esc>
-map <leader>ir <esc>iimport React, {Component} from 'react'<cr><esc>
+map <leader>ir <esc>iimport React, {useState, useEffect, useRef} from 'react'<cr><esc>
 map <leader>itc <esc>otry {<cr>}<cr>catch(e) {<cr>console.log('exception', e)<cr><esc>ddjddkkkk==ko
 map <leader>v <esc>:read !xsel<cr>
 map <C-n> :NERDTreeToggle<CR>
