@@ -14,7 +14,8 @@ DEFAULT_USER=mschwartz
 unalias run-help 2>/dev/null
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
-export JOBS=`nproc`
+# portable way to get # of processors/cores:
+export JOBS=`getconf _NPROCESSORS_ONLN`
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"

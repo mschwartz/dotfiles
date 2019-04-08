@@ -43,7 +43,7 @@ map <leader>ez :e! ~/.zshrc<cr>
 map <leader>l :nohlsearch<cr>
 map <leader>pi :PluginInstall<cr>
 map <leader>ip <esc>iimport PropTypes from 'prop-types'<cr><esc>
-map <leader>ir <esc>iimport React, {Component} from 'react'<cr><esc>
+map <leader>ir <esc>iimport React, {useState, useEffect, useRef} from 'react'<cr><esc>
 map <leader>itc <esc>otry {<cr>}<cr>catch(e) {<cr>console.log('exception', e)<cr><esc>ddjddkkkk==ko
 map <leader>v <esc>:read !xsel<cr>
 map <C-n> :NERDTreeToggle<CR>
@@ -124,8 +124,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
 " Language Support
-"Plugin 'vim-syntastic/syntastic'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'Valloric/YouCompleteMe'
 "let g:ycm_auto_trigger = 0
 Plugin 'vim-scripts/forth.vim'
 Plugin 'ternjs/tern_for_vim'
