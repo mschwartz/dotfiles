@@ -102,6 +102,6 @@ fi
 # disable ctrl-s (xon/xoff)
 stty -ixon
 
-if [ -f /usr/share/nvm/init-nvm.sh ];
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
   source /usr/share/nvm/init-nvm.sh
 fi
