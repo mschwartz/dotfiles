@@ -127,6 +127,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 "let g:ycm_auto_trigger = 0
+Plugin 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plugin 'vim-scripts/forth.vim'
 Plugin 'ternjs/tern_for_vim'
     let g:tern_show_argument_hints='on_hold'
@@ -334,10 +335,11 @@ Plugin 'scrooloose/nerdcommenter'
 
 " NERDTree
 Plugin 'scrooloose/nerdtree'
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeIgnore=['.git', 'node_modules', '.o$', '.a$', '.depend']
+"let g:NERDTreeShowHidden = 1
+"let NERDTreeShowHidden=1
+let g:NERDTreeIgnore=['.git', 'node_modules', '\.o$', '\.a$', '.depend']
 "autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 Plugin 'Xuyuanp/nerdtree-git-plugin'
