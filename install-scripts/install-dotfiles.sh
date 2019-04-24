@@ -5,7 +5,7 @@ echo ">>> INSTALLING DOTFILES"
 # create dotfiles_old in homedir
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
-files="XResources inputrc profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zprofile zshenv Xresources ctags tmux tmux.conf ackrc ideavimrc agignore eslintrc.js clang-format muttrc mailcap"    # list of files/folders to symlink in homedir
+files="XResources inputrc profile bash_profile bashrc bash_aliases vimrc vim zlogin zshrc zprofile zshenv Xresources ctags tmux tmux.conf ackrc ideavimrc agignore eslintrc.js clang-format"    # list of files/folders to symlink in homedir
 
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
