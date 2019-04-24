@@ -6,6 +6,7 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias so='source'
+
 # ssh hosts
 alias snowdog='ssh snowdog'
 alias dionysus='ssh dionysus'
@@ -43,6 +44,7 @@ elif [ -f /usr/bin/nvim ]; then
   alias vi='/usr/bin/nvim'
 fi
 
+alias mutt=neomutt
 
 alias i3config='vi ~/.config/i3/config'
 alias vimrc='vi ~/.vimrc'
