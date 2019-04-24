@@ -56,8 +56,7 @@ elif [[ $platform == 'arch' ]]; then
     cronie \
     hub \
     "
-  sudo pacman -S --noconfirm $PACKAGES_TO_INSTALL
-  exit
+  sudo pacman -Syy --noconfirm $PACKAGES_TO_INSTALL
   ln -sf /usr/bin/chromium /usr/local/bin/google-chrome
   if [[ ! -e ~/github/arch/yay ]]; then
     mkdir -p ~/github/arch
