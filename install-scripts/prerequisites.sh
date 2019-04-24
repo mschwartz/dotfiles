@@ -45,8 +45,17 @@ elif [[ $platform == 'arch' ]]; then
     ranger \
     scrot \
     thermald \
+    ntp \
     tlp \
     wget \
+    neomutt \
+    pass \
+    pgp \
+    w3m \
+    notmuch \
+    abook \
+    cronie \
+    hub \
     "
   sudo pacman -S --noconfirm $PACKAGES_TO_INSTALL
   ln -sf /usr/bin/chromium /usr/local/bin/google-chrome
@@ -59,7 +68,7 @@ elif [[ $platform == 'arch' ]]; then
   fi
   # install AUR packages
   yay -S --noconfirm unzip unrar hwinfo mhwd tree fontconfig-infinality checkupdates pacman-contrib
-  yay -S --noconfirm google-chrome slack-desktop htop dropbox glxinfo traceroute wavebox
+  yay -S --noconfirm google-chrome slack-desktop htop dropbox glxinfo traceroute wavebox-bin rr gometalinter python2 python-pip
   # enable services
   sudo systemctl enable thermald.service
   sudo systemctl enable tlp.service
