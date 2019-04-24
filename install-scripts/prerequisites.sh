@@ -32,6 +32,7 @@ if [[ $platform == 'linux' ]]; then
 elif [[ $platform == 'arch' ]]; then
   PACKAGES_TO_INSTALL="\
     git \
+    neomutt \
     man-pages \
     xscreensaver \
     tmux \
@@ -44,13 +45,11 @@ elif [[ $platform == 'arch' ]]; then
     firefox \
     ranger \
     scrot \
-    thermald \
     ntp \
     tlp \
     wget \
-    neomutt \
     pass \
-    pgp \
+    gnupg \
     w3m \
     notmuch \
     abook \
@@ -58,6 +57,7 @@ elif [[ $platform == 'arch' ]]; then
     hub \
     "
   sudo pacman -S --noconfirm $PACKAGES_TO_INSTALL
+  exit
   ln -sf /usr/bin/chromium /usr/local/bin/google-chrome
   if [[ ! -e ~/github/arch/yay ]]; then
     mkdir -p ~/github/arch
@@ -67,8 +67,8 @@ elif [[ $platform == 'arch' ]]; then
     makepkg -si
   fi
   # install AUR packages
-  yay -S --noconfirm unzip unrar hwinfo mhwd tree fontconfig-infinality checkupdates pacman-contrib
-  yay -S --noconfirm google-chrome slack-desktop htop dropbox glxinfo traceroute wavebox-bin rr gometalinter python2 python-pip
+  yay -S --noconfirm unzip unrar hwinfo mhwd tree fontconfig-infinality checkupdates pacman-contrib thermald
+  yay -S --noconfirm google-chrome slack-desktop htop dropbox glxinfo traceroute wavebox-bin rr-bin gometalinter python2 python-pip
   # enable services
   sudo systemctl enable thermald.service
   sudo systemctl enable tlp.service
