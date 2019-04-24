@@ -5,7 +5,7 @@
 if [[ $platform == 'linux' ]]; then
   sudo apt-get install -y vim-nox ctags fonts-font-awesome neovim
 elif [[ $platform == 'arch' ]]; then
-  sudo pacman -S --noconfirm vim ttf-font-awesome ctags neovim
+  sudo pacman -S --noconfirm vim ttf-font-awesome ctags neovim ttf-ms-fonts
 
 fi
 echo "NERD FONTS"
