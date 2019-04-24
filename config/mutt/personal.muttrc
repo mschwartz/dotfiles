@@ -1,0 +1,2 @@
+macro index,pager i1 '<sync-mailbox><enter-command>source /home/mschwartz/.config/mutt/accounts/personal.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to mykesx@gmail.com"
+source /home/mschwartz/.config/mutt/accounts/personal.muttrc

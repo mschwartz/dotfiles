@@ -1,0 +1,25 @@
+# vim: filetype=neomuttrc
+# muttrc file for account personal
+set realname = "Michael Schwartz"
+set from = "mykesx@gmail.com"
+set sendmail = "/usr/bin/msmtp -a personal"
+set folder = "/home/mschwartz/.local/share/mail/personal"
+set header_cache = /home/mschwartz/.config/mutt/accounts/personal/cache/headers
+set message_cachedir = /home/mschwartz/.config/mutt/accounts/personal/cache/bodies
+set certificate_file = /home/mschwartz/.config/mutt/accounts/personal/certificates
+
+alias me Michael Schwartz <mykesx@gmail.com>
+
+set mbox_type = Maildir
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+bind index,pager gg noop
+bind index,pager g noop
+bind index,pager M noop
+bind index,pager C noop
+bind index gg first-entry
+macro index o "<shell-escape>/home/mschwartz/.config/mutt/bin/mailsync -V personal<enter>" "run mbsync to sync personal"
+unmailboxes *
+set imap_check_subscribed
+
