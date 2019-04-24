@@ -58,5 +58,5 @@ alias grep='grep --exclude-dir={.bzr,CVS,.git,.hg,.svn,node_modules}'
 
 # commands
 alias df='df -P'
-alias slack slack-term
+#alias slack slack-term
 

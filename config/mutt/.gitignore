@@ -2,3 +2,4 @@
 *.gpg
 *.pyc
 *mailsynclastrun
+accounts/personal/cache
