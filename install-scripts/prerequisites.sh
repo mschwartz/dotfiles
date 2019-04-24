@@ -32,6 +32,7 @@ if [[ $platform == 'linux' ]]; then
 elif [[ $platform == 'arch' ]]; then
   PACKAGES_TO_INSTALL="\
     git \
+    rsync \
     neomutt \
     man-pages \
     xscreensaver \
