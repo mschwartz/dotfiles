@@ -37,4 +37,7 @@ if [[ "$platform" == "macos" ]]; then
   else
     YCM_CORES=8 ./install.py --tern-completer --clang-completer --system-libclang
   fi
+elif [[ "$platform" == "arch" ]]; then
+  cd ~/.vim/bundle/YouCompleteMe
+  YCM_CORES=8 python3 install.py --tern-completer --clang-completer --go-completer --rust-completer --java-completer
 fi

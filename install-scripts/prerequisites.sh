@@ -54,11 +54,16 @@ elif [[ $platform == 'arch' ]]; then
     notmuch \
     abook \
     cronie \
+    cmake \
+    clang \
+    rust \
     hub \
     "
 
   sudo pacman -Syy
-  sudo pacman-key --refresh-keys
+  # uncomment this if keys are out of date - it is really slow
+#  sudo pacman-key --refresh-keys
+  gpg --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
   sudo pacman -S --noconfirm $PACKAGES_TO_INSTALL
   ln -sf /usr/bin/chromium /usr/local/bin/google-chrome
   if [[ ! -e ~/github/arch/yay ]]; then
@@ -71,6 +76,8 @@ elif [[ $platform == 'arch' ]]; then
   # install AUR packages
   yay -S --noconfirm unzip unrar hwinfo mhwd tree fontconfig-infinality checkupdates pacman-contrib thermald
   yay -S --noconfirm google-chrome slack-desktop htop dropbox dropbox-cli glxinfo traceroute wavebox-bin rr-bin gometalinter python python2 python-pip
+
+  sudo pip3 install neovim
 
   rm -rf ~/.dropbox-dist
   install -dm0 ~/.dropbox-dist
