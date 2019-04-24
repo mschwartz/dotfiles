@@ -1,6 +1,4 @@
-personal.muttrc
 *.swp
 *.gpg
 *.pyc
-accounts/
 *mailsynclastrun
