@@ -11,7 +11,7 @@ if [[ $platform == 'linux' ]]; then
   sudo apt-get install -y nodejs
 elif [[ $platform == 'arch' ]]; then
   sudo pacman -S --noconfirm nodejs npm
-  yay -S --noconfigm nvm
+  yay -S --noconfirm nvm
 elif [[ $platform == 'macos' ]]; then
   install node
 fi
