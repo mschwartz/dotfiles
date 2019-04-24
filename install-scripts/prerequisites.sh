@@ -67,7 +67,11 @@ elif [[ $platform == 'arch' ]]; then
   fi
   # install AUR packages
   yay -S --noconfirm unzip unrar hwinfo mhwd tree fontconfig-infinality checkupdates pacman-contrib thermald
-  yay -S --noconfirm google-chrome slack-desktop htop dropbox glxinfo traceroute wavebox-bin rr-bin gometalinter python2 python-pip
+  yay -S --noconfirm google-chrome slack-desktop htop dropbox dropbox-cli glxinfo traceroute wavebox-bin rr-bin gometalinter python python2 python-pip
+
+  rm -rf ~/.dropbox-dist
+  install -dm0 ~/.dropbox-dist
+
   # enable services
   sudo systemctl enable thermald.service
   sudo systemctl enable tlp.service
@@ -79,4 +83,8 @@ elif [[ $platform == 'macos' ]]; then
   install boost-python 
   install boost-python3
 fi
+
+git config --global user.email "mykesx@gmail.com"
+git config --global user.name "Michael Schwartz"
+
 
