@@ -10,16 +10,27 @@ set secure exrc
 filetype off
 
 
+" set leader
+let mapleader=","
+let g:mapleader=","
+
+" auto commands
+
+autocmd! 
+
 " for arduino
 autocmd BufNewFile,BufReadPost *.c,*.cpp,*.h,*.ino,*.pde set filetype=cpp
 autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
 autocmd BufNewFile,BufReadPost *.fth,*.4th set filetype=forth
 
-" set leader
-let mapleader=","
-let g:mapleader=","
-
-let g:easytags_suppress_ctags_warning=1
+" for go
+autocmd BufEnter,BufNewFile,BufReadPost *.go call SetGoOptions()
+"autocmd BufEnter,BufNewFile,BufReadPost *.go map <leader>r :GoRun<cr>
+function SetGoOptions() 
+  set filetype=go
+  map <leader>r :GoRun<cr>
+  map <leader>b :GoBuild<cr>
+endfunction 
 
 " key bindings
 nmap <F1> <nop>
@@ -93,6 +104,7 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
+    let g:easytags_suppress_ctags_warning=1
     let g:easytags_languages = {
       \   'javascript': {
       \       'cmd': 'jsctags',
@@ -292,6 +304,7 @@ endif
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
                 \   'h': ['clang-format'],
+                \   'go': ['goimports', 'gofmt']
                 \}
 "                \   'vue': ['eslint']
     let g:ale_fixers = {
@@ -301,6 +314,7 @@ endif
                 \   'objc': ['clang'],
                 \   'cpp': ['clang-format'],
                 \   'h': ['clang-format'],
+                \   'go': ['goimports', 'gofmt']
                 \}
 
 "                \   'cpp': [ 'g++' ],
