@@ -239,7 +239,7 @@ bind index,pager g noop
 bind index,pager M noop
 bind index,pager C noop
 bind index gg first-entry
-macro index o "<shell-escape>/home/mschwartz/.config/mutt/bin/mailsync -V personal<enter>" "run mbsync to sync personal"
+#macro index o "<shell-escape>/home/mschwartz/.config/mutt/bin/mailsync -V personal<enter>" "run mbsync to sync personal"
 unmailboxes *
 set imap_check_subscribed
 
