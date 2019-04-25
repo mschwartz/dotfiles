@@ -8,19 +8,6 @@ export OS=`uname -s`
 # Customize to your needs...
 export LSCOLORS=exfxcxdxbxexexabagacad
 
-if [ "$OS" = 'Darwin' ]; then
-  export EDITOR='/usr/local/bin/vim'
-  if [ "$TERM" = "st-256color" ]; then
-    export TERM="xterm-256color"
-  fi
-  if [ "$KONSOLE_PROFILE_NAME" != "" ]; then
-    echo "KONSOLE"
-    export TERM=konsole-256-color
-  fi
-else
-  export EDITOR='/usr/bin/vim'
-fi
-
 cdpath=( ~ ~/modus/github )
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.2.15/..:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.3/..:$PATH"
@@ -44,4 +31,20 @@ else
   export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 fi
 export LESS=' -R '
+
+if [ "$OS" = 'Darwin' ]; then
+  export EDITOR='/usr/local/bin/vim'
+  if [ "$TERM" = "st-256color" ]; then
+    export TERM="xterm-256color"
+  fi
+  if [ "$KONSOLE_PROFILE_NAME" != "" ]; then
+    echo "KONSOLE"
+    export TERM=konsole-256-color
+  fi
+else
+  echo XTERM
+  export EDITOR='/usr/bin/vim'
+  export TERM="xterm-256color"
+  echo $TERM
+fi
 

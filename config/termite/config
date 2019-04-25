@@ -3,7 +3,8 @@
 #audible_bell = false
 #clickable_url = true
 #dynamic_title = true
-font = Hack Regular Nerd Font Complete Mono 14
+;font = Hack Regular Nerd Font Complete Mono 14
+font = Hack Nerd Font Mono 14
 #fullscreen = true
 #geometry = 640x480
 #icon_name = terminal
@@ -48,32 +49,79 @@ scrollback_lines = -1
 #foreground_bold = #ffffff
 #background = #3f3f3f
 
+
 # 20% background transparency (requires a compositor)
-background = rgba(63, 63, 63, 0.8)
+;background = rgba(63, 63, 63, 0.8)
 
 # If unset, will reverse foreground and background
 highlight = #2f2f2f
 
 # Colors from color0 to color254 can be set
-color0 = #3f3f3f
-color1 = #705050
-color2 = #60b48a
-color3 = #dfaf8f
-color4 = #506070
-color5 = #dc8cc3
-color6 = #8cd0d3
-color7 = #dcdccc
-color8 = #709080
-color9 = #dca3a3
-color10 = #c3bf9f
-color11 = #f0dfaf
-color12 = #94bff3
-color13 = #ec93d3
-color14 = #93e0e3
-color15 = #ffffff
+;color0 = #3f3f3f
+;color1 = #705050
+;color2 = #60b48a
+;color3 = #dfaf8f
+;color4 = #506070
+;color5 = #dc8cc3
+;color6 = #8cd0d3
+;color7 = #dcdccc
+;color8 = #709080
+;color9 = #dca3a3
+;color10 = #c3bf9f
+;color11 = #f0dfaf
+;color12 = #94bff3
+;color13 = #ec93d3
+;color14 = #93e0e3
+;color15 = #ffffff
+
+foreground          = #404040
+foreground_bold     = #404040
+cursor              = #404040
+cursor_foreground   = #ffffff
+background          = rgba(255, 255, 255)
+
+# 16 color space
+
+# Black, Gray, Silver, White
+color0  = #ffffff
+color8  = #808080
+color7  = #404040
+color15 = #5e5e5e
+
+# Red
+color1  = #c41a15
+color9  = #c41a15
+
+# Green
+color2  = #007400
+color10 = #007400
+
+# Yellow
+color3  = #826b28
+color11 = #826b28
+
+# Blue
+color4  = #0000ff
+color12 = #0000ff
+
+# Purple
+color5  = #a90d91
+color13 = #a90d91
+
+# Teal
+color6  = #318495
+color14 = #318495
+
+# Extra colors
+color16 = #eb8500
+color17 = #826b28
+color18 = #c0c0c0
+color19 = #c0c0c0
+color20 = #808080
+color21 = #404040
 
 [hints]
-#font = Monospace 12
+font = Monospace 12
 #foreground = #dcdccc
 #background = #3f3f3f
 #active_foreground = #e68080

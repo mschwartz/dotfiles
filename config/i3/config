@@ -18,7 +18,7 @@ gaps outer 15
 set $mod Mod1
 set $sup Mod4
 
-set $term --no-startup-id /usr/bin/konsole
+set $term --no-startup-id /usr/bin/termite
 
 # These windows require specific rules to display in floating mode
 #
@@ -49,7 +49,7 @@ bindsym $sup+space exec ~/.config/i3/toggle-trackpad.sh
 
 # start a terminal
 bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec konsole
+bindsym $mod+Shift+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
