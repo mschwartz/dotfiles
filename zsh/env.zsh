@@ -38,13 +38,10 @@ if [ "$OS" = 'Darwin' ]; then
     export TERM="xterm-256color"
   fi
   if [ "$KONSOLE_PROFILE_NAME" != "" ]; then
-    echo "KONSOLE"
     export TERM=konsole-256-color
   fi
 else
-  echo XTERM
   export EDITOR='/usr/bin/vim'
   export TERM="xterm-256color"
-  echo $TERM
 fi
 
