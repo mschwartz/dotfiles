@@ -5,7 +5,7 @@
 if [[ $platform == 'linux' ]]; then
   sudo apt-get install -y vim-nox ctags fonts-font-awesome neovim
 elif [[ $platform == 'arch' ]]; then
-  sudo pacman -S --noconfirm vim ttf-font-awesome ctags neovim
+  sudo pacman -S --noconfirm vim ttf-font-awesome ctags neovim ttf-ms-fonts
 
 fi
 echo "NERD FONTS"
@@ -37,4 +37,7 @@ if [[ "$platform" == "macos" ]]; then
   else
     YCM_CORES=8 ./install.py --tern-completer --clang-completer --system-libclang
   fi
+elif [[ "$platform" == "arch" ]]; then
+  cd ~/.vim/bundle/YouCompleteMe
+  YCM_CORES=8 python3 install.py --tern-completer --clang-completer --go-completer --rust-completer --java-completer
 fi
