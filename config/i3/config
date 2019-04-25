@@ -178,8 +178,8 @@ bindsym $mod+Ctrl+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut
 bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh ~/Pictures/Icons/lock-512.png
 #bindsym $mod+Ctrl+l exec xscreensaver-command -lock
 
-bindsym $mod+b exec $term -e ranger ~/github/other/wallpapers
-bindsym $mod+w exec $term -e ranger ~/github/other/wallpapers
+bindsym $mod+b exec kitty -e ranger ~/github/other/wallpapers
+bindsym $mod+w exec kitty -e ranger ~/github/other/wallpapers
 
 # shortcuts to run programs
 bindsym $mod+F1 exec "google-chrome-stable"
@@ -190,7 +190,7 @@ bindsym $mod+F9 exec slack
 bindsym $mod+F10 exec /opt/wavebox/Wavebox
 #bindsym $mod+F11 exec ~/Downloads/arduino-1.8.5/arduino
 bindsym $mod+F12 exec /usr/local/bin/webstorm
-bindsym $mod+r exec $term -e ranger
+bindsym $mod+r exec kitty -e ranger
 
 # screen shots
 bindsym Shift+Print exec bash ~/bin/screenshot.sh
@@ -301,7 +301,8 @@ bindsym $mod+shift+comma exec xrandr --output HDMI-0 --left-of DP-2 --auto
 bindsym $mod+shift+period exec xrandr --output HDMI-0 --right-of DP-2 --auto
 # background processese
 exec --no-startup-id dunst
-exec --no-startup-id compton -b --vsync none -f -c --backend xrender
+#exec --no-startup-id compton -b --vsync none -f -c --backend xrender
+exec --no-startup-id compton -b -f -c --backend glx
 exec --no-startup-id unclutter
 #exec --no-startup-id /usr/bin/xscreensaver
 exec --no-startup-id /usr/bin/dropbox
