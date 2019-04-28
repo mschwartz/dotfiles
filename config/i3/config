@@ -49,7 +49,7 @@ bindsym $sup+space exec ~/.config/i3/toggle-trackpad.sh
 
 # start a terminal
 bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec termite
+bindsym $mod+Shift+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
