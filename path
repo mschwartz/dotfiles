@@ -4,7 +4,7 @@
 #export NVM_DIR=~/.nvm
 #source $(brew --prefix nvm)/nvm.sh
 
-export PATH=$HOME/bin:/usr/local/mysql/bin:$PATH
+export PATH=$HOME/bin:$HOME/go/bin:/usr/local/mysql/bin:$PATH
 # ANT
 #export ANT_HOME='/Users/mschwartz/apache-ant-1.9.2'
 #export PATH=$PATH:$ANT_HOME/bin
