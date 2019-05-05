@@ -82,6 +82,12 @@ fi
 
 neofetch
 
+# disable ctrl-s (xon/xoff)
+stty -ixon
+
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+  source /usr/share/nvm/init-nvm.sh
+fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 PATH="/home/mschwartz/perl5/bin${PATH:+:${PATH}}"; export PATH;
@@ -89,6 +95,14 @@ PERL5LIB="/home/mschwartz/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL
 PERL_LOCAL_LIB_ROOT="/home/mschwartz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/mschwartz/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/mschwartz/perl5"; export PERL_MM_OPT;
+
+if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
+  source $HOME/github/other/emsdk/emsdk_env.sh
+fi
+PATH=~/go/bin:$PATH; export PATH
+
+
+
 # Must be sourced at end of .zshrc
 if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -96,12 +110,3 @@ elif [ -f /usr/share/zsh-syntax-highlighting.zsh ]; then
   source /usr/share/zsh-syntax-highlighting.zsh
 fi
 
-if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
-  source $HOME/github/other/emsdk/emsdk_env.sh
-fi
-# disable ctrl-s (xon/xoff)
-stty -ixon
-
-if [ -f /usr/share/nvm/init-nvm.sh ]; then
-  source /usr/share/nvm/init-nvm.sh
-fi
