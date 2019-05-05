@@ -17,26 +17,10 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-#export PATH=/Users/mschwartz/bin/Sencha/Cmd/4.0.2.67:$PATH
-
-#export PATH=/Users/mschwartz/bin/Sencha/Cmd/4.0.5.87:$PATH
-
-#export SENCHA_CMD_3_0_0="/Users/mschwartz/bin/Sencha/Cmd/5.1.3.61"
-
-#export PATH=/Users/mschwartz/bin/Sencha/Cmd/5.1.3.61:$PATH
-
-#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.0.2.14/..:$PATH"
-#export PATH="/Users/mschwartz/bin/Sencha/Cmd/SenchaCmd-6.1.0.54-osx/:$PATH"
-#export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.0.65/..:$PATH"
 if [ -e "/Applications/Visual Studio Code.app" ]; then
   export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 fi
-export PATH=~/bin/:$PATH
-#if [ -e /usr/local/bin/st ]; then
-##if [ ! -v ITERM_PROFILE ]; then
-#  export TERMINAL="stterm"
-#  export TERM="stterm"
-#fi
+export PATH=~/bin/:~/go/bin:$PATH
 
 if [ "$DISPLAY" = "" ]; then
   export DISPLAY=:0.0
