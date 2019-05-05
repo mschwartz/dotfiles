@@ -61,9 +61,8 @@ view() {
       ;;
   esac
 
-  local=`echo $1 | tr '[:lower:'] '[:upper:']`
-  echo $local
-  case $local in
+  local testfn=`echo $1 | tr '[:lower:'] '[:upper:']`
+  case $testfn in
     *.JPG|*.JPEG|*.PNG|*.GIF|*.TIF|*.EPS|*.AI|*.BMP)
       echo ""
       kitty +kitten icat --align left $1
