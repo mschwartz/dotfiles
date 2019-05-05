@@ -50,3 +50,25 @@ cls() {
 find() {
   /usr/bin/find $@ -not -path "./node_modules/*"
 }
+
+view() {
+  case $TERMINFO in
+    *kitty*)
+      ;;
+    *)
+      /usr/bin/view $1
+      return
+      ;;
+  esac
+
+  case $1 in
+    *.jpg|*.jpeg|*.png|*.gif|*.tif|*.eps|*.ai|*.bmp)
+      echo ""
+      kitty +kitten icat --align left $1
+      identify $1
+      echo ""
+      ;;
+    *)
+      /usr/bin/view $1
+  esac
+}
