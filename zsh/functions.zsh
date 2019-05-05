@@ -51,6 +51,10 @@ find() {
   /usr/bin/find $@ -not -path "./node_modules/*"
 }
 
+sclack() {
+  cd ~/github/other/sclack && cls && ./app.py
+}
+
 view() {
   case $TERMINFO in
     *kitty*)
