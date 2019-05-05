@@ -61,8 +61,10 @@ view() {
       ;;
   esac
 
-  case $1 in
-    *.jpg|*.jpeg|*.png|*.gif|*.tif|*.eps|*.ai|*.bmp)
+  local=`echo $1 | tr '[:lower:'] '[:upper:']`
+  echo $local
+  case $local in
+    *.JPG|*.JPEG|*.PNG|*.GIF|*.TIF|*.EPS|*.AI|*.BMP)
       echo ""
       kitty +kitten icat --align left $1
       identify $1
