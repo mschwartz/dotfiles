@@ -15,11 +15,11 @@ chosen=`echo "$MENU" | rofi -font "hack 20" -dmenu -lines 5 -p "Screenshot"`
 case $chosen in
   1*) 
     # Active Window
-    scrot -u $HOME/Downloads/`date +%Y-%m-%d_%H:%M:%S`.png
+    scrot -d 2 -u $HOME/Downloads/`date +%Y-%m-%d_%H:%M:%S`.png
     ;;
   2*) 
     # Active Desktop
-    scrot $HOME/Downloads/`date +%Y-%m-%d_%H:%M:%S`.png
+    scrot -d 2 $HOME/Downloads/`date +%Y-%m-%d_%H:%M:%S`.png
     ;;
   3*) 
     # Rectangle
