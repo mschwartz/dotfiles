@@ -50,3 +50,30 @@ cls() {
 find() {
   /usr/bin/find $@ -not -path "./node_modules/*"
 }
+
+sclack() {
+  cd ~/github/other/sclack && cls && ./app.py
+}
+
+view() {
+  case $TERMINFO in
+    *kitty*)
+      ;;
+    *)
+      /usr/bin/view $1
+      return
+      ;;
+  esac
+
+  local testfn=`echo $1 | tr '[:lower:'] '[:upper:']`
+  case $testfn in
+    *.JPG|*.JPEG|*.PNG|*.GIF|*.TIF|*.EPS|*.AI|*.BMP)
+      echo ""
+      kitty +kitten icat --align left $1
+      identify $1
+      echo ""
+      ;;
+    *)
+      /usr/bin/view $1
+  esac
+}

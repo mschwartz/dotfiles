@@ -1,9 +1,9 @@
 #!/bin/bash
 
 read -r -d '' MENU <<-'EOF'
-1) Active Window
-2) Active Desktop
-3) Rectangle
+1) Rectangle
+2) Active Window
+3) Active Desktop
 4) Screencast
 5) Voice Memo
 EOF
@@ -14,16 +14,16 @@ chosen=`echo "$MENU" | rofi -font "hack 20" -dmenu -lines 5 -p "Screenshot"`
 #echo $chosen
 case $chosen in
   1*) 
-    # Active Window
-    scrot -u $HOME/Downloads/`date +%Y-%m-%d_%H:%M:%S`.png
-    ;;
-  2*) 
-    # Active Desktop
-    scrot $HOME/Downloads/`date +%Y-%m-%d_%H:%M:%S`.png
-    ;;
-  3*) 
     # Rectangle
     scrot -s $HOME/Downloads/`date +%Y-%m-%d_%H:%M:%S`.png
+    ;;
+  2*) 
+    # Active Window
+    scrot -d 2 -u $HOME/Downloads/`date +%Y-%m-%d_%H:%M:%S`.png
+    ;;
+  3*) 
+    # Active Desktop
+    scrot -d 2 $HOME/Downloads/`date +%Y-%m-%d_%H:%M:%S`.png
     ;;
   4*) 
     # Screencast
