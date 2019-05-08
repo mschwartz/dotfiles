@@ -6,28 +6,29 @@ CPU=`cat /proc/cpuinfo | grep "model name" | uniq | sed -e 's/model name.*: //'`
 CORES=`cat /proc/cpuinfo | grep "model name" | wc -l`
 MEMORY=`free -ht | head -2 | tail -1 | awk '{print $2}'`
 
-echo "SYSTEM INFORMATION"
-echo "------------------"
-echo "HOST   ${HOSTNAME}"
-echo "USER   ${USER} (${FULLNAME})"
-echo "CPU    $CPU $CORES CORES"
-echo "MEMORY ${MEMORY}"
-echo ""
-echo "DISKS"
-echo "-----"
-df -h | head -1
-df -h | sort -u -t ' ' -u -k 1,1 | grep ^/dev/
-#df -h | grep ^/dev/
-echo ""
-echo "NETWORK SPEED"
-echo "-------------"
-wget -o /tmp/foo --output-document=/dev/null --report-speed=bits http://speedtest.wdc01.softlayer.com/downloads/test500.zip
-chmod 777 /tmp/foo
-FOO=`cat /tmp/foo | tail -4 | head -1 | sed -e 's/^.*=//' | sed -e 's/s.*$//'`
-SECONDS=`cat /tmp/foo | tail -4 | head -1 | sed -e 's/^.*=//' | sed -e 's/s.*$//'`
-SPEED=`expr 512000000 / $SECONDS / 1024 / 1024`
-echo "$SPEED MBYTES/SEC DOWNLOAD (downloaded 500MB in $SECONDS seconds)"
-rm /tmp/foo
-#foo=`command foo`
-#echo $foo
+wget --quiet -O /tmp/modus_neofetch https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch
+chmod 755 /tmp/modus_neofetch
+/tmp/modus_neofetch --stdout --backend off --bold off --color_blocks off --ascii_bold off| tee /tmp/modus_info.txt
+rm /tmp/modus_neofetch
+
+echo "SYSTEM INFORMATION" | tee -a /tmp/modus_info.txt
+echo "------------------" | tee -a /tmp/modus_info.txt
+echo "HOST   ${HOSTNAME}" | tee -a /tmp/modus_info.txt
+echo "USER   ${USER} (${FULLNAME})" | tee -a /tmp/modus_info.txt
+echo "CPU    $CPU $CORES CORES" | tee -a /tmp/modus_info.txt
+echo "MEMORY ${MEMORY}" | tee -a /tmp/modus_info.txt
+
+echo "" | tee -a /tmp/modus_info.txt
+echo "DISKS" | tee -a /tmp/modus_info.txt
+echo "-----" | tee -a /tmp/modus_info.txt
+df -h | head -1 | tee -a /tmp/modus_info.txt
+df -h | sort -u -t ' ' -u -k 1,1 | grep ^/dev/ | tee -a /tmp/modus_info.txt
+
+echo "" | tee -a /tmp/modus_info.txt
+echo "NETWORK SPEED" | tee -a /tmp/modus_info.txt
+echo "-------------" | tee -a /tmp/modus_info.txt
+wget --quiet -O /tmp/modus_speedtest.py https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py
+chmod 755 /tmp/modus_speedtest.py
+/tmp/modus_speedtest.py --simple | tee -a /tmp/modus_info.txt
+rm /tmp/modus_speedtest.py
 
