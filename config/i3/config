@@ -377,6 +377,10 @@ bar {
 ################################################################################
 ################################################################################
 
+exec_always xinput --set-prop 11 'libinput Accel Speed' .5
+exec_always xinput --set-prop 11 'libinput Accel Speed Default' .5
+exec_always xinput --set-prop 11 'libinput Natural Scrolling Enabled' 1
+exec_always xinput --set-prop 11 'libinput Natural Scrolling Enabled Default' 1
 exec_always xinput --set-prop 12 'libinput Accel Speed' .5
 exec_always xinput --set-prop 12 'libinput Accel Speed Default' .5
 exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled' 1
