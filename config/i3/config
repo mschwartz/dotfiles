@@ -381,6 +381,10 @@ exec_always xinput --set-prop 12 'libinput Accel Speed' .5
 exec_always xinput --set-prop 12 'libinput Accel Speed Default' .5
 exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled' 1
 exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled Default' 1
+exec_always xinput --set-prop 13 'libinput Accel Speed' .5
+exec_always xinput --set-prop 13 'libinput Accel Speed Default' .5
+exec_always xinput --set-prop 13 'libinput Natural Scrolling Enabled' 1
+exec_always xinput --set-prop 13 'libinput Natural Scrolling Enabled Default' 1
 exec_always xinput --set-prop 15 'libinput Accel Speed' .5
 exec_always xinput --set-prop 15 'libinput Accel Speed Default' .5
 exec_always xinput --set-prop 15 'libinput Natural Scrolling Enabled' 1
@@ -414,6 +418,7 @@ exec --no-startup-id xset s off -dpms
 ### make caps lock into esc key
 exec_always --no-startup-id xmodmap -e "clear lock"
 exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
+exec_always --no-startup-id solaar config 2 fn-swap off
 ## set display resolution
 exec --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
 bindsym $mod+> exec xrandr --output HDMI-0 --right-of DP-2 --auto
