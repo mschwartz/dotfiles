@@ -11,6 +11,8 @@ source ./install-scripts/prerequisites.sh
 ##########
 
 cd $INSTALL_PWD
+source ./install-scripts/install-security.sh
+cd $INSTALL_PWD
 source ./install-scripts/install-zsh.sh
 cd $INSTALL_PWD
 source ./install-scripts/install-dotfiles.sh

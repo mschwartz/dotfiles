@@ -4,7 +4,7 @@
 
 if [[ $platform == 'linux' ]]; then
   echo "installing prerequisites $platform"
-  PACKAGES_TO_INSTALL="compton unclutter scrot conky i3blocks ssh i3lock ranger rxvt-unicode-256color w3m-img feh xclip dmenu qutebrowser"
+  PACKAGES_TO_INSTALL="compton unclutter scrot conky i3blocks ssh i3lock ranger rxvt-unicode-256color w3m-img feh xclip dmenu qutebrowser kitty"
   echo $PACKAGES_TO_INSTALL
   sudo apt-get install -y $PACKAGES_TO_INSTALL
   sudo apt-get install -y  libpango1.0-dev libyajl-dev libstartup-notification0-dev libev-dev autoconf automake
