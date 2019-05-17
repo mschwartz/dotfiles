@@ -6,7 +6,7 @@ echo ">>> INSTALLING NFS"
 
 $HOSTNAME=`hostname`
 if [[ $platform == 'arch' ]]; then
-  sudo pacman --noconfirm -S nfs-utils sshfs cronie autofs
+  sudo pacman --noconfirm -S nfs-utils sshfs cronie autofs rsync
   sudo systemctl enable nfs-server
   sudo systemctl start nfs-server
   sudo systemctl enable cronie
