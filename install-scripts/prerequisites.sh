@@ -69,8 +69,10 @@ elif [[ $platform == 'arch' ]]; then
 
   sudo cp ./arch/systemd.reflector.timer /etc/systemd/system/reflector.timer
   sudo cp ./arch/systemd.reflector.service /etc/systemd/system/reflector.service
+  echo "enable/start reflector service"
   sudo systemd enable reflector.service
   sudo systemd start reflector.service
+  echo "enable/start reflector timer"
   sudo systemd enable reflector.timer
   sudo systemd start reflector.timer
 
@@ -94,8 +96,10 @@ elif [[ $platform == 'arch' ]]; then
 
   # enable services
   yay -S --noconfirm thermald-git
+  echo enable/start thermald
   sudo systemctl enable thermald.service
   sudo systemctl start thermald.service
+  echo enable/start tlp
   sudo systemctl enable tlp.service
   sudo systemctl start tlp.service
 
