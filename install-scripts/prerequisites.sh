@@ -60,7 +60,7 @@ elif [[ $platform == 'arch' ]]; then
     hub \
     "
 
-  sudo pacman -Syy figlet
+  sudo pacman --noconfirm -Syy figlet
   figlet "Prerequisites for $platform"
 
   # uncomment this if keys are out of date - it is really slow
