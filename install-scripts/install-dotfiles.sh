@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo ">>> INSTALLING DOTFILES"
+figlet "Installing dotfiles"
 
 # create dotfiles_old in homedir
 dir=~/dotfiles                    # dotfiles directory

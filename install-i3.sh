@@ -1,5 +1,6 @@
 #!/bin/bash
 
+figlet "Install i3wm"
 . ./install-scripts/lib/platform.sh
 
 if [[ $platform == 'linux' ]]; then
@@ -12,8 +13,14 @@ fi
 
 if [[ $platform == 'arch' ]]; then
   sudo pacman -S --noconfirm xorg xorg-server xorg-xrandr xterm xorg-xinit i3-gaps i3blocks i3status konsole compton \
+    xscreensaver \
+    dolphin \
+    chromium \
+    firefox \
+    w3m \
     scrot ranger w3m feh xclip rofi qutebrowser sddm jsoncpp jsoncpp dunst libnotify i3lock
-  yay -Syy --noconfirm bumblebee-status
+  sudo pacman -S --noconfirm ttf-font-awesome
+  yay -Syy --noconfirm ttf-ms-fonts bumblebee-status google-chrome slack-desktop glxinfo wavebox-bin 
   yay -S --noconfirm fontconfig-infinality ttf-font-awesome ttf-yosemite-san-francicso-font-git siji-git material-icons.git ttf-material-icons ttf-ms-fonts
   yay -S --noconfirm rpm-org unclutter flameshot lxappearance wicd-patched dnf redshift bluez blueman
   sudo systemctl enable sddm.service
@@ -66,3 +73,12 @@ fi
 
 cd ~/dotfiles/src/rez
 make
+
+echo "NERD FONTS"
+if [[ ! -e ~/github/other/nerd-fonts ]]; then
+  mkdir -p ~/github/other
+  cd ~/github/other
+  git clone --depth 1 git@github.com:ryanoasis/nerd-fonts
+fi
+cd ~/github/other/nerd-fonts
+./install.sh

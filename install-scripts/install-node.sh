@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo ">>> INSTALLING NODEJS"
+figlet "Install NodeJS"
 
 . ~/dotfiles/install-scripts/lib/platform.sh
 
@@ -10,7 +10,7 @@ if [[ $platform == 'linux' ]]; then
   sudo apt-get update
   sudo apt-get install -y nodejs
 elif [[ $platform == 'arch' ]]; then
-  sudo pacman -S --noconfirm nodejs npm
+  sudo pacman -S --noconfirm nodejs npm yarn
   yay -S --noconfirm nvm
 elif [[ $platform == 'macos' ]]; then
   install node
