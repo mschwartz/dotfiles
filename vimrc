@@ -24,13 +24,13 @@ autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
 autocmd BufNewFile,BufReadPost *.fth,*.4th set filetype=forth
 
 " for go
-autocmd BufEnter,BufNewFile,BufReadPost *.go call SetGoOptions()
+"autocmd BufEnter,BufNewFile,BufReadPost *.go call SetGoOptions()
 "autocmd BufEnter,BufNewFile,BufReadPost *.go map <leader>r :GoRun<cr>
-function SetGoOptions() 
-  set filetype=go
-  map <leader>r :GoRun<cr>
-  map <leader>b :GoBuild<cr>
-endfunction 
+"function SetGoOptions() 
+"  set filetype=go
+"  map <leader>r :GoRun<cr>
+"  map <leader>b :GoBuild<cr>
+"endfunction 
 
 " key bindings
 nmap <F1> <nop>
@@ -57,9 +57,14 @@ map <leader>ip <esc>iimport PropTypes from 'prop-types'<cr><esc>
 map <leader>ir <esc>iimport React, {useState, useEffect, useRef} from 'react'<cr><esc>
 map <leader>itc <esc>otry {<cr>}<cr>catch(e) {<cr>console.log('exception', e)<cr><esc>ddjddkkkk==ko
 map <leader>v <esc>:read !xsel<cr>
+
+map <leader>u <esc>guiw
+map <leader>U <esc>gUiw
+
 map <C-n> :NERDTreeToggle<CR>
 map <C-_> <leader>cij
 map <C-\> :Ack! 
+
 imap jj <Esc>
 imap jk <Esc>
 imap kkk <Esc>
