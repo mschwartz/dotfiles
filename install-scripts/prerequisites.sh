@@ -35,15 +35,11 @@ elif [[ $platform == 'arch' ]]; then
     rsync \
     neomutt \
     man-pages \
-    xscreensaver \
     tmux \
     neofetch \
     speedtest-cli \
     source-highlight \
     imagemagick \
-    dolphin \
-    chromium \
-    firefox \
     ranger \
     scrot \
     ntp \
@@ -51,7 +47,6 @@ elif [[ $platform == 'arch' ]]; then
     wget \
     pass \
     gnupg \
-    w3m \
     notmuch \
     abook \
     cronie \
