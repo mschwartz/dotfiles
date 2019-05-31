@@ -60,11 +60,13 @@ elif [[ $platform == 'arch' ]]; then
     hub \
     "
 
-  sudo pacman --noconfirm -Syy figlet
+  sudo pacman --noconfirm -Syy figlet gnupg
   figlet "Prerequisites for $platform"
+
 
   # uncomment this if keys are out of date - it is really slow
 #  sudo pacman-key --refresh-keys
+  gpgconf --kill all
   gpg --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
 
   sudo cp ./arch/systemd.reflector.timer /etc/systemd/system/reflector.timer
