@@ -11,4 +11,7 @@ if [[ $platform == 'arch' ]]; then
 elif [[ $platform == 'macos' ]]; then
   brew install git-secrets
 fi
+git secrets --register-aws --global
+git secrets --install -f ~/.git-templates/git-secrets
+git config --global  init.templateDir ~/.git-templates/git-secrets
 
