@@ -19,19 +19,19 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
 cd ~/dotfiles/vim
-npm install -g jsctags eslint prettier eslint-plugin-prettier
+yar add global jsctags eslint prettier eslint-plugin-prettier
 git submodule update --init --recursive
 cd bundle/tern_for_vim
-npm install
+yarn install
 if [[ "$platform" == "macos" ]]; then
   cd ../YouCompleteMe
   if [ "$type" = "armv71" ]; then
-    export YCM_CORES=1
-    YCM_CORES=1 ./install.py --tern-completer --system-boost --clang-completer --system-libclang
+    export YCM_CORES=$numcpus
+    YCM_CORES=$numcpus ./install.py --tern-completer --system-boost --clang-completer --system-libclang
   else
-    YCM_CORES=8 ./install.py --tern-completer --clang-completer --system-libclang
+    YCM_CORES=$numcpus ./install.py --tern-completer --clang-completer --system-libclang
   fi
 elif [[ "$platform" == "arch" ]]; then
   cd ~/.vim/bundle/YouCompleteMe
-  YCM_CORES=8 python3 install.py --tern-completer --clang-completer --go-completer --rust-completer --java-completer
+  YCM_CORES=$numcpus python3 install.py --tern-completer --clang-completer --go-completer --rust-completer --java-completer
 fi

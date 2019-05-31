@@ -23,3 +23,4 @@ fi
 export platform_type
 export platform
 export hostname=`hostname -s`
+export numcpus=`getconf _NPROCESSORS_ONLN`
