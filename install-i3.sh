@@ -1,5 +1,6 @@
 #!/bin/bash
 
+figlet "Install i3wm"
 . ./install-scripts/lib/platform.sh
 
 if [[ $platform == 'linux' ]]; then

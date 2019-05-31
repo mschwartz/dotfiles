@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo ">>> INSTALLING NFS"
+figlet "Install NFS"
 
 . ~/dotfiles/install-scripts/lib/platform.sh
 

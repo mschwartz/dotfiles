@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo ">>> INSTALLING ZSH"
+figlet "Install zsh"
 
 . ~/dotfiles/install-scripts/lib/platform.sh
 

@@ -2,7 +2,7 @@
 
 . ~/dotfiles/install-scripts/lib/platform.sh
 
-echo ">>> INSTALLING DOCKER"
+figlet "Install Docker"
 
 if [[ $platform == 'arch' ]]; then
   yay -Syy docker docker-machine docker-compose iptables iproute bridge-utils

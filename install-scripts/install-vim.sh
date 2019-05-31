@@ -1,5 +1,7 @@
 #!/bin/bash
 
+figlet "Install vim"
+
 . ~/dotfiles/install-scripts/lib/platform.sh
 
 if [[ $platform == 'linux' ]]; then

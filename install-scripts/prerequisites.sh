@@ -25,6 +25,9 @@ if [[ $platform == 'linux' ]]; then
     urlview
   "
 
+  sudo apt-get install figlet
+  figlet Prerequisites
+
   sudo apt-get update
   sudo apt-get -y dist-upgrade
   sudo apt-get install -y $PACKAGES_TO_INSTALL
@@ -32,6 +35,7 @@ if [[ $platform == 'linux' ]]; then
 elif [[ $platform == 'arch' ]]; then
   PACKAGES_TO_INSTALL="\
     git \
+    figlet \
     rsync \
     neomutt \
     man-pages \

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+figlet "Install security"
+
 . ~/dotfiles/install-scripts/lib/platform.sh
 
 if [[ $platform == 'arch' ]]; then

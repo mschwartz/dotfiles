@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo ">>> INSTALLING NODEJS"
+figlet "Install NodeJS"
 
 . ~/dotfiles/install-scripts/lib/platform.sh
 

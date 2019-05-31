@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo ">>> INSTALLING ANGULAR/TYPESCRIPT/TSLINT/etc."
+figlet "Angular/Typescript"
 
 npm install @angular/cli@1.6.8 -g
 npm install tslint -g
