@@ -12,7 +12,7 @@ elif [[ $platform == 'macos' ]]; then
   install "zsh"
 fi
 sudo chown -R $(whoami) /usr/local/share/zsh/site-functions
-chsh -s $(which zsh)
+sudo chsh $USER -s $(which zsh)
 # oh my zsh
 cd ~
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
