@@ -18,7 +18,7 @@ if [[ $platform == 'arch' ]]; then
     firefox \
     w3m \
     scrot ranger w3m feh xclip rofi qutebrowser sddm jsoncpp jsoncpp dunst libnotify i3lock
-  yay -Syy --noconfirm bumblebee-status
+  yay -Syy --noconfirm bumblebee-status google-chrome slack-desktop glxinfo wavebox-bin 
   yay -S --noconfirm fontconfig-infinality ttf-font-awesome ttf-yosemite-san-francicso-font-git siji-git material-icons.git ttf-material-icons ttf-ms-fonts
   yay -S --noconfirm rpm-org unclutter flameshot lxappearance wicd-patched dnf redshift bluez blueman
   sudo systemctl enable sddm.service
