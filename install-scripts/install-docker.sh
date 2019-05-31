@@ -5,7 +5,7 @@
 figlet "Install Docker"
 
 if [[ $platform == 'arch' ]]; then
-  yay -Syy docker docker-machine docker-compose iptables iproute bridge-utils
+  yay -Syy --noconfirm docker docker-machine docker-compose iptables iproute bridge-utils
   echo "RESTART MAY BE REQUIRED"
   sudo systemctl enable docker.service
   sudo systemctl restart docker.service
