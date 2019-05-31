@@ -104,6 +104,8 @@ elif [[ $platform == 'arch' ]]; then
   sudo systemctl start tlp.service
 
 elif [[ $platform == 'macos' ]]; then
+  install figlet
+  figlet "Prerequisites for $platform"
   install neofetch 
   install ctags
   install boost 
