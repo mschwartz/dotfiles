@@ -309,7 +309,7 @@ for_window [title="RoboDomo Home Automation"] scratchpad show
 for_window [title="RoboDomo Home Automation"] resize set 1280 900
 for_window [title="RoboDomo Home Automation"] move position center
 ## launch RoboDomo UI in browser, for quick access via scratchpad.
-bindsym $sup+r exec --no-startup-id ~/bin/robodomo
+bindsym $sup+r exec --no-startup-id RoboDomo
 ## launch tmux console in scratchpad
 bindsym $sup+s exec --no-startup-id ddspawn tmuxdd
 
