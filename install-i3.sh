@@ -21,7 +21,7 @@ if [[ $platform == 'arch' ]]; then
     scrot ranger w3m feh xclip rofi qutebrowser sddm jsoncpp jsoncpp dunst libnotify i3lock
   sudo pacman -S --noconfirm ttf-font-awesome
   yay -Syy --noconfirm ttf-ms-fonts bumblebee-status google-chrome slack-desktop glxinfo wavebox-bin 
-  yay -S --noconfirm fontconfig-infinality ttf-font-awesome ttf-yosemite-san-francicso-font-git siji-git material-icons.git ttf-material-icons ttf-ms-fonts
+  yay -S --noconfirm fontconfig-infinality ttf-font-awesome ttf-yosemite-san-francicso-font-git siji-git ttf-material-design-icons ttf-ms-fonts
   yay -S --noconfirm rpm-org unclutter flameshot lxappearance wicd-patched redshift bluez blueman
   sudo systemctl enable sddm.service
 fi
