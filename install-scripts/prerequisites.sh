@@ -45,6 +45,7 @@ elif [[ $platform == 'arch' ]]; then
     source-highlight \
     imagemagick \
     ranger \
+    jq \
     scrot \
     ntp \
     tlp \
