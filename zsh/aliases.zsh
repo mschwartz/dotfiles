@@ -53,6 +53,7 @@ alias zshrc='vi ~/.zshrc'
 alias env.zsh='vi ~/dotfiles/zsh/env.zsh'
 alias functions.zsh='vi ~/dotfiles/zsh/functions.zsh'
 alias node='/usr/bin/node'
+alias npm='echo "Use yarn"'
 
 alias grep='grep --exclude-dir={.bzr,CVS,.git,.hg,.svn,node_modules}'
 
