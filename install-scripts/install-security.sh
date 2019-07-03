@@ -10,6 +10,11 @@ if [[ $platform == 'arch' ]]; then
   yay --noconfirm -Syy git-secrets
 elif [[ $platform == 'macos' ]]; then
   brew install git-secrets
+else 
+  cd ~/github
+  git clone git@github.com:awslabs/git-secrets
+  cd git-secrets
+  make install
 fi
 git secrets --register-aws --global
 git secrets --install -f ~/.git-templates/git-secrets

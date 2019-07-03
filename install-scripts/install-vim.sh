@@ -19,7 +19,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
 cd ~/dotfiles/vim
-yar add global jsctags eslint prettier eslint-plugin-prettier
+yarn add global jsctags eslint prettier eslint-plugin-prettier
 git submodule update --init --recursive
 cd bundle/tern_for_vim
 yarn install
