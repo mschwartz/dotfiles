@@ -1,13 +1,19 @@
-imap jj <Esc>
-set showmode
 set ignorecase
 set smartcase
+set scrolloff=3         " 3 lines above/below cursor when scrolling
+
+" Integrate with system clipboard
+set clipboard=unnamedplus,unnamed
+
+set showmode
+set ignorecase
 set incsearch
 
 set tabstop=2
 set softabstap=2
 set expandtab
 
+imap jj <Esc>
 let mapleader = ","
 map <leader>e :e ~/.ideavimrc<CR>
 map <leader>x :source ~/.ideavimrc<CR>
@@ -17,10 +23,18 @@ map <leader>b :action Build<CR>
 #map <leader>f :action Javascript.Linters.EsLint.Fix<CR>
 map <leader>f :action ReformatCode<CR>
 map <leader>d :action Debug<CR>
-map <leader>r :action Run<CR>
+map <leader>r :action Clean<CR>:action Run<CR>
+"map <leader>cc :action Clean<CR>
 map <leader>x :action CMake.ReloadCMakeProject<CR>
+map <leader>v :action $PASTE<CR>
 map <leader>ci :action CommentByLineComment<CR>
+map <leader>o :action MoveEditorToOppositeTabGroup<CR>
 map \r :action ReformatCode<CR>
+
+map <c-h> <c-w>h
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
 
 "When .vimrc is edited, reload it
 autocmd! bufwritepost .ideavimrc source ~/.ideavimrc

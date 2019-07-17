@@ -85,9 +85,9 @@ neofetch
 # disable ctrl-s (xon/xoff)
 stty -ixon
 
-if [ -f /usr/share/nvm/init-nvm.sh ]; then
-  source /usr/share/nvm/init-nvm.sh
-fi
+#if [ -f /usr/share/nvm/init-nvm.sh ]; then
+#  source /usr/share/nvm/init-nvm.sh
+#fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 PATH="/home/mschwartz/perl5/bin${PATH:+:${PATH}}"; export PATH;

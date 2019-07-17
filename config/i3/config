@@ -13,6 +13,8 @@
 ### Needed for i3-gaps
 # active window gets a 5px border
 for_window [class="^.*"] border pixel 5
+#for_window [class="^Modite"] floating enable, move workspace current
+for_window [class="^Modite"] floating enable
 # specify size of gaps around windows
 gaps inner 15
 gaps outer 15
