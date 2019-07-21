@@ -110,3 +110,7 @@ elif [ -f /usr/share/zsh-syntax-highlighting.zsh ]; then
   source /usr/share/zsh-syntax-highlighting.zsh
 fi
 
+
+if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
+  source /usr/share/doc/pkgfile/command-not-found.zsh
+fi

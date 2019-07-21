@@ -16,7 +16,7 @@ set expandtab
 imap jj <Esc>
 let mapleader = ","
 map <leader>e :e ~/.ideavimrc<CR>
-map <leader>x :source ~/.ideavimrc<CR>
+map <leader>X :source ~/.ideavimrc<CR>
 map <leader>j :j<cr>
 map <leader>s :action SaveAll<CR>
 map <leader>b :action Build<CR>
@@ -25,7 +25,7 @@ map <leader>f :action ReformatCode<CR>
 map <leader>d :action Debug<CR>
 map <leader>r :action Clean<CR>:action Run<CR>
 "map <leader>cc :action Clean<CR>
-map <leader>x :action CMake.ReloadCMakeProject<CR>
+map <leader>x :action CMake.ReloadCMakeProject<CR><ESC>
 map <leader>v :action $PASTE<CR>
 map <leader>ci :action CommentByLineComment<CR>
 map <leader>o :action MoveEditorToOppositeTabGroup<CR>
