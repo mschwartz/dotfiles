@@ -19,13 +19,16 @@ map <leader>e :e ~/.ideavimrc<CR>
 map <leader>X :source ~/.ideavimrc<CR>
 map <leader>j :j<cr>
 map <leader>s :action SaveAll<CR>
-map <leader>b :action Build<CR>
 #map <leader>f :action Javascript.Linters.EsLint.Fix<CR>
 map <leader>f :action ReformatCode<CR>
-map <leader>d :action Debug<CR>
-map <leader>r :action Clean<CR>:action Run<CR>
+
 "map <leader>cc :action Clean<CR>
-map <leader>x :action CMake.ReloadCMakeProject<CR><ESC>
+map <leader>b :action Build<CR>
+map <leader>d :action Debug<CR>
+map <leader>r :action Run<CR>
+map <leader>x :action Clean<CR>:action CMake.ReloadCMakeProject<CR><ESC>
+
+map <leader>t :action GotoFile<cr>
 map <leader>v :action $PASTE<CR>
 map <leader>ci :action CommentByLineComment<CR>
 map <leader>o :action MoveEditorToOppositeTabGroup<CR>
@@ -37,7 +40,7 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 
 "When .vimrc is edited, reload it
-autocmd! bufwritepost .ideavimrc source ~/.ideavimrc
+autocmd! bufwritepost /.ideavimrc source ~/.ideavimrc
 augroup reload_vimrc
     autocmd!
     autocmd bufwritepost ~/.ideavimrc nested source ~/.ideavimrc
