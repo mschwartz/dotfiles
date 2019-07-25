@@ -65,7 +65,7 @@ set pager_context = 3
 
 # Sidebar mappings
 set sidebar_visible = yes
-set sidebar_width = 20
+set sidebar_width = 40
 set sidebar_short_path = yes
 set sidebar_next_new_wrap = yes
 set mail_check_stats
