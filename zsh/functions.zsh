@@ -55,6 +55,13 @@ sclack() {
   cd ~/github/other/sclack && cls && ./app.py
 }
 
+update() {
+  echo ">>> PACMAN UPDATE"
+  sudo pacman --noconfirm -Syyu
+  echo ">>> AUR UPDATE"
+  yay --noconfirm -Syyu
+}
+
 view() {
   case $TERMINFO in
     *kitty*)
