@@ -27,7 +27,7 @@ case $chosen in
     ;;
   4*) 
     # Screencast
-    echo ffmpeg
+    ~/bin/videoshot.sh
     ;;
   5*) 
     # Voice memo
