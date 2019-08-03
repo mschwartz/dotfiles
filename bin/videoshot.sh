@@ -48,7 +48,12 @@ if [[ ! -f "$PIDPATH" ]]; then
   readonly TIME="$(date +%Y-%m-%d-%H-%M-%S)"
   readonly VIDPATH="$VIDEOSHOTDIR/rec-$TIME.mp4"
   (
-    ffmpeg -f x11grab ${border} -s "$W"x"$H" -i $ffmpeg_display+$X,$Y $rect_encopts "$VIDPATH" &
+    if [[ $1 = "audio" ]]; then
+      ffmpeg -f x11grab ${border} -s "$W"x"$H" -i $ffmpeg_display+$X,$Y $rect_encopts "$VIDPATH" -f alsa -i hw:0 &
+    else
+      ffmpeg -f x11grab ${border} -s "$W"x"$H" -i $ffmpeg_display+$X,$Y $rect_encopts "$VIDPATH" &
+    fi
+
     echo "$!" >"$PIDPATH"
     echo "$VIDPATH" >"$RESOURCEPATH"
     notify-send "Start recording" "$VIDPATH"
@@ -58,7 +63,7 @@ if [[ ! -f "$PIDPATH" ]]; then
     if [ ! -f "$VIDPATH" ]; then
       notify-send "Recording aborted"
     else
-      readonly OUTPUT="$(fb "$VIDPATH")"
+#      readonly OUTPUT="$(fb "$VIDPATH")"
       notify-send "Video uploaded" "$OUTPUT"
     fi
     rm "$PIDPATH"
