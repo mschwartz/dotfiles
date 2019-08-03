@@ -62,6 +62,16 @@ update() {
   yay --noconfirm -Syyu
 }
 
+get() {
+  echo yay --noconfirm -Syy $@
+  yay --noconfirm -Syy $@
+}
+
+remove() {
+  echo yay --noconfirm -Rs $@
+  yay --noconfirm -Rs $@
+}
+
 view() {
   case $TERMINFO in
     *kitty*)
