@@ -28,6 +28,8 @@ alias yyz='ssh yyz'
 # tmux
 alias tlist='tmux list-sessions'
 
+alias emacs='emacs --insecure'
+
 # vim
 if [ -f /usr/local/bin/vim ]; then
   alias vi='/usr/local/bin/vim'
