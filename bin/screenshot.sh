@@ -5,7 +5,8 @@ read -r -d '' MENU <<-'EOF'
 2) Active Window
 3) Active Desktop
 4) Screencast
-5) Voice Memo
+5) Screencast w/Audio
+6) Voice Memo
 EOF
 
 #chosen=`cat $menu | rofi -font "hack 20" -dmenu -p "Screenshot"`
@@ -27,10 +28,14 @@ case $chosen in
     ;;
   4*) 
     # Screencast
-    echo ffmpeg
+    ~/bin/videoshot.sh
     ;;
   5*) 
+    # Screencast with audio
+    ~/bin/videoshot.sh audio
+    ;;
+  6*) 
     # Voice memo
-    echo Voice
+    ffmpeg -f alsa -i hw:0 $HOME/Downloads/memo-`date +%Y-%m-%d_%H:%M:%S`.wav
     ;;
 esac

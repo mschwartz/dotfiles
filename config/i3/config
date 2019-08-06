@@ -15,6 +15,7 @@
 for_window [class="^.*"] border pixel 5
 #for_window [class="^Modite"] floating enable, move workspace current
 for_window [class="^Modite"] floating enable
+for_window [class="^MPlayer"] floating enable
 for_window [class="^kazam"] floating enable
 for_window [class="^kazam"] move workspace current
 # specify size of gaps around windows
@@ -255,7 +256,9 @@ bindsym $mod+r exec kitty -e ranger
 
 ## shift PrtSc use rofi to choose screenshot or desktop recording type.
 bindsym Shift+Print exec bash ~/bin/screenshot.sh
-
+bindsym Ctrl+Print exec bash -c "killall ffmpeg"
+bindsym $mod+Print exec bash -c "killall ffmpeg"
+bindsym $sup+Print exec bash -c "killall ffmpeg"
 
 ################################################################################
 ################################################################################
@@ -431,6 +434,7 @@ exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id solaar config 2 fn-swap off
 ## set display resolution
 exec --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
+exec --no-startup-id xrandr --output HDMI-0 --left-of DP-2 --auto
 bindsym $mod+> exec xrandr --output HDMI-0 --right-of DP-2 --auto
 bindsym $mod+shift+comma exec xrandr --output HDMI-0 --left-of DP-2 --auto
 bindsym $mod+shift+period exec xrandr --output HDMI-0 --right-of DP-2 --auto
