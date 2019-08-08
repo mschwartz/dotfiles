@@ -449,7 +449,7 @@ exec --no-startup-id unclutter
 #exec --no-startup-id /usr/bin/xscreensaver
 ## Start dropbox daemon
 exec --no-startup-id /usr/bin/dropbox
-exec_always --no-startup-id emacs --insecure --daemon
+#exec_always --no-startup-id emacs --insecure --daemon
 
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 ## background wallpaper

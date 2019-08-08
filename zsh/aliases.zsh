@@ -29,7 +29,7 @@ alias yyz='ssh yyz'
 alias tlist='tmux list-sessions'
 ### see also tmuxx function in functions.sh
 
-alias emacs='emacsclient'
+alias emacs="emacsclient -a '' -c"
 
 # vim
 if [ -f /usr/local/bin/vim ]; then

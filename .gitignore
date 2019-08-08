@@ -15,3 +15,4 @@ tagged
 undo-dir
 *.o
 rez
+.#*
