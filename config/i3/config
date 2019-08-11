@@ -387,32 +387,32 @@ bar {
 ################################################################################
 ################################################################################
 
-exec_always xinput --set-prop 11 'libinput Accel Speed' .5
-exec_always xinput --set-prop 11 'libinput Accel Speed Default' .5
-exec_always xinput --set-prop 11 'libinput Natural Scrolling Enabled' 1
-exec_always xinput --set-prop 11 'libinput Natural Scrolling Enabled Default' 1
-exec_always xinput --set-prop 12 'libinput Accel Speed' .5
-exec_always xinput --set-prop 12 'libinput Accel Speed Default' .5
-exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled' 1
-exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled Default' 1
-exec_always xinput --set-prop 13 'libinput Accel Speed' .5
-exec_always xinput --set-prop 13 'libinput Accel Speed Default' .5
-exec_always xinput --set-prop 13 'libinput Natural Scrolling Enabled' 1
-exec_always xinput --set-prop 13 'libinput Natural Scrolling Enabled Default' 1
-exec_always xinput --set-prop 15 'libinput Accel Speed' .5
-exec_always xinput --set-prop 15 'libinput Accel Speed Default' .5
-exec_always xinput --set-prop 15 'libinput Natural Scrolling Enabled' 1
-exec_always xinput --set-prop 15 'libinput Natural Scrolling Enabled Default' 1
-exec_always xinput --set-prop 15 'libinput Tapping Enabled' 0
-exec_always xinput --set-prop 15 'libinput Tapping Enabled Default' 0
-exec_alwayx xinput --set-prop 14 'Device Enabled' 0
+#exec_always xinput --set-prop 11 'libinput Accel Speed' .5
+#exec_always xinput --set-prop 11 'libinput Accel Speed Default' .5
+#exec_always xinput --set-prop 11 'libinput Natural Scrolling Enabled' 1
+#exec_always xinput --set-prop 11 'libinput Natural Scrolling Enabled Default' 1
+#exec_always xinput --set-prop 12 'libinput Accel Speed' .5
+#exec_always xinput --set-prop 12 'libinput Accel Speed Default' .5
+#exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled' 1
+#exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled Default' 1
+#exec_always xinput --set-prop 13 'libinput Accel Speed' .5
+#exec_always xinput --set-prop 13 'libinput Accel Speed Default' .5
+#exec_always xinput --set-prop 13 'libinput Natural Scrolling Enabled' 1
+#exec_always xinput --set-prop 13 'libinput Natural Scrolling Enabled Default' 1
+#exec_always xinput --set-prop 14 'libinput Accel Speed' .5
+#exec_always xinput --set-prop 14 'libinput Accel Speed Default' .5
+#exec_always xinput --set-prop 14 'libinput Natural Scrolling Enabled' 1
+#exec_always xinput --set-prop 14 'libinput Natural Scrolling Enabled Default' 1
+#exec_always xinput --set-prop 14 'libinput Tapping Enabled' 0
+#exec_always xinput --set-prop 14 'libinput Tapping Enabled Default' 0
+#exec_alwayx xinput --set-prop 15 'Device Enabled' 0
 ## Gestures
 exec_always --no-startup-id libinput-gestures-setup restart
 ## trackpad settings (taps, etc.)
 exec_always --no-startup-id /home/mschwartz/.config/i3/trackpad.sh
 ## Maybe system has synclient instead of libinput?
-exec_always --no-startup-id synclient VertScrollDelta=-113
-exec_always --no-startup-id synclient PalmDetect=1
+#exec_always --no-startup-id synclient VertScrollDelta=-113
+#exec_always --no-startup-id synclient PalmDetect=1
 
 # disable screen blank
 exec --no-startup-id xset s off -dpms
