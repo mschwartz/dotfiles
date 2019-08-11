@@ -84,6 +84,8 @@ Plugin 'vundleVim/Vundle.vim'
 
 Plugin 'christoomey/vim-tmux-navigator'
 
+Plugin 'tpope/vim-repeat'
+
 Plugin 'vimwiki/vimwiki'
 Plugin 'suan/vim-instant-markdown'
 

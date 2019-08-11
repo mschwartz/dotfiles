@@ -97,6 +97,7 @@ bindsym $mod+Shift+y resize shrink height 10 px or 10ppt
 
 ## start a terminal
 bindsym $mod+Return exec $term
+bindsym $sup+Return exec kitty
 bindsym $mod+Shift+Return exec kitty
 
 
