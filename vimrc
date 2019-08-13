@@ -8,6 +8,7 @@ set secure exrc
 "set fileformat=unix
 "set ma
 filetype off
+set tags=./tags
 
 
 " set leader
@@ -84,7 +85,12 @@ Plugin 'vundleVim/Vundle.vim'
 
 Plugin 'christoomey/vim-tmux-navigator'
 
+
 Plugin 'tpope/vim-repeat'
+
+Plugin 'Shougo/vimproc.vim'
+Plugin 'puremourning/vimspector'
+Plugin 'ilyachur/cmake4vim'
 
 Plugin 'vimwiki/vimwiki'
 Plugin 'suan/vim-instant-markdown'
@@ -112,11 +118,27 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
-    let g:easytags_suppress_ctags_warning=1
+"    let g:easytags_dynamic_files = 2
+"    let g:easytags_suppress_ctags_warning=1
+    let g:easytags_include_members = 1
     let g:easytags_languages = {
       \   'javascript': {
       \       'cmd': 'jsctags',
       \       'args': ['-f'],
+      \       'fileoutput_opt': '-f',
+      \       'stdout_opt': '-f-',
+      \       'recurse_flag': '-R'
+      \   },
+      \   'cpp': {
+      \     'cmd': 'ctags',
+      \       'args': [],
+      \       'fileoutput_opt': '-f',
+      \       'stdout_opt': '-f-',
+      \       'recurse_flag': '-R'
+      \   },
+      \   'c++': {
+      \     'cmd': 'ctags',
+      \       'args': [],
       \       'fileoutput_opt': '-f',
       \       'stdout_opt': '-f-',
       \       'recurse_flag': '-R'
@@ -146,6 +168,7 @@ Plugin 'airblade/vim-gitgutter'
 " Language Support
 "Plugin 'vim-syntastic/syntastic'
 Plugin 'Valloric/YouCompleteMe'
+let g:ycm_confirm_extra_conf=0
 "let g:ycm_auto_trigger = 0
 Plugin 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plugin 'vim-scripts/forth.vim'
@@ -388,18 +411,78 @@ filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Disables automatic commenting on newline:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 " Use actual tab chars in Makefiles.
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-autocmd FileType cpp set tabstop=2 shiftwidth=2 softtabstop=0 expandtab
 
-autocmd FileType sh set formatoptions-=t
+"autocmd FileType cpp 
+"        \ setlocal tabstop=2 |
+"        \ setlocal shiftwidth=2 |
+"        \ setlocal softtabstop=0 |
+"        \ setlocal expandtab
+
+autocmd FileType cpp call CPP_config()
+
+  function! CMAKE_clean()
+    let git_dir = system("git rev-parse --show-toplevel")
+    lcd `=git_dir`
+    cd cmake-build-debug
+    !cmake -DCMAKE_BUILD_TYPE=Debug ..
+    lcd `=git_dir`
+    cd cmake-build-release
+    !cmake -DCMAKE_BUILD_TYPE=Release ..
+  endfunction
+
+  function! CMAKE_build(configuration)
+    echom a:configuration
+    let git_dir = system("git rev-parse --show-toplevel")
+    lcd `=git_dir`
+    if a:configuration == "debug"
+      cd cmake-build-debug
+      !rm Resources.h Resources.bin
+      !rm -rf *
+      !cmake -DCMAKE_BUILD_TYPE=Debug ..
+    else
+      cd cmake-build-release
+      !rm Resources.h Resources.bin
+      !rm -rf *
+      !cmake -DCMAKE_BUILD_TYPE=Release ..
+    endif
+    make -j 20
+  endfunction
+
+  function! CMAKE_debug()
+    call CMAKE_build("debug")
+    !./Modite
+  endfunction
+
+  function! CMAKE_run()
+    call CMAKE_build("release")
+    pwd
+    !./Modite
+  endfunction
+
+  function! CPP_config()
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+    setlocal softtabstop=0
+    setlocal expandtab
+    map <leader>x  <esc>:call CMAKE_clean()<cr>
+    map <leader>b  <esc>:call CMAKE_build("debug")<cr>
+    map <leader>d  <esc>:call CMAKE_debug()<cr>
+    map <leader>r  <esc>:call CMAKE_run()<cr>
+  endfunction
+
+autocmd FileType sh setlocal formatoptions-=t
+
 nnoremap S :%s//g<Left><Left>
+
 "
 " VIM options
 "
 set wildmode=longest,list,full
-  " Disables automatic commenting on newline:
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set guicursor=
 set ttyfast
 set nowrap
@@ -600,8 +683,8 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
-
 map <C-\> <Esc>:Ack 
+
 " after a re-source, fix syntax matching issues (concealing brackets):
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()

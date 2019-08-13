@@ -409,7 +409,7 @@ bar {
 ## Gestures
 exec_always --no-startup-id libinput-gestures-setup restart
 ## trackpad settings (taps, etc.)
-exec_always --no-startup-id /home/mschwartz/.config/i3/trackpad.sh
+exec_always --no-startup-id /home/mschwartz/.config/i3/touchpad.sh
 ## Maybe system has synclient instead of libinput?
 #exec_always --no-startup-id synclient VertScrollDelta=-113
 #exec_always --no-startup-id synclient PalmDetect=1
