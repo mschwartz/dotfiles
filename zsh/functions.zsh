@@ -56,10 +56,15 @@ sclack() {
 }
 
 update() {
-  echo ">>> PACMAN UPDATE"
-  sudo pacman --noconfirm -Syyu
-  echo ">>> AUR UPDATE"
-  yay --noconfirm -Syyu
+  if [ $OS="Darwin" ]; then
+    brew update
+    brew upgrade
+  else
+    echo ">>> PACMAN UPDATE"
+    sudo pacman --noconfirm -Syyu
+    echo ">>> AUR UPDATE"
+    yay --noconfirm -Syyu
+  fi
 }
 
 get() {
