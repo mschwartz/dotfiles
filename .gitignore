@@ -4,6 +4,7 @@ tags.temp
 node_modules
 .AppleDouble
 vim/bundle/*
+vim/plugged
 tmux/plugins/tmux-*
 vim/bundle/Session.vim
 tmux/resurrect
@@ -16,3 +17,4 @@ undo-dir
 *.o
 rez
 .#*
+
