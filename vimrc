@@ -90,7 +90,7 @@ Plugin 'tpope/vim-repeat'
 
 Plugin 'Shougo/vimproc.vim'
 Plugin 'puremourning/vimspector'
-Plugin 'ilyachur/cmake4vim'
+"Plugin 'ilyachur/cmake4vim'
 
 Plugin 'vimwiki/vimwiki'
 Plugin 'suan/vim-instant-markdown'
@@ -402,6 +402,12 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
     let g:NERDTreeExtensionHighlightColor['yml'] = ''
     let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
 
+"source ~/github/mschwartz/clion-cmake.vim/plugin/clion-cmake.vim
+Plugin 'mschwartz/clion-cmake.vim'
+  map <leader>x  <esc>:CMakeClean<cr>
+  map <leader>b  <esc>:CMakeBuild<cr>
+  map <leader>d  <esc>:CMakeDebug<cr>
+  map <leader>r  <esc>:CMakeRun<cr>
 
 Plugin 'posva/vim-vue'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -423,56 +429,15 @@ autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 "        \ setlocal softtabstop=0 |
 "        \ setlocal expandtab
 
+
+
 autocmd FileType cpp call CPP_config()
-
-  function! CMAKE_clean()
-    let git_dir = system("git rev-parse --show-toplevel")
-    lcd `=git_dir`
-    cd cmake-build-debug
-    !cmake -DCMAKE_BUILD_TYPE=Debug ..
-    lcd `=git_dir`
-    cd cmake-build-release
-    !cmake -DCMAKE_BUILD_TYPE=Release ..
-  endfunction
-
-  function! CMAKE_build(configuration)
-    echom a:configuration
-    let git_dir = system("git rev-parse --show-toplevel")
-    lcd `=git_dir`
-    if a:configuration == "debug"
-      cd cmake-build-debug
-      !rm Resources.h Resources.bin
-      !rm -rf *
-      !cmake -DCMAKE_BUILD_TYPE=Debug ..
-    else
-      cd cmake-build-release
-      !rm Resources.h Resources.bin
-      !rm -rf *
-      !cmake -DCMAKE_BUILD_TYPE=Release ..
-    endif
-    make -j 20
-  endfunction
-
-  function! CMAKE_debug()
-    call CMAKE_build("debug")
-    !./Modite
-  endfunction
-
-  function! CMAKE_run()
-    call CMAKE_build("release")
-    pwd
-    !./Modite
-  endfunction
-
   function! CPP_config()
     setlocal tabstop=2
     setlocal shiftwidth=2
     setlocal softtabstop=0
     setlocal expandtab
-    map <leader>x  <esc>:call CMAKE_clean()<cr>
-    map <leader>b  <esc>:call CMAKE_build("debug")<cr>
-    map <leader>d  <esc>:call CMAKE_debug()<cr>
-    map <leader>r  <esc>:call CMAKE_run()<cr>
+
   endfunction
 
 autocmd FileType sh setlocal formatoptions-=t
