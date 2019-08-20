@@ -74,16 +74,12 @@ nmap <F1> :echo<CR>
 vnoremap <C-c> "+y
 map <C-p> "+P
 
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-call plug#begin('~/.vim/plugged')
-
 
 "
 " Plugins
 " 
-Plug 'vundleVim/Vundle.vim'
-    nmap <silent> <leader>p :PluginInstall<cr>
+call plug#begin('~/.vim/plugged')
+    nmap <silent> <leader>p :PlugInstall<cr>
 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -415,7 +411,6 @@ Plug 'posva/vim-vue'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ End of Plugins
-"call vundle#end()
 call plug#end()
 
 filetype plugin indent on
