@@ -74,50 +74,48 @@ nmap <F1> :echo<CR>
 vnoremap <C-c> "+y
 map <C-p> "+P
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
 "
 " Plugins
 " 
-Plugin 'vundleVim/Vundle.vim'
-    nmap <silent> <leader>p :PluginInstall<cr>
+call plug#begin('~/.vim/plugged')
+    nmap <silent> <leader>p :PlugInstall<cr>
 
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
 
-Plugin 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'
 
-Plugin 'Shougo/vimproc.vim'
-Plugin 'puremourning/vimspector'
+Plug 'Shougo/vimproc.vim'
+Plug 'puremourning/vimspector'
 "Plugin 'ilyachur/cmake4vim'
 
-Plugin 'vimwiki/vimwiki'
-Plugin 'suan/vim-instant-markdown'
+Plug 'vimwiki/vimwiki'
+Plug 'suan/vim-instant-markdown'
 
-Plugin 'fadein/vim-FIGlet'
-Plugin 'alpertuna/vim-header'
+Plug 'fadein/vim-FIGlet'
+Plug 'alpertuna/vim-header'
     let g:header_field_author = 'Michael Schwartz'
     let g:header_field_author_email = 'mykesx@gmail.com'
     let g:header_auto_add_header = 0
     " broken on macos
     "map <f4>:AddHeader<cr>
 
-Plugin 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim'
       if executable('ag') 
         let g:ackprg = 'ag --vimgrep'
       endif
 
 "Plugin 'wincent/command-t'
 "    let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'wesQ3/vim-windowswap'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'wesQ3/vim-windowswap'
 "Plugin 'tpope/vim-obsession'
-Plugin 'ConradIrwin/vim-bracketed-paste'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
 "    let g:easytags_dynamic_files = 2
 "    let g:easytags_suppress_ctags_warning=1
     let g:easytags_include_members = 1
@@ -145,55 +143,55 @@ Plugin 'xolox/vim-easytags'
       \   }
       \}
 
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
     nmap <C-b> :TagbarToggle<CR>
 
-Plugin 'xolox/vim-session'
+Plug 'xolox/vim-session'
     let g:session_autoload = 'prompt'
     let g:session_autosave = 'yes'
     let g:session_autosave_to = 'default'
     let g:session_verbose_messages = 0
 
-Plugin 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 "Plugin 'jiangmiao/auto-pairs'
 
 " mode line
-Plugin 'itchyny/lightline.vim'
-Plugin 'edkolev/tmuxline.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'edkolev/tmuxline.vim'
 
 " Git
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " Language Support
 "Plugin 'vim-syntastic/syntastic'
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 let g:ycm_confirm_extra_conf=0
 "let g:ycm_auto_trigger = 0
-Plugin 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plugin 'vim-scripts/forth.vim'
-Plugin 'ternjs/tern_for_vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'vim-scripts/forth.vim'
+Plug 'ternjs/tern_for_vim'
     let g:tern_show_argument_hints='on_hold'
     let g:tern_map_keys=1
 
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'ap/vim-css-color'
-Plugin 'pangloss/vim-javascript'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'HerringtonDarkholme/yats.vim'
-Plugin 'Quramy/tsuquyomi'
-Plugin 'mxw/vim-jsx'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'ap/vim-css-color'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'Quramy/tsuquyomi'
+Plug 'mxw/vim-jsx'
     let g:jsx_ext_required = 0
-Plugin 'leshill/vim-json'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'dNitro/vim-pug-complete'
-Plugin 'heavenshell/vim-jsdoc'
+Plug 'leshill/vim-json'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'digitaltoad/vim-pug'
+Plug 'dNitro/vim-pug-complete'
+Plug 'heavenshell/vim-jsdoc'
 "nmap <leader>j :JsDoc<cr>
-Plugin 'othree/jsdoc-syntax.vim'
+Plug 'othree/jsdoc-syntax.vim'
 "Plugin 'othree/xml.vim'
-Plugin 'alvan/vim-closetag'
+Plug 'alvan/vim-closetag'
     let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js'
     let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
     let g:closetag_filetypes = 'html,xhtml,phtml,javascript,jsx'
@@ -203,16 +201,16 @@ Plugin 'alvan/vim-closetag'
         \ 'typescript.tsx': 'jsxRegion,tsxRegion',
         \ 'javascript.jsx': 'jsxRegion',
         \ }
-Plugin 'itmammoth/doorboy.vim'
+Plug 'itmammoth/doorboy.vim'
 
 " Highlight ES6 template strings
 hi link javaScriptTemplateDelim String
 hi link javaScriptTemplateVar Text
 hi link javaScriptTemplateString String
 
-Plugin 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 
-Plugin 'editorconfig/editorconfig-vim'"
+Plug 'editorconfig/editorconfig-vim'"
 
 "Plugin 'nathanaelkane/vim-indent-guides'
     "let g:indent_guides_enable_on_vim_startup = 1
@@ -220,7 +218,7 @@ Plugin 'editorconfig/editorconfig-vim'"
     "let g:indent_guides_start_level = 2
 
 """""" ale
-Plugin 'w0rp/ale'
+Plug 'w0rp/ale'
 if expand("$ARDUBOY_TOOLCHAIN") != ""
     let g:ale_cpp_gcc_executable='$HOME/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-g++'
     let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
@@ -365,7 +363,7 @@ endif
     "nmap <silent> <leader>tt :TestSuite<cr>
     "nmap <silent> <leader>t. :TestFile<cr>
 
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
     " Use compact syntax for prettified multi-line comments
     "let g:NERDCompactSexyComs = 1
 
@@ -379,7 +377,7 @@ Plugin 'scrooloose/nerdcommenter'
     "let g:NERDTrimTrailingWhitespace = 1
 
 " NERDTree
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 "let g:NERDTreeShowHidden = 1
 "let NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['.git', 'node_modules', '\.o$', '\.a$', '.depend']
@@ -387,11 +385,11 @@ let g:NERDTreeIgnore=['.git', 'node_modules', '\.o$', '\.a$', '.depend']
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'ryanoasis/vim-devicons'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
 "    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 "    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = '﵂'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     let g:NERDTreeFileExtensionHighlightFullName = 1
     let g:NERDTreeExactMatchHighlightFullName = 1
     let g:NERDTreePatternMatchHighlightFullName = 1
@@ -403,16 +401,18 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
     let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
 
 "source ~/github/mschwartz/clion-cmake.vim/plugin/clion-cmake.vim
-Plugin 'mschwartz/clion-cmake.vim'
+Plug 'mschwartz/clion-cmake.vim'
   map <leader>x  <esc>:CMakeClean<cr>
   map <leader>b  <esc>:CMakeBuild<cr>
   map <leader>d  <esc>:CMakeDebug<cr>
   map <leader>r  <esc>:CMakeRun<cr>
 
-Plugin 'posva/vim-vue'
+Plug 'posva/vim-vue'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ End of Plugins
-call vundle#end()
+call plug#end()
+
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
