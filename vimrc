@@ -9,6 +9,8 @@ set secure exrc
 "set ma
 filetype off
 set tags=./tags
+set autoread
+au FocusGained,BufEnter * :checktime
 
 
 " set leader
@@ -59,6 +61,7 @@ map <leader>ir <esc>iimport React, {useState, useEffect, useRef} from 'react'<cr
 map <leader>iu <esc>iimport useConfig from "@/common/hooks/useConfig";<cr><esc>
 map <leader>itc <esc>otry {<cr>}<cr>catch(e) {<cr>console.log('exception', e)<cr><esc>ddjddkkkk==ko
 map <leader>v <esc>:read !xsel<cr>
+map <leader>. <esc>@:
 
 map <leader>u <esc>guiw
 map <leader>U <esc>gUiw
@@ -72,8 +75,7 @@ imap jk <Esc>
 imap kkk <Esc>
 nmap <F1> :echo<CR>
 vnoremap <C-c> "+y
-map <C-p> "+P
-
+map <C-v> "+P
 
 "
 " Plugins
@@ -82,7 +84,11 @@ call plug#begin('~/.vim/plugged')
     nmap <silent> <leader>p :PlugInstall<cr>
 
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'benmills/vimux'
 "Plug 'jgdavey/tslime.vim'
+
+Plug 'tmux-plugins/vim-tmux-focus-events'
+
 
 Plug 'tpope/vim-repeat'
 
@@ -109,6 +115,7 @@ Plug 'mileszs/ack.vim'
 "Plugin 'wincent/command-t'
 "    let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
 Plug 'ctrlpvim/ctrlp.vim'
+  map <leader>t <esc>:CtrlP<cr>
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'wesQ3/vim-windowswap'
