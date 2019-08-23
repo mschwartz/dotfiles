@@ -5,3 +5,5 @@ BreakBeforeBraces: Custom
 BraceWrapping:
   BeforeElse: true
 IndentCaseLabels: true
+AlignAfterOpenBracket: false
+AllowAllArgumentsOnNextLine: true

@@ -82,7 +82,7 @@ call plug#begin('~/.vim/plugged')
     nmap <silent> <leader>p :PlugInstall<cr>
 
 Plug 'christoomey/vim-tmux-navigator'
-
+"Plug 'jgdavey/tslime.vim'
 
 Plug 'tpope/vim-repeat'
 
@@ -322,8 +322,13 @@ if expand("$ORDOIDGO_TOOLCHAIN") != ""
 endif
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
-    let g:ale_c_clangformat_executable='/usr/bin/clang-format'
-    let g:ale_cpp_clangformat_executable='/usr/bin/clang-format'
+    if filereadable('/usr/bin/clang-format')
+      let g:ale_c_clangformat_executable='/usr/bin/clang-format'
+      let g:ale_cpp_clangformat_executable='/usr/bin/clang-format'
+    elseif filereadable('/usr/local/bin/clang-format')
+      let g:ale_c_clangformat_executable='/usr/local/bin/clang-format'
+      let g:ale_cpp_clangformat_executable='/usr/local/bin/clang-format'
+    endif
 "    let g:ale_linter_aliases = {'vue': 'typescript'}
 "                \   'vue': ['tsserver', 'eslint'],
     let g:ale_linters = {
@@ -400,18 +405,22 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     let g:NERDTreeExtensionHighlightColor['yml'] = ''
     let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
 
-"source ~/github/mschwartz/clion-cmake.vim/plugin/clion-cmake.vim
-Plug 'mschwartz/clion-cmake.vim'
+source ~/github/mschwartz/clion-cmake.vim/plugin/clion-cmake.vim
+"Plug 'mschwartz/clion-cmake.vim'
   map <leader>x  <esc>:CMakeClean<cr>
-  map <leader>b  <esc>:CMakeBuild<cr>
+  map <leader>b  <esc>:CMakeRelease<cr>
   map <leader>d  <esc>:CMakeDebug<cr>
   map <leader>r  <esc>:CMakeRun<cr>
 
 Plug 'posva/vim-vue'
 
+"Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
+"Plug 'dbgx/lldb.nvim'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ End of Plugins
 call plug#end()
+
 
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
