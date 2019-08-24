@@ -6,4 +6,4 @@ BraceWrapping:
   BeforeElse: true
 IndentCaseLabels: true
 AlignAfterOpenBracket: false
-AllowAllArgumentsOnNextLine: true
+Cpp11BracedListStyle: false

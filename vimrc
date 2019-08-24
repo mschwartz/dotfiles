@@ -327,13 +327,14 @@ if expand("$ORDOIDGO_TOOLCHAIN") != ""
 "     set path to all ESP-IDF includes here!
     set path+=$ODROID_TOOLCHAIN
 endif
+
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
     if filereadable('/usr/bin/clang-format')
       let g:ale_c_clangformat_executable='/usr/bin/clang-format'
       let g:ale_cpp_clangformat_executable='/usr/bin/clang-format'
     elseif filereadable('/usr/local/bin/clang-format')
-      let g:ale_c_clangformat_executable='/usr/local/bin/clang-format'
+     let g:ale_c_clangformat_executable='/usr/local/bin/clang-format'
       let g:ale_cpp_clangformat_executable='/usr/local/bin/clang-format'
     endif
 "    let g:ale_linter_aliases = {'vue': 'typescript'}
