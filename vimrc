@@ -122,7 +122,7 @@ Plug 'wesQ3/vim-windowswap'
 "Plugin 'tpope/vim-obsession'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
+Plug 'mschwartz/vim-easytags'
 "    let g:easytags_dynamic_files = 2
 "    let g:easytags_suppress_ctags_warning=1
     let g:easytags_include_members = 1

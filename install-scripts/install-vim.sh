@@ -15,14 +15,14 @@ echo ">>> INSTALLING VIM"
 
 mkdir -p ~/.vim/swapfiles
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+#git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PlugInstall +qall
 
 cd ~/dotfiles/vim
 yarn add global jsctags eslint prettier eslint-plugin-prettier
 git submodule update --init --recursive
-cd bundle/tern_for_vim
-yarn install
+#cd bundle/tern_for_vim
+#yarn install
 if [[ "$platform" == "macos" ]]; then
   cd ../YouCompleteMe
   if [ "$type" = "armv71" ]; then
@@ -31,7 +31,4 @@ if [[ "$platform" == "macos" ]]; then
   else
     YCM_CORES=$numcpus ./install.py --tern-completer --clang-completer --system-libclang
   fi
-elif [[ "$platform" == "arch" ]]; then
-  cd ~/.vim/bundle/YouCompleteMe
-  YCM_CORES=$numcpus python3 install.py --tern-completer --clang-completer --go-completer --rust-completer --java-completer
 fi
