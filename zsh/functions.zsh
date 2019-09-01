@@ -56,7 +56,7 @@ sclack() {
 }
 
 update() {
-  if [ $OS="Darwin" ]; then
+  if [[ "$OS" == "Darwin" ]]; then
     brew update
     brew upgrade
   else
