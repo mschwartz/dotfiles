@@ -26,6 +26,32 @@ autocmd BufNewFile,BufReadPost *.c,*.cpp,*.h,*.ino,*.pde set filetype=cpp
 autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
 autocmd BufNewFile,BufReadPost *.fth,*.4th set filetype=forth
 
+function! HeaderToggle() " bang for overwrite when saving vimrc
+let file_path = expand("%")
+let file_name = expand("%<")
+let extension = split(file_path, '\.')[-1] " '\.' is how you really split on dot
+let err_msg = "There is no file "
+
+if extension == "c" || extension == "cpp"
+  let next_file = join([file_name, ".h"], "")
+
+  if filereadable(next_file)
+    :e %<.h
+  else
+    echo join([err_msg, next_file], "")
+  endif
+elseif extension == "h"
+  let next_file = join([file_name, ".cpp"], "")
+
+  if filereadable(next_file)
+    :e %<.cpp
+  else
+    echo join([err_msg, next_file], "")
+  endif
+endif
+endfunction
+map <leader>h :call HeaderToggle()<cr>
+
 " for go
 "autocmd BufEnter,BufNewFile,BufReadPost *.go call SetGoOptions()
 "autocmd BufEnter,BufNewFile,BufReadPost *.go map <leader>r :GoRun<cr>
