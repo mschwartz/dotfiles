@@ -8,10 +8,20 @@ set clipboard=unnamedplus,unnamed
 set showmode
 set ignorecase
 set incsearch
-
+set autoread
+set autowrite
+set wildmenu
+set wildmode=longest,full
+set wildignore=*.o,*.obj,*.exe,*.slo,*.dll,.git,node_modules
 set tabstop=2
 set softabstap=2
 set expandtab
+set confirm
+
+set iskeyword+=\$,-,_
+set showmatch
+set mousehide
+set mouse=a
 
 imap jj <Esc>
 let mapleader = ","
@@ -39,11 +49,12 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 
+set relativenumber
+
 "When .vimrc is edited, reload it
-autocmd! bufwritepost /.ideavimrc source ~/.ideavimrc
-augroup reload_vimrc
+" autocmd is not implemented in ideavim
+autocmd! BufWritePost ~/.ideavimrc source ~/.ideavimrc
+augroup! reload_vimrc
     autocmd!
-    autocmd bufwritepost ~/.ideavimrc nested source ~/.ideavimrc
+    autocmd! BufWritePost ~/.ideavimrc nested source ~/.ideavimrc
 augroup END
-
-
