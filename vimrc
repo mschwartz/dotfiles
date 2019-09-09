@@ -11,7 +11,7 @@ filetype off
 set tags=./tags
 set autoread
 au FocusGained,BufEnter * :checktime
-
+set foldmethod=marker
 
 " set leader
 let mapleader=","
@@ -25,6 +25,9 @@ autocmd!
 autocmd BufNewFile,BufReadPost *.c,*.cpp,*.h,*.ino,*.pde set filetype=cpp
 autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
 autocmd BufNewFile,BufReadPost *.fth,*.4th set filetype=forth
+autocmd BufNewFile,BufReadPost .vimrc,*.vim set filetype=vim
+
+autocmd FocusLost  * call feedkeys("\<esc>")
 
 function! HeaderToggle() " bang for overwrite when saving vimrc
 let file_path = expand("%")
