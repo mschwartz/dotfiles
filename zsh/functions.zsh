@@ -2,6 +2,18 @@
 # functions - these act like aliases but can have logic flow
 #
 
+# GIT
+master() {
+  git checkout master
+  git pull upstream master
+  git push origin master
+}
+
+develop() {
+  git checkout develop
+  git pull origin develop
+}
+
 # cd <dir> automatically does an ls after changing
 cd() {
   builtin cd "$@" && ls
