@@ -242,6 +242,7 @@ bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh ~/Pictures/Icons/lock-512.png
 ## use ranger to browse wallpapers for the desktop backgrounds
 bindsym $mod+b exec kitty -e ranger ~/github/other/wallpapers
 bindsym $mod+w exec kitty -e ranger ~/github/other/wallpapers
+bindsym $sup+d exec kitty -e ranger ~/Downloads
 
 ## shortcuts to run programs - can also use $mod+d/rofi to launch anything.
 bindsym $mod+F1 exec "google-chrome-stable"
