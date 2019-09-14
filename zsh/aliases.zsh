@@ -76,3 +76,5 @@ alias ev='vi ~/.vimrc'
 alias et='vi ~/dotfiles/tmux.conf'
 alias ez='vi ~/.zshrc.local ~/.zshrc'
 
+alias root='cd `git rev-parse --show-toplevel`'
+alias modus='cd $HOME/github/ModusCreateOrg'

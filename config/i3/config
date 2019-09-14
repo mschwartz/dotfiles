@@ -109,6 +109,7 @@ bindsym $sup+space exec ~/.config/i3/toggle-trackpad.sh
 
 ## start rofi (a program launcher)
 bindsym $mod+d exec rofi -show run
+bindsym $sup+d exec rofi -show run
 ## use rofi to present a list of windows to jump to
 bindsym $mod+Tab exec rofi -show window
 ## use rofi to interactively choose a screen resolution
@@ -233,6 +234,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 bindsym $mod+Shift+c reload
 ## restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+bindsym $sup+Shift+r restart
 ## exit i3 (logs you out of your X session)
 bindsym $mod+Ctrl+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 ## lock i3 screen

@@ -8,22 +8,35 @@ set clipboard=unnamedplus,unnamed
 set showmode
 set ignorecase
 set incsearch
-
+set autoread
+set autowrite
+set wildmenu
+set wildmode=longest,full
+set wildignore=*.o,*.obj,*.exe,*.slo,*.dll,.git,node_modules
 set tabstop=2
 set softabstap=2
 set expandtab
+set confirm
+
+set iskeyword+=\$,-,_,-
+set showmatch
+set mousehide
+set mouse=a
 
 imap jj <Esc>
 let mapleader = ","
 map <leader>e :e ~/.ideavimrc<CR>
-map <leader>X :source ~/.ideavimrc<CR>
+map <leader>z :source ~/.ideavimrc<CR>
 map <leader>j :j<cr>
 map <leader>s :action SaveAll<CR>
 #map <leader>f :action Javascript.Linters.EsLint.Fix<CR>
 map <leader>f :action ReformatCode<CR>
+map <leader>be :action GotoFile<cr>
+
+nmap <F1><nop>
 
 "map <leader>cc :action Clean<CR>
-map <leader>b :action Build<CR>
+map <leader>bb :action Build<CR>
 map <leader>d :action Debug<CR>
 map <leader>r :action Run<CR>
 map <leader>x :action Clean<CR>:action CMake.ReloadCMakeProject<CR><ESC>
@@ -39,11 +52,12 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 
+set relativenumber
+
+" autocmd is not implemented in ideavim, but this is here for when it will be :)
 "When .vimrc is edited, reload it
-autocmd! bufwritepost /.ideavimrc source ~/.ideavimrc
-augroup reload_vimrc
+autocmd! BufWritePost ~/.ideavimrc source ~/.ideavimrc
+augroup! reload_vimrc
     autocmd!
-    autocmd bufwritepost ~/.ideavimrc nested source ~/.ideavimrc
+    autocmd! BufWritePost ~/.ideavimrc nested source ~/.ideavimrc
 augroup END
-
-

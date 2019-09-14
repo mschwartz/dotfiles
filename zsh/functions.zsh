@@ -2,6 +2,18 @@
 # functions - these act like aliases but can have logic flow
 #
 
+# GIT
+master() {
+  git checkout master
+  git pull upstream master
+  git push origin master
+}
+
+develop() {
+  git checkout develop
+  git pull origin develop
+}
+
 # cd <dir> automatically does an ls after changing
 cd() {
   builtin cd "$@" && ls
@@ -56,10 +68,15 @@ sclack() {
 }
 
 update() {
-  echo ">>> PACMAN UPDATE"
-  sudo pacman --noconfirm -Syyu
-  echo ">>> AUR UPDATE"
-  yay --noconfirm -Syyu
+  if [[ "$OS" == "Darwin" ]]; then
+    brew update
+    brew upgrade
+  else
+    echo ">>> PACMAN UPDATE"
+    sudo pacman --noconfirm -Syyu
+    echo ">>> AUR UPDATE"
+    yay --noconfirm -Syyu
+  fi
 }
 
 get() {
