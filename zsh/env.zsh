@@ -42,6 +42,6 @@ if [ "$OS" = 'Darwin' ]; then
   fi
 else
   export EDITOR='/usr/bin/vim'
-  export TERM="xterm-256color"
+#  export TERM="xterm-256color"
 fi
 

@@ -115,4 +115,4 @@ if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
   source /usr/share/doc/pkgfile/command-not-found.zsh
 fi
 
-[ ! -z "$KITTY_WINDOW_ID" ] && export TERM=xterm-kitty
+#[ ! -z "$KITTY_WINDOW_ID" ] && export TERM=xterm-kitty
