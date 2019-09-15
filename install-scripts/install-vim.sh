@@ -5,10 +5,9 @@ figlet "Install vim"
 . ~/dotfiles/install-scripts/lib/platform.sh
 
 if [[ $platform == 'linux' ]]; then
-  sudo apt-get install -y vim-nox ctags fonts-font-awesome neovim
+  sudo apt-get install -y vim-nox ctags fonts-font-awesome neovim vim-youcompleteme
 elif [[ $platform == 'arch' ]]; then
   sudo pacman -S --noconfirm vim ctags neovim
-
 fi
 
 echo ">>> INSTALLING VIM"
