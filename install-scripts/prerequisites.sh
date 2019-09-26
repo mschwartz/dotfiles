@@ -89,7 +89,7 @@ elif [[ $platform == 'arch' ]]; then
     makepkg -si
   fi
   # install AUR packages
-  yay -S --noconfirm unzip unrar hwinfo mhwd tree fontconfig-infinality checkupdates pacman-contrib geekbench command-not-found
+  yay -S --noconfirm unzip unrar hwinfo mhwd tree fontconfig-infinality checkupdates pacman-contrib geekbench find-the-command
   yay -S --noconfirm  htop dropbox dropbox-cli  traceroute  rr-bin gometalinter python python2 python-pip kernel-modules-hook
   sudo systemctl daemon-reload
   sudo systemctl enable linux-modules-cleanup
