@@ -5,18 +5,16 @@
 echo ">>> INSTALLING PREREQUISITES FOR $platform"
 if [[ $platform == 'linux' ]]; then
   PACKAGES_TO_INSTALL="\
-    git \
-    build-essential \
-    speedtest-cli \
-    source-highlight \
-    zsh \
-    cmake \
-    vim-youcompleteme \
-    python-dev \
-    libboost-all-dev \
     tmux \
+    whois \
+    git \
+    mlocate \
+    ranger \
+    rsync \
+    speedtest-cli \
+    traceroute \
+    source-highlight \
     curl \
-    ruby-dev \
     net-tools \
     neofetch \
     xscreensaver \
@@ -34,52 +32,47 @@ if [[ $platform == 'linux' ]]; then
 
 elif [[ $platform == 'arch' ]]; then
   PACKAGES_TO_INSTALL="\
-    git \
-    reflector \
-    rsync \
-    neomutt \
-    man-pages \
     tmux \
+    git \
+    mlocate \
+    ranger \
+    rsync \
+    man-pages \
     neofetch \
     speedtest-cli \
     source-highlight \
+    whois \
     imagemagick \
-    ranger \
     jq \
     scrot \
+    traceroute \
     ntp \
     tlp \
     wget \
     pass \
     gnupg \
-    notmuch \
     abook \
     cronie \
-    cmake \
-    clang \
-    rust \
     hub \
     "
 
-  sudo pacman --noconfirm -Syy figlet gnupg
+  sudo pacman --noconfirm -Syy figlet gnupg reflector
   figlet "Prerequisites for $platform"
-
 
   # uncomment this if keys are out of date - it is really slow
 #  sudo pacman-key --refresh-keys
   gpgconf --kill all
   gpg --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
 
-  sudo cp ./arch/systemd.reflector.timer /etc/systemd/system/reflector.timer
-  sudo cp ./arch/systemd.reflector.service /etc/systemd/system/reflector.service
-  echo "enable/start reflector service"
-  sudo systemd enable reflector.service
-  sudo systemd start reflector.service
-  echo "enable/start reflector timer"
-  sudo systemd enable reflector.timer
-  sudo systemd start reflector.timer
+  yay --noconfirm -Syy reflector-timer
 
   sudo pacman -S --noconfirm $PACKAGES_TO_INSTALL
+  echo "enable/start reflector service"
+  sudo systemctl enable reflector.service
+  sudo systemctl start reflector.service
+  echo "enable/start reflector timer"
+  sudo systemctl enable reflector.timer
+  sudo systemctl start reflector.timer
   ln -sf /usr/bin/chromium /usr/local/bin/google-chrome
   if [[ ! -e ~/github/arch/yay ]]; then
     mkdir -p ~/github/arch
