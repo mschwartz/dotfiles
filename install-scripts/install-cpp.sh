@@ -5,11 +5,17 @@
 figlet "Install C++"
 
 if [[ $platform == 'arch' ]]; then
-  sudo pacman --no-confirm -Syy man-pages man-db cmake make clang lld lldb binutils libstdc++ libc++ gcc gdb boost libuv
-  yay --no-confirm -Syy v8 ccls
-  sudo systemctl enable man-db.service
+  sudo pacman --noconfirm -Syy man-pages man-db cmake make clang lld lldb binutils gcc gdb boost libuv
+  yay --noconfirm -Syy cquery
+  yay --noconfirm -S libstdc++5
+#  yay --noconfirm -S libc++
+#  echo "enable man-db.service"
+#  sudo systemctl enable man-db.service
+  echo "start man-db.service"
   sudo systemctl start man-db.service
+  echo "enable man-db.timer"
   sudo systemctl enable man-db.timer
+  echo "start man-db.timer"
   sudo systemctl start man-db.timer
 elif [[ $platform_type == 'armv7l' ]]; then
   sudo apt update && sudo apt install -y man-db manpages cmake make build-essential libboost-all-dev 

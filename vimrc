@@ -12,6 +12,8 @@ set tags=./tags
 set autoread
 au FocusGained,BufEnter * :checktime
 set foldmethod=marker
+set updatetime=300
+set signcolumn=yes
 
 " set leader
 let mapleader=","
@@ -199,6 +201,8 @@ Plug 'Raimondi/delimitMate'
 
 " mode line
 Plug 'itchyny/lightline.vim'
+
+
 Plug 'edkolev/tmuxline.vim'
 
 " Git
@@ -211,6 +215,46 @@ Plug 'airblade/vim-gitgutter'
 "let g:ycm_confirm_extra_conf=0
 "let g:ycm_auto_trigger = 0
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  " Use tab for trigger completion with characters ahead and navigate.
+  " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
+
+  " Use <c-space> to trigger completion.
+  inoremap <silent><expr> <c-space> coc#refresh()
+
+  " Remap keys for gotos
+  nmap <silent> <C-]> <Plug>(coc-definition)
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)A
+
+  " Use K to show documentation in preview window
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
+  endfunction
+
+  " Highlight symbol under cursor on CursorHold
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+
+  " Remap for rename current word
+  nmap <leader>rn <Plug>(coc-rename)
+
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-scripts/forth.vim'
 "Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
@@ -406,6 +450,8 @@ endif
     let g:ale_set_loclist = 0
     let g:ale_set_quickfix = 1
 
+    Plug 'maximbaz/lightline-ale'
+
 """""" test runner
 "Plugin 'janko-m/vim-test'
     "let g:test#javascript#jest#file_pattern = '\.test\.js$'
@@ -582,36 +628,53 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 set laststatus=2
+
 let g:lightline = {
       \ 'colorscheme': 'PaperColor',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] 
+      \   ]
       \ },
       \ 'component_function': {
+      \   'fugitive': 'LightLineFugitive',
+      \   'readonly': 'LightLineReadonly',
+      \   'modified': 'LightLineModified',
+      \   'filename': 'LightLineFilename',
       \   'gitbranch': 'fugitive#head'
       \ },
-      \ }
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+    \ }
+
+  let g:lightline.component_expand = {
+  \  'linter_checking': 'lightline#ale#checking',
+  \  'linter_warnings': 'lightline#ale#warnings',
+  \  'linter_errors': 'lightline#ale#errors',
+  \  'linter_ok': 'lightline#ale#ok'
+  \ }
+
+  let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
 
 augroup reload_vimrc
     autocmd!
     autocmd bufwritepost ~/.vimrc nested source ~/.vimrc
 augroup END
 
-let g:lightline = {
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'fugitive': 'LightLineFugitive',
-    \   'readonly': 'LightLineReadonly',
-    \   'modified': 'LightLineModified',
-    \   'filename': 'LightLineFilename'
-    \ },
-    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-    \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-    \ }
+"let g:lightline = {
+"    \ 'active': {
+"    \   'left': [ [ 'mode', 'paste' ],
+"    \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+"    \ },
+"    \ 'component_function': {
+"    \   'fugitive': 'LightLineFugitive',
+"    \   'readonly': 'LightLineReadonly',
+"    \   'modified': 'LightLineModified',
+"    \   'filename': 'LightLineFilename'
+"    \ },
+"    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"    \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"    \ }
 
 
 function! LightLineModified()

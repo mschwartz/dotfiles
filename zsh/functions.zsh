@@ -72,6 +72,8 @@ update() {
     brew update
     brew upgrade
   else
+    echo ">>> Update MirrorList"
+    sudo reflector --verbose --country 'US' -l 5 --sort rate --save /etc/pacman.d/mirrorlist
     echo ">>> PACMAN UPDATE"
     sudo pacman --noconfirm -Syyu
     echo ">>> AUR UPDATE"

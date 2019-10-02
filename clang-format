@@ -7,3 +7,4 @@ BraceWrapping:
 IndentCaseLabels: true
 AlignAfterOpenBracket: false
 Cpp11BracedListStyle: false
+ColumnLimit: 0
