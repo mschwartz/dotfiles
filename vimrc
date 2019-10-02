@@ -207,14 +207,15 @@ Plug 'airblade/vim-gitgutter'
 
 " Language Support
 "Plugin 'vim-syntastic/syntastic'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-let g:ycm_confirm_extra_conf=0
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+"let g:ycm_confirm_extra_conf=0
 "let g:ycm_auto_trigger = 0
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-scripts/forth.vim'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-    let g:tern_show_argument_hints='on_hold'
-    let g:tern_map_keys=1
+"Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+"    let g:tern_show_argument_hints='on_hold'
+"    let g:tern_map_keys=1
 
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
@@ -243,7 +244,7 @@ Plug 'alvan/vim-closetag'
         \ 'typescript.tsx': 'jsxRegion,tsxRegion',
         \ 'javascript.jsx': 'jsxRegion',
         \ }
-Plug 'itmammoth/doorboy.vim'
+"Plug 'itmammoth/doorboy.vim'
 
 " Highlight ES6 template strings
 hi link javaScriptTemplateDelim String
