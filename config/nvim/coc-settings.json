@@ -1,23 +1,6 @@
 {
   "coc.prefernces.formatOnSaveFiletypes": [ "c", "cpp", "h"],
   "xdiagnostic.displayByAle": true,
-  "xlanguageserver": {
-    "cquery": {
-      "command": "cquery",
-      "args": ["--log-file=/tmp/cq.log"],
-      "filetypes": ["c", "cpp", "h"],
-      "rootPatterns": [
-        "compile_flags.txt",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cacheDirectory": "/tmp/cquery"
-      }
-    }
-  },
   "diagnostic.messageTarget": "echo",
   "languageserver": {
     "ccls": {

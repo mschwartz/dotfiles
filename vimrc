@@ -211,7 +211,8 @@ Plug 'airblade/vim-gitgutter'
 
 " Language Support
 "Plugin 'vim-syntastic/syntastic'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+"Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
   command! -nargs=0 Format :call CocAction('format')
   map <leader>f :Format<cr>
   " Use tab for trigger completion with characters ahead and navigate.
@@ -262,7 +263,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   " Remap for rename current word
   nmap <leader>rn <Plug>(coc-rename)
 
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-scripts/forth.vim'
 "Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 "    let g:tern_show_argument_hints='on_hold'

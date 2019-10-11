@@ -6,7 +6,7 @@ figlet "Install C++"
 
 if [[ $platform == 'arch' ]]; then
   sudo pacman --noconfirm -Syy man-pages man-db cmake make clang lld lldb binutils gcc gdb boost libuv
-  yay --noconfirm -Syy cquery
+  yay --noconfirm -Syy ccls-git
   yay --noconfirm -S libstdc++5
 #  yay --noconfirm -S libc++
 #  echo "enable man-db.service"
