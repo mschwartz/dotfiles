@@ -1,6 +1,7 @@
 {
-  "diagnostic.displayByAle": true,
-  "languageserver": {
+  "coc.prefernces.formatOnSaveFiletypes": [ "c", "cpp", "h"],
+  "xdiagnostic.displayByAle": true,
+  "xlanguageserver": {
     "cquery": {
       "command": "cquery",
       "args": ["--log-file=/tmp/cq.log"],
@@ -17,7 +18,8 @@
       }
     }
   },
-  "xlanguageserver": {
+  "diagnostic.messageTarget": "echo",
+  "languageserver": {
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "objc", "objcpp", "h"],
