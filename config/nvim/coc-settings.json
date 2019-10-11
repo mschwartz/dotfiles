@@ -1,7 +1,4 @@
 {
-  "coc.prefernces.formatOnSaveFiletypes": [ "c", "cpp", "h"],
-  "xdiagnostic.displayByAle": true,
-  "diagnostic.messageTarget": "echo",
   "languageserver": {
     "ccls": {
       "command": "ccls",
@@ -19,5 +16,6 @@
         }
       }
     }
-  }
+  },
+  "coc.prefernces.formatOnSaveFiletypes": ["c", "cpp", "h"]
 }
