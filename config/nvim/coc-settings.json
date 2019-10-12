@@ -12,7 +12,8 @@
       ],
       "initializationOptions": {
         "cache": {
-          "directory": "/tmp/ccls"
+          "directory": "/tmp/ccls",
+          "useHierarchy": true
         }
       }
     }
