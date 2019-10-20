@@ -12,10 +12,18 @@ set tags=./tags
 set autoread
 au FocusGained,BufEnter * :checktime
 set foldmethod=marker
+set updatetime=300
+set signcolumn=yes
 
 " set leader
 let mapleader=","
 let g:mapleader=","
+
+if (exists('+termguicolors'))
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 " auto commands
 
@@ -69,9 +77,9 @@ imap <F1> <nop>
 nmap <F1> <nop>
 nmap <leader>s :w!<cr>
 map <leader>j :j<cr>
-map <leader>ai :ALEInfo<cr>
-map <leader>ad :ALEDetail<cr>
-map <leader>f :ALEFix<cr>
+"map <leader>ai :ALEInfo<cr>
+"map <leader>ad :ALEDetail<cr>
+"map <leader>f :ALEFix<cr>
 "  map <leader>s :source ~/.vimrc<cr>
 map <leader>e3 :e! ~/.config/i3/config<cr>
 map <leader>ea :e! ~/dotfiles/zsh/aliases.zsh<cr>
@@ -193,6 +201,8 @@ Plug 'Raimondi/delimitMate'
 
 " mode line
 Plug 'itchyny/lightline.vim'
+
+
 Plug 'edkolev/tmuxline.vim'
 
 " Git
@@ -201,14 +211,63 @@ Plug 'airblade/vim-gitgutter'
 
 " Language Support
 "Plugin 'vim-syntastic/syntastic'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-let g:ycm_confirm_extra_conf=0
-"let g:ycm_auto_trigger = 0
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
+  command! -nargs=0 Format :call CocAction('format')
+  map <leader>f :Format<cr>
+  " Use tab for trigger completion with characters ahead and navigate.
+  " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
+
+  " Use <c-space> to trigger completion.
+  inoremap <silent><expr> <c-space> coc#refresh()
+
+  " Remap keys for gotos
+  nmap <silent> <C-]> <Plug>(coc-definition)
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)A
+  vmap <silent> gf <Plug>(coc-format-selected)
+  " Remap for rename current word
+  nmap gm <Plug>(coc-rename)
+  " Show documentation in preview window
+  nmap <silent> gh :call CocAction('doHover')<CR>
+  nmap <silent> gc :CocList diagnostics<CR>
+  nmap <silent> go :CocList outline<CR>
+  nmap <silent> gs :CocList -I symbols<CR>
+
+  " Use K to show documentation in preview window
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
+  endfunction
+
+  " Highlight symbol under cursor on CursorHold
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+
+  " Remap for rename current word
+  nmap <leader>rn <Plug>(coc-rename)
+
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-scripts/forth.vim'
-Plug 'ternjs/tern_for_vim'
-    let g:tern_show_argument_hints='on_hold'
-    let g:tern_map_keys=1
+"Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+"    let g:tern_show_argument_hints='on_hold'
+"    let g:tern_map_keys=1
 
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
@@ -237,7 +296,7 @@ Plug 'alvan/vim-closetag'
         \ 'typescript.tsx': 'jsxRegion,tsxRegion',
         \ 'javascript.jsx': 'jsxRegion',
         \ }
-Plug 'itmammoth/doorboy.vim'
+"Plug 'itmammoth/doorboy.vim'
 
 " Highlight ES6 template strings
 hi link javaScriptTemplateDelim String
@@ -254,150 +313,152 @@ Plug 'editorconfig/editorconfig-vim'"
     "let g:indent_guides_start_level = 2
 
 """""" ale
-Plug 'w0rp/ale'
-if expand("$ARDUBOY_TOOLCHAIN") != ""
-    let g:ale_cpp_gcc_executable='$HOME/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-g++'
-    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
-      \ -mmcu=atmega32u4 
-      \ -DF_CPU=16000000L 
-      \ -DARDUINO=10612 
-      \ -DARDUINO_AVR_ARDUBOY 
-      \ -DARDUINO_ARCH_AVR  
-      \ -DARDUBOY_10 -DUSB_VID=0x2341 
-      \ -DUSB_PID=0x8036 
-      \ -DUSB_MANUFACTURER="Unknown"
-      \ -DUSB_PRODUCT="Arduboy"
-      \ -I$HOME/gArduino/libraries/Arduboy2/src 
-      \ -I$HOME/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino 
-      \ -I$HOME/.arduino15/packages/arduino/hardware/avr/1.6.20/variants/leonardo
-      \ -I$HOME/.arduino15/packages/arduino/hardware/avr/1.6.20/libraries/EEPROM/src
-      \ -I$HOME/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
-      \'
-    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
-endif
+"Plug 'w0rp/ale'
+"if expand("$ARDUBOY_TOOLCHAIN") != ""
+"    let g:ale_cpp_gcc_executable='$HOME/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-g++'
+"    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
+"      \ -mmcu=atmega32u4 
+"      \ -DF_CPU=16000000L 
+"      \ -DARDUINO=10612 
+"      \ -DARDUINO_AVR_ARDUBOY 
+"      \ -DARDUINO_ARCH_AVR  
+"      \ -DARDUBOY_10 -DUSB_VID=0x2341 
+"      \ -DUSB_PID=0x8036 
+"      \ -DUSB_MANUFACTURER="Unknown"
+"      \ -DUSB_PRODUCT="Arduboy"
+"      \ -I$HOME/gArduino/libraries/Arduboy2/src 
+"      \ -I$HOME/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino 
+"      \ -I$HOME/.arduino15/packages/arduino/hardware/avr/1.6.20/variants/leonardo
+"      \ -I$HOME/.arduino15/packages/arduino/hardware/avr/1.6.20/libraries/EEPROM/src
+"      \ -I$HOME/.arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include
+"      \'
+"    set path+=~/.arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino
+"endif
 
-if expand("$ORDOIDGO_TOOLCHAIN") != ""
-    let g:ale_cpp_gcc_executable='$ODROIDGO_TOOLCHAIN/xtensa-esp32-elf-g++'
-    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
-      \ $ARDUINO_ROOT/hardware/espressif/esp32/tools/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++
-      \ -DESP_PLATFORM 
-      \ -DMBEDTLS_CONFIG_FILE="mbedtls/esp_config.h" 
-      \ -DHAVE_CONFIG_H -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/config 
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/bluedroid
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/app_trace
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/app_update
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/bootloader_support
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/bt
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/driver
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/esp32
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/esp_adc_cal
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/ethernet
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/fatfs
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/freertos
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/heap
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/jsmn
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/log
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/mdns
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/mbedtls
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/mbedtls_port
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/newlib
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/nvs_flash
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/openssl
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/spi_flash
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/sdmmc
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/spiffs
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/tcpip_adapter
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/ulp
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/vfs
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/wear_levelling
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/xtensa-debug-module
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/coap
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/console
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/expat
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/json
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/lwip
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/newlib
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/nghttp
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/soc
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/wpa_supplicant 
-      \ -std=gnu++11 
-      \ -fno-exceptions 
-      \ -Os 
-      \ -g3 
-      \ -Wpointer-arith 
-      \ -fexceptions 
-      \ -fstack-protector 
-      \ -ffunction-sections 
-      \ -fdata-sections
-      \ -fstrict-volatile-bitfields
-      \ -mlongcalls 
-      \ -nostdlib 
-      \ -w 
-      \ -Wno-error=unused-function 
-      \ -Wno-error=unused-but-set-variable 
-      \ -Wno-error=unused-variable 
-      \ -Wno-error=deprecated-declarations 
-      \ -Wno-unused-parameter 
-      \ -Wno-sign-compare 
-      \ -fno-rtti 
-      \ -MMD 
-      \ -c 
-      \ -DF_CPU=240000000L 
-      \ -DARDUINO=10805 
-      \ -DARDUINO_ODROID_ESP32 
-      \ -DARDUINO_ARCH_ESP32 
-      \ -DARDUINO_BOARD="ODROID_ESP32" 
-      \ -DARDUINO_VARIANT="odroid_esp32"  
-      \ -DESP32 
-      \ -DCORE_DEBUG_LEVEL=0 
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/cores/esp32
-      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/variants/odroid_esp32
-      \'
-"     set path to all ESP-IDF includes here!
-    set path+=$ODROID_TOOLCHAIN
-endif
+"if expand("$ORDOIDGO_TOOLCHAIN") != ""
+"    let g:ale_cpp_gcc_executable='$ODROIDGO_TOOLCHAIN/xtensa-esp32-elf-g++'
+"    let g:ale_cpp_gcc_options='-c -std=gnu++11 -O6
+"      \ $ARDUINO_ROOT/hardware/espressif/esp32/tools/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++
+"      \ -DESP_PLATFORM 
+"      \ -DMBEDTLS_CONFIG_FILE="mbedtls/esp_config.h" 
+"      \ -DHAVE_CONFIG_H -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/config 
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/bluedroid
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/app_trace
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/app_update
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/bootloader_support
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/bt
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/driver
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/esp32
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/esp_adc_cal
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/ethernet
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/fatfs
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/freertos
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/heap
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/jsmn
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/log
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/mdns
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/mbedtls
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/mbedtls_port
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/newlib
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/nvs_flash
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/openssl
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/spi_flash
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/sdmmc
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/spiffs
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/tcpip_adapter
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/ulp
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/vfs
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/wear_levelling
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/xtensa-debug-module
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/coap
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/console
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/expat
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/json
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/lwip
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/newlib
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/nghttp
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/soc
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/tools/sdk/include/wpa_supplicant 
+"      \ -std=gnu++11 
+"      \ -fno-exceptions 
+"      \ -Os 
+"      \ -g3 
+"      \ -Wpointer-arith 
+"      \ -fexceptions 
+"      \ -fstack-protector 
+"      \ -ffunction-sections 
+"      \ -fdata-sections
+"      \ -fstrict-volatile-bitfields
+"      \ -mlongcalls 
+"      \ -nostdlib 
+"      \ -w 
+"      \ -Wno-error=unused-function 
+"      \ -Wno-error=unused-but-set-variable 
+"      \ -Wno-error=unused-variable 
+"      \ -Wno-error=deprecated-declarations 
+"      \ -Wno-unused-parameter 
+"      \ -Wno-sign-compare 
+"      \ -fno-rtti 
+"      \ -MMD 
+"      \ -c 
+"      \ -DF_CPU=240000000L 
+"      \ -DARDUINO=10805 
+"      \ -DARDUINO_ODROID_ESP32 
+"      \ -DARDUINO_ARCH_ESP32 
+"      \ -DARDUINO_BOARD="ODROID_ESP32" 
+"      \ -DARDUINO_VARIANT="odroid_esp32"  
+"      \ -DESP32 
+"      \ -DCORE_DEBUG_LEVEL=0 
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/cores/esp32
+"      \ -I$ARDUINO_ROOT/hardware/espressif/esp32/variants/odroid_esp32
+"      \'
+"""     set path to all ESP-IDF includes here!
+"    set path+=$ODROID_TOOLCHAIN
+"endif
 
     " Put this in vimrc or a plugin file of your own.
     " After this is configured, :ALEFix will try and fix your JS code with ESLint.
-    if filereadable('/usr/bin/clang-format')
-      let g:ale_c_clangformat_executable='/usr/bin/clang-format'
-      let g:ale_cpp_clangformat_executable='/usr/bin/clang-format'
-    elseif filereadable('/usr/local/bin/clang-format')
-     let g:ale_c_clangformat_executable='/usr/local/bin/clang-format'
-      let g:ale_cpp_clangformat_executable='/usr/local/bin/clang-format'
-    endif
-"    let g:ale_linter_aliases = {'vue': 'typescript'}
-"                \   'vue': ['tsserver', 'eslint'],
-    let g:ale_linters = {
-                \   'javascript': ['eslint'],
-                \   'json': ['eslint'],
-                \   'typescript': ['tslint'],
-                \   'objc': ['clang'],
-                \   'cpp': ['clang-format'],
-                \   'h': ['clang-format'],
-                \   'go': ['goimports', 'gofmt']
-                \}
-"                \   'vue': ['eslint']
-    let g:ale_fixers = {
-                \   'javascript': ['eslint', 'prettier'],
-                \   'json': ['eslint', 'prettier'],
-                \   'typescript': ['tslint', 'prettier'],
-                \   'objc': ['clang'],
-                \   'cpp': ['clang-format'],
-                \   'h': ['clang-format'],
-                \   'go': ['goimports', 'gofmt']
-                \}
+"    if filereadable('/usr/bin/clang-format')
+"      let g:ale_c_clangformat_executable='/usr/bin/clang-format'
+"      let g:ale_cpp_clangformat_executable='/usr/bin/clang-format'
+"    elseif filereadable('/usr/local/bin/clang-format')
+"     let g:ale_c_clangformat_executable='/usr/local/bin/clang-format'
+"      let g:ale_cpp_clangformat_executable='/usr/local/bin/clang-format'
+"    endif
+""    let g:ale_linter_aliases = {'vue': 'typescript'}
+""                \   'vue': ['tsserver', 'eslint'],
+"    let g:ale_linters = {
+"                \   'javascript': ['eslint'],
+"                \   'json': ['eslint'],
+"                \   'typescript': ['tslint'],
+"                \   'objc': ['clang'],
+"                \   'cpp': ['clang-format'],
+"                \   'h': ['clang-format'],
+"                \   'go': ['goimports', 'gofmt']
+"                \}
+                \   'vue': ['eslint']
+"    let g:ale_fixers = {
+"                \   'javascript': ['eslint', 'prettier'],
+"                \   'json': ['eslint', 'prettier'],
+"                \   'typescript': ['tslint', 'prettier'],
+"                \   'objc': ['clang'],
+"                \   'cpp': ['clang-format'],
+"                \   'h': ['clang-format'],
+"                \   'go': ['goimports', 'gofmt']
+"                \}
 
-"                \   'cpp': [ 'g++' ],
-    " Set this setting in vimrc if you want to fix files automatically on save.
-    " This is off by default.
-    let g:ale_fix_on_save = 1
+""               \   'cpp': [ 'g++' ],
+"""     Set this setting in vimrc if you want to fix files automatically on save.
+"""     This is off by default.
+""    let g:ale_fix_on_save = 1
 
-    " Enable completion where available.
-    let g:ale_completion_enabled = 1
+""     Enable completion where available.
+"    let g:ale_completion_enabled = 1
 
-    let g:ale_set_loclist = 0
-    let g:ale_set_quickfix = 1
+"    let g:ale_set_loclist = 0
+"    let g:ale_set_quickfix = 1
+
+    Plug 'maximbaz/lightline-ale'
 
 """""" test runner
 "Plugin 'janko-m/vim-test'
@@ -575,36 +636,53 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 set laststatus=2
+
 let g:lightline = {
       \ 'colorscheme': 'PaperColor',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] 
+      \   ]
       \ },
       \ 'component_function': {
+      \   'fugitive': 'LightLineFugitive',
+      \   'readonly': 'LightLineReadonly',
+      \   'modified': 'LightLineModified',
+      \   'filename': 'LightLineFilename',
       \   'gitbranch': 'fugitive#head'
       \ },
-      \ }
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+    \ }
+
+  let g:lightline.component_expand = {
+  \  'linter_checking': 'lightline#ale#checking',
+  \  'linter_warnings': 'lightline#ale#warnings',
+  \  'linter_errors': 'lightline#ale#errors',
+  \  'linter_ok': 'lightline#ale#ok'
+  \ }
+
+  let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
 
 augroup reload_vimrc
     autocmd!
     autocmd bufwritepost ~/.vimrc nested source ~/.vimrc
 augroup END
 
-let g:lightline = {
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'fugitive': 'LightLineFugitive',
-    \   'readonly': 'LightLineReadonly',
-    \   'modified': 'LightLineModified',
-    \   'filename': 'LightLineFilename'
-    \ },
-    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-    \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-    \ }
+"let g:lightline = {
+"    \ 'active': {
+"    \   'left': [ [ 'mode', 'paste' ],
+"    \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+"    \ },
+"    \ 'component_function': {
+"    \   'fugitive': 'LightLineFugitive',
+"    \   'readonly': 'LightLineReadonly',
+"    \   'modified': 'LightLineModified',
+"    \   'filename': 'LightLineFilename'
+"    \ },
+"    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"    \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"    \ }
 
 
 function! LightLineModified()

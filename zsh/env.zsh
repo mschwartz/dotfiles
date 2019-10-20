@@ -34,14 +34,14 @@ export LESS=' -R '
 
 if [ "$OS" = 'Darwin' ]; then
   export EDITOR='/usr/local/bin/vim'
-  if [ "$TERM" = "st-256color" ]; then
-    export TERM="xterm-256color"
-  fi
-  if [ "$KONSOLE_PROFILE_NAME" != "" ]; then
-    export TERM=konsole-256-color
-  fi
+#  if [ "$TERM" = "st-256color" ]; then
+#    export TERM="xterm-256color"
+#  fi
+#  if [ "$KONSOLE_PROFILE_NAME" != "" ]; then
+#    export TERM=konsole-256-color
+#  fi
 else
   export EDITOR='/usr/bin/vim'
-  export TERM="xterm-256color"
+#  export TERM="xterm-256color"
 fi
 
