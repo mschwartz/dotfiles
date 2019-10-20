@@ -8,7 +8,7 @@ export OS=`uname -s`
 # Customize to your needs...
 export LSCOLORS=exfxcxdxbxexexabagacad
 
-cdpath=( ~ ~/modus/github )
+cdpath=( ~ ~/github ~/github/ModusCreateOrg )
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.2.15/..:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.3/..:$PATH"
 #export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.2.0.23/..:$PATH"
