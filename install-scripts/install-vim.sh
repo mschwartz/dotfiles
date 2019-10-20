@@ -20,14 +20,3 @@ vim +PlugInstall +qall
 cd ~/dotfiles/vim
 yarn add global jsctags eslint prettier eslint-plugin-prettier
 git submodule update --init --recursive
-#cd bundle/tern_for_vim
-#yarn install
-if [[ "$platform" == "macos" ]]; then
-  cd ../YouCompleteMe
-  if [ "$type" = "armv71" ]; then
-    export YCM_CORES=$numcpus
-    YCM_CORES=$numcpus ./install.py --tern-completer --system-boost --clang-completer --system-libclang
-  else
-    YCM_CORES=$numcpus ./install.py --tern-completer --clang-completer --system-libclang
-  fi
-fi
