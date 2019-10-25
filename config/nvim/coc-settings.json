@@ -18,5 +18,6 @@
       }
     }
   },
-  "coc.prefernces.formatOnSaveFiletypes": ["c", "cpp", "h"]
+  "coc.prefernces.formatOnSaveFiletypes": ["c", "cpp", "h"],
+  "diagnostics.refreshAfterSave": true
 }
