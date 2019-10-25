@@ -12,8 +12,9 @@ set tags=./tags
 set autoread
 au FocusGained,BufEnter * :checktime
 set foldmethod=marker
-set updatetime=300
+set updatetime=10
 set signcolumn=yes
+set iskeyword+=_
 
 " set leader
 let mapleader=","
@@ -34,6 +35,7 @@ autocmd BufNewFile,BufReadPost *.c,*.cpp,*.h,*.ino,*.pde set filetype=cpp
 autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
 autocmd BufNewFile,BufReadPost *.fth,*.4th set filetype=forth
 autocmd BufNewFile,BufReadPost .vimrc,*.vim set filetype=vim
+"autocmd BufNewFile,BufReadPost .html,*.js let delimitMate_matchPairs="{:},[:],(:),<:>"
 
 autocmd FocusLost  * call feedkeys("\<esc>")
 
@@ -120,6 +122,8 @@ map <C-v> "+P
 call plug#begin('~/.vim/plugged')
     nmap <silent> <leader>p :PlugInstall<cr>
 
+Plug 'chaoren/vim-wordmotion'
+
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 "Plug 'jgdavey/tslime.vim'
@@ -131,12 +135,12 @@ Plug 'tpope/vim-repeat'
 
 Plug 'Shougo/vimproc.vim'
 Plug 'puremourning/vimspector'
-"Plugin 'ilyachur/cmake4vim'
 
 Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown'
 
 Plug 'fadein/vim-FIGlet'
+
 Plug 'alpertuna/vim-header'
     let g:header_field_author = 'Michael Schwartz'
     let g:header_field_author_email = 'mykesx@gmail.com'
@@ -151,14 +155,20 @@ Plug 'mileszs/ack.vim'
 
 "Plugin 'wincent/command-t'
 "    let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
+
 Plug 'ctrlpvim/ctrlp.vim'
   map <leader>t <esc>:CtrlP<cr>
+
 Plug 'NLKNguyen/papercolor-theme'
+
 Plug 'jlanzarotta/bufexplorer'
+
 Plug 'wesQ3/vim-windowswap'
+
 "Plugin 'tpope/vim-obsession'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'xolox/vim-misc'
+
 Plug 'mschwartz/vim-easytags'
 "    let g:easytags_dynamic_files = 2
 "    let g:easytags_suppress_ctags_warning=1
@@ -196,7 +206,11 @@ Plug 'xolox/vim-session'
     let g:session_autosave_to = 'default'
     let g:session_verbose_messages = 0
 
+"Plug 'rstacruz/vim-closer'
+"Plug 'tpope/vim-endwise'
 Plug 'Raimondi/delimitMate'
+    let delimitMate_matchpairs = "{:},[:],(:)"
+
 "Plugin 'jiangmiao/auto-pairs'
 
 " mode line
@@ -211,22 +225,23 @@ Plug 'airblade/vim-gitgutter'
 
 " Language Support
 "Plugin 'vim-syntastic/syntastic'
-"Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release'}
-Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release'}
   command! -nargs=0 Format :call CocAction('format')
+
   map <leader>f :Format<cr>
+"  map <leader>f :Format<cr>
   " Use tab for trigger completion with characters ahead and navigate.
   " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-  inoremap <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ coc#refresh()
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"  inoremap <silent><expr> <TAB>
+"        \ pumvisible() ? "\<C-n>" :
+"        \ <SID>check_back_space() ? "\<TAB>" :
+"        \ coc#refresh()
+"  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-  function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-  endfunction
+"  function! s:check_back_space() abort
+"    let col = col('.') - 1
+"    return !col || getline('.')[col - 1]  =~# '\s'
+"  endfunction
 
   " Use <c-space> to trigger completion.
   inoremap <silent><expr> <c-space> coc#refresh()
@@ -273,11 +288,13 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'ap/vim-css-color'
 Plug 'pangloss/vim-javascript'
+Plug 'MaxMEllon/vim-jsx-pretty'
+
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
-Plug 'mxw/vim-jsx'
-    let g:jsx_ext_required = 0
+"Plug 'mxw/vim-jsx'
+"    let g:jsx_ext_required = 0
 Plug 'leshill/vim-json'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-pug'
@@ -286,16 +303,16 @@ Plug 'heavenshell/vim-jsdoc'
 "nmap <leader>j :JsDoc<cr>
 Plug 'othree/jsdoc-syntax.vim'
 "Plugin 'othree/xml.vim'
-Plug 'alvan/vim-closetag'
-    let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js'
-    let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
-    let g:closetag_filetypes = 'html,xhtml,phtml,javascript,jsx'
-    let g:closetag_xhtml_filetypes = 'xhtml,jsx'
-    let g:closetag_emptyTags_caseSensitive = 1
-    let g:closetag_regions = {
-        \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-        \ 'javascript.jsx': 'jsxRegion',
-        \ }
+"Plug 'alvan/vim-closetag'
+"    let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js'
+"    let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
+"    let g:closetag_filetypes = 'html,xhtml,phtml,javascript,jsx'
+"    let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+"    let g:closetag_emptyTags_caseSensitive = 1
+"    let g:closetag_regions = {
+"        \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+"        \ 'javascript.jsx': 'jsxRegion',
+"        \ }
 "Plug 'itmammoth/doorboy.vim'
 
 " Highlight ES6 template strings
@@ -436,7 +453,7 @@ Plug 'editorconfig/editorconfig-vim'"
 "                \   'h': ['clang-format'],
 "                \   'go': ['goimports', 'gofmt']
 "                \}
-                \   'vue': ['eslint']
+"                \   'vue': ['eslint']
 "    let g:ale_fixers = {
 "                \   'javascript': ['eslint', 'prettier'],
 "                \   'json': ['eslint', 'prettier'],
