@@ -121,4 +121,5 @@ fi
 git config --global user.email "mykesx@gmail.com"
 git config --global user.name "Michael Schwartz"
 
+git clone https://github.com/tmux-plugins/tpm ~/dotfiles/tmux/plugins/tpm
 
