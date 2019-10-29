@@ -1,0 +1,23 @@
+{
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp", "h"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls",
+          "useHierarchy": true
+        }
+      }
+    }
+  },
+  "coc.prefernces.formatOnSaveFiletypes": ["c", "cpp", "h"],
+  "diagnostics.refreshAfterSave": true
+}
