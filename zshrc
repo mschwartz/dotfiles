@@ -50,7 +50,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools osx redis-cli rvm sublime terminalapp themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found)
+plugins=(z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found)
 
 source $ZSH/oh-my-zsh.sh
 
