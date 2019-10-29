@@ -26,6 +26,10 @@ if (exists('+termguicolors'))
   set termguicolors
 endif
 
+" Speelling
+iab direciton direction
+iab DIRECITON DIRECTION
+
 " auto commands
 
 autocmd! 
@@ -75,8 +79,10 @@ map <leader>h :call HeaderToggle()<cr>
 "endfunction 
 
 " key bindings
-imap <F1> <nop>
-nmap <F1> <nop>
+nmap <F1> :echo<cr>
+imap <F1> :echo<cr>
+imap <F1> <C-o>:echo<cr>
+
 nmap <leader>s :w!<cr>
 map <leader>j :j<cr>
 "map <leader>ai :ALEInfo<cr>
@@ -232,19 +238,19 @@ Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release'}
 "  map <leader>f :Format<cr>
   " Use tab for trigger completion with characters ahead and navigate.
   " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-"  inoremap <silent><expr> <TAB>
-"        \ pumvisible() ? "\<C-n>" :
-"        \ <SID>check_back_space() ? "\<TAB>" :
-"        \ coc#refresh()
-"  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-"  function! s:check_back_space() abort
-"    let col = col('.') - 1
-"    return !col || getline('.')[col - 1]  =~# '\s'
-"  endfunction
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
 
   " Use <c-space> to trigger completion.
-  inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><expr> <leader><c-r> coc#refresh()
 
   " Remap keys for gotos
   nmap <silent> <C-]> <Plug>(coc-definition)
@@ -787,7 +793,7 @@ function! InsertTabWrapper()
     return "\<c-p>"
   endif
 endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+"inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 map <C-\> <Esc>:Ack 
 

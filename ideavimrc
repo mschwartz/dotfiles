@@ -38,7 +38,7 @@ nmap <F1><nop>
 "map <leader>cc :action Clean<CR>
 map <leader>bb :action Build<CR>
 map <leader>d :action Debug<CR>
-map <leader>r :action Run<CR>
+map <leader>r :action Debug<CR>
 map <leader>x :action Clean<CR>:action CMake.ReloadCMakeProject<CR><ESC>
 
 map <leader>t :action GotoFile<cr>
