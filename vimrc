@@ -12,7 +12,7 @@ set tags=./tags
 set autoread
 au FocusGained,BufEnter * :checktime
 set foldmethod=marker
-set updatetime=10
+set updatetime=100
 set signcolumn=yes
 set iskeyword+=_
 
@@ -129,6 +129,11 @@ call plug#begin('~/.vim/plugged')
     nmap <silent> <leader>p :PlugInstall<cr>
 
 Plug 'chaoren/vim-wordmotion'
+"  let g:wordmotion_spaces = '_-.'
+  let g:wordmotion_spaces = '_,'
+  onoremap W :<C-U>normal! vWh<cr>
+  nmap dw de
+  nmap cw ce
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
