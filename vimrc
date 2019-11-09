@@ -226,7 +226,39 @@ Plug 'Raimondi/delimitMate'
 
 " mode line
 Plug 'itchyny/lightline.vim'
+  let g:lightline = {
+        \ 'colorscheme': 'PaperColor',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] 
+        \   ]
+        \ },
+        \ 'component_function': {
+        \   'gitbranch': 'fugitive#head'
+        \ },
+        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \ }
 
+"    let g:lightline.enable = {
+"          \ 'statusline': 1,
+"          \ 'tabline': 1
+"          \ }
+
+    set showtabline=2
+"    let g:lightline.component_expand = {
+"    \  'linter_checking': 'lightline#ale#checking',
+"    \  'linter_warnings': 'lightline#ale#warnings',
+"    \  'linter_errors': 'lightline#ale#errors',
+"    \  'linter_ok': 'lightline#ale#ok'
+"    \ }
+
+"    let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+
+Plug 'mengelbrecht/lightline-bufferline'
+  let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+  let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+  let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 Plug 'edkolev/tmuxline.vim'
 
@@ -486,7 +518,7 @@ Plug 'editorconfig/editorconfig-vim'"
 "    let g:ale_set_loclist = 0
 "    let g:ale_set_quickfix = 1
 
-    Plug 'maximbaz/lightline-ale'
+"    Plug 'maximbaz/lightline-ale'
 
 """""" test runner
 "Plugin 'janko-m/vim-test'
@@ -664,33 +696,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 set laststatus=2
-
-let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] 
-      \   ]
-      \ },
-      \ 'component_function': {
-      \   'fugitive': 'LightLineFugitive',
-      \   'readonly': 'LightLineReadonly',
-      \   'modified': 'LightLineModified',
-      \   'filename': 'LightLineFilename',
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-    \ }
-
-  let g:lightline.component_expand = {
-  \  'linter_checking': 'lightline#ale#checking',
-  \  'linter_warnings': 'lightline#ale#warnings',
-  \  'linter_errors': 'lightline#ale#errors',
-  \  'linter_ok': 'lightline#ale#ok'
-  \ }
-
-  let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
 
 augroup reload_vimrc
     autocmd!

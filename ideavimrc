@@ -24,6 +24,8 @@ set mousehide
 set mouse=a
 
 imap jj <Esc>
+imap kkk <Esc>
+
 let mapleader = ","
 map <leader>e :e ~/.ideavimrc<CR>
 map <leader>z :source ~/.ideavimrc<CR>
