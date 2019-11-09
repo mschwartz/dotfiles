@@ -4,7 +4,13 @@
       "command": "cquery",
       "args": ["--log-file=/tmp/cq.log"],
       "filetypes": ["c", "cpp"],
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
       "initializationOptions": {
         "cacheDirectory": "/tmp/cquery"
       }
@@ -29,6 +35,17 @@
       }
     }
   },
-  "coc.prefernces.formatOnSaveFiletypes": ["c", "cpp", "h"],
-  "diagnostics.refreshAfterSave": true
+  "coc.prefernces.formatOnSaveFiletypes": [
+    "c",
+    "cpp",
+    "h",
+    "css",
+    "Markdown",
+    "javascript",
+    "html",
+    "scss"
+  ],
+  "diagnostics.refreshAfterSave": true,
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": true
 }
