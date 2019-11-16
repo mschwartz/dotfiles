@@ -62,6 +62,12 @@ elseif extension == "h"
 
   if filereadable(next_file)
     :e %<.cpp
+    return
+  endif
+  let next_file = join([file_name, ".c"], "")
+  if filereadable(next_file)
+    :e %<.c
+    return
   else
     echo join([err_msg, next_file], "")
   endif
@@ -245,7 +251,7 @@ Plug 'itchyny/lightline.vim'
 "          \ 'tabline': 1
 "          \ }
 
-    set showtabline=2
+"    set showtabline=2
 "    let g:lightline.component_expand = {
 "    \  'linter_checking': 'lightline#ale#checking',
 "    \  'linter_warnings': 'lightline#ale#warnings',
@@ -256,7 +262,7 @@ Plug 'itchyny/lightline.vim'
 "    let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
 
 Plug 'mengelbrecht/lightline-bufferline'
-  let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+"  let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
   let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
   let g:lightline.component_type   = {'buffers': 'tabsel'}
 
@@ -786,7 +792,12 @@ augroup JumpCursorOnEdit
  \ endif
 augroup END
 
-set t_Co=256
+" enable true color
+if &term =~# '^screen'
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+"set t_Co=256
 map <Esc>[0c <C-RIGHT>
 map <Esc>[0d <C-LEFT>>
     
