@@ -1,0 +1,17 @@
+set asr
+set tabstop=2
+set ignorecase
+set shortcut
+set executinglinedisplay=highlight
+set selectedlinedisplay=highlight
+set arrowstyle=highlight
+set hls
+map <PageDown> i
+imap <PageUp> <esc>
+map q :quit<CR>
+map r :run<CR>
+map c :continue<CR>
+map f :finish<CR>
+map n :next<CR>
+map s :step<CR>
+
