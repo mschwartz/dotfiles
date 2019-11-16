@@ -236,11 +236,12 @@ Plug 'itchyny/lightline.vim'
         \ 'colorscheme': 'PaperColor',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] 
+        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] 
         \   ]
         \ },
         \ 'component_function': {
-        \   'gitbranch': 'fugitive#head'
+        \   'gitbranch': 'fugitive#head',
+        \   'filename': 'LightlineFilename'
         \ },
         \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
         \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
@@ -702,6 +703,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 set laststatus=2
+set statusline+=%F
 
 augroup reload_vimrc
     autocmd!
@@ -756,9 +758,12 @@ function! LightLineFugitive()
 endfunction
 
 function! LightLineFilename()
-    return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-                \ ('' != expand('%:f') ? expand('%:f') : '[No Name]') .
-                \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+  return "FOO"
+  return expand("%:p")
+"  return expand("%:p")
+"    return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+"                \ ('' != expand('%:p') ? expand('%:p') : '[No Name]') .
+"                \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
 set background=dark
