@@ -1,4 +1,5 @@
 IndentWidth: 2
+ContinuationIndentWidth: 2
 SortIncludes: false
 Cpp11BracedListStyle: false
 BreakBeforeBraces: Custom
