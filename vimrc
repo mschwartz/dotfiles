@@ -29,6 +29,8 @@ endif
 " Speelling
 iab direciton direction
 iab DIRECITON DIRECTION
+iab colleciton collection
+iab COLLECITON COLLECTION
 
 " auto commands
 
