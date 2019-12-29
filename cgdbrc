@@ -1,0 +1,54 @@
+# settings and bindings for cgdb (terminal/curses interface to gdb)
+
+set winsplit=src_big # source code window most of the height by default
+set asr # reload if program was recompiled
+set tabstop=2
+set ignorecase
+set hls #highlight search term, everywhere
+
+# source code line highlighting
+set executinglinedisplay=highlight
+set selectedlinedisplay=highlight
+set arrowstyle=highlight
+
+hi PreProc           cterm=normal ctermfg=Magenta
+hi SelectedLineNr    cterm=bold   ctermfg=White       ctermbg=DarkCyan
+hi LineHighlight     cterm=normal ctermfg=Black        ctermbg=White
+hi IncSearch         cterm=normal ctermfg=white       ctermbg=Yellow
+hi Breakpoint        cterm=bold   ctermfg=White       ctermbg=Blue
+hi DisableBreakpoint cterm=normal ctermfg=DarkGray    ctermbg=Blue
+hi StatusLine        cterm=normal ctermfg=DarkGray    ctermbg=White
+
+# source code window key mapping
+map <PageDown> i
+#map <Ss-j> i
+imap <Ss-Up> i
+imap <Ss-Down> i
+
+map q :quit<CR>
+
+# debugging keys
+map r :run<CR>
+map c :continue<CR>
+map f :finish<CR>
+map n :next<CR>
+map s :step<CR>
+map u :up<CR>
+
+# gdb window key mapping
+imap <PageUp> <esc>
+imap <Ss-Up> <Esc>
+imap <Ss-Down> <Esc>
+# imap <s-k> <esc>
+imap <c-s-k> <esc>
+
+map <S-B> iinfo<Space>breakpoints<CR><ESC>
+map <S-L> iinfo<Space>local<CR><ESC>
+map <S-F> iinfo<Space>frame<CR><ESC>
+map <S-S> iinfo<Space>stack<CR><ESC>
+map <S-H> iinfo<Space>share<CR><ESC>
+map <S-T> iinfo<Space>thread<CR><ESC>
+map <S-D> iinfo<Space>display<CR><ESC>
+map <S-W> iwhere<CR><ESC>
+map <S-A> ishow<Space>args<CR><ESC>
+map <S-Q> iquit<CR><ESC>

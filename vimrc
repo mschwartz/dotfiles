@@ -29,6 +29,8 @@ endif
 " Speelling
 iab direciton direction
 iab DIRECITON DIRECTION
+iab colleciton collection
+iab COLLECITON COLLECTION
 
 " auto commands
 
@@ -62,6 +64,12 @@ elseif extension == "h"
 
   if filereadable(next_file)
     :e %<.cpp
+    return
+  endif
+  let next_file = join([file_name, ".c"], "")
+  if filereadable(next_file)
+    :e %<.c
+    return
   else
     echo join([err_msg, next_file], "")
   endif
@@ -226,7 +234,40 @@ Plug 'Raimondi/delimitMate'
 
 " mode line
 Plug 'itchyny/lightline.vim'
+  let g:lightline = {
+        \ 'colorscheme': 'PaperColor',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] 
+        \   ]
+        \ },
+        \ 'component_function': {
+        \   'gitbranch': 'fugitive#head',
+        \   'filename': 'LightlineFilename'
+        \ },
+        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \ }
 
+"    let g:lightline.enable = {
+"          \ 'statusline': 1,
+"          \ 'tabline': 1
+"          \ }
+
+"    set showtabline=2
+"    let g:lightline.component_expand = {
+"    \  'linter_checking': 'lightline#ale#checking',
+"    \  'linter_warnings': 'lightline#ale#warnings',
+"    \  'linter_errors': 'lightline#ale#errors',
+"    \  'linter_ok': 'lightline#ale#ok'
+"    \ }
+
+"    let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+
+Plug 'mengelbrecht/lightline-bufferline'
+"  let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+  let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+  let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 Plug 'edkolev/tmuxline.vim'
 
@@ -486,7 +527,7 @@ Plug 'editorconfig/editorconfig-vim'"
 "    let g:ale_set_loclist = 0
 "    let g:ale_set_quickfix = 1
 
-    Plug 'maximbaz/lightline-ale'
+"    Plug 'maximbaz/lightline-ale'
 
 """""" test runner
 "Plugin 'janko-m/vim-test'
@@ -664,33 +705,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 set laststatus=2
-
-let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] 
-      \   ]
-      \ },
-      \ 'component_function': {
-      \   'fugitive': 'LightLineFugitive',
-      \   'readonly': 'LightLineReadonly',
-      \   'modified': 'LightLineModified',
-      \   'filename': 'LightLineFilename',
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-    \ }
-
-  let g:lightline.component_expand = {
-  \  'linter_checking': 'lightline#ale#checking',
-  \  'linter_warnings': 'lightline#ale#warnings',
-  \  'linter_errors': 'lightline#ale#errors',
-  \  'linter_ok': 'lightline#ale#ok'
-  \ }
-
-  let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+set statusline+=%F
 
 augroup reload_vimrc
     autocmd!
@@ -745,9 +760,12 @@ function! LightLineFugitive()
 endfunction
 
 function! LightLineFilename()
-    return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-                \ ('' != expand('%:f') ? expand('%:f') : '[No Name]') .
-                \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+  return "FOO"
+  return expand("%:p")
+"  return expand("%:p")
+"    return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+"                \ ('' != expand('%:p') ? expand('%:p') : '[No Name]') .
+"                \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
 set background=dark
@@ -781,7 +799,12 @@ augroup JumpCursorOnEdit
  \ endif
 augroup END
 
-set t_Co=256
+" enable true color
+if &term =~# '^screen'
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+"set t_Co=256
 map <Esc>[0c <C-RIGHT>
 map <Esc>[0d <C-LEFT>>
     

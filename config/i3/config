@@ -16,6 +16,7 @@ for_window [class="^.*"] border pixel 5
 #for_window [class="^Modite"] floating enable, move workspace current
 #for_window [class="^VirtualBox"] floating enable
 for_window [class="^Modite"] floating enable
+for_window [class="^test"] floating enable
 for_window [class="^MPlayer"] floating enable
 for_window [class="^kazam"] floating enable
 for_window [class="^kazam"] move workspace current

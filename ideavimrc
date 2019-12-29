@@ -24,6 +24,8 @@ set mousehide
 set mouse=a
 
 imap jj <Esc>
+imap kkk <Esc>
+
 let mapleader = ","
 map <leader>e :e ~/.ideavimrc<CR>
 map <leader>z :source ~/.ideavimrc<CR>
@@ -31,7 +33,8 @@ map <leader>j :j<cr>
 map <leader>s :action SaveAll<CR>
 #map <leader>f :action Javascript.Linters.EsLint.Fix<CR>
 map <leader>f :action ReformatCode<CR>
-map <leader>be :action GotoFile<cr>
+"map <leader>be :action GotoFile<cr>
+map <leader>be :action RecentFiles<cr>
 
 nmap <F1><nop>
 
