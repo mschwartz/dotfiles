@@ -9,13 +9,17 @@ if [ -e /usr/bin/synclient ]; then
 else
   touchpad=`xinput list --name-only | grep -i TouchPad`
   trackpoint=`xinput list --name-only | grep -i TrackPoint`
+  if [ $touchpad == ""]; then
+    touchpad=`xinput list --name-only | grep K400 | head -1`
+    touchpad="pointer:$touchpad"
+    xinput --set-prop "$touchpad" "libinput Accel Speed" .5
+    xinput --set-prop "$touchpad" "libinput Natural Scrolling Enabled" 0
+  else
+    xinput --set-prop "$touchpad" "libinput Accel Speed" .5
+    xinput --set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
+    xinput --set-prop "$touchpad" "libinput Tapping Enabled" 0
+    # disable trackpoint
+    xinput --set-prop "$trackpoint" "Device Enabled" 0
+  fi
 
-  xinput --set-prop "$touchpad" "libinput Accel Speed" .5
-#  xinput --set-prop "$touchpad" "libinput Accel Speed Default" .5
-  xinput --set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
-#  xinput --set-prop "$touchpad" "libinput Natural Scrolling Enabled Default" 1
-  xinput --set-prop "$touchpad" "libinput Tapping Enabled" 0
-#  xinput --set-prop "$touchpad" "libinput Tapping Enabled Default" 0
-  # disable trackpoint
-  xinput --set-prop "$trackpoint" "Device Enabled" 0
 fi
