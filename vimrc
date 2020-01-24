@@ -27,7 +27,11 @@ if (exists('+termguicolors'))
 endif
 
 " Speelling
+iab eciton ection
+iab aDireciton aDirection
+iab mDireciton aDirection
 iab direciton direction
+iab Direciton Direction
 iab DIRECITON DIRECTION
 iab colleciton collection
 iab COLLECITON COLLECTION
@@ -41,6 +45,7 @@ autocmd BufNewFile,BufReadPost *.c,*.cpp,*.h,*.ino,*.pde set filetype=cpp
 autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
 autocmd BufNewFile,BufReadPost *.fth,*.4th set filetype=forth
 autocmd BufNewFile,BufReadPost .vimrc,*.vim set filetype=vim
+
 "autocmd BufNewFile,BufReadPost .html,*.js let delimitMate_matchPairs="{:},[:],(:),<:>"
 
 autocmd FocusLost  * call feedkeys("\<esc>")
@@ -85,11 +90,6 @@ map <leader>h :call HeaderToggle()<cr>
 "  map <leader>r :GoRun<cr>
 "  map <leader>b :GoBuild<cr>
 "endfunction 
-
-" key bindings
-nmap <F1> :echo<cr>
-imap <F1> :echo<cr>
-imap <F1> <C-o>:echo<cr>
 
 nmap <leader>s :w!<cr>
 map <leader>j :j<cr>
@@ -332,6 +332,8 @@ Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release'}
 
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-scripts/forth.vim'
+Plug 'Shirk/vim-gas'
+
 "Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 "    let g:tern_show_argument_hints='on_hold'
 "    let g:tern_map_keys=1
@@ -536,6 +538,12 @@ Plug 'editorconfig/editorconfig-vim'"
     "nmap <silent> <leader>t. :TestFile<cr>
 
 Plug 'scrooloose/nerdcommenter'
+    let g:NERDCustomDelimiters = { 
+          \ 'S': { 'left': '#' },
+          \ 's': { 'left': '#' },
+          \ 'asm': { 'left': '#' }
+          \ }
+
     " Use compact syntax for prettified multi-line comments
     "let g:NERDCompactSexyComs = 1
 
@@ -838,4 +846,19 @@ packloadall
 " Load all of the helptags now, after plugins have been loaded.
 " All messages and errors will be ignored.
 silent! helptags ALL
+
+autocmd FileType asm call ASM_config()
+  function! ASM_config()
+    iunmap <tab>
+    CocDisable
+    setlocal tabstop=20
+    setlocal shiftwidth=20
+    setlocal softtabstop=0
+    setlocal expandtab
+  endfunction
+
+" key bindings
+nmap <F1> :echo<cr>
+imap <F1> :echo<cr>
+imap <F1> <C-o>:echo<cr>
 
