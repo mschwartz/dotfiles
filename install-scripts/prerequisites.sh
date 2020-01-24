@@ -57,6 +57,7 @@ elif [[ $platform == 'arch' ]]; then
     abook \
     cronie \
     fakeroot \
+    sshfs \
     hub \
     "
 
