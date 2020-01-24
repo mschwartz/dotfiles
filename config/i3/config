@@ -440,10 +440,10 @@ exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id solaar config 2 fn-swap off
 ## set display resolution
 exec --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
-exec --no-startup-id xrandr --output HDMI-0 --left-of DP-2 --auto
-bindsym $mod+> exec xrandr --output HDMI-0 --right-of DP-2 --auto
-bindsym $mod+shift+comma exec xrandr --output HDMI-0 --left-of DP-2 --auto
-bindsym $mod+shift+period exec xrandr --output HDMI-0 --right-of DP-2 --auto
+exec --no-startup-id xrandr --output DP-0 --left-of DP-2 --auto
+bindsym $mod+> exec xrandr --output DP-0 --right-of DP-2 --auto
+bindsym $mod+shift+comma exec xrandr --output DP-0 --left-of DP-2 --auto
+bindsym $mod+shift+period exec xrandr --output DP-0 --right-of DP-2 --auto
 ## system notifications
 exec --no-startup-id dunst
 #exec --no-startup-id compton -b --vsync none -f -c --backend xrender
