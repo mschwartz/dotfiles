@@ -3,7 +3,7 @@
     "cquery": {
       "command": "cquery",
       "args": ["--log-file=/tmp/cq.log"],
-      "filetypes": ["c", "cpp"],
+      "filetypes": ["c", "cpp", "h"],
       "rootPatterns": [
         "compile_flags.txt",
         "compile_commands.json",
