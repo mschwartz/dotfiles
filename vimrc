@@ -549,6 +549,7 @@ Plug 'scrooloose/nerdcommenter'
 
     " Align line-wise comment delimiters flush left instead of following code indentation
     let g:NERDDefaultAlign = 'start'
+    let g:NERDCustomDelimiters = { 'forth': { 'left': '\ ','right': '' } }
 
     " Allow commenting and inverting empty lines (useful when commenting a region)
     "let g:NERDCommentEmptyLines = 1
@@ -606,6 +607,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Use actual tab chars in Makefiles.
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+autocmd FileType asm set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
 "autocmd FileType cpp 
 "        \ setlocal tabstop=2 |

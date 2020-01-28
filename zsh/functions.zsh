@@ -5,8 +5,13 @@
 # GIT
 master() {
   git checkout master
-  git pull upstream master
-  git push origin master
+  upstream=`git remote | grep upstream`
+  if [[ "$upstream" == "" ]]; then
+    git pull origin master
+  else
+    git pull upstream master
+    git push origin master
+  fi
 }
 
 develop() {
