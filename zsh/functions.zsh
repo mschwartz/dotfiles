@@ -59,6 +59,7 @@ tmuxx() {
 
 cls() {
   clear;
+  stty sane;
   if [ "$TMUX" != "" ]; then
     tmux clear-history;
   fi

@@ -6,6 +6,7 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias so='source'
+alias sane='stty sane'
 
 # ssh hosts
 alias snowdog='ssh snowdog'
