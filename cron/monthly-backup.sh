@@ -10,6 +10,14 @@ if [[ $platform != "linux" ]]; then
 fi
 
 HOSTNAME=`hostname`
+echo "MONTHLY BACKUP"
+function cleanup {
+  sudo umount /backup
+  echo "Unmounted /backup"
+}
+trap cleanup EXIT
+
+cd ~/dotfiles/cron
 sudo mount /backup
 sudo mkdir -p /backup/$HOSTNAME/monthly
 echo "MONTHLY BACKUP"

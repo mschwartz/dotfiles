@@ -11,16 +11,24 @@ fi
 
 
 HOSTNAME=`hostname`
+echo "WEEKLY BACKUP"
+function cleanup {
+  sudo umount /backup
+  echo "Unmounted /backup"
+}
+trap cleanup EXIT
+
+cd ~/dotfiles/cron
 sudo mount /backup
 sudo mkdir -p /backup/$HOSTNAME/weekly
 echo "WEEKLY BACKUP"
 echo "*** Backing up /etc"
-sudo rsync -av --delete  /backup/$HOSTNAME/daily/etc /backup/weekly/etc
+sudo rsync -avzzO --exclude-from=excludes.rsync --delete  /backup/$HOSTNAME/daily/etc /backup/weekly/etc
 echo "*** Backing up /opt"
-sudo rsync -av --delete  /backup/$HOSTNAME/daily/opt /backup/weekly/opt
+sudo rsync -avzzO --exclude-from=excludes.rsync --delete  /backup/$HOSTNAME/daily/opt /backup/weekly/opt
 echo "*** Backing up /var"
-sudo rsync -av --delete  /backup/$HOSTNAME/daily/var /backup/weekly/var
+sudo rsync -avzzO --exclude-from=excludes.rsync --delete  /backup/$HOSTNAME/daily/var /backup/weekly/var
 echo "*** Backing up /usr/local"
-sudo rsync -av --delete  /backup/$HOSTNAME/daily/user.local /backup/weekly/user.local
+sudo rsync -avzzO --exclude-from=excludes.rsync --delete  /backup/$HOSTNAME/daily/user.local /backup/weekly/user.local
 echo "*** Backing up /home"
-sudo rsync -av --delete  /backup/$HOSTNAME/daily/home /backup/weekly/home
+sudo rsync -avzzO --exclude-from=excludes.rsync --delete  /backup/$HOSTNAME/daily/home /backup/weekly/home
