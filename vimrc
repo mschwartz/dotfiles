@@ -297,7 +297,7 @@ function! COC_configure()
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
         \ coc#refresh()
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
   function! s:check_back_space() abort
     let col = col('.') - 1
@@ -885,4 +885,16 @@ autocmd FileType asm call ASM_config()
 nmap <F1> :echo<cr>
 imap <F1> :echo<cr>
 imap <F1> <C-o>:echo<cr>
+nmap <C-h> :TmuxNavigateLeft<cr>
+nmap <C-j> :TmuxNavigateDown<cr>
+nmap <C-k> :TmuxNavigateUp<cr>
+nmap <C-l> :TmuxNavigateRight<cr>
+imap <C-h> :TmuxNavigateLeft<cr>
+imap <C-j> :TmuxNavigateDown<cr>
+imap <C-k> :TmuxNavigateUp<cr>
+imap <C-l> :TmuxNavigateRight<cr>
 
+map <C-h> :TmuxNavigateLeft<cr>
+map <C-j> :TmuxNavigateDown<cr>
+map <C-k> :TmuxNavigateUp<cr>
+map <C-l> :TmuxNavigateRight<cr>
