@@ -1,6 +1,6 @@
 #!/bin/bash
 
-type=`uname -m`
+platform_type=`uname -m`
 unamestr=`uname`
 platform='unknown'
 if [[ "$unamestr" == 'Linux' ]]; then
@@ -20,5 +20,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
       fi
     }
 fi
+export platform_type
 export platform
 export hostname=`hostname -s`
+export numcpus=`getconf _NPROCESSORS_ONLN`

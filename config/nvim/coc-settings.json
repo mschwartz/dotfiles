@@ -1,0 +1,51 @@
+{
+  "languageserver": {
+    "cquery": {
+      "command": "cquery",
+      "args": ["--log-file=/tmp/cq.log"],
+      "filetypes": ["c", "cpp", "h"],
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cacheDirectory": "/tmp/cquery"
+      }
+    }
+  },
+  "xlanguageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp", "h"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls",
+          "useHierarchy": true
+        }
+      }
+    }
+  },
+  "coc.prefernces.formatOnSaveFiletypes": [
+    "c",
+    "cpp",
+    "h",
+    "css",
+    "Markdown",
+    "javascript",
+    "html",
+    "scss"
+  ],
+  "diagnostics.refreshAfterSave": true,
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": true
+}

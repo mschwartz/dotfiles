@@ -14,6 +14,8 @@ DEFAULT_USER=mschwartz
 unalias run-help 2>/dev/null
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
+# portable way to get # of processors/cores:
+export JOBS=`getconf _NPROCESSORS_ONLN`
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -48,7 +50,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(vi-mode git sudo colorize bower brew colored-man node npm jsontools osx redis-cli rvm sublime terminalapp themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd)
+plugins=(z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -80,6 +82,12 @@ fi
 
 neofetch
 
+# disable ctrl-s (xon/xoff)
+stty -ixon
+
+#if [ -f /usr/share/nvm/init-nvm.sh ]; then
+#  source /usr/share/nvm/init-nvm.sh
+#fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 PATH="/home/mschwartz/perl5/bin${PATH:+:${PATH}}"; export PATH;
@@ -87,6 +95,14 @@ PERL5LIB="/home/mschwartz/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL
 PERL_LOCAL_LIB_ROOT="/home/mschwartz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/mschwartz/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/mschwartz/perl5"; export PERL_MM_OPT;
+
+if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
+  source $HOME/github/other/emsdk/emsdk_env.sh
+fi
+PATH=~/go/bin:$PATH; export PATH
+
+
+
 # Must be sourced at end of .zshrc
 if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -94,9 +110,11 @@ elif [ -f /usr/share/zsh-syntax-highlighting.zsh ]; then
   source /usr/share/zsh-syntax-highlighting.zsh
 fi
 
-if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
-  source $HOME/github/other/emsdk/emsdk_env.sh
-fi
-# disable ctrl-s (xon/xoff)
-stty -ixon
 
+if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
+  source /usr/share/doc/pkgfile/command-not-found.zsh
+fi
+
+#[ ! -z "$KITTY_WINDOW_ID" ] && export TERM=xterm-kitty
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

@@ -2,6 +2,23 @@
 # functions - these act like aliases but can have logic flow
 #
 
+# GIT
+master() {
+  git checkout master
+  upstream=`git remote | grep upstream`
+  if [[ "$upstream" == "" ]]; then
+    git pull origin master
+  else
+    git pull upstream master
+    git push origin master
+  fi
+}
+
+develop() {
+  git checkout develop
+  git pull origin develop
+}
+
 # cd <dir> automatically does an ls after changing
 cd() {
   builtin cd "$@" && ls
@@ -42,7 +59,67 @@ tmuxx() {
 
 cls() {
   clear;
+  stty sane;
   if [ "$TMUX" != "" ]; then
     tmux clear-history;
   fi
+}
+
+find() {
+  /usr/bin/find $@ -not -path "./node_modules/*"
+}
+
+sclack() {
+  cd ~/github/other/sclack && cls && ./app.py
+}
+
+update() {
+  if [[ "$OS" == "Darwin" ]]; then
+    brew update
+    brew upgrade
+  else
+    echo ">>> Update MirrorList"
+    sudo reflector --verbose --country 'US' -l 5 --sort rate --save /etc/pacman.d/mirrorlist
+#    yay -R --noconfirm yay
+    echo ">>> PACMAN UPDATE"
+    sudo pacman --noconfirm -Syyu
+#    cd ~/github/arch/yay
+#    ggpull
+#    makepkg -si --noconfirm
+    echo ">>> AUR UPDATE"
+    yay --noconfirm -Syyu
+  fi
+}
+
+get() {
+  echo yay --noconfirm -Syy $@
+  yay --noconfirm -Syy $@
+}
+
+remove() {
+  echo yay --noconfirm -Rs $@
+  yay --noconfirm -Rs $@
+}
+
+view() {
+  case $TERMINFO in
+    *kitty*)
+      ;;
+    *)
+      /usr/bin/view $1
+      return
+      ;;
+  esac
+
+  local testfn=`echo $1 | tr '[:lower:'] '[:upper:']`
+  case $testfn in
+    *.JPG|*.JPEG|*.PNG|*.GIF|*.TIF|*.EPS|*.AI|*.BMP)
+      echo ""
+      kitty +kitten icat --align left $1
+      identify $1
+      echo ""
+      ;;
+    *)
+      /usr/bin/view $1
+  esac
 }

@@ -1,4 +1,4 @@
-CDPATH=~:/etc
+CDPATH=~:/etc:~/github:~/github/ModusCreateOrg
 alias presto='ssh -X -C presto'
 alias server5='ssh -X -C mykes@server5.sportstwo.com'
 alias server7='ssh -X -C mykes@server7.sportstwo.com'

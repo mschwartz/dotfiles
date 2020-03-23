@@ -1,6 +1,11 @@
 IndentWidth: 2
+ContinuationIndentWidth: 2
+SortIncludes: false
 Cpp11BracedListStyle: false
 BreakBeforeBraces: Custom
 BraceWrapping:
   BeforeElse: true
 IndentCaseLabels: true
+AlignAfterOpenBracket: false
+Cpp11BracedListStyle: false
+ColumnLimit: 0

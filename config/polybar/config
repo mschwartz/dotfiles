@@ -49,6 +49,7 @@ font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=16;1"
 font-4 = "Font Awesome 5 Brands:style=Regular:pixelsize=16;1"
 font-5 = siji:pixelsize=14;1
 font-6 = WunconSiji:pixelsize=14;0
+font-7 = "Material Icons:style=Regular:size=16:2"
 
 ;font-1 = Roboto:size=14;0
 ;font-2 = Hack:size=14;0
@@ -62,7 +63,7 @@ font-6 = WunconSiji:pixelsize=14;0
 
 modules-left = i3 bspwm
 modules-center = xwindow
-modules-right = cpu memory date
+modules-right = cpu memory alsa date
 #backlight-acpi 
 
 ;wm-restack = bspwm
@@ -237,9 +238,9 @@ format-underline = #4bffdc
 label =  %gb_used%/%gb_total%    %gb_swap_used%/%gb_swap_total%
 ;label = RAM %gb_used%/%gb_total%
 
-[module/wlan]
+[module/wireless]
 type = internal/network
-interface = wlp1s0
+interface = wlp0s20f3
 interval = 1.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -261,7 +262,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = enp0s3
+interface = enp0s31f6
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -291,6 +292,52 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
 label = %date% %time%
+
+[module/alsa]
+
+type = internal/alsa
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+master-mixer = Master
+speaker-mixer = Speaker
+headphone-mixer = Headphone
+headphone-id = 14
+mapped = true
+interval = 2
+
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+;format-volume = <label-volume>
+
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-muted = <label-muted>
+
+; Available tokens:
+;   %percentage% (default)
+;label-volume = %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+label-muted =  muted
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+; If defined, it will replace <ramp-volume> when
+; headphones are plugged in to `headphone_control_numid`
+; If undefined, <ramp-volume> will be used for both
+; Only applies if <ramp-volume> is used
+ramp-headphones-0 = 
+ramp-headphones-1 = 
 
 [module/volume]
 type = internal/volume
@@ -323,7 +370,7 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
-battery = BAT1
+battery = BAT0
 adapter = ACAD
 full-at = 98
 poll-interval= 5
@@ -412,7 +459,8 @@ menu-3-1-exec = menu-open-0
 
 [module/resolution]
 type=custom/script
-exec=~/dotfiles/src/rez/rez
+;exec=~/dotfiles/src/rez/rez
+exec = xrandr | head -1 | sed 's/^.*current //' | sed 's/, .*$//' | sed 's/ //g'
 label= %output%
 
 [settings]
@@ -430,7 +478,7 @@ margin-bottom = 5
 bottom=true
 inherit=bar/top
 modules-left =  home filesystem temperature
-modules-center= wlan eth
-modules-right= resolution volume battery powermenu
+modules-center= wireless eth
+modules-right= resolution alsa battery powermenu
 
 ; vim:ft=dosini

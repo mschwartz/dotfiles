@@ -10,95 +10,156 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
  #---Basic Definitions---# #
-#Needed for i3-gaps
+### Needed for i3-gaps
+# active window gets a 5px border
 for_window [class="^.*"] border pixel 5
+#for_window [class="^Modite"] floating enable, move workspace current
+#for_window [class="^VirtualBox"] floating enable
+for_window [class="^Modite"] floating enable
+for_window [class="^test"] floating enable
+for_window [class="^MPlayer"] floating enable
+for_window [class="^kazam"] floating enable
+for_window [class="^kazam"] move workspace current
+# specify size of gaps around windows
 gaps inner 15
 gaps outer 15
 
-set $mod Mod1
-set $term --no-startup-id /usr/bin/konsole
+################################################################################
+################################################################################
+################################################################################
+###
+### UI Settings
+###
+################################################################################
+################################################################################
+################################################################################
 
-# These windows require specific rules to display in floating mode
-#
-#for_window [title="^screenkey"]        floating enable border normal
+### Meta (mod) keys
+# Typically i3wm is set up to use either windows key or alt key.  But why not use both?
+set $mod Mod1
+set $sup Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:System San Francisco Display 16, FontAwesome 16
-
-focus_follows_mouse no
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
+## This font is widely installed, provides lots of unicode glyphs, right-to-left
+## text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
-
-# Before i3 v4.8, we used to recommend this one as the default:
+## Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
+## The font above is very space-efficient, that is, it looks good, sharp and
+## clear in small sizes. However, its unicode glyph coverage is limited, the old
+## X core fonts rendering does not support right-to-left and this being a bitmap
+## font, it doesn’t scale on retina/hidpi displays.
 
+# old school X windows raise (focus) window under the mouse pointer
+focus_follows_mouse no
+# move mouse pointer to center of newly activated window
+mouse_warping none
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec konsole
+# This is the base/default terminal application we use for i3.  Can be any of a number of them, including
+# urxvt, termite, xterm, and so on.
+set $term --no-startup-id /usr/bin/termite
 
-# kill focused window
-bindsym $mod+Shift+q kill
+### Window mapping rules
+# These windows require specific rules to display in floating mode
+#
+#for_window [title="^screenkey"]        floating enable border normal
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec rofi -show run
-bindsym $mod+Tab exec rofi -show window
-bindsym $mod+m exec ~/bin/set-resolution.sh
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-bindsym $mod+Control+Left workspace prev
-bindsym $mod+Control+Right workspace next
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-bindsym $mod+t split toggle
-# split in horizontal orientation
-#bindsym $mod+h split h
-
-# split in vertical orientation
-#bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+################################################################################
+################################################################################
+################################################################################
+###
+### Key bindings
+###
+################################################################################
+################################################################################
+################################################################################
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Shift+s layout stacking
 bindsym $mod+Shift+w layout tabbed
 bindsym $mod+Shift+e layout toggle split
+
+# toggle where the next window will open; toggle between to the right of or 
+# below the currently active window.
+bindsym $mod+t split toggle
+## split in horizontal orientation
+#bindsym $mod+h split h
+## split in vertical orientation
+#bindsym $mod+v split v
+
+## key bindings to resize (grow/shrink) windows
+bindsym $mod+x resize grow width 10 px or 10ppt
+bindsym $mod+Shift+x resize shrink width 10 px or 10ppt
+bindsym $mod+y resize grow height 10 px or 10ppt
+bindsym $mod+Shift+y resize shrink height 10 px or 10ppt
+
+## start a terminal
+bindsym $mod+Return exec $term
+bindsym $sup+Return exec kitty
+bindsym $mod+Shift+Return exec kitty
+
+
+## kill focused window
+bindsym $mod+Shift+q kill
+
+## enable/disable trackpad - useful to prevent accidental trackpad movement/taps when you want to type.
+bindsym $sup+space exec ~/.config/i3/toggle-trackpad.sh
+
+## start rofi (a program launcher)
+bindsym $mod+d exec rofi -show run
+bindsym $sup+d exec rofi -show run
+## use rofi to present a list of windows to jump to
+bindsym $mod+Tab exec rofi -show window
+## use rofi to interactively choose a screen resolution
+bindsym $mod+m exec ~/bin/set-resolution.sh
+## There also is the (new) i3-dmenu-desktop which only displays applications
+## shipping a .desktop file. It is a wrapper around dmenu, so you need that
+## installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+## change focus - use mod or sup + vim keys to change focus to next window in that
+## direction.
+bindsym $mod+h focus left
+bindsym $sup+h focus left
+bindsym $mod+j focus down
+bindsym $sup+j focus down
+bindsym $mod+k focus up
+bindsym $sup+k focus up
+bindsym $mod+l focus right
+bindsym $sup+l focus right
+
+## alternatively, you can use the cursor keys (instead of vim keys)
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+## alt-control + left/right activate previous or next workspace.
+bindsym $mod+Control+Left workspace prev
+bindsym $mod+Control+Right workspace next
+
+## move focused window, using vim keys
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+## alternatively, you can use the cursor keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+## move windows/containers to other monitor
+bindsym $sup+Left move workspace to output left
+bindsym $sup+Right move workspace to output right
+
+## enter fullscreen mode for the focused container (distraction-free mode)
+bindsym $mod+f fullscreen toggle
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -112,17 +173,29 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+bindsym $mod+n exec i3-input -F 'Rename workspace to "%s"' -P 'New Name for this workspace:'
+
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+bindsym $sup+1 workspace number 11
+bindsym $sup+2 workspace number 12
+bindsym $sup+3 workspace number 13
+bindsym $sup+4 workspace number 14
+bindsym $sup+5 workspace number 15
+bindsym $sup+6 workspace number 16
+bindsym $sup+7 workspace number 17
+bindsym $sup+8 workspace number 18
+bindsym $sup+9 workspace number 19
+bindsym $sup+0 workspace number 20
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -135,53 +208,76 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+bindsym $sup+Shift+1 move container to workspace 11
+bindsym $sup+Shift+2 move container to workspace 12
+bindsym $sup+Shift+3 move container to workspace 13
+bindsym $sup+Shift+4 move container to workspace 14
+bindsym $sup+Shift+5 move container to workspace 15
+bindsym $sup+Shift+6 move container to workspace 16
+bindsym $sup+Shift+7 move container to workspace 17
+bindsym $sup+Shift+8 move container to workspace 18
+bindsym $sup+Shift+9 move container to workspace 19
+bindsym $sup+Shift+0 move container to workspace 20
 
-bindsym $mod+x resize grow width 10 px or 10ppt
-bindsym $mod+Shift+x resize shrink width 10 px or 10ppt
-bindsym $mod+y resize grow height 10 px or 10ppt
-bindsym $mod+Shift+y resize shrink height 10 px or 10ppt
+## volume controls
+#bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+#bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+#bindsym XF86AudioMute exec amixer -q set Master toggle
 
-# volume controls
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5%
+bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
 
-# Sreen brightness controls
+## Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
-#
-# reload the configuration file
+## reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+## restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
+bindsym $sup+Shift+r restart
+## exit i3 (logs you out of your X session)
 bindsym $mod+Ctrl+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-# lock i3 screen
-#bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh ~/Pictures/Icons/lock-512.png
-bindsym $mod+Ctrl+l exec xscreensaver-command -lock
+## lock i3 screen
+bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh ~/Pictures/Icons/lock-512.png
+#bindsym $mod+Ctrl+l exec xscreensaver-command -lock
 
-bindsym $mod+b exec $term -e ranger ~/github/other/wallpapers
-bindsym $mod+w exec $term -e ranger ~/github/other/wallpapers
+## use ranger to browse wallpapers for the desktop backgrounds
+bindsym $mod+b exec kitty -e ranger ~/github/other/wallpapers
+bindsym $mod+w exec kitty -e ranger ~/github/other/wallpapers
+#bindsym $sup+d exec kitty -e ranger ~/Downloads
 
-# shortcuts to run programs
-bindsym $mod+F1 exec google-chrome
+## shortcuts to run programs - can also use $mod+d/rofi to launch anything.
+bindsym $mod+F1 exec "google-chrome-stable"
 bindsym $mod+F2 exec "firefox"
 bindsym $mod+Shift+F2 exec "firefox -private-window"
-bindsym $mod+F3 exec qutebrowser
-bindsym $mod+F9 exec slack
-bindsym $mod+F10 exec /opt/wavebox/Wavebox
+#bindsym $mod+F3 exec qutebrowser
+#bindsym $mod+F9 exec slack
+#bindsym $mod+F10 exec /opt/wavebox/Wavebox
 #bindsym $mod+F11 exec ~/Downloads/arduino-1.8.5/arduino
 bindsym $mod+F12 exec /usr/local/bin/webstorm
-bindsym $mod+r exec $term -e ranger
-#bindsym Print exec --release scrot -s >/tmp/screenshot.png
-#bindsym $mod+Shift+Print exec scrot >/tmp/screenshot.png
+## Ranger is our file browser.
+bindsym $mod+r exec kitty -e ranger
 
-bindsym --release Print exec scrot -s $HOME/Pictures/ScreenShots/`date +%Y-%m-%d_%H:%M:%S`.png
-bindsym Shift+Print exec scrot $HOME/Pictures/ScreenShots/`date +%Y-%m-%d_%H:%M:%S`.png
-bindsym $mod+Print exec scrot -u $HOME/Pictures/ScreenShots/`date +%Y-%m-%d_%H:%M:%S`.png
+## shift PrtSc use rofi to choose screenshot or desktop recording type.
+bindsym Shift+Print exec bash ~/bin/screenshot.sh
+bindsym Ctrl+Print exec bash -c "killall ffmpeg"
+bindsym $mod+Print exec bash -c "killall ffmpeg"
+bindsym $sup+Print exec bash -c "killall ffmpeg"
 
-# color defines for zenburn styled i3
+################################################################################
+################################################################################
+################################################################################
+###
+### Theme and per specific window controls.  Some apps, like gimp, have multiple
+### windows (tool windows, etc.) that should be floating ones, not tiled.
+###
+################################################################################
+################################################################################
+################################################################################
+
+## color defines for zenburn styled i3
 set $bg     #2c2c2e
 set $fg     #9f9f9f
 set $hi     #efef8f
@@ -193,11 +289,75 @@ set $yw     #ccdc90
 set $gn     #88b090
 set $rd     #e89393
 
-# set some nice colors      border     background  text
+## set some nice colors      border     background  text
 client.focused              $ac        $ac         $tx
 client.unfocused            $bg        $bg         $ia
 client.focused_inactive     $bg        $bg         $ac
 client.urgent               $rd        $rd         $tx
+
+################################################################################
+################################################################################
+################################################################################
+###
+### Scratchpad
+###
+################################################################################
+################################################################################
+################################################################################
+
+## General dropdown window traits. The order can matter.
+for_window [instance="dropdown_*"] floating enable
+for_window [instance="dropdown_*"] move scratchpad
+for_window [instance="dropdown_*"] sticky enable
+for_window [instance="dropdown_*"] scratchpad show
+for_window [instance="dropdown_tmuxdd"] resize set 625 450
+for_window [instance="dropdown_dropdowncalc"] resize set 800 300
+for_window [instance="dropdown_tmuxdd"] border pixel 3
+for_window [instance="dropdown_dropdowncalc"] border pixel 2
+for_window [instance="dropdown_*"] move position center
+
+## General dropdown window traits. The order can matter.
+for_window [title="RoboDomo Home Automation"] floating enable
+for_window [title="RoboDomo Home Automation"] move scratchpad
+for_window [title="RoboDomo Home Automation"] sticky enable
+for_window [title="RoboDomo Home Automation"] scratchpad show
+for_window [title="RoboDomo Home Automation"] resize set 1280 900
+for_window [title="RoboDomo Home Automation"] move position center
+## launch RoboDomo UI in browser, for quick access via scratchpad.
+bindsym $sup+r exec --no-startup-id RoboDomo
+## launch tmux console in scratchpad
+bindsym $sup+s exec --no-startup-id ddspawn tmuxdd
+
+## mod+shift+minus or mod+= moves active window to scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+equal move scratchpad
+## mod+minus or sup+minus toggles the scratchpad visible/hidden.
+bindsym $mod+minus scratchpad show
+bindsym $sup+minus scratchpad show
+
+################################################################################
+################################################################################
+################################################################################
+###
+### Top and bottom information bars.  Currently this uses bumblebee-status.
+###
+################################################################################
+################################################################################
+################################################################################
+
+## TOP
+bar {
+  position top
+  tray_output primary
+  status_command bumblebee-status -m title cpu load memory amixer battery uptime date time -t iceberg-powerline -p interval=1
+}
+
+## BOTTOM
+bar {
+  position bottom
+  tray_output primary
+  status_command bumblebee-status -m weather arch-update disk nic traffic nvidiagpu sensors bluetooth -t iceberg-powerline -p weather.unit=imperial
+}
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -221,31 +381,90 @@ client.urgent               $rd        $rd         $tx
 #    }
 #}
 
-# TRACKPAD SETTINGS
+
+################################################################################
+################################################################################
+################################################################################
+###
+### Trackpad settings.
+###
+################################################################################
+################################################################################
+################################################################################
+
+#exec_always xinput --set-prop 11 'libinput Accel Speed' .5
+#exec_always xinput --set-prop 11 'libinput Accel Speed Default' .5
+#exec_always xinput --set-prop 11 'libinput Natural Scrolling Enabled' 1
+#exec_always xinput --set-prop 11 'libinput Natural Scrolling Enabled Default' 1
+#exec_always xinput --set-prop 12 'libinput Accel Speed' .5
+#exec_always xinput --set-prop 12 'libinput Accel Speed Default' .5
+#exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled' 1
+#exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled Default' 1
+#exec_always xinput --set-prop 13 'libinput Accel Speed' .5
+#exec_always xinput --set-prop 13 'libinput Accel Speed Default' .5
+#exec_always xinput --set-prop 13 'libinput Natural Scrolling Enabled' 1
+#exec_always xinput --set-prop 13 'libinput Natural Scrolling Enabled Default' 1
+#exec_always xinput --set-prop 14 'libinput Accel Speed' .5
+#exec_always xinput --set-prop 14 'libinput Accel Speed Default' .5
+#exec_always xinput --set-prop 14 'libinput Natural Scrolling Enabled' 1
+#exec_always xinput --set-prop 14 'libinput Natural Scrolling Enabled Default' 1
+#exec_always xinput --set-prop 14 'libinput Tapping Enabled' 0
+#exec_always xinput --set-prop 14 'libinput Tapping Enabled Default' 0
+#exec_alwayx xinput --set-prop 15 'Device Enabled' 0
+## Gestures
+exec_always --no-startup-id libinput-gestures-setup restart
+## trackpad settings (taps, etc.)
+exec_always --no-startup-id /home/mschwartz/.config/i3/touchpad.sh
+## Maybe system has synclient instead of libinput?
+#exec_always --no-startup-id synclient VertScrollDelta=-113
+#exec_always --no-startup-id synclient PalmDetect=1
+
+# disable screen blank
 exec --no-startup-id xset s off -dpms
-exec_always xinput --set-prop 12 'libinput Accel Speed' .5
-exec_always xinput --set-prop 12 'libinput Accel Speed Default' .5
-exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled' 0
-exec_always xinput --set-prop 12 'libinput Natural Scrolling Enabled Default' 0
-# background processes
-exec --no-startup-id /usr/bin/xscreensaver
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+################################################################################
+################################################################################
+################################################################################
+###
+### Start up applications
+###
+################################################################################
+################################################################################
+################################################################################
+
+#exec --no-startup-id /usr/bin/xscreensaver
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+### make caps lock into esc key
 exec_always --no-startup-id xmodmap -e "clear lock"
 exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
-exec_always --no-startup-id synclient VertScrollDelta=-113
-exec_always --no-startup-id synclient PalmDetect=1
-exec_always --no-startup-id libinput-gestures-setup restart
+exec_always --no-startup-id solaar config 2 fn-swap off
+## set display resolution
 exec --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
-exec_always --no-startup-id /home/mschwartz/.config/i3/trackpad.sh
-
-# background processes
-exec --no-startup-id compton -b --vsync none -f -c --backend xrender
+exec --no-startup-id xrandr --output DP-0 --left-of DP-2 --auto
+bindsym $mod+> exec xrandr --output DP-0 --right-of DP-2 --auto
+bindsym $mod+shift+comma exec xrandr --output DP-0 --left-of DP-2 --auto
+bindsym $mod+shift+period exec xrandr --output DP-0 --right-of DP-2 --auto
+## system notifications
+exec --no-startup-id dunst
+#exec --no-startup-id compton -b --vsync none -f -c --backend xrender
+## composite display manager (transparency, shadows)
+exec --no-startup-id compton -b -f -c --backend glx
+## hide mouse after inactivity
 exec --no-startup-id unclutter
-exec --no-startup-id /usr/bin/xscreensaver
+## if we want xscreensaver, uncomment the following
+#exec --no-startup-id /usr/bin/xscreensaver
+## Start dropbox daemon
 exec --no-startup-id /usr/bin/dropbox
+#exec_always --no-startup-id emacs --insecure --daemon
+
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-#
+## background wallpaper
 exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
 
+## optionally show conky on desktop
 #exec_always --no-startup-id conky -c ~/.config/conky/conky.conf
 #exec --no-startup-id ~/.dropbox-dist/dropboxd
+## Reset trackpad on reload of config
+exec_always --no-startup_id ~/.config/i3/reset-trackpad.sh
+## Touch screen
+exec_always --no-startup-id xinput --map-to-output 'Wacom Pen and multitouch sensor Finger' DP-2

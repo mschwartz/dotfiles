@@ -1,0 +1,18 @@
+#!/bin/bash
+
+PROG="RoboDomo Home Automation"
+#echo 'if xwininfo -tree -root | grep "'$PROG' ";'
+if xwininfo -tree -root | grep "$PROG";
+then
+	echo "Window detected."
+	i3 "[instance=\"dropdown_$PROG\"] scratchpad show; [instance=\"dropdown_$1\"] move position center"
+else
+	echo "Window not detected... spawning."
+	i3 "exec --no-startup-id min http://robodomo:8000/ 
+#  -n 'dropdown_$PROG' $(echo "$@" | cut -d ' ' -f2-) -e '$PROG'"
+
+fi
+
+
+#firefox http://bigmoney:3000/
+

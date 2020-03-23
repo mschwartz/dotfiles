@@ -11,6 +11,8 @@ source ./install-scripts/prerequisites.sh
 ##########
 
 cd $INSTALL_PWD
+source ./install-scripts/install-security.sh
+cd $INSTALL_PWD
 source ./install-scripts/install-zsh.sh
 cd $INSTALL_PWD
 source ./install-scripts/install-dotfiles.sh
@@ -21,6 +23,7 @@ source ./install-scripts/install-node.sh
 cd $INSTALL_PWD
 source ./install-scripts/install-vim.sh
 
+ln -sf ~/Dropbox/credentials/slack-term ~/.slack-term
 #cd $INSTALL_PWD
 #source ./install-scripts/install-docker.sh
 #echo "ANGULAR/TYPESCRIPT"
