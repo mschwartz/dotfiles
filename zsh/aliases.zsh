@@ -26,6 +26,7 @@ alias nuc1='ssh nuc1'
 alias robospeak='ssh robospeak'
 alias yyz='ssh yyz'
 alias pi4='ssh pi4'
+alias nas1='ssh nas1'
 
 # tmux
 alias tlist='tmux list-sessions'
