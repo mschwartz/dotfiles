@@ -1,0 +1,10 @@
+node_modules 
+.cache 
+.snapshots 
+log/journal 
+plugged 
+Dropbox 
+lib/btrfs
+lib/docker/btrfs
+lib/node_modules
+.npm 
