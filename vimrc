@@ -45,6 +45,7 @@ autocmd BufNewFile,BufReadPost *.c,*.cpp,*.h,*.ino,*.pde set filetype=cpp
 autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
 autocmd BufNewFile,BufReadPost *.fth,*.4th set filetype=forth
 autocmd BufNewFile,BufReadPost .vimrc,*.vim set filetype=vim
+autocmd BufNewFile,BufReadPost *.asm,*.inc set filetype=asm
 
 "autocmd BufNewFile,BufReadPost .html,*.js let delimitMate_matchPairs="{:},[:],(:),<:>"
 
@@ -213,6 +214,13 @@ Plug 'mschwartz/vim-easytags'
       \       'fileoutput_opt': '-f',
       \       'stdout_opt': '-f-',
       \       'recurse_flag': '-R'
+      \   },
+      \   'asm': {
+      \     'cmd': 'ctags',
+      \       'args': [],
+      \       'fileoutput_opt': '-f',
+      \       'stdout_opt': '-f-',
+      \       'recurse_flag': '-R'
       \   }
       \}
 
@@ -280,6 +288,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release'}
   command! -nargs=0 Format :call CocAction('format')
 
+function! COC_configure()
   map <leader>f :Format<cr>
 "  map <leader>f :Format<cr>
   " Use tab for trigger completion with characters ahead and navigate.
@@ -288,13 +297,14 @@ Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release'}
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
         \ coc#refresh()
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
   function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
 
+  call COC_configure()
   " Use <c-space> to trigger completion.
   inoremap <silent><expr> <leader><c-r> coc#refresh()
 
@@ -329,6 +339,17 @@ Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release'}
 
   " Remap for rename current word
   nmap <leader>rn <Plug>(coc-rename)
+endfunction
+
+autocmd FileType cpp call CPP_config()
+  function! CPP_config()
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+    setlocal softtabstop=0
+    setlocal expandtab
+"    call COC_configure()
+
+  endfunction
 
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-scripts/forth.vim'
@@ -541,7 +562,7 @@ Plug 'scrooloose/nerdcommenter'
     let g:NERDCustomDelimiters = { 
           \ 'S': { 'left': '#' },
           \ 's': { 'left': '#' },
-          \ 'asm': { 'left': '#' }
+          \ 'asm': { 'left': ';' }
           \ }
 
     " Use compact syntax for prettified multi-line comments
@@ -616,15 +637,6 @@ autocmd FileType asm set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 "        \ setlocal expandtab
 
 
-
-autocmd FileType cpp call CPP_config()
-  function! CPP_config()
-    setlocal tabstop=2
-    setlocal shiftwidth=2
-    setlocal softtabstop=0
-    setlocal expandtab
-
-  endfunction
 
 autocmd FileType sh setlocal formatoptions-=t
 
@@ -851,16 +863,38 @@ silent! helptags ALL
 
 autocmd FileType asm call ASM_config()
   function! ASM_config()
-    iunmap <tab>
+"    iunmap <tab>
     CocDisable
+"    iunmap <tab>
     setlocal tabstop=20
     setlocal shiftwidth=20
     setlocal softtabstop=0
     setlocal expandtab
+    silent! iunmap <leader>x
+    silent! iunmap <leader>b
+    silent! iunmap <leader>d
+    silent! iunmap <leader>r
+    silent! unmap <leader>x
+    silent! unmap <leader>b
+    silent! unmap <leader>d
+    silent! unmap <leader>r
+"    iunmap <tab>
   endfunction
 
 " key bindings
 nmap <F1> :echo<cr>
 imap <F1> :echo<cr>
 imap <F1> <C-o>:echo<cr>
+nmap <C-h> :TmuxNavigateLeft<cr>
+nmap <C-j> :TmuxNavigateDown<cr>
+nmap <C-k> :TmuxNavigateUp<cr>
+nmap <C-l> :TmuxNavigateRight<cr>
+imap <C-h> :TmuxNavigateLeft<cr>
+imap <C-j> :TmuxNavigateDown<cr>
+imap <C-k> :TmuxNavigateUp<cr>
+imap <C-l> :TmuxNavigateRight<cr>
 
+map <C-h> :TmuxNavigateLeft<cr>
+map <C-j> :TmuxNavigateDown<cr>
+map <C-k> :TmuxNavigateUp<cr>
+map <C-l> :TmuxNavigateRight<cr>

@@ -32,6 +32,7 @@ alias tlist='tmux list-sessions'
 ### see also tmuxx function in functions.sh
 
 alias emacs="emacsclient -a '' -c"
+alias make="make -j 20"
 
 # vim
 if [ -f /usr/local/bin/vim ]; then
