@@ -27,6 +27,7 @@ alias robospeak='ssh robospeak'
 alias yyz='ssh yyz'
 alias pi4='ssh pi4'
 alias nas1='ssh nas1'
+alias warpaint='ssh warpaint'
 
 # tmux
 alias tlist='tmux list-sessions'
@@ -54,7 +55,10 @@ fi
 # programs
 alias browse=w3m
 alias mutt=neomutt
-alias node='/usr/bin/node'
+if [ -f /usr/bin/node] ]; then
+  alias node='/usr/bin/node'
+fi
+
 alias grep='grep --exclude-dir={.bzr,CVS,.git,.hg,.svn,node_modules}'
 alias df='df -P'
 # force me to forget muscle memory npm
