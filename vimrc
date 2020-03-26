@@ -289,7 +289,6 @@ Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release'}
   command! -nargs=0 Format :call CocAction('format')
 
 function! COC_configure()
-  map <leader>f :Format<cr>
 "  map <leader>f :Format<cr>
   " Use tab for trigger completion with characters ahead and navigate.
   " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -370,6 +369,9 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
 "Plug 'mxw/vim-jsx'
 "    let g:jsx_ext_required = 0
+Plug 'https://github.com/ekalinin/Dockerfile.vim'
+Plug 'https://github.com/stephpy/vim-yaml'
+
 Plug 'leshill/vim-json'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-pug'
@@ -688,7 +690,7 @@ syntax enable
 set wildmenu
 set cursorline
 set so=7
-set cmdheight=2
+set cmdheight=3
 set lz
 set hid
 set whichwrap+=<,>,h,l
@@ -834,6 +836,7 @@ set encoding=utf-8
 scriptencoding utf-8
 
 autocmd FileType javascript set formatprg=prettier\ --stdin
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 function! InsertTabWrapper()
   let col = col('.') - 1
@@ -898,3 +901,4 @@ map <C-h> :TmuxNavigateLeft<cr>
 map <C-j> :TmuxNavigateDown<cr>
 map <C-k> :TmuxNavigateUp<cr>
 map <C-l> :TmuxNavigateRight<cr>
+map <leader>f :Format<cr>

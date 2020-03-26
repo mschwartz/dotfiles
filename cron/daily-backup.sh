@@ -36,12 +36,19 @@ ssh nas1 mkdir -p /volume1/NetBackup/$HOSTNAME/daily/var
 sudo rsync -av -e "ssh -l mschwartz -i ~mschwartz/.ssh/id_rsa" --exclude-from=excludes.rsync --delete /var/ admin@nas1:/volume1/NetBackup/$HOSTNAME/daily/var
 #sudo rsync -avz --exclude-from=excludes.rsync --delete /var/ mschwartz@nas1:$HOSTNAME/daily/var
 echo "*** Backing up /usr/local"
-ssh nas1 mkdir -p /volume1/NetBackup/$HOSTNAME/daily/user.local
-sudo rsync -av -e "ssh -l mschwartz -i ~mschwartz/.ssh/id_rsa" --exclude-from=excludes.rsync --delete /user/local/ admin@nas1:/volume1/NetBackup/$HOSTNAME/daily/user.local
+ssh nas1 mkdir -p /volume1/NetBackup/$HOSTNAME/daily/usr.local
+sudo rsync -av -e "ssh -l mschwartz -i ~mschwartz/.ssh/id_rsa" --exclude-from=excludes.rsync --delete /usr/local/ admin@nas1:/volume1/NetBackup/$HOSTNAME/daily/usr.local
 #sudo rsync -avz --exclude-from=excludes.rsync --delete /usr/local/ mschwartz@nas1:$HOSTNAME/daily/usr.local
 echo "*** Backing up /home"
 ssh nas1 mkdir -p /volume1/NetBackup/$HOSTNAME/daily/home
-sudo rsync -av -e "ssh -l mschwartz -i ~mschwartz/.ssh/id_rsa" --exclude-from=excludes.rsync --delete /home/ admin@nas1:/volume1/NetBackup/$HOSTNAME/daily/home
+sudo rsync -av \
+  -e "ssh -l mschwartz -i ~mschwartz/.ssh/id_rsa" \
+  --exclude=".cache" \
+  --exclude=".snapshots" \
+  --exclude="node_modules" \
+  --exclude-from=excludes.rsync \
+  --delete \
+  /home/ admin@nas1:/volume1/NetBackup/$HOSTNAME/daily/home
 #echo sudo rsync -av -e "ssh -l mschwartz" --exclude-from=excludes.rsync --delete /home/ mschwartz@nas1::NetBackup/$HOSTNAME/daily/home
 #sudo rsync -av -e "ssh -l mschwartz" --exclude-from=excludes.rsync --delete /home/ mschwartz@nas1::NetBackup/$HOSTNAME/daily/home
 #echo sudo rsync -av -e "ssh -l mschwartz" --exclude-from=excludes.rsync --delete /etc/ mschwartz@nas1::NetBackup/$HOSTNAME/daily/etc

@@ -46,6 +46,16 @@
     "scss"
   ],
   "diagnostics.refreshAfterSave": true,
+  "eslint.enable": false,
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "css",
+    "markdown"
+  ],
+  "calc.replaceOriginalExpression": false,
   "prettier.eslintIntegration": true,
   "prettier.stylelintIntegration": true
 }
