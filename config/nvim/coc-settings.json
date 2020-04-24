@@ -1,5 +1,5 @@
 {
-  "languageserver": {
+  "xlanguageserver": {
     "cquery": {
       "command": "cquery",
       "args": ["--log-file=/tmp/cq.log"],
@@ -16,7 +16,7 @@
       }
     }
   },
-  "xlanguageserver": {
+  "languageserver": {
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "objc", "objcpp", "h"],

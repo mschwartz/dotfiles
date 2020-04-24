@@ -289,14 +289,14 @@ Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release'}
   command! -nargs=0 Format :call CocAction('format')
 
 function! COC_configure()
-"  map <leader>f :Format<cr>
+  map <leader>f :Format<cr>
   " Use tab for trigger completion with characters ahead and navigate.
   " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
         \ coc#refresh()
-"  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
   function! s:check_back_space() abort
     let col = col('.') - 1
@@ -867,7 +867,7 @@ silent! helptags ALL
 autocmd FileType asm call ASM_config()
   function! ASM_config()
 "    iunmap <tab>
-    CocDisable
+"    CocDisable
 "    iunmap <tab>
     setlocal tabstop=20
     setlocal shiftwidth=20

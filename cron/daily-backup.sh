@@ -21,7 +21,7 @@ trap cleanup EXIT
 cd ~/dotfiles/cron
 #sudo mount /backup
 #echo "Mounted /backup"
-sudo mkdir -p /backup/$HOSTNAME/daily
+#sudo mkdir -p /backup/$HOSTNAME/daily
 echo "made /backup/$HOSTNAME/daily"
 echo "*** Backing up /etc"
 ssh nas1 mkdir -p /volume1/NetBackup/$HOSTNAME/daily/etc
