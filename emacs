@@ -3,8 +3,24 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq make-backup-files nil)
+(setq vc-follow-symlinks nil)
 (setq evil-want-C-u-scroll t)
-(xterm-mouse-mode)
+(setq-default major-mode 'text-mode)
+(setq-default evil-cross-lines t) ;; cursor right at end of line goes to start of next line
+
+(xterm-mouse-mode 1)
+(require 'mouse-drag)
+(global-set-key[mouse-4] 'scroll-down-line)
+(global-set-key[mouse-5] 'scroll-up-line)
+;; (define-key key-translation-map (kbd "<mouse-4>") 'scroll-down-line)
+;; (define-key key-translation-map (kbd "<mouse-5>") 'scroll-up-line)
+
+(setq-default display-line-numbers-type 'visual
+              display-line-numbers-current-absolute t
+              display-line-numbers-width 4
+              display-line-numbers-widen t)
+(add-hook 'text-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 (require 'package)
 
@@ -22,7 +38,16 @@
 ;; install use-package before loading the literate configuration.
 (when (not (package-installed-p 'use-package))
   (package-refresh-contents)
-    (package-install 'use-package))
+  (package-install 'use-package))
+
+;; (use-package smart-mode-line
+;;   :ensure t)
+
+;; (use-package smart-mode-line-powerline-theme
+;;   :ensure t)
+
+;; (setq sml/theme 'powerline)
+;; (sml/setup)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -31,10 +56,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
+    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(package-selected-packages
    (quote
-    (navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
+    (zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -171,6 +196,20 @@
   (define-key company-active-map [tab] 'company-complete))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; MAGIT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package magit
+  :ensure t
+  )
+
+;; bind vim keys to magit: https://github.com/emacs-evil/evil-magit
+(use-package evil-magit
+  :ensure t
+  )
+(require 'evil-magit)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LSP
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -180,7 +219,7 @@
 (use-package lsp-mode
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
 	 (c++-mode . lsp)
-;	 ;; if you want which-key integration
+					;	 ;; if you want which-key integration
 	 (lsp-mode . lsp-enable-which-key-integration)
 	 )
   :commands lsp)
@@ -191,20 +230,20 @@
   :commands lsp-ui-mode
   )
 ;; if you are helm user
-;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+					;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
 ;; if you are ivy user
-;(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+					;(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+					;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 ;; optionally if you want to use debugger
-;(use-package dap-mode)
+					;(use-package dap-mode)
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 ;; optional if you want which-key integration
 (use-package which-key
- :ensure t
- :config
- (which-key-mode))
+  :ensure t
+  :config
+  (which-key-mode))
 
 (use-package find-file-in-project :ensure t)
 (use-package neotree
@@ -220,11 +259,11 @@
 	  (progn
 	    (neotree-dir project-dir)
 	    (neotree-find file-name))
-	    (message "Could not find git project root."))))
+	(message "Could not find git project root."))))
 
   (evil-leader/set-key
-   ;; "n"  'neotree-toggle
-   "t"  'neotree-project-dir)
+    ;; "n"  'neotree-toggle
+    "t"  'neotree-project-dir)
 
   (setq projectile-switch-project-action 'neotree-projectile-action)
   (add-hook 'neotree-mode-hook
@@ -248,9 +287,15 @@
   :config
   (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error"))
   (add-hook 'c++-mode-hook #'lsp)
-;  (add-hook 'c++-mode-hook #'lsp)
-;  (add-hook 'c++-mode-hook #'lsp)
-)
+					;  (add-hook 'c++-mode-hook #'lsp)
+					;  (add-hook 'c++-mode-hook #'lsp)
+  )
+
+(defun indent-buffer ()
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max) nil)))
+(global-set-key [f12] 'indent-buffer)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEY BINDINGS
@@ -263,44 +308,26 @@
 ;; key bindings
 (evil-leader/set-key
   "s" 'save-buffer
+  "f" 'indent-buffer
   "ci" 'evilnc-comment-or-uncomment-lines
   "cn" 'company-select-next
   "cp" 'company-select-previous
   "be" 'buffer-menu
   "ps" 'helm-projectile-ag
   "pa" 'helm-projectile-find-file-in-known-projects
-  "h" 'evil-window-left
-  "l" 'evil-window-right
+  "j" (lambda() (interactive) (join-line -1))
+  "l" 'evil-ex-nohighlight
+  ;; "h" 'evil-window-left
+  ;; "l" 'evil-window-right
+  "ee" (lambda() (interactive) (find-file "~/.emacs"))
+  "e3" (lambda() (interactive) (find-file "~/.config/i3/config"))
+  "ea" (lambda() (interactive) (find-file "~/dotfiles/zsh/aliases.zsh"))
+  "ez" (lambda() (interactive) (find-file "~/.zshrc"))
+  "en" (lambda() (interactive) (find-file "~/dotfiles/zsh/env.sh"))
+  "ef" (lambda() (interactive) (find-file "~/dotfiles/zsh/functions.sh"))
+  "ef" (lambda() (interactive) (find-file "~/dotfiles/tmux.conf"))
   )
 
 (define-key evil-normal-state-map (kbd "C-n") #'neotree-toggle)
 
-;; (define-key evil-normal-state-map (kbd "C-h") #'evil-window-left)
-;; (define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
-;; (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
-;; (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
-
-;; (define-key evil-normal-state-map (kbd "C-h") #'windmove-left)
-;; (define-key evil-normal-state-map (kbd "C-j") #'windmove-down)
-;; (define-key evil-normal-state-map (kbd "C-k") #'windmove-up)
-;; (define-key evil-normal-state-map (kbd "C-l") #'windmove-right)
-
-;; (use-package dracula-theme
-;;   :ensure t
-;;   :load-path "themes"
-;;   :init
-;;   (setq dracula-theme-kit t)
-;;   :config(load-theme 'dracula t)
-;;   )
-
-
-;; (use-package spacemacs-theme
-;;   :ensure t
-;;   :load-path "themes"
-;;   :init
-;;   :config
-;;   (load-theme 'spacemacs-theme t)
-;;   )
-;; (load-theme 'spacemacs-theme t)
-;; (load-theme 'paper-theme t)
 (load-theme 'material t)
