@@ -604,7 +604,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     let g:NERDTreeExtensionHighlightColor['yml'] = ''
     let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
 
-source ~/github/mschwartz/clion-cmake.vim/plugin/clion-cmake.vim
+"source ~/github/mschwartz/clion-cmake.vim/plugin/clion-cmake.vim
 "Plug 'mschwartz/clion-cmake.vim'
   map <leader>x  <esc>:CMakeClean<cr>
   map <leader>b  <esc>:CMakeRelease<cr>
@@ -846,7 +846,7 @@ function! InsertTabWrapper()
     return "\<c-p>"
   endif
 endfunction
-"inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 map <C-\> <Esc>:Ack 
 
