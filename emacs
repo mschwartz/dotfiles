@@ -75,6 +75,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.nasm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
+(add-to-list 'auto-mode-alist '("\\.inc\\'" . nasm-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; EVIL
