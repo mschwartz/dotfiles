@@ -7,6 +7,8 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias so='source'
 alias sane='stty sane'
+alias here='export HERE=.'
+alias there='cd $HERE'
 
 # ssh hosts
 alias snowdog='ssh snowdog'

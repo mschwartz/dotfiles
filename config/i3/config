@@ -20,7 +20,7 @@ for_window [class="^test"] floating enable
 for_window [class="^MPlayer"] floating enable
 for_window [class="^kazam"] floating enable
 #for_window [class="^Bochs"] floating enable
-for_window [class="^Bochs"] move workspace 2
+#for_window [class="^Bochs"] move workspace 2
 for_window [class="^kazam"] move workspace current
 for_window [class="^kazam"] move workspace current
 # specify size of gaps around windows

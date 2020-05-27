@@ -292,10 +292,6 @@ function! COC_configure()
   map <leader>f :Format<cr>
   " Use tab for trigger completion with characters ahead and navigate.
   " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-  inoremap <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
   function! s:check_back_space() abort
@@ -346,6 +342,17 @@ autocmd FileType cpp call CPP_config()
     setlocal shiftwidth=2
     setlocal softtabstop=0
     setlocal expandtab
+    " use <tab> for trigger completion and navigate to the next complete item
+    function! s:check_back_space() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction
+
+    inoremap <slient><expr> <Tab> 
+      \ pumvisible() ? "\<C-n>" : 
+      \ <SID>check_back_space() ? "<Tab>" : 
+      \ coc#refresh()
+"inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" :  <SID>check_back_space() ? "\<Tab>" : coc#refresh()
 "    call COC_configure()
 
   endfunction
@@ -901,4 +908,5 @@ map <C-h> :TmuxNavigateLeft<cr>
 map <C-j> :TmuxNavigateDown<cr>
 map <C-k> :TmuxNavigateUp<cr>
 map <C-l> :TmuxNavigateRight<cr>
+
 map <leader>f :Format<cr>
