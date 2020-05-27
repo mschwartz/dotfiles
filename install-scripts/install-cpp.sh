@@ -20,5 +20,7 @@ if [[ $platform == 'arch' ]]; then
 elif [[ $platform_type == 'armv7l' ]]; then
   sudo apt update && sudo apt install -y man-db manpages cmake make build-essential libboost-all-dev 
 elif [[ $platform == 'linux' ]]; then
-  sudo apt update && sudo apt install -y man-db manpages cmake make build-essential libboost-all-dev 
+    sudo apt update && sudo apt install -y man-db manpages cmake make build-essential libboost-all-dev
+else # macos
+    brew install gcc gdb
 fi
