@@ -4,6 +4,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
+(save-place-mode 1)
 ;; (require 'font-lock+)
 (setq make-backup-files nil)
 (setq vc-follow-symlinks nil)
@@ -47,20 +48,33 @@
 (use-package all-the-icons
   :ensure t)
 
-;use-package doom-modeline
-;  :ensure t
-;:init (doom-modeline-mode 1))
+(require 'telephone-line)
+(setq telephone-line-lhs
+      '((evil   . (telephone-line-evil-tag-segment))
+        (accent . (telephone-line-vc-segment
+                   telephone-line-erc-modified-channels-segment
+                   telephone-line-process-segment))
+        (nil    . (telephone-line-minor-mode-segment
+                   telephone-line-buffer-segment))))
+(setq telephone-line-rhs
+      '((nil    . (telephone-line-misc-info-segment))
+        (accent . (telephone-line-major-mode-segment))
+        (evil   . (telephone-line-airline-position-segment))))
+(telephone-line-mode 1)
+					;use-package doom-modeline
+					;  :ensure t
+					;:init (doom-modeline-mode 1))
 
-(use-package smart-mode-line
-  :ensure t)
+;; (use-package smart-mode-line
+;;   :ensure t)
 
-(use-package smart-mode-line-powerline-theme
-  :ensure t)
+;; (use-package smart-mode-line-powerline-theme
+;;   :ensure t)
 
-;; (setq sml/theme 'powerline)
-(setq sml/theme 'light)
-(setq sml/no-confirm-load-theme t)
-(sml/setup)
+;; (setq sml/no-confirm-load-theme t)
+;; ;; (setq sml/theme 'powerline)
+;; (setq sml/theme 'light)
+;; (sml/setup)
 
 
 (add-to-list 'load-path "~/.local/share/icons-in-terminal/")
@@ -84,7 +98,7 @@
     ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(package-selected-packages
    (quote
-    (all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
+    (telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -322,13 +336,14 @@
   (interactive)
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
-(global-set-key [f12] 'indent-buffer)
+
+(global-set-key [f12] 'execute-extended-command)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEY BINDINGS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;(use-package find-file-in-project :ensure t)
+					;(use-package find-file-in-project :ensure t)
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
 (defun reload-init-file ()
@@ -364,5 +379,6 @@
   )
 
 (define-key evil-normal-state-map (kbd "C-n") #'neotree-project-dir)
+(define-key evil-normal-state-map (kbd "M-x") 'execute-extended-command)
 
 (load-theme 'material t)
