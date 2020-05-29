@@ -12,3 +12,8 @@ else # macos
     brew cask install emacs
 fi
 
+mkdir -p ~/github/other
+pushd ~/github/other
+git clone git@:github.com/sebastiencs/icons-in-terminal.git
+cd icons-in-terinal
+./install-autodetect.sh
