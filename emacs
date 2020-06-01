@@ -2,11 +2,16 @@
 ;; Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-to-list 'load-path "~/.emacs.d/lisp")
+
+(save-place-mode 1)
+;; (require 'font-lock+)
 (setq make-backup-files nil)
 (setq vc-follow-symlinks nil)
 (setq evil-want-C-u-scroll t)
 (setq-default major-mode 'text-mode)
 (setq-default evil-cross-lines t) ;; cursor right at end of line goes to start of next line
+(electric-pair-mode 1)
 
 (xterm-mouse-mode 1)
 (require 'mouse-drag)
@@ -26,7 +31,7 @@
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+					;(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -40,14 +45,48 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(use-package all-the-icons
+  :ensure t)
+
+(require 'telephone-line)
+(setq telephone-line-lhs
+      '((evil   . (telephone-line-evil-tag-segment))
+        (accent . (telephone-line-vc-segment
+                   telephone-line-erc-modified-channels-segment
+                   telephone-line-process-segment))
+        (nil    . (telephone-line-minor-mode-segment
+                   telephone-line-buffer-segment))))
+(setq telephone-line-rhs
+      '((nil    . (telephone-line-misc-info-segment))
+        (accent . (telephone-line-major-mode-segment))
+        (evil   . (telephone-line-airline-position-segment))))
+(telephone-line-mode 1)
+					;use-package doom-modeline
+					;  :ensure t
+					;:init (doom-modeline-mode 1))
+
 ;; (use-package smart-mode-line
 ;;   :ensure t)
 
 ;; (use-package smart-mode-line-powerline-theme
 ;;   :ensure t)
 
-;; (setq sml/theme 'powerline)
+;; (setq sml/no-confirm-load-theme t)
+;; ;; (setq sml/theme 'powerline)
+;; (setq sml/theme 'light)
 ;; (sml/setup)
+
+
+(add-to-list 'load-path "~/.local/share/icons-in-terminal/")
+(require 'icons-in-terminal)
+(insert (icons-in-terminal 'oct_flame)) ; C-h f icons-in-terminal[RET] for more info
+
+(set-fontset-font t 'unicode (font-spec :family "all-the-icons") nil 'append)
+(set-fontset-font t 'unicode (font-spec :family "file-icons") nil 'append)
+(set-fontset-font t 'unicode (font-spec :family "Material Icons") nil 'append)
+(set-fontset-font t 'unicode (font-spec :family "github-octicons") nil 'append)
+(set-fontset-font t 'unicode (font-spec :family "FontAwesome") nil 'append)
+(set-fontset-font t 'unicode (font-spec :family "Weather Icons") nil 'append)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -59,7 +98,7 @@
     ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(package-selected-packages
    (quote
-    (nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
+    (telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -95,7 +134,7 @@
 (use-package evil-surround
   :ensure t
   :config
-  (global-evil-surround-mode))
+  (global-evil-surround-mode 1))
 
 (defgroup navigate nil
   "seamlessly navigate between Emacs and tmux"
@@ -155,7 +194,7 @@
 
 (use-package projectile
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :defer t
   :config
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
@@ -249,11 +288,9 @@
   :config
   (which-key-mode))
 
-(use-package find-file-in-project :ensure t)
 (use-package neotree
   :ensure t
   :config
-
   (defun neotree-project-dir ()
     "Open NeoTree using the git root."
     (interactive)
@@ -299,11 +336,19 @@
   (interactive)
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
-(global-set-key [f12] 'indent-buffer)
+
+(global-set-key [f12] 'execute-extended-command)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEY BINDINGS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+					;(use-package find-file-in-project :ensure t)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
+(defun reload-init-file ()
+  (interactive)
+  (load-file user-init-file))
 
 ;; (unless (display-graphic-p)
 ;;   (require 'evil-terminal-cursor-changer)
@@ -311,6 +356,7 @@
 ;;             )
 ;; key bindings
 (evil-leader/set-key
+  "r" 'reload-init-file
   "s" 'save-buffer
   "f" 'indent-buffer
   "ci" 'evilnc-comment-or-uncomment-lines
@@ -332,6 +378,7 @@
   "ef" (lambda() (interactive) (find-file "~/dotfiles/tmux.conf"))
   )
 
-(define-key evil-normal-state-map (kbd "C-n") #'neotree-toggle)
+(define-key evil-normal-state-map (kbd "C-n") #'neotree-project-dir)
+(define-key evil-normal-state-map (kbd "M-x") 'execute-extended-command)
 
 (load-theme 'material t)
