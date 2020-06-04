@@ -20,4 +20,5 @@ rez
 emacs.d/*lsp-session-v1
 emacs.d/auto-save-list
 emacs.d/auto-save-list/*
+emacs.d/places
 .#*
