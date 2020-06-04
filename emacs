@@ -4,8 +4,9 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
+(desktop-save-mode 1)
 (save-place-mode 1)
-;; (require 'font-lock+)
+
 (setq make-backup-files nil)
 (setq vc-follow-symlinks nil)
 (setq evil-want-C-u-scroll t)
@@ -51,11 +52,19 @@
 (require 'telephone-line)
 (setq telephone-line-lhs
       '((evil   . (telephone-line-evil-tag-segment))
-        (accent . (telephone-line-vc-segment
-                   telephone-line-erc-modified-channels-segment
-                   telephone-line-process-segment))
-        (nil    . (telephone-line-minor-mode-segment
-                   telephone-line-buffer-segment))))
+	(accent . (telephone-line-vc-segment
+		   telephone-line-erc-modified-channels-segment
+		   telephone-line-process-segment))
+	(nil    . (
+		   telephone-line-buffer-segment))))
+(telephone-line-mode 1)
+;; (setq telephone-line-lhs
+;;       '((evil   . (telephone-line-evil-tag-segment))
+;;         (accent . (telephone-line-vc-segment
+;;                    telephone-line-erc-modified-channels-segment
+;;                    telephone-line-process-segment))
+;;         (nil    . (telephone-line-minor-mode-segment
+;;                    telephone-line-buffer-segment))))
 (setq telephone-line-rhs
       '((nil    . (telephone-line-misc-info-segment))
         (accent . (telephone-line-major-mode-segment))
@@ -365,6 +374,7 @@
   "be" 'buffer-menu
   "ps" 'helm-projectile-ag
   "pa" 'helm-projectile-find-file-in-known-projects
+  "h" 'ff-find-related-file
   "j" (lambda() (interactive) (join-line -1))
   "l" 'evil-ex-nohighlight
   ;; "h" 'evil-window-left

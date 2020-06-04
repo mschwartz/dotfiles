@@ -1,0 +1,247 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Thu Jun  4 09:24:02 2020
+;; Desktop file format version 208
+;; Emacs version 26.3
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (24281 8226 453287 600000) (desktop . "208") "mschwartz@dell13" nil nil ((((minibuffer . t) (tty-type . "screen-256color") (tty . "/dev/tty") (display-type . color) (background-mode . dark) (foreground-color . "#ffffff") (cursor-color . "#ff9800") (background-color . "#262626") (border-color . "#3a3a3a") (font . "tty") (height . 56) (width . 99) (modeline . t) (unsplittable) (menu-bar-lines . 1) (frameset--id . "FBD4-8665-477B-12BA") (frameset--mini t)) ((min-height . 4) (min-width . 10) (min-height-ignore . 2) (min-width-ignore . 2) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 4) (min-pixel-width . 10) (min-pixel-height-ignore . 2) (min-pixel-width-ignore . 2) (min-pixel-height-safe . 1) (min-pixel-width-safe . 2)) leaf (pixel-width . 99) (pixel-height . 55) (total-width . 99) (total-height . 55) (normal-height . 1.0) (normal-width . 1.0) (buffer ".emacs" (selected . t) (hscroll . 0) (fringes 0 0 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 1202) (start . 1))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring nil)
+(setq regexp-search-ring nil)
+(setq register-alist '((48 . "\\#*\n")))
+(setq file-name-history nil)
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 208
+  "/home/mschwartz/.emacs"
+  ".emacs"
+  'emacs-lisp-mode
+  '(eldoc-mode override-global-mode undo-tree-mode helm-mode company-mode which-key-mode projectile-mode)
+  1202
+  '(1203 nil)
+  nil
+  nil
+  '((buffer-display-time 24281 8226 44451 600000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (1 12695 12693))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/build.sh"
+  "build.sh"
+  'sh-mode
+  '(override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode projectile-mode)
+  321
+  '(40 nil)
+  nil
+  nil
+  '((buffer-display-time 24281 7958 269577 500000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (324))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/.gitignore"
+  ".gitignore"
+  'text-mode
+  '(override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode projectile-mode)
+  94
+  '(94 t)
+  nil
+  nil
+  '((buffer-display-time 24281 7837 472876 400000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/kernel/Inspiration/BWindow.cpp"
+  "BWindow.cpp"
+  'c++-mode
+  '(abbrev-mode eldoc-mode override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode lsp-mode projectile-mode flymake-mode)
+  1490
+  '(1490 nil)
+  nil
+  nil
+  '((buffer-display-time 24279 56454 965389 800000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (1189 169 899 196 229 1626 1 1860 1273 1384 1275))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/kernel/kernel_start.asm"
+  "kernel_start.asm"
+  'nasm-mode
+  '(override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode projectile-mode)
+  245
+  '(245 nil)
+  nil
+  nil
+  '((buffer-display-time 24279 56351 836382 300000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (224 434 435))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/kernel/Graphics/BViewPort.cpp"
+  "BViewPort.cpp"
+  'c++-mode
+  '(abbrev-mode eldoc-mode override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode lsp-mode projectile-mode flymake-mode)
+  3048
+  '(3048 nil)
+  nil
+  nil
+  '((buffer-display-time 24279 56310 697355 200000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (3048 3049 2991 1))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/boot/boot.asm"
+  "boot.asm"
+  'nasm-mode
+  '(override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode projectile-mode)
+  8042
+  '(8042 nil)
+  nil
+  nil
+  '((buffer-display-time 24279 56006 645218 700000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (8480 8513 12390 2 8859 8665 8512 834 2860 2247 1448 879 8285 6866 4609 8522))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/bochsrc.wsl"
+  "bochsrc.wsl"
+  'text-mode
+  '(override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode projectile-mode)
+  879
+  '(879 nil)
+  nil
+  nil
+  '((buffer-display-time 24279 55956 607367 400000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (880 864 727 803))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/debug.sh"
+  "debug.sh"
+  'sh-mode
+  '(override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode projectile-mode)
+  438
+  '(438 nil)
+  nil
+  nil
+  '((buffer-display-time 24279 51966 909090 0) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/cbuild.sh"
+  "cbuild.sh"
+  'sh-mode
+  '(override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode projectile-mode)
+  2247
+  '(2247 nil)
+  nil
+  nil
+  '((buffer-display-time 24278 40765 550341 600000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/kernel/Graphics/BViewPort.h"
+  "BViewPort.h"
+  'c++-mode
+  '(abbrev-mode eldoc-mode override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode lsp-mode projectile-mode flymake-mode)
+  3155
+  '(3155 nil)
+  nil
+  nil
+  '((buffer-display-time 24278 38454 755090 900000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (3200 2869 2281 1 3516))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/kernel/Graphics/font/BConsoleFont.h"
+  "BConsoleFont.h"
+  'c++-mode
+  '(abbrev-mode eldoc-mode override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode lsp-mode projectile-mode flymake-mode)
+  1849
+  '(1849 nil)
+  nil
+  nil
+  '((buffer-display-time 24278 38379 354678 200000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (2529 2038 1024 594 2739 1797))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/kernel/Graphics/font/BConsoleFont.cpp"
+  "BConsoleFont.cpp"
+  'c++-mode
+  '(abbrev-mode eldoc-mode override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode lsp-mode projectile-mode flymake-mode)
+  4159
+  '(4159 nil)
+  nil
+  nil
+  '((buffer-display-time 24278 38218 329588 800000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (4449 2793 229 1 1977 3249 1743 634 330))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/kernel/Graphics/BFont.h"
+  "BFont.h"
+  'c++-mode
+  '(abbrev-mode eldoc-mode override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode lsp-mode projectile-mode flymake-mode)
+  962
+  '(962 nil)
+  nil
+  nil
+  '((buffer-display-time 24278 38100 945486 100000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (950))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/kernel/Graphics/BFont.cpp"
+  "BFont.cpp"
+  'c++-mode
+  '(abbrev-mode eldoc-mode override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode lsp-mode projectile-mode flymake-mode)
+  205
+  '(205 nil)
+  nil
+  nil
+  '((buffer-display-time 24278 38100 747495 0) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (1))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/kernel/Inspiration/BWindow.h"
+  "BWindow.h"
+  'c++-mode
+  '(abbrev-mode eldoc-mode override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode lsp-mode projectile-mode flymake-mode)
+  534
+  '(534 nil)
+  nil
+  nil
+  '((buffer-display-time 24278 37856 593231 100000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (629 391 265 233 820))))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/kernel/Graphics/bitmap/BBitmap32.cpp"
+  "BBitmap32.cpp"
+  'c++-mode
+  '(abbrev-mode eldoc-mode override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode lsp-mode projectile-mode flymake-mode)
+  3571
+  '(3571 nil)
+  nil
+  nil
+  '((buffer-display-time 24278 37127 124516 200000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/mschwartz/gitlab/mschwartz/bare/kernel/Inspiration/TestTask.cpp"
+  "TestTask.cpp"
+  'c++-mode
+  '(abbrev-mode eldoc-mode override-global-mode undo-tree-mode helm-mode company-mode auto-revert-mode magit-file-mode which-key-mode lsp-mode projectile-mode flymake-mode)
+  1490
+  '(1490 nil)
+  nil
+  nil
+  '((buffer-display-time 24278 35893 154203 100000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (1102))))
+
+(desktop-create-buffer 208
+  nil
+  "bare"
+  'dired-mode
+  '(override-global-mode helm-mode company-mode which-key-mode projectile-mode)
+  2077
+  '(2077 nil)
+  t
+  '("/home/mschwartz/gitlab/mschwartz/bare/")
+  '((buffer-display-time 24278 35725 273314 700000) (overwrite-mode))
+  '((mark-ring (2077))))
+
