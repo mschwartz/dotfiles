@@ -48,9 +48,16 @@ function = {
 
 # alias tmuxx='echo $1; ! tmux -2 detach-client -s $1; tmux -2 new -A -s $1'
 tmuxx() {
-  echo "$1"
   tmux -2 detach-client -s $1
   tmux -2 new -A -s $1
+}
+
+e() {
+    if [ "$1" = "" ]; then
+	emacs -nw 
+    else
+	emacs -nw --no-desktop $@
+    fi
 }
 
 1password() {

@@ -385,7 +385,7 @@
   "ez" (lambda() (interactive) (find-file "~/.zshrc"))
   "en" (lambda() (interactive) (find-file "~/dotfiles/zsh/env.sh"))
   "ef" (lambda() (interactive) (find-file "~/dotfiles/zsh/functions.sh"))
-  "ef" (lambda() (interactive) (find-file "~/dotfiles/tmux.conf"))
+  "et" (lambda() (interactive) (find-file "~/dotfiles/tmux.conf"))
   )
 
 (define-key evil-normal-state-map (kbd "C-n") #'neotree-project-dir)
