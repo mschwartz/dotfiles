@@ -284,6 +284,14 @@
   :ensure t
   :commands lsp-ui-mode
   )
+
+(use-package ccls
+  :ensure t
+  :hook ((c-mode c++-mode objc-mode cuda-mode) .
+	 (lambda () (require 'ccls) (lsp))))
+
+(setq ccls-executable "/usr/bin/ccls")
+
 ;; if you are helm user
 					;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
 ;; if you are ivy user
