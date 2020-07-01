@@ -417,7 +417,6 @@ bar {
 ## Gestures
 exec_always --no-startup-id libinput-gestures-setup restart
 ## trackpad settings (taps, etc.)
-exec_always --no-startup-id /home/mschwartz/.config/i3/touchpad.sh
 ## Maybe system has synclient instead of libinput?
 #exec_always --no-startup-id synclient VertScrollDelta=-113
 #exec_always --no-startup-id synclient PalmDetect=1
@@ -473,3 +472,4 @@ exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
 exec_always --no-startup_id ~/.config/i3/reset-trackpad.sh
 ## Touch screen
 exec_always --no-startup-id xinput --map-to-output 'Wacom Pen and multitouch sensor Finger' DP-2
+exec_always --no-startup-id /home/mschwartz/.config/i3/touchpad.sh
