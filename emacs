@@ -7,6 +7,13 @@
 (desktop-save-mode 1)
 (save-place-mode 1)
 
+;(require 'joseph-dired-single)
+;; (diredp-toggle-find-file-reuse-dir 1)
+;; (require 'dired-single)
+;; (autoload 'dired-single-buffer "dired-single" "" t)
+;; (autoload 'dired-single-buffer-mouse "dired-single" "" t)
+;; (autoload 'dired-single-magic-buffer "dired-single" "" t)
+;; (autoload 'dired-single-toggle-buffer-name "dired-single" "" t)
 (setq make-backup-files nil)
 ;(global-undo-tree-mode)
 (setq undo-tree-auto-save-history t)
@@ -31,6 +38,10 @@
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up the package and use-package methods and URLs
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (require 'package)
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
@@ -48,6 +59,24 @@
 (when (not (package-installed-p 'use-package))
   (package-refresh-contents)
   (package-install 'use-package))
+
+;; This is only needed once, near the top of the file
+(eval-when-compile
+  ;; Following line is not needed if use-package.el is in ~/.emacs.d
+  ;; (add-to-list 'load-path "<path where use-package is installed>")
+  (require 'use-package))
+
+(unless (package-installed-p 'quelpa)
+  (with-temp-buffer
+    (url-insert-file-contents "https://github.com/quelpa/quelpa/raw/master/quelpa.el")
+    (eval-buffer)
+    (quelpa-self-upgrade)))
+
+(setq use-package-ensure-function 'quelpa)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up the mode line
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package all-the-icons
   :ensure t)
@@ -100,6 +129,10 @@
 (set-fontset-font t 'unicode (font-spec :family "FontAwesome") nil 'append)
 (set-fontset-font t 'unicode (font-spec :family "Weather Icons") nil 'append)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up the themes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -110,7 +143,7 @@
     ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(package-selected-packages
    (quote
-    (telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
+    (dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -118,11 +151,11 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; This is only needed once, near the top of the file
-(eval-when-compile
-  ;; Following line is not needed if use-package.el is in ~/.emacs.d
-  ;; (add-to-list 'load-path "<path where use-package is installed>")
-  (require 'use-package))
+(load-theme 'material t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up nasm mode for nasm source file extension
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-to-list 'auto-mode-alist '("\\.nasm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
@@ -292,6 +325,16 @@
 
 (setq ccls-executable "/usr/bin/ccls")
 
+
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :config
+;;   (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error"))
+;;   (add-hook 'c++-mode-hook #'lsp)
+;; 					;  (add-hook 'c++-mode-hook #'lsp)
+;; 					;  (add-hook 'c++-mode-hook #'lsp)
+;;   )
+
 ;; if you are helm user
 					;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
 ;; if you are ivy user
@@ -307,6 +350,10 @@
   :ensure t
   :config
   (which-key-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up neotree
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package neotree
   :ensure t
@@ -343,29 +390,28 @@
 	      (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
 
 
-(use-package lsp-mode
-  :ensure t
-  :config
-  (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error"))
-  (add-hook 'c++-mode-hook #'lsp)
-					;  (add-hook 'c++-mode-hook #'lsp)
-					;  (add-hook 'c++-mode-hook #'lsp)
-  )
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Customizations
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package dired+
+  :ensure t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; KEY BINDING METHODS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+					; F12 does m-x
+(global-set-key [f12] 'execute-extended-command)
 (defun indent-buffer ()
   (interactive)
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
 
-(global-set-key [f12] 'execute-extended-command)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; KEY BINDINGS
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 					;(use-package find-file-in-project :ensure t)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-
 (defun reload-init-file ()
   (interactive)
   (load-file user-init-file))
@@ -375,14 +421,38 @@
 ;;   (evil-terminal-cursor-changer-activate) ; or (etcc-on)
 ;;             )
 ;; key bindings
+;; (global-set-key [(control x) (k)] 'kill-this-buffer)
+
+;; (defun volatile-kill-buffer ()
+;;   "Kill current buffer unconditionally."
+;;   (interactive)
+;;   (let ((buffer-modified-p nil))
+;;     (kill-buffer (current-buffer))))
+;; (defun volatile-kill-buffer ()
+;;   "Kill current buffer unconditionally."
+;;   (interactive)
+;;   (let ((buffer-modified-p nil))
+;;     (kill-this-buffer)))
+
+(defun kill-this-buffer-volatile ()
+  "Kill current buffer, even if it has been modified."
+  (interactive)
+  (set-buffer-modified-p nil)
+  (kill-this-buffer))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; KEY BINDINGS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (evil-leader/set-key
   "r" 'reload-init-file
   "s" 'save-buffer
   "f" 'indent-buffer
+  "bd" 'kill-this-buffer-volatile
+  "be" 'buffer-menu
   "ci" 'evilnc-comment-or-uncomment-lines
   "cn" 'company-select-next
   "cp" 'company-select-previous
-  "be" 'buffer-menu
   "ps" 'helm-projectile-ag
   "pa" 'helm-projectile-find-file-in-known-projects
   "h" 'ff-find-related-file
@@ -402,4 +472,3 @@
 (define-key evil-normal-state-map (kbd "C-n") #'neotree-project-dir)
 (define-key evil-normal-state-map (kbd "M-x") 'execute-extended-command)
 
-(load-theme 'material t)
