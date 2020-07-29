@@ -1,0 +1,20 @@
+node_modules 
+*/.cache 
+/home/.snapshot*
+*/.snapshot*
+./snapshots/
+./snapshots
+.snapshots 
+.snapshots /
+/home/.snapshots
+/home/.snapshots/
+log/journal 
+plugged 
+Dropbox 
+lib/btrfs
+lib/docker/btrfs
+lib/node_modules
+.npm 
+cache
+log/journal
+mschwartz/.cache

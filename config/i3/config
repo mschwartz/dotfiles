@@ -19,6 +19,9 @@ for_window [class="^Modite"] floating enable
 for_window [class="^test"] floating enable
 for_window [class="^MPlayer"] floating enable
 for_window [class="^kazam"] floating enable
+#for_window [class="^Bochs"] floating enable
+#for_window [class="^Bochs"] move workspace 2
+for_window [class="^kazam"] move workspace current
 for_window [class="^kazam"] move workspace current
 # specify size of gaps around windows
 gaps inner 15
@@ -356,7 +359,7 @@ bar {
 bar {
   position bottom
   tray_output primary
-  status_command bumblebee-status -m weather arch-update disk nic traffic nvidiagpu sensors bluetooth -t iceberg-powerline -p weather.unit=imperial
+  status_command bumblebee-status -m weather arch-update disk nic traffic nvidiagpu sensors bluetooth -t iceberg-powerline -p weather.unit=imperial -p nic.exclude="br,virbr,docker,lo" -p traffic.exclude="br,virbr,docker,lo"
 }
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -414,7 +417,6 @@ bar {
 ## Gestures
 exec_always --no-startup-id libinput-gestures-setup restart
 ## trackpad settings (taps, etc.)
-exec_always --no-startup-id /home/mschwartz/.config/i3/touchpad.sh
 ## Maybe system has synclient instead of libinput?
 #exec_always --no-startup-id synclient VertScrollDelta=-113
 #exec_always --no-startup-id synclient PalmDetect=1
@@ -439,7 +441,7 @@ exec_always --no-startup-id xmodmap -e "clear lock"
 exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id solaar config 2 fn-swap off
 ## set display resolution
-exec --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
+exec_always --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
 exec --no-startup-id xrandr --output DP-0 --left-of DP-2 --auto
 bindsym $mod+> exec xrandr --output DP-0 --right-of DP-2 --auto
 bindsym $mod+shift+comma exec xrandr --output DP-0 --left-of DP-2 --auto
@@ -451,6 +453,8 @@ exec --no-startup-id dunst
 exec --no-startup-id compton -b -f -c --backend glx
 ## hide mouse after inactivity
 exec --no-startup-id unclutter
+exec_always sudo modprobe -r psmouse
+exec_always sudo modprobe psmouse
 ## if we want xscreensaver, uncomment the following
 #exec --no-startup-id /usr/bin/xscreensaver
 ## Start dropbox daemon
@@ -468,3 +472,4 @@ exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
 exec_always --no-startup_id ~/.config/i3/reset-trackpad.sh
 ## Touch screen
 exec_always --no-startup-id xinput --map-to-output 'Wacom Pen and multitouch sensor Finger' DP-2
+exec_always --no-startup-id /home/mschwartz/.config/i3/touchpad.sh

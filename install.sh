@@ -22,6 +22,8 @@ cd $INSTALL_PWD
 source ./install-scripts/install-node.sh
 cd $INSTALL_PWD
 source ./install-scripts/install-vim.sh
+cd $INSTALL_PWD
+source ./install-scripts/install-emacs.sh
 
 ln -sf ~/Dropbox/credentials/slack-term ~/.slack-term
 #cd $INSTALL_PWD

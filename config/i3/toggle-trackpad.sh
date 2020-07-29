@@ -1,5 +1,6 @@
 #!/bin/bash
 tp=`xinput list --name-only | grep -i TouchPad`
+echo $tp
 
 TPadState=`xinput --list-props "$tp"|grep "Device Enabled"|tail -c -2`
 #MouseState=`xinput --list-props "$mouse"|grep "Device Enabled"|tail -c -2`
