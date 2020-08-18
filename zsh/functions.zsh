@@ -91,19 +91,22 @@ sclack() {
 
 update() {
     if [[ "$OS" == "Darwin" ]]; then
-	brew update
-	brew upgrade
+      brew update
+      brew upgrade
     else
-	echo ">>> Update MirrorList"
-	sudo reflector --verbose --country 'US' -l 5 --sort rate --save /etc/pacman.d/mirrorlist
-	#    yay -R --noconfirm yay
-	echo ">>> PACMAN UPDATE"
-	sudo pacman --noconfirm -Syyu
-	#    cd ~/github/arch/yay
-	#    ggpull
-	#    makepkg -si --noconfirm
-	echo ">>> AUR UPDATE"
-	yay --noconfirm -Syyu
+      echo ">>> Update MirrorList"
+      sudo reflector --verbose --country 'US' -l 5 --sort rate --save /etc/pacman.d/mirrorlist
+      echo ">>> Update Keys"
+      sudo pacman --noconfirm -S archlinux-keyring
+      sudo pacman-key --refresh-keys
+      #    yay -R --noconfirm yay
+      echo ">>> PACMAN UPDATE"
+      sudo pacman --noconfirm -Syyu
+      #    cd ~/github/arch/yay
+      #    ggpull
+      #    makepkg -si --noconfirm
+      echo ">>> AUR UPDATE"
+      yay --noconfirm -Syyu
     fi
 }
 
