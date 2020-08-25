@@ -13,7 +13,16 @@ else # macos
 fi
 
 mkdir -p ~/github/other
-pushd ~/github/other
-git clone git@:github.com/sebastiencs/icons-in-terminal.git
-cd icons-in-terinal
-./install-autodetect.sh
+export OTHER="$HOME/github/other";
+export ICONS_IN_TERMINAL="$OTHER/icons-in-terminal";
+
+echo "  installing icons-in-terminal"
+if [ ! -d $ICONS_IN_TEMRMINAL ]; then
+  echo "$ICONS_IN_TEMRMINAL does not exist"
+  cd $OTHER
+  git clone git@:github.com/sebastiencs/icons-in-terminal.git
+else
+  echo "$ICONS_IN_TEMRMINAL exists"
+fi
+cd $HOME/github/other/icons-in-terminal
+./install-autodetect.sh || ./install.sh
