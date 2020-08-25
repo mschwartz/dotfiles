@@ -36,7 +36,7 @@ alias tlist='tmux list-sessions'
 ### see also tmuxx function in functions.sh
 
 #alias emacs="emacsclient -a '' -c"
-alias e='emacs -nw'
+# alias e='emacs -nw'
 alias make="make -j 20"
 
 # vim
@@ -62,10 +62,10 @@ if [ -f /usr/bin/node] ]; then
   alias node='/usr/bin/node'
 fi
 
-alias grep='grep --exclude-dir={.bzr,CVS,.git,.hg,.svn,node_modules}'
+alias grep='grep --exclude-dir={.bzr,CVS,.git,.hg,.svn,.ccls,.ccls-cache,node_modules} --exclude=\*.{o,a,bin,elf,img,sym}'
 alias df='df -P'
 # force me to forget muscle memory npm
-alias npm='echo "Use yarn"'
+# alias npm='echo "Use yarn"'
 
 # edit configuration files
 alias i3config='vi ~/.config/i3/config'

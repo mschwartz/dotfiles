@@ -1,6 +1,8 @@
 #!/bin/sh
 
-if [ -e ~/.xrandr.sh ]; then
+if [ -e ~/.screenlayout/testx.sh ]; then
+  . ~/.screenlayout/testx.sh
+elif [ -e ~/.xrandr.sh ]; then
   . ~/.xrandr.sh
 else
   /usr/bin/xrandr --newmode "5120x2880_60.00"  1276.50  5120 5560 6128 7136  2880 2883 2888 2982 -hsync +vsync
