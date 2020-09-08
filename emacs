@@ -7,7 +7,7 @@
 (desktop-save-mode 1)
 (save-place-mode 1)
 
-;(require 'joseph-dired-single)
+					;(require 'joseph-dired-single)
 ;; (diredp-toggle-find-file-reuse-dir 1)
 ;; (require 'dired-single)
 ;; (autoload 'dired-single-buffer "dired-single" "" t)
@@ -15,7 +15,7 @@
 ;; (autoload 'dired-single-magic-buffer "dired-single" "" t)
 ;; (autoload 'dired-single-toggle-buffer-name "dired-single" "" t)
 (setq make-backup-files nil)
-;(global-undo-tree-mode)
+					;(global-undo-tree-mode)
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 (setq vc-follow-symlinks nil)
@@ -159,6 +159,16 @@
 (add-to-list 'auto-mode-alist '("\\.nasm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . nasm-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up arm asm mode for nasm source file extension
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'load-path "~/.emacs.d/elpa/arm-mode")
+(require 'arm-mode)
+;; (add-to-list 'auto-mode-alist '("\\.S\\'" . arm-mode))
+;; (add-to-list 'auto-mode-alist '("\\.s\\'" . arm-mode))
+;; (add-to-list 'auto-mode-alist '("\\.H\\'" . arm-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up JavaScript
