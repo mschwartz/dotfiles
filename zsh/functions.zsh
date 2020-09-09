@@ -74,11 +74,12 @@ e() {
 }
 
 cls() {
-    clear;
-    stty sane;
-    if [ "$TMUX" != "" ]; then
-	tmux clear-history;
-    fi
+  reset;
+  clear;
+  stty sane;
+  if [ "$TMUX" != "" ]; then
+    tmux clear-history;
+  fi
 }
 
 find() {
