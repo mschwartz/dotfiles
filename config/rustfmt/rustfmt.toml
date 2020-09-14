@@ -1,3 +1,6 @@
-indent_style="block"
+imports_indent = Block
+indent_style=visual
 reorder_imports = false
 tab_spaces = 4
+hard_tabs = false
+
