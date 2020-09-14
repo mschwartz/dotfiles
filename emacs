@@ -7,7 +7,7 @@
 (desktop-save-mode 1)
 (save-place-mode 1)
 
-					;(require 'joseph-dired-single)
+																				;(require 'joseph-dired-single)
 ;; (diredp-toggle-find-file-reuse-dir 1)
 ;; (require 'dired-single)
 ;; (autoload 'dired-single-buffer "dired-single" "" t)
@@ -15,7 +15,7 @@
 ;; (autoload 'dired-single-magic-buffer "dired-single" "" t)
 ;; (autoload 'dired-single-toggle-buffer-name "dired-single" "" t)
 (setq make-backup-files nil)
-					;(global-undo-tree-mode)
+																				;(global-undo-tree-mode)
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 (setq vc-follow-symlinks nil)
@@ -46,7 +46,9 @@
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-					;(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+
+																				;(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -74,21 +76,78 @@
 
 (setq use-package-ensure-function 'quelpa)
 
+(package-install 'flycheck)
+
+(global-flycheck-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up the mode line
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package all-the-icons
+(use-package dired-subtree
   :ensure t)
 
+
+(load-library "font-lock+")
+
+(require 'font-lock)
+(require 'font-lock+)
+;; (use-package all-the-icons)
+;; (use-package all-the-icons-dired
+;;   :hook (dired-mode . all-the-icons-dired-mode))
+
+(use-package all-the-icons
+  :defer t
+  :init
+  (add-hook 'after-init-hook (lambda () (require 'all-the-icons)))
+  :config
+  (setq all-the-icons-scale-factor 1.0))
+
+(use-package all-the-icons-dired
+  :config
+  :hook (dired-mode . (lambda ()
+												(interactive)
+												(unless (file-remote-p default-directory)
+													(all-the-icons-dired-mode)))))
+
+(use-package all-the-icons-dired
+  :after ranger
+  :init
+  (add-hook 'ranger-mode-hook 'all-the-icons-dired-mode)
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+
+(use-package all-the-icons-ivy
+  :after (ivy all-the-icons)
+  :defer t
+  :init
+  (add-hook 'counsel-projectile-mode-hook 'all-the-icons-ivy-setup)
+  (add-hook 'ivy-mode-hook 'all-the-icons-ivy-setup)
+  :config
+  (progn
+    (defun all-the-icons-ivy-file-transformer (s)
+      "Return a candidate string for filename S preceded by an icon."
+      (format "%s %s"
+							(propertize "\t" 'display (all-the-icons-ivy-icon-for-file s))
+							s))
+    (defun all-the-icons-ivy--buffer-transformer (b s)
+      "Return a candidate string for buffer B named S preceded by an icon.
+ Try to find the icon for the buffer's B `major-mode'.
+ If that fails look for an icon for the mode that the `major-mode' is derived from."
+      (let ((mode (buffer-local-value 'major-mode b)))
+				(format "%s %s"
+								(propertize "\t" 'display (or
+																					 (all-the-icons-ivy--icon-for-mode mode)
+																					 (all-the-icons-ivy--icon-for-mode (get mode 'derived-mode-parent))))
+								(all-the-icons-ivy--buffer-propertize b s))))
+    (all-the-icons-ivy-setup)))
 (require 'telephone-line)
 (setq telephone-line-lhs
       '((evil   . (telephone-line-evil-tag-segment))
-	(accent . (telephone-line-vc-segment
-		   telephone-line-erc-modified-channels-segment
-		   telephone-line-process-segment))
-	(nil    . (
-		   telephone-line-buffer-segment))))
+				(accent . (telephone-line-vc-segment
+									 telephone-line-erc-modified-channels-segment
+									 telephone-line-process-segment))
+				(nil    . (
+									 telephone-line-buffer-segment))))
 (telephone-line-mode 1)
 ;; (setq telephone-line-lhs
 ;;       '((evil   . (telephone-line-evil-tag-segment))
@@ -102,9 +161,9 @@
         (accent . (telephone-line-major-mode-segment))
         (evil   . (telephone-line-airline-position-segment))))
 (telephone-line-mode 1)
-					;use-package doom-modeline
-					;  :ensure t
-					;:init (doom-modeline-mode 1))
+																				;use-package doom-modeline
+																				;  :ensure t
+																				;:init (doom-modeline-mode 1))
 
 ;; (use-package smart-mode-line
 ;;   :ensure t)
@@ -143,7 +202,7 @@
     ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(package-selected-packages
    (quote
-    (dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
+    (flycheck dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -159,6 +218,11 @@
 (add-to-list 'auto-mode-alist '("\\.nasm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . nasm-mode))
+(add-hook 'nasm-mode-hook (lambda()
+			    (setq intent-tabs-mode nil)
+			    (setq tab-width 16)
+			    ;; (setq tab-stop-list (number-sequence 2 60 2))
+			    ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up arm asm mode for nasm source file extension
@@ -212,6 +276,22 @@
 
 (setq c-basic-offset 2)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up Rust
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package rust-mode
+	:ensure t)
+
+;; (setq-default tab-width 2)
+(setq indent-tab-mode nil)
+;; (setq rust-format-on-save t)
+(add-hook 'rust-mode-hook (lambda() (setq indent-tabs-mode nil)))
+(add-hook 'rust-mode-hook (lambda() (setq tab-width 2)))
+;; (add-hook 'rustic-mode-hook
+;;           (lambda() (setq tab-width 2)))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; EVIL
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -237,10 +317,10 @@
   :prefix "navigate-"
   :group 'evil)
 
-					; Without unsetting C-h this is useless
+																				; Without unsetting C-h this is useless
 (global-unset-key (kbd "C-h"))
 
-					; This requires windmove commands
+																				; This requires windmove commands
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
@@ -248,14 +328,14 @@
   (let
       ((cmd (concat "windmove-" direction)))
     (condition-case nil
-	(funcall (read cmd))
+				(funcall (read cmd))
       (error
        (tmux-command direction)))))
 
 (defun tmux-command (direction)
   (shell-command-to-string
    (concat "tmux select-pane -"
-	   (tmux-direction direction))))
+					 (tmux-direction direction))))
 
 (defun tmux-direction (direction)
   (upcase
@@ -313,8 +393,8 @@
 
 (use-package helm-projectile
   :bind (("C-S-P" . helm-projectile-switch-project)
-	 :map evil-normal-state-map
-	 ("C-p" . helm-projectile))
+				 :map evil-normal-state-map
+				 ("C-p" . helm-projectile))
   :ensure t
   )
 
@@ -357,10 +437,12 @@
 
 (use-package lsp-mode
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-	 (c++-mode . lsp)
-					;	 ;; if you want which-key integration
-	 (lsp-mode . lsp-enable-which-key-integration)
-	 )
+				 (c++-mode . lsp)
+				 (rust-mode . lsp)
+				 (rustic-mode . lsp)
+				 ;; if you want which-key integration
+				 (lsp-mode . lsp-enable-which-key-integration)
+				 )
   :commands lsp)
 
 ;; optionally
@@ -372,7 +454,7 @@
 (use-package ccls
   :ensure t
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
-	 (lambda () (require 'ccls) (lsp))))
+				 (lambda () (require 'ccls) (lsp))))
 
 (setq ccls-executable "/usr/bin/ccls")
 
@@ -387,13 +469,13 @@
 ;;   )
 
 ;; if you are helm user
-					;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+																				;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
 ;; if you are ivy user
-					;(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-					;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+																				;(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+																				;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 ;; optionally if you want to use debugger
-					;(use-package dap-mode)
+																				;(use-package dap-mode)
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 ;; optional if you want which-key integration
@@ -413,12 +495,12 @@
     "Open NeoTree using the git root."
     (interactive)
     (let ((project-dir (ffip-project-root))
-	  (file-name (buffer-file-name)))
+					(file-name (buffer-file-name)))
       (if project-dir
-	  (progn
-	    (neotree-dir project-dir)
-	    (neotree-find file-name))
-	(message "Could not find git project root."))))
+					(progn
+						(neotree-dir project-dir)
+						(neotree-find file-name))
+				(message "Could not find git project root."))))
 
   (evil-leader/set-key
     ;; "n"  'neotree-toggle
@@ -426,19 +508,19 @@
 
   (setq projectile-switch-project-action 'neotree-projectile-action)
   (add-hook 'neotree-mode-hook
-	    (lambda ()
-	      (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-	      (define-key evil-normal-state-local-map (kbd "I") 'neotree-hidden-file-toggle)
-	      (define-key evil-normal-state-local-map (kbd "z") 'neotree-stretch-toggle)
-	      (define-key evil-normal-state-local-map (kbd "R") 'neotree-refresh)
-	      (define-key evil-normal-state-local-map (kbd "m") 'neotree-rename-node)
-	      (define-key evil-normal-state-local-map (kbd "c") 'neotree-create-node)
-	      (define-key evil-normal-state-local-map (kbd "d") 'neotree-delete-node)
+						(lambda ()
+							(define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+							(define-key evil-normal-state-local-map (kbd "I") 'neotree-hidden-file-toggle)
+							(define-key evil-normal-state-local-map (kbd "z") 'neotree-stretch-toggle)
+							(define-key evil-normal-state-local-map (kbd "R") 'neotree-refresh)
+							(define-key evil-normal-state-local-map (kbd "m") 'neotree-rename-node)
+							(define-key evil-normal-state-local-map (kbd "c") 'neotree-create-node)
+							(define-key evil-normal-state-local-map (kbd "d") 'neotree-delete-node)
 
-	      (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-vertical-split)
-	      (define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-horizontal-split)
-	      (define-key evil-normal-state-local-map (kbd "o") 'neotree-enter)
-	      (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
+							(define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-vertical-split)
+							(define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-horizontal-split)
+							(define-key evil-normal-state-local-map (kbd "o") 'neotree-enter)
+							(define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
 
 
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
@@ -455,14 +537,14 @@
 ;; KEY BINDING METHODS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-					; F12 does m-x
+																				; F12 does m-x
 (global-set-key [f12] 'execute-extended-command)
 (defun indent-buffer ()
   (interactive)
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
 
-					;(use-package find-file-in-project :ensure t)
+																				;(use-package find-file-in-project :ensure t)
 (defun reload-init-file ()
   (interactive)
   (load-file user-init-file))
