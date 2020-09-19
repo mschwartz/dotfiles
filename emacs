@@ -240,7 +240,18 @@
 ;; Set up JavaScript
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package rjsx-mode
+             :ensure t)
+
+;; (add-hook 'js-mode-hook 'js2-minor-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+(add-to-list 'interpreter-mode-alist '("node" . rjsx--mode))
 (setq js-indent-level 2)
+(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up Forth
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (autoload 'forth-mode "gforth.el")
 (autoload 'forth-block-mode "gfoth.el")
@@ -451,6 +462,7 @@
 	 (c++-mode . lsp)
 	 (rust-mode . lsp)
 	 (rustic-mode . lsp)
+	 (js2-mode .  'lsp)
 	 ;; if you want which-key integration
 	 (lsp-mode . lsp-enable-which-key-integration)
 	 )
@@ -618,3 +630,5 @@
 
 
 (load-theme 'material t)
+(server-start)
+
