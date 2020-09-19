@@ -10,4 +10,7 @@ elif [[ $platform_type == 'armv7l' ]]; then
   curl https://sh.rustup.rs -sSf | sh
 elif [[ $platform == 'linux' ]]; then
   curl https://sh.rustup.rs -sSf | sh
+elif [[ $platform == 'macos' ]]; then
+  brew install rustup
+  rustup-init
 fi

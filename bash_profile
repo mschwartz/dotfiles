@@ -32,3 +32,5 @@ export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.1.0.65/..:$PATH"
 export PATH="/Users/mschwartz/bin/Sencha/Cmd/6.0.2.14/..:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+export PATH="$HOME/.cargo/bin:$PATH"

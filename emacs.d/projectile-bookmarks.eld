@@ -1,1 +1,1 @@
-("~/github/mschwartz/amos/" "~/gitlab/mschwartz/amos/" "~/gitlab/mschwartz/bare/" "~/dotfiles/")
+("~/github/mschwartz/rust-testing/" "~/dotfiles/" "~/github/mschwartz/amos/" "~/gitlab/mschwartz/amos/" "~/gitlab/mschwartz/bare/")

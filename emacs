@@ -7,7 +7,7 @@
 (desktop-save-mode 1)
 (save-place-mode 1)
 
-;(require 'joseph-dired-single)
+					;(require 'joseph-dired-single)
 ;; (diredp-toggle-find-file-reuse-dir 1)
 ;; (require 'dired-single)
 ;; (autoload 'dired-single-buffer "dired-single" "" t)
@@ -15,7 +15,7 @@
 ;; (autoload 'dired-single-magic-buffer "dired-single" "" t)
 ;; (autoload 'dired-single-toggle-buffer-name "dired-single" "" t)
 (setq make-backup-files nil)
-;(global-undo-tree-mode)
+					;(global-undo-tree-mode)
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 (setq vc-follow-symlinks nil)
@@ -46,6 +46,8 @@
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+
 					;(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
 (setq package-enable-at-startup nil)
@@ -74,13 +76,70 @@
 
 (setq use-package-ensure-function 'quelpa)
 
+(package-install 'flycheck)
+
+(global-flycheck-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up the mode line
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package all-the-icons
+(use-package dired-subtree
   :ensure t)
 
+
+(load-library "font-lock+")
+
+(require 'font-lock)
+(require 'font-lock+)
+;; (use-package all-the-icons)
+;; (use-package all-the-icons-dired
+;;   :hook (dired-mode . all-the-icons-dired-mode))
+
+(use-package all-the-icons
+  :defer t
+  :init
+  (add-hook 'after-init-hook (lambda () (require 'all-the-icons)))
+  :config
+  (setq all-the-icons-scale-factor 1.0))
+
+(use-package all-the-icons-dired
+  :config
+  :hook (dired-mode . (lambda ()
+			(interactive)
+			(unless (file-remote-p default-directory)
+			  (all-the-icons-dired-mode)))))
+
+(use-package all-the-icons-dired
+  :after ranger
+  :init
+  (add-hook 'ranger-mode-hook 'all-the-icons-dired-mode)
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+
+(use-package all-the-icons-ivy
+  :after (ivy all-the-icons)
+  :defer t
+  :init
+  (add-hook 'counsel-projectile-mode-hook 'all-the-icons-ivy-setup)
+  (add-hook 'ivy-mode-hook 'all-the-icons-ivy-setup)
+  :config
+  (progn
+    (defun all-the-icons-ivy-file-transformer (s)
+      "Return a candidate string for filename S preceded by an icon."
+      (format "%s %s"
+	      (propertize "\t" 'display (all-the-icons-ivy-icon-for-file s))
+	      s))
+    (defun all-the-icons-ivy--buffer-transformer (b s)
+      "Return a candidate string for buffer B named S preceded by an icon.
+ Try to find the icon for the buffer's B `major-mode'.
+ If that fails look for an icon for the mode that the `major-mode' is derived from."
+      (let ((mode (buffer-local-value 'major-mode b)))
+	(format "%s %s"
+		(propertize "\t" 'display (or
+					   (all-the-icons-ivy--icon-for-mode mode)
+					   (all-the-icons-ivy--icon-for-mode (get mode 'derived-mode-parent))))
+		(all-the-icons-ivy--buffer-propertize b s))))
+    (all-the-icons-ivy-setup)))
 (require 'telephone-line)
 (setq telephone-line-lhs
       '((evil   . (telephone-line-evil-tag-segment))
@@ -140,10 +199,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default))
- '(display-line-numbers-type 'visual)
+   (quote
+    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
+ '(display-line-numbers-type (quote visual) t)
  '(package-selected-packages
-   '(dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil)))
+   (quote
+    (flycheck dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
+'(dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -159,6 +221,21 @@
 (add-to-list 'auto-mode-alist '("\\.nasm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . nasm-mode))
+(add-hook 'nasm-mode-hook (lambda()
+			    (setq intent-tabs-mode nil)
+			    (setq tab-width 16)
+			    ;; (setq tab-stop-list (number-sequence 2 60 2))
+			    ))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up arm asm mode for nasm source file extension
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'load-path "~/.emacs.d/elpa/arm-mode")
+(require 'arm-mode)
+;; (add-to-list 'auto-mode-alist '("\\.S\\'" . arm-mode))
+;; (add-to-list 'auto-mode-alist '("\\.s\\'" . arm-mode))
+;; (add-to-list 'auto-mode-alist '("\\.H\\'" . arm-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up JavaScript
@@ -206,6 +283,27 @@
 
 (setq c-basic-offset 2)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up Rust
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package rust-mode
+  :ensure t
+  :config
+  (setq tab-width 4)
+  (setq indent-level 4)
+  (setq rust-indent-offset 4)
+  )
+
+;; (setq-default tab-width 2)
+(setq indent-tab-mode nil)
+;; (setq rust-format-on-save t)
+(add-hook 'rust-mode-hook (lambda() (setq indent-tabs-mode nil)))
+(add-hook 'rust-mode-hook (lambda() (setq tab-width 2)))
+(add-hook 'rustic-mode-hook
+          (lambda() (setq tab-width 2)))
+
+;; --debug-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; EVIL
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -352,7 +450,9 @@
 (use-package lsp-mode
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
 	 (c++-mode . lsp)
-					;	 ;; if you want which-key integration
+	 (rust-mode . lsp)
+	 (rustic-mode . lsp)
+	 ;; if you want which-key integration
 	 (lsp-mode . lsp-enable-which-key-integration)
 	 )
   :commands lsp)

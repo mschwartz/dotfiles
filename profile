@@ -25,3 +25,5 @@ export PATH=~/bin/:~/go/bin:$PATH
 if [ "$DISPLAY" = "" ]; then
   export DISPLAY=:0.0
 fi
+
+export PATH="$HOME/.cargo/bin:$PATH"
