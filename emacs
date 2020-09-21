@@ -434,8 +434,7 @@
 	      (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
 
 
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-
+(setq neo-theme (if (display-graphic-p) 'icons 'icons))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Customizations
