@@ -63,9 +63,9 @@ e() {
     # fi
 
     if [ "$1" = "" ]; then
-	emacs -nw 
+    	emacsclient
     else
-	emacs -nw --no-desktop $@
+	    emacsclient $@
     fi
 }
 

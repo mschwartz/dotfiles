@@ -23,4 +23,7 @@ emacs.d/auto-save-list/*
 emacs.d/places
 emacs.d/undo
 emacs.d/.emacs.desktop
+emacs.d/quelpa
+emacs.d/elpa
+emacs.d/projectile-bookmark.eld
 .#*
