@@ -97,6 +97,7 @@
 ;;   :hook (dired-mode . all-the-icons-dired-mode))
 
 (use-package all-the-icons
+             :ensure t
   :defer t
   :init
   (add-hook 'after-init-hook (lambda () (require 'all-the-icons)))
@@ -104,6 +105,7 @@
   (setq all-the-icons-scale-factor 1.0))
 
 (use-package all-the-icons-dired
+  :ensure t
   :config
   :hook (dired-mode . (lambda ()
 			(interactive)
@@ -140,7 +142,10 @@
 					   (all-the-icons-ivy--icon-for-mode (get mode 'derived-mode-parent))))
 		(all-the-icons-ivy--buffer-propertize b s))))
     (all-the-icons-ivy-setup)))
-(require 'telephone-line)
+
+(use-package telephone-line
+             :ensure t)
+;(require 'telephone-line)
 (setq telephone-line-lhs
       '((evil   . (telephone-line-evil-tag-segment))
 	(accent . (telephone-line-vc-segment
@@ -199,12 +204,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
- '(display-line-numbers-type (quote visual) t)
+   '("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default))
+ '(display-line-numbers-type 'visual)
  '(package-selected-packages
-   (quote
-    (flycheck dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
+   '(flycheck dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil)))
 '(dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -231,7 +234,9 @@
 ;; Set up arm asm mode for nasm source file extension
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'load-path "~/.emacs.d/elpa/arm-mode")
+;(use-package arm-mode
+;   :ensure t)
+;(add-to-list 'load-path "~/.emacs.d/elpa/arm-mode")
 (require 'arm-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.S\\'" . arm-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.s\\'" . arm-mode))
@@ -241,7 +246,18 @@
 ;; Set up JavaScript
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package rjsx-mode
+             :ensure t)
+
+;; (add-hook 'js-mode-hook 'js2-minor-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+(add-to-list 'interpreter-mode-alist '("node" . rjsx--mode))
 (setq js-indent-level 2)
+(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up Forth
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (autoload 'forth-mode "gforth.el")
 (autoload 'forth-block-mode "gfoth.el")
@@ -452,6 +468,7 @@
 	 (c++-mode . lsp)
 	 (rust-mode . lsp)
 	 (rustic-mode . lsp)
+	 (js2-mode .  'lsp)
 	 ;; if you want which-key integration
 	 (lsp-mode . lsp-enable-which-key-integration)
 	 )
@@ -535,8 +552,7 @@
 	      (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
 
 
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-
+(setq neo-theme (if (display-graphic-p) 'icons 'icons))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Customizations
@@ -617,5 +633,8 @@
 (define-key evil-normal-state-map (kbd "C-n") #'neotree-project-dir)
 (define-key evil-normal-state-map (kbd "M-x") 'execute-extended-command)
 
-
+(use-package material-theme
+  :ensure t)
 (load-theme 'material t)
+(server-start)
+
