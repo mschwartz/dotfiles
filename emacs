@@ -210,9 +210,8 @@
  '(custom-safe-themes
    '("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default))
  '(display-line-numbers-type 'visual t)
- '(package-selected-packages
-   '(flycheck which-key use-package tide telephone-line rust-mode rjsx-mode quelpa neotree material-theme lsp-ui helm-projectile helm-ag evil-surround evil-magit evil-leader dired-subtree company ccls all-the-icons-dired)))
-'(dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil)
+ '(package-selected-packages nil))
+ '()
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
