@@ -97,7 +97,7 @@
 ;;   :hook (dired-mode . all-the-icons-dired-mode))
 
 (use-package all-the-icons
-             :ensure t
+  :ensure t
   :defer t
   :init
   (add-hook 'after-init-hook (lambda () (require 'all-the-icons)))
@@ -144,8 +144,8 @@
     (all-the-icons-ivy-setup)))
 
 (use-package telephone-line
-             :ensure t)
-;(require 'telephone-line)
+  :ensure t)
+					;(require 'telephone-line)
 (setq telephone-line-lhs
       '((evil   . (telephone-line-evil-tag-segment))
 	(accent . (telephone-line-vc-segment
@@ -193,7 +193,7 @@
   (set-fontset-font t 'unicode (font-spec :family "github-octicons") nil 'append)
   (set-fontset-font t 'unicode (font-spec :family "FontAwesome") nil 'append)
   (set-fontset-font t 'unicode (font-spec :family "Weather Icons") nil 'append)
-)
+  )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up the themes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -205,9 +205,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default))
- '(display-line-numbers-type 'visual)
- '(package-selected-packages
-   '(flycheck dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil)))
+ '(display-line-numbers-type 'visual t)
+ '(package-selected-packages nil))
 '(dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -234,9 +233,9 @@
 ;; Set up arm asm mode for nasm source file extension
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;(use-package arm-mode
-;   :ensure t)
-;(add-to-list 'load-path "~/.emacs.d/elpa/arm-mode")
+					;(use-package arm-mode
+					;   :ensure t)
+					;(add-to-list 'load-path "~/.emacs.d/elpa/arm-mode")
 (require 'arm-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.S\\'" . arm-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.s\\'" . arm-mode))
@@ -247,7 +246,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package rjsx-mode
-             :ensure t)
+  :ensure t)
 
 ;; (add-hook 'js-mode-hook 'js2-minor-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
@@ -331,6 +330,8 @@
   (evil-leader/set-leader ",")
   )
 
+(use-package evil-nerd-commenter
+  :ensure t)
 (require 'evil)
 (evil-mode t)
 (evil-select-search-module 'evil-search-module 'evil-search)
@@ -572,7 +573,7 @@
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
 
-					;(use-package find-file-in-project :ensure t)
+(use-package find-file-in-project :ensure t)
 (defun reload-init-file ()
   (interactive)
   (load-file user-init-file))
