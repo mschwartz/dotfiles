@@ -63,9 +63,9 @@ e() {
     # fi
 
     if [ "$1" = "" ]; then
-    	emacsclient
+	emacs --debug-init -nw 
     else
-	    emacsclient $@
+	emacs --debug-init -nw --no-desktop $@
     fi
 }
 
