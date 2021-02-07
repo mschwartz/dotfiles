@@ -50,7 +50,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found)
+plugins=(zsh-autosuggestions z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found deno)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -116,3 +116,8 @@ if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
 fi
 
 #[ ! -z "$KITTY_WINDOW_ID" ] && export TERM=xterm-kitty
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+source $HOME/.cargo/env
+

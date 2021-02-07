@@ -1,5 +1,5 @@
 {
-  "languageserver": {
+  "xlanguageserver": {
     "cquery": {
       "command": "cquery",
       "args": ["--log-file=/tmp/cq.log"],
@@ -16,7 +16,7 @@
       }
     }
   },
-  "xlanguageserver": {
+  "languageserver": {
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "objc", "objcpp", "h"],
@@ -46,6 +46,16 @@
     "scss"
   ],
   "diagnostics.refreshAfterSave": true,
+  "eslint.enable": false,
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "css",
+    "markdown"
+  ],
+  "calc.replaceOriginalExpression": false,
   "prettier.eslintIntegration": true,
   "prettier.stylelintIntegration": true
 }

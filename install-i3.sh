@@ -26,6 +26,8 @@ if [[ $platform == 'arch' ]]; then
   sudo systemctl enable sddm.service
 fi
 
+sudo pip install i3ipc
+
 # i3 config files
 
 if [[ $platform == 'linux' ]]; then
