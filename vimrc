@@ -5,6 +5,9 @@
 " Last Modified By  : Michael Schwartz <mykesx@gmail.com>
 set nocompatible 
 set secure exrc
+set encoding=utf-8
+scriptencoding utf-8
+
 "set fileformat=unix
 "set ma
 filetype off
@@ -839,9 +842,6 @@ endif
 map <Esc>[0c <C-RIGHT>
 map <Esc>[0d <C-LEFT>>
     
-set encoding=utf-8
-scriptencoding utf-8
-
 autocmd FileType javascript set formatprg=prettier\ --stdin
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
