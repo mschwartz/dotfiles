@@ -843,6 +843,7 @@ map <Esc>[0c <C-RIGHT>
 map <Esc>[0d <C-LEFT>>
     
 autocmd FileType javascript set formatprg=prettier\ --stdin
+autocmd FileType typescript set formatprg=prettier\ --stdin
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 function! InsertTabWrapper()

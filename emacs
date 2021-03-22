@@ -345,6 +345,13 @@
 
 (setq typescript-indent-level 2)
 
+(use-package typescript-mode
+  :mode "\\.tsx?$"
+  :hook
+  (typescript-mode . lsp)
+  :custom
+  (typescript-indent-level 2))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up C/C++
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
