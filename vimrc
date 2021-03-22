@@ -46,7 +46,7 @@ autocmd!
 " for arduino
 autocmd BufNewFile,BufReadPost *.c,*.cpp,*.h,*.ino,*.pde set filetype=cpp
 autocmd BufNewFile,BufReadPost *.md,*.wiki set filetype=markdown
-autocmd BufNewFile,BufReadPost *.fth,*.4th set filetype=forth
+autocmd BufNewFile,BufReadPost *.fth,*.4th,*.meta set filetype=forth
 autocmd BufNewFile,BufReadPost .vimrc,*.vim set filetype=vim
 autocmd BufNewFile,BufReadPost *.asm,*.inc set filetype=asm
 
@@ -361,7 +361,7 @@ autocmd FileType cpp call CPP_config()
   endfunction
 
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'vim-scripts/forth.vim'
+"Plug 'vim-scripts/forth.vim'
 Plug 'Shirk/vim-gas'
 
 "Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }

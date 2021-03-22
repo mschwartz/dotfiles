@@ -310,7 +310,7 @@
 
 (use-package forth-mode
   :ensure t)
-;; (autoload 'forth-mode "gforth.el")
+(autoload 'forth-mode "gforth.el")
 ;; (autoload 'forth-block-mode "gforth.el")
 (add-to-list 'auto-mode-alist '("\\.fth$" . forth-mode))
 (add-to-list 'auto-mode-alist '("\\.f$" . forth-mode))
@@ -692,8 +692,6 @@
 (define-key evil-normal-state-map (kbd "C-n") #'neotree-project-dir)
 (define-key evil-normal-state-map (kbd "M-x") 'execute-extended-command)
 
-(global-set-key [f1] nil)
-(global-set-key [f2] nil)
 
 (use-package material-theme
   :ensure t)
@@ -712,8 +710,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (material-theme neotree which-key ccls lsp-ui lsp-mode lv markdown-mode ht f dash-functional evil-magit magit git-commit with-editor transient company helm-ag helm-projectile helm helm-core popup async projectile evil-surround evil-leader evil goto-chg evil-nerd-commenter rust-mode tide typescript-mode s rjsx-mode js2-mode format-all language-id use-package telephone-line quelpa flycheck find-file-in-project dired-subtree all-the-icons-dired))))
+   '(material-theme neotree which-key ccls lsp-ui lsp-mode lv markdown-mode ht f dash-functional evil-magit magit git-commit with-editor transient company helm-ag helm-projectile helm helm-core popup async projectile evil-surround evil-leader evil goto-chg evil-nerd-commenter rust-mode tide typescript-mode s rjsx-mode js2-mode format-all language-id use-package telephone-line quelpa flycheck find-file-in-project dired-subtree all-the-icons-dired)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -728,3 +725,6 @@
 ;;  )
 
 (setq sgml-xml-mode t)
+
+(global-set-key [f1] nil)
+(global-set-key [f2] nil)
