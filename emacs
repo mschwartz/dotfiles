@@ -208,30 +208,23 @@
 ;; Set up the themes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(custom-set-variables
+;(custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default))
- '(display-line-numbers-type 'visual t)
- '(package-selected-packages nil))
-'()
- '(package-selected-packages nil)
- '()
-(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 143 :width normal)))))
+; '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 143 :width normal)))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up nasm mode for nasm source file extension
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+(use-package nasm-mode
+  :ensure t)
 (add-to-list 'auto-mode-alist '("\\.nasm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . nasm-mode))
@@ -240,6 +233,34 @@
 							(setq tab-width 16)
 							;; (setq tab-stop-list (number-sequence 2 60 2))
 							))
+
+;; (defun my-asm-mode-hook ()
+;;   ;; you can use `comment-dwim' (M-;) for this kind of behaviour anyway
+;;   (local-unset-key (vector asm-comment-char))
+;;   ;; (local-unset-key "<return>") ; doesn't work. "RET" in a terminal.  http://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-from-triggering-a-completion-in-company-mode
+;;   (electric-indent-local-mode)  ; toggle off
+;; 					;  (setq tab-width 4)
+;;   (setq indent-tabs-mode nil)
+;;   ;; asm-mode sets it locally to nil, to "stay closer to the old TAB behaviour".
+;;   ;; (setq tab-always-indent (default-value 'tab-always-indent))
+
+;;   (defun asm-calculate-indentation ()
+;;     (or
+;;      ;; Flush labels to the left margin.
+;; 					;   (and (looking-at "\\(\\.\\|\\sw\\|\\s_\\)+:") 0)
+;;      (and (looking-at "[.@_[:word:]]+:") 0)
+;;      ;; Same thing for `;;;' comments.
+;;      (and (looking-at "\\s<\\s<\\s<") 0)
+;;      ;; %if nasm macro stuff goes to the left margin
+;;      (and (looking-at "%") 0)
+;;      (and (looking-at "c?global\\|section\\|default\\|align\\|INIT_..X") 0)
+;;      ;; Simple `;' comments go to the comment-column
+;; 					;(and (looking-at "\\s<\\(\\S<\\|\\'\\)") comment-column)
+;;      ;; The rest goes at column 4
+;;      (or 4)))
+;;   )
+
+;; (add-hook 'asm-mode-hook #'my-asm-mode-hook)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up arm asm mode for nasm source file extension
@@ -259,6 +280,11 @@
 ;; Set up JavaScript
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; (use-package web-mode
+;;   :ensure t
+;;   )
+;; (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+
 (use-package format-all
   :ensure t
   )
@@ -275,9 +301,12 @@
 ;; Set up Forth
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(autoload 'forth-mode "gforth.el")
-(autoload 'forth-block-mode "gfoth.el")
+(use-package forth-mode
+  :ensure t)
+;; (autoload 'forth-mode "gforth.el")
+;; (autoload 'forth-block-mode "gforth.el")
 (add-to-list 'auto-mode-alist '("\\.fth$" . forth-mode))
+(add-to-list 'auto-mode-alist '("\\.f$" . forth-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up TypeScript
@@ -308,6 +337,13 @@
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
 (setq typescript-indent-level 2)
+
+(use-package typescript-mode
+  :mode "\\.tsx?$"
+  :hook
+  (typescript-mode . lsp)
+  :custom
+  (typescript-indent-level 2))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up C/C++
@@ -656,6 +692,9 @@
 (define-key evil-normal-state-map (kbd "C-n") #'neotree-project-dir)
 (define-key evil-normal-state-map (kbd "M-x") 'execute-extended-command)
 
+(global-set-key [f1] nil)
+(global-set-key [f2] nil)
+
 (use-package material-theme
   :ensure t)
 (load-theme 'material t)
@@ -667,3 +706,24 @@
 ;(setq make-backup-files nil) ; stop creating those backup~ files
 (setq create-lockfiles nil)
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(material-theme neotree which-key ccls lsp-ui lsp-mode lv markdown-mode ht f dash-functional evil-magit magit git-commit with-editor transient company helm-ag helm-projectile helm helm-core popup async projectile evil-surround evil-leader evil goto-chg evil-nerd-commenter rust-mode tide typescript-mode s rjsx-mode js2-mode format-all language-id use-package telephone-line quelpa flycheck find-file-in-project dired-subtree all-the-icons-dired)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 143 :width normal)))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
+
+(setq sgml-xml-mode t)

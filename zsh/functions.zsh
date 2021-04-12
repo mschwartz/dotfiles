@@ -52,6 +52,12 @@ tmuxx() {
     tmux -2 new -A -s $1
 }
 
+sh() {
+  touch $@ 
+  chmod 755 $@
+  ls -l $@
+}
+
 e() {
     # if [ "$TMUX" != "" ]; then
     # 	tmux set-option history-limit 100
