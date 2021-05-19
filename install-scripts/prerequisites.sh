@@ -121,6 +121,7 @@ elif [[ $platform == 'arch' ]]; then
   fi
 
 elif [[ $platform == 'macos' ]]; then
+  install wget
   install figlet
   figlet "Prerequisites for $platform"
   install neofetch 
@@ -128,6 +129,7 @@ elif [[ $platform == 'macos' ]]; then
   install boost 
   install boost-python 
   install boost-python3
+  install tmux
 fi
 
 git config --global user.email "mykesx@gmail.com"
