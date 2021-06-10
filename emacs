@@ -303,7 +303,7 @@
 
 (use-package forth-mode
   :ensure t)
-;; (autoload 'forth-mode "gforth.el")
+(autoload 'forth-mode "gforth.el")
 ;; (autoload 'forth-block-mode "gforth.el")
 (add-to-list 'auto-mode-alist '("\\.fth$" . forth-mode))
 (add-to-list 'auto-mode-alist '("\\.f$" . forth-mode))
@@ -710,8 +710,6 @@
 (define-key evil-normal-state-map (kbd "C-n") #'neotree-project-dir)
 (define-key evil-normal-state-map (kbd "M-x") 'execute-extended-command)
 
-(global-set-key [f1] nil)
-(global-set-key [f2] nil)
 
 (use-package material-theme
   :ensure t)
@@ -745,3 +743,6 @@
 ;;  )
 
 (setq sgml-xml-mode t)
+
+(global-set-key [f1] nil)
+(global-set-key [f2] nil)
