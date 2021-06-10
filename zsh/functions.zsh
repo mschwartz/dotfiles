@@ -4,8 +4,8 @@
 
 # GIT
 master() {
-  $test = git branch | grep -w 'master';
-  if [[ $test ]]; then
+  git branch | grep -w master
+  if [[ $? ]]; then
     git checkout master
     upstream=`git remote | grep upstream`
     if [[ "$upstream" == "" ]]; then
