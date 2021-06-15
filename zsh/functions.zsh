@@ -4,13 +4,36 @@
 
 # GIT
 master() {
+  git branch | grep -w master
+  if [[ $? ]]; then
     git checkout master
     upstream=`git remote | grep upstream`
     if [[ "$upstream" == "" ]]; then
-	git pull origin master
+	    git pull origin master
     else
-	git pull upstream master
-	git push origin master
+      git pull upstream master
+      git push origin master
+    fi
+  else
+    git checkout main
+    upstream=`git remote | grep upstream`
+    if [[ "$upstream" == "" ]]; then
+      git pull origin main
+    else
+      git pull upstream main
+      git push origin main
+    fi
+  fi
+}
+
+main() {
+    git checkout main
+    upstream=`git remote | grep upstream`
+    if [[ "$upstream" == "" ]]; then
+	git pull origin main
+    else
+	git pull upstream main
+	git push origin main
     fi
 }
 

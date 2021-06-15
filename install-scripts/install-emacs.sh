@@ -9,7 +9,7 @@ if [[ $platform == 'linux' ]]; then
 elif [[ $platform == 'arch' ]]; then
     sudo pacman -S --noconfirm emacs
 else # macos
-    brew cask install emacs
+    brew  install emacs
 fi
 
 mkdir -p ~/github/other

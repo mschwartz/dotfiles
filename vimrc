@@ -157,7 +157,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-repeat'
 
 Plug 'Shougo/vimproc.vim'
-Plug 'puremourning/vimspector'
+"Plug 'puremourning/vimspector'
 
 Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown'
