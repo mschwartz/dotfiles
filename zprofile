@@ -8,3 +8,5 @@ if [ -f "$HOME/.zprofile.local" ]; then
     . "$HOME/.zprofile.local"
 fi
 
+
+export PATH="$HOME/.cargo/bin:$PATH"

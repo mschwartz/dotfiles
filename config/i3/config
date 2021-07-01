@@ -352,7 +352,7 @@ bindsym $sup+minus scratchpad show
 bar {
   position top
   tray_output primary
-  status_command bumblebee-status -m title cpu load memory amixer battery uptime date time -t iceberg-powerline -p interval=1
+  status_command bumblebee-status -m title cpu load memory amixer battery uptime date time -t iceberg-powerline -p interval=5
 }
 
 ## BOTTOM
@@ -442,10 +442,10 @@ exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id solaar config 2 fn-swap off
 ## set display resolution
 exec_always --no-startup-id /home/mschwartz/.config/i3/xrandr.sh
-exec --no-startup-id xrandr --output DP-0 --left-of DP-2 --auto
-bindsym $mod+> exec xrandr --output DP-0 --right-of DP-2 --auto
-bindsym $mod+shift+comma exec xrandr --output DP-0 --left-of DP-2 --auto
-bindsym $mod+shift+period exec xrandr --output DP-0 --right-of DP-2 --auto
+#exec --no-startup-id xrandr --output DP-0 --left-of DP-2 --auto
+#bindsym $mod+> exec xrandr --output DP-0 --right-of DP-2 --auto
+#bindsym $mod+shift+comma exec xrandr --output DP-0 --left-of DP-2 --auto
+#bindsym $mod+shift+period exec xrandr --output DP-0 --right-of DP-2 --auto
 ## system notifications
 exec --no-startup-id dunst
 #exec --no-startup-id compton -b --vsync none -f -c --backend xrender
@@ -469,7 +469,8 @@ exec_always --no-startup-id feh --bg-scale ~/.config/wall.png
 #exec_always --no-startup-id conky -c ~/.config/conky/conky.conf
 #exec --no-startup-id ~/.dropbox-dist/dropboxd
 ## Reset trackpad on reload of config
-exec_always --no-startup_id ~/.config/i3/reset-trackpad.sh
 ## Touch screen
-exec_always --no-startup-id xinput --map-to-output 'Wacom Pen and multitouch sensor Finger' DP-2
+#exec_always --no-startup-id xinput --map-to-output 'Wacom Pen and multitouch sensor Finger' DP-2
+# exec_always --no-startup_id ~/.config/i3/reset-trackpad.sh
+#exec_always --no-startup-id /home/mschwartz/.config/i3/touchpad.sh
 exec_always --no-startup-id /home/mschwartz/.config/i3/touchpad.sh

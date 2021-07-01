@@ -1,5 +1,6 @@
 #!/bin/sh
 
+sleep 1
 # disable right trackpad button on machines that have one
 if [ -e /usr/bin/synclient ]; then
   synclient TapButton1=0

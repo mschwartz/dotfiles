@@ -2,20 +2,26 @@
 ;; Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; (when (fboundp 'set-fontset-font)
+;;   (setq user-emacs-directory "/Users/mschwartz/.cache/user-emacs-directory/")
+;;   )
+
+;; (unless (fboundp 'set-fontset-font)
+;;   (setq user-emacs-directory "/home/mschwartz/.cache/user-emacs-directory/")
+;;   )
+
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
 (desktop-save-mode 1)
 (save-place-mode 1)
-
-;(require 'joseph-dired-single)
+					;(require 'joseph-dired-single)
 ;; (diredp-toggle-find-file-reuse-dir 1)
 ;; (require 'dired-single)
 ;; (autoload 'dired-single-buffer "dired-single" "" t)
 ;; (autoload 'dired-single-buffer-mouse "dired-single" "" t)
 ;; (autoload 'dired-single-magic-buffer "dired-single" "" t)
 ;; (autoload 'dired-single-toggle-buffer-name "dired-single" "" t)
-(setq make-backup-files nil)
-;(global-undo-tree-mode)
+					;(global-undo-tree-mode)
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 (setq vc-follow-symlinks nil)
@@ -46,6 +52,8 @@
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+
 					;(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
 (setq package-enable-at-startup nil)
@@ -74,14 +82,80 @@
 
 (setq use-package-ensure-function 'quelpa)
 
+(package-install 'flycheck)
+
+(global-flycheck-mode)
+
+(use-package find-file-in-project
+  :ensure t
+  )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up the mode line
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package all-the-icons
+(use-package dired-subtree
   :ensure t)
 
-(require 'telephone-line)
+
+(load-library "font-lock+")
+
+(require 'font-lock)
+(require 'font-lock+)
+;; (use-package all-the-icons)
+;; (use-package all-the-icons-dired
+;;   :hook (dired-mode . all-the-icons-dired-mode))
+
+(use-package all-the-icons
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'after-init-hook (lambda () (require 'all-the-icons)))
+  :config
+  (setq all-the-icons-scale-factor 1.0))
+
+(use-package all-the-icons-dired
+  :ensure t
+  :config
+  :hook (dired-mode . (lambda ()
+			(interactive)
+			(unless (file-remote-p default-directory)
+			  (all-the-icons-dired-mode)))))
+
+(use-package all-the-icons-dired
+  :after ranger
+  :init
+  (add-hook 'ranger-mode-hook 'all-the-icons-dired-mode)
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+
+(use-package all-the-icons-ivy
+  :after (ivy all-the-icons)
+  :defer t
+  :init
+  (add-hook 'counsel-projectile-mode-hook 'all-the-icons-ivy-setup)
+  (add-hook 'ivy-mode-hook 'all-the-icons-ivy-setup)
+  :config
+  (progn
+    (defun all-the-icons-ivy-file-transformer (s)
+      "Return a candidate string for filename S preceded by an icon."
+      (format "%s %s"
+	      (propertize "\t" 'display (all-the-icons-ivy-icon-for-file s))
+	      s))
+    (defun all-the-icons-ivy--buffer-transformer (b s)
+      "Return a candidate string for buffer B named S preceded by an icon.
+ Try to find the icon for the buffer's B `major-mode'.
+ If that fails look for an icon for the mode that the `major-mode' is derived from."
+      (let ((mode (buffer-local-value 'major-mode b)))
+	(format "%s %s"
+		(propertize "\t" 'display (or
+					   (all-the-icons-ivy--icon-for-mode mode)
+					   (all-the-icons-ivy--icon-for-mode (get mode 'derived-mode-parent))))
+		(all-the-icons-ivy--buffer-propertize b s))))
+    (all-the-icons-ivy-setup)))
+
+(use-package telephone-line
+  :ensure t)
+					;(require 'telephone-line)
 (setq telephone-line-lhs
       '((evil   . (telephone-line-evil-tag-segment))
 	(accent . (telephone-line-vc-segment
@@ -122,48 +196,188 @@
 (require 'icons-in-terminal)
 (insert (icons-in-terminal 'oct_flame)) ; C-h f icons-in-terminal[RET] for more info
 
-(set-fontset-font t 'unicode (font-spec :family "all-the-icons") nil 'append)
-(set-fontset-font t 'unicode (font-spec :family "file-icons") nil 'append)
-(set-fontset-font t 'unicode (font-spec :family "Material Icons") nil 'append)
-(set-fontset-font t 'unicode (font-spec :family "github-octicons") nil 'append)
-(set-fontset-font t 'unicode (font-spec :family "FontAwesome") nil 'append)
-(set-fontset-font t 'unicode (font-spec :family "Weather Icons") nil 'append)
-
+(when (fboundp 'set-fontset-font)
+  (set-fontset-font t 'unicode (font-spec :family "all-the-icons") nil 'append)
+  (set-fontset-font t 'unicode (font-spec :family "file-icons") nil 'append)
+  (set-fontset-font t 'unicode (font-spec :family "Material Icons") nil 'append)
+  (set-fontset-font t 'unicode (font-spec :family "github-octicons") nil 'append)
+  (set-fontset-font t 'unicode (font-spec :family "FontAwesome") nil 'append)
+  (set-fontset-font t 'unicode (font-spec :family "Weather Icons") nil 'append)
+  )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up the themes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
- '(package-selected-packages
-   (quote
-    (dired+ telephone-line all-the-icons-ivy all-the-icons nasm-mode zones navigator paper-theme ewal-spacemacs-themes spacemacs-theme spacemacs-dark-theme spacemacs-dark helm-ag gruvbox which-key evil-nerd-commenter company-lsp lsp-ui lsp-mode gruvbox-theme evil-leader neotree use-package evil))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+					;(custom-set-variables
+;; custom-set-variables was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
+;; custom-set-faces was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
+					; '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 143 :width normal)))))
 
-(load-theme 'material t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up nasm mode for nasm source file extension
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+(use-package nasm-mode
+  :ensure t)
 (add-to-list 'auto-mode-alist '("\\.nasm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . nasm-mode))
+(add-hook 'nasm-mode-hook (lambda()
+			    (setq intent-tabs-mode nil)
+			    (setq tab-width 16)
+			    ;; (setq tab-stop-list (number-sequence 2 60 2))
+			    ))
 
+;; (defun my-asm-mode-hook ()
+;;   ;; you can use `comment-dwim' (M-;) for this kind of behaviour anyway
+;;   (local-unset-key (vector asm-comment-char))
+;;   ;; (local-unset-key "<return>") ; doesn't work. "RET" in a terminal.  http://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-from-triggering-a-completion-in-company-mode
+;;   (electric-indent-local-mode)  ; toggle off
+;; 					;  (setq tab-width 4)
+;;   (setq indent-tabs-mode nil)
+;;   ;; asm-mode sets it locally to nil, to "stay closer to the old TAB behaviour".
+;;   ;; (setq tab-always-indent (default-value 'tab-always-indent))
+
+;;   (defun asm-calculate-indentation ()
+;;     (or
+;;      ;; Flush labels to the left margin.
+;; 					;   (and (looking-at "\\(\\.\\|\\sw\\|\\s_\\)+:") 0)
+;;      (and (looking-at "[.@_[:word:]]+:") 0)
+;;      ;; Same thing for `;;;' comments.
+;;      (and (looking-at "\\s<\\s<\\s<") 0)
+;;      ;; %if nasm macro stuff goes to the left margin
+;;      (and (looking-at "%") 0)
+;;      (and (looking-at "c?global\\|section\\|default\\|align\\|INIT_..X") 0)
+;;      ;; Simple `;' comments go to the comment-column
+;; 					;(and (looking-at "\\s<\\(\\S<\\|\\'\\)") comment-column)
+;;      ;; The rest goes at column 4
+;;      (or 4)))
+;;   )
+
+;; (add-hook 'asm-mode-hook #'my-asm-mode-hook)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up arm asm mode for nasm source file extension
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+					;(add-to-list 'load-path "~/.emacs.d/elpa/arm-mode")
+					;(require 'arm-mode)
+					;(use-package arm-mode
+					;   :ensure t)
+					;(add-to-list 'load-path "~/.emacs.d/elpa/arm-mode")
+(require 'arm-mode)
+;; (add-to-list 'auto-mode-alist '("\\.S\\'" . arm-mode))
+;; (add-to-list 'auto-mode-alist '("\\.s\\'" . arm-mode))
+;; (add-to-list 'auto-mode-alist '("\\.H\\'" . arm-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up JavaScript
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; (use-package web-mode
+;;   :ensure t
+;;   )
+;; (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+
+(use-package format-all
+  :ensure t
+  )
+(use-package rjsx-mode
+  :ensure t)
+
+;; (add-hook 'js-mode-hook 'js2-minor-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+(add-to-list 'interpreter-mode-alist '("node" . rjsx--mode))
+(setq js-indent-level 2)
+(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up Forth
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package forth-mode
+  :ensure t)
+(autoload 'forth-mode "gforth.el")
+;; (autoload 'forth-block-mode "gforth.el")
+(add-to-list 'auto-mode-alist '("\\.fth$" . forth-mode))
+(add-to-list 'auto-mode-alist '("\\.f$" . forth-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up TypeScript
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package tide
+  :ensure t
+  )
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; formats the buffer before saving
+(add-hook 'before-save-hook 'tide-format-before-save)
+
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+(setq typescript-indent-level 2)
+
+(use-package typescript-mode
+  :mode "\\.tsx?$"
+  :hook
+  (typescript-mode . lsp)
+  :custom
+  (typescript-indent-level 2))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up C/C++
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq c-basic-offset 2)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up Rust
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package rust-mode
+  :ensure t
+  :config
+  (setq tab-width 4)
+  (setq indent-level 4)
+  (setq rust-indent-offset 4)
+  )
+
+;; (setq-default tab-width 2)
+(setq indent-tab-mode nil)
+;; (setq rust-format-on-save t)
+(add-hook 'rust-mode-hook (lambda() (setq indent-tabs-mode nil)))
+(add-hook 'rust-mode-hook (lambda() (setq tab-width 2)))
+(add-hook 'rustic-mode-hook
+          (lambda() (setq tab-width 2)))
+
+;; --debug-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; EVIL
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package evil-nerd-commenter
+  :ensure t)
 
 (use-package evil-leader
   :ensure t
@@ -232,6 +446,24 @@
     (tmux-navigate "right")))
 
 (provide 'navigate)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; DART
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package lsp-mode :ensure t)
+(use-package lsp-dart
+  :ensure t
+  :hook (dart-mode . lsp))
+
+(use-package lsp-yaml
+  :ensure t
+  )
+(use-package yaml-mode
+  :ensure t
+  )
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PROJECTILE
@@ -307,7 +539,10 @@
 (use-package lsp-mode
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
 	 (c++-mode . lsp)
-					;	 ;; if you want which-key integration
+	 (rust-mode . lsp)
+	 (rustic-mode . lsp)
+	 (js2-mode .  'lsp)
+	 ;; if you want which-key integration
 	 (lsp-mode . lsp-enable-which-key-integration)
 	 )
   :commands lsp)
@@ -390,8 +625,7 @@
 	      (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
 
 
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-
+(setq neo-theme (if (display-graphic-p) 'icons 'icons))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Customizations
@@ -406,11 +640,14 @@
 
 					; F12 does m-x
 (global-set-key [f12] 'execute-extended-command)
-(defun indent-buffer ()
-  (interactive)
-  (save-excursion
-    (indent-region (point-min) (point-max) nil)))
+					;(defun indent-buffer ()
+					;  (interactive)
+					;  (save-excursion
+					;    (indent-region (point-min) (point-max) nil)))
 
+					;(use-package find-file-in-project :ensure t)
+(defun indent-buffer
+    (format-all-buffer))
 					;(use-package find-file-in-project :ensure t)
 (defun reload-init-file ()
   (interactive)
@@ -447,7 +684,8 @@
 (evil-leader/set-key
   "r" 'reload-init-file
   "s" 'save-buffer
-  "f" 'indent-buffer
+					;  "f" 'indent-buffer
+  "f" 'format-all-buffer
   "bd" 'kill-this-buffer-volatile
   "be" 'buffer-menu
   "ci" 'evilnc-comment-or-uncomment-lines
@@ -472,3 +710,39 @@
 (define-key evil-normal-state-map (kbd "C-n") #'neotree-project-dir)
 (define-key evil-normal-state-map (kbd "M-x") 'execute-extended-command)
 
+
+(use-package material-theme
+  :ensure t)
+(load-theme 'material t)
+;; (server-start)
+
+;; (setq backup-directory-alist
+;;       `(("." . ,(concat user-emacs-directory "backups"))))
+
+					;(setq make-backup-files nil) ; stop creating those backup~ files
+(setq create-lockfiles nil)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(material-theme neotree which-key ccls lsp-ui lsp-mode lv markdown-mode ht f dash-functional evil-magit magit git-commit with-editor transient company helm-ag helm-projectile helm helm-core popup async projectile evil-surround evil-leader evil goto-chg evil-nerd-commenter rust-mode tide typescript-mode s rjsx-mode js2-mode format-all language-id use-package telephone-line quelpa flycheck find-file-in-project dired-subtree all-the-icons-dired)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 143 :width normal)))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
+
+(setq sgml-xml-mode t)
+
+(global-set-key [f1] nil)
+(global-set-key [f2] nil)

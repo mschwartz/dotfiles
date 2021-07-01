@@ -5,17 +5,25 @@ figlet "Install emacs"
 . ~/dotfiles/install-scripts/lib/platform.sh
 
 if [[ $platform == 'linux' ]]; then
-  sudo apt-get install -y emacs26
+  sudo apt-get install -y emacs
 elif [[ $platform == 'arch' ]]; then
     sudo pacman -S --noconfirm emacs
 else # macos
-    brew cask install emacs
+    brew  install emacs
 fi
 
 mkdir -p ~/github/other
-pushd ~/github/other
-#git clone https://github.com/sebastiencs/icons-in-terminal.git
+export OTHER="$HOME/github/other";
+export ICONS_IN_TERMINAL="$OTHER/icons-in-terminal";
+echo "  installing icons-in-terminal"
 
-git clone git@github.com:sebastiencs/icons-in-terminal.git
-cd icons-in-terminal
-./install-autodetect.sh
+if [ -d "$ICONS_IN_TERMINAL" ]; then
+  echo "$ICONS_IN_TERMINAL exists"
+else
+  echo "$ICONS_IN_TEMRMINAL does not exist"
+  cd $OTHER
+  git clone git@github.com:sebastiencs/icons-in-terminal.git
+fi
+
+cd $ICONS_IN_TERMINAL
+./install-autodetect.sh || ./install.sh

@@ -28,6 +28,7 @@ alias nuc1='ssh nuc1'
 alias robospeak='ssh robospeak'
 alias yyz='ssh yyz'
 alias pi4='ssh pi4'
+alias pi48='ssh pi48'
 alias nas1='ssh nas1'
 alias warpaint='ssh warpaint'
 
