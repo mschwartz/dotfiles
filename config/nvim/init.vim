@@ -199,6 +199,11 @@ local on_attach = function(client, bufnr)
 end
 EOF
 
+filetype plugin indent on
 
+" Use actual tab chars in Makefiles.
+autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+autocmd FileType asm set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
-
+" Disables automatic commenting on newline:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
