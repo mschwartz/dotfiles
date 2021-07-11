@@ -50,8 +50,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(zsh-autosuggestions z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found deno)
-
+plugins=(zsh-autosuggestions z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found)
+#plugins=(zsh-autosuggestions z vi-mode git sudo colorize brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting  vscode systemd fzf fasd command-not-found)
 source $ZSH/oh-my-zsh.sh
 
 
@@ -76,9 +76,9 @@ fi
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 #
 #
-if [ -f $HOME/.zshrc.local ]; then
-    source $HOME/.zshrc.local
-fi
+#if [ -f $HOME/.zshrc.local ]; then
+#    source $HOME/.zshrc.local
+#fi
 
 neofetch
 
