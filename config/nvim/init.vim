@@ -209,9 +209,7 @@ lua << EOF
  require'lspconfig'.pyls.setup{}
  require'lspconfig'.vimls.setup{}
  require'lspconfig'.yamlls.setup{}
-EOF
 
-lua << EOF
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
