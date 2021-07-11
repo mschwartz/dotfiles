@@ -300,6 +300,7 @@
 
 ;; (add-hook 'js-mode-hook 'js2-minor-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'" . js2-mode))
 (add-to-list 'interpreter-mode-alist '("node" . rjsx--mode))
 (setq js-indent-level 2)
 (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
@@ -712,8 +713,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (material-theme neotree which-key ccls lsp-ui lsp-mode lv markdown-mode ht f dash-functional evil-magit magit git-commit with-editor transient company helm-ag helm-projectile helm helm-core popup async projectile evil-surround evil-leader evil goto-chg evil-nerd-commenter rust-mode tide typescript-mode s rjsx-mode js2-mode format-all language-id use-package telephone-line quelpa flycheck find-file-in-project dired-subtree all-the-icons-dired))))
+   '(material-theme neotree which-key ccls lsp-ui lsp-mode lv markdown-mode ht f dash-functional evil-magit magit git-commit with-editor transient company helm-ag helm-projectile helm helm-core popup async projectile evil-surround evil-leader evil goto-chg evil-nerd-commenter rust-mode tide typescript-mode s rjsx-mode js2-mode format-all language-id use-package telephone-line quelpa flycheck find-file-in-project dired-subtree all-the-icons-dired)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
