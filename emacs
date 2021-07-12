@@ -220,6 +220,28 @@
 					; '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 143 :width normal)))))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LSP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package lsp-mode :ensure t)
+;; (use-package lsp-treemacs :ensure t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Dart
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package dart-mode
+  :ensure t
+  )
+(use-package lsp-dart
+  :ensure t
+  ;; :config
+  ;; (setq lsp-dart-server-command "/opt/flutter/bin/dart /opt/dart-sdk/bin/snapshots/analysis_server.dart.snapshot")
+  :hook (dart-mode . lsp))
+
+(add-hook 'dart-mode 'lsp)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up nasm mode for nasm source file extension
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -448,17 +470,13 @@
 (provide 'navigate)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; DART
+;; YAML
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package lsp-mode :ensure t)
-(use-package lsp-dart
-  :ensure t
-  :hook (dart-mode . lsp))
 
 (use-package lsp-yaml
   :ensure t
   )
+
 (use-package yaml-mode
   :ensure t
   )
@@ -640,6 +658,7 @@
 
 					; F12 does m-x
 (global-set-key [f12] 'execute-extended-command)
+(global-set-key [f12] 'execute-extended-command)
 					;(defun indent-buffer ()
 					;  (interactive)
 					;  (save-excursion
@@ -719,7 +738,7 @@
 ;; (setq backup-directory-alist
 ;;       `(("." . ,(concat user-emacs-directory "backups"))))
 
-					;(setq make-backup-files nil) ; stop creating those backup~ files
+(setq make-backup-files nil) ; stop creating those backup~ files
 (setq create-lockfiles nil)
 
 (custom-set-variables

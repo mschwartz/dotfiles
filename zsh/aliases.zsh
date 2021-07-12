@@ -39,6 +39,9 @@ alias tlist='tmux list-sessions'
 # alias e='emacs -nw'
 alias make="make -j 20"
 
+if [ -f /usr/bin/bpytop ]; then
+  alias top='bpytop'
+fi
 # vim
 if [ -f /usr/local/bin/vim ]; then
   alias vi='/usr/local/bin/vim'
