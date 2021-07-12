@@ -50,8 +50,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(zsh-autosuggestions z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found deno)
-
+plugins=(zsh-autosuggestions z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found)
+#plugins=(zsh-autosuggestions z vi-mode git sudo colorize brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting  vscode systemd fzf fasd command-not-found)
 source $ZSH/oh-my-zsh.sh
 
 
@@ -76,11 +76,15 @@ fi
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 #
 #
-if [ -f $HOME/.zshrc.local ]; then
-    source $HOME/.zshrc.local
-fi
+#if [ -f $HOME/.zshrc.local ]; then
+#    source $HOME/.zshrc.local
+#fi
 
+DISPLAY_SAVE=DISPLAY
+unset DISPLAY
 neofetch
+DISPLAY=$DISPLAY_SAVE
+
 
 # disable ctrl-s (xon/xoff)
 stty -ixon
@@ -96,19 +100,12 @@ PERL_LOCAL_LIB_ROOT="/home/mschwartz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_L
 PERL_MB_OPT="--install_base \"/home/mschwartz/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/mschwartz/perl5"; export PERL_MM_OPT;
 
-if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
-  source $HOME/github/other/emsdk/emsdk_env.sh
-fi
-PATH=~/go/bin:$PATH; export PATH
+#if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
+#  source $HOME/github/other/emsdk/emsdk_env.sh
+#fi
+#PATH=~/go/bin:$PATH; export PATH
 
 
-
-# Must be sourced at end of .zshrc
-if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [ -f /usr/share/zsh-syntax-highlighting.zsh ]; then
-  source /usr/share/zsh-syntax-highlighting.zsh
-fi
 
 
 if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
@@ -118,6 +115,13 @@ fi
 #[ ! -z "$KITTY_WINDOW_ID" ] && export TERM=xterm-kitty
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Must be sourced at end of .zshrc
+if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ -f /usr/share/zsh-syntax-highlighting.zsh ]; then
+  source /usr/share/zsh-syntax-highlighting.zsh
+fi
 
 #source $HOME/.cargo/env
 
