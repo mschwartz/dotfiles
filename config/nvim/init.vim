@@ -40,8 +40,8 @@ set incsearch
 
 set ruler
 set nobackup
-set directory=$HOME/.vim/swapfiles//
-set undodir=~/.vim/undo-dir
+set directory=$HOME/.local/vim/swapfiles
+set undodir=~/.local/nvim/undo-dir
 set undofile
 set number relativenumber
 set ignorecase
