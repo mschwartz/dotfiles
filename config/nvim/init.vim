@@ -252,15 +252,6 @@ endif
 
 set background=dark
 colorscheme PaperColor
-"lua <<EOF
-"require('lualine').setup{ 
-"  options = {
-"    theme = 'papercolor_dark'
-"  }
-"}
-
-"EOF
-
 """
 """ lsp configurations
 """
@@ -272,12 +263,11 @@ lua << EOF
  require'lspconfig'.ccls.setup{}
  require'lspconfig'.cmake.setup{}
  require'lspconfig'.denols.setup{}
- require'lspconfig'.pyls.setup{}
+ require'lspconfig'.pylsp.setup{}
  require'lspconfig'.vimls.setup{}
  require'lspconfig'.yamlls.setup{}
- --require'lspconfig'.dartls.setup{ cmd = { "dart", "./snapshots/analysis_server.dart.snapshot", "--lsp"  } }
+ require'lspconfig'.dartls.setup{ cmd = { "dart", "./snapshots/analysis_server.dart.snapshot", "--lsp"  } }
  require'lspconfig'.dartls.setup{}
-EOF
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
