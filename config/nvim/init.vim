@@ -82,7 +82,14 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'luochen1990/rainbow'
   let g:rainbow_active = 1
 
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
+"Plug 'cohama/lexima.vim'
+
+" insert matching delimeters
+Plug 'raimondi/delimitmate'
+
+" https://github.com/tpope/vim-surround
+Plug 'tpope/vim-surround'
 
 Plug 'Yggdroot/indentLine'
 
@@ -277,7 +284,8 @@ lua << EOF
  require'lspconfig'.yamlls.setup{}
  --require'lspconfig'.dartls.setup{ cmd = { "dart", "./snapshots/analysis_server.dart.snapshot", "--lsp"  } }
  require'lspconfig'.dartls.setup{}
-EOF
+
+  vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -368,8 +376,18 @@ map <leader>ir <esc>iimport React, {useState, useEffect, useRef} from 'react'<cr
 map <leader>iu <esc>iimport useConfig from "@/common/hooks/useConfig";<cr><esc>
 map <leader>itc <esc>otry {<cr>}<cr>catch(e) {<cr>console.log('exception', e)<cr><esc>ddjddkkkk==ko
 map <leader>v <esc>:read !xsel<cr>
-map <leader>. <esc>@:
+"map <leader>. <esc>@:
 
+map <leader>} ysiw}
+map <leader>{ ysiw{
+map <leader>] ysiw]
+map <leader>[ ysiw[
+map <leader>" ysiw"
+map <leader>' ysiw'
+map <leader>) ysiw)
+map <leader>( ysiw(
+
+map <leader>. <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 map <leader>f <esc>:lua vim.lsp.buf.formatting()<cr>
 
 map <leader>u <esc>guiw
