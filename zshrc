@@ -80,10 +80,16 @@ fi
 #    source $HOME/.zshrc.local
 #fi
 
-DISPLAY_SAVE=DISPLAY
-unset DISPLAY
-neofetch
-DISPLAY=$DISPLAY_SAVE
+if [ -e /usr/bin/fastfetch  ]; then
+  fastfetch
+else
+  DISPLAY_SAVE=$DISPLAY
+  unset DISPLAY
+  echo DISPLAY $DISPLAY
+  neofetch
+  DISPLAY=$DISPLAY_SAVE
+  echo DISPLAY $DISPLAY
+fi
 
 
 # disable ctrl-s (xon/xoff)

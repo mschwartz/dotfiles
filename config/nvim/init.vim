@@ -259,15 +259,6 @@ endif
 
 set background=dark
 colorscheme PaperColor
-"lua <<EOF
-"require('lualine').setup{ 
-"  options = {
-"    theme = 'papercolor_dark'
-"  }
-"}
-
-"EOF
-
 """
 """ lsp configurations
 """
@@ -279,12 +270,11 @@ lua << EOF
  require'lspconfig'.ccls.setup{}
  require'lspconfig'.cmake.setup{}
  require'lspconfig'.denols.setup{}
- require'lspconfig'.pyls.setup{}
+ require'lspconfig'.pylsp.setup{}
  require'lspconfig'.vimls.setup{}
  require'lspconfig'.yamlls.setup{}
- --require'lspconfig'.dartls.setup{ cmd = { "dart", "./snapshots/analysis_server.dart.snapshot", "--lsp"  } }
+ require'lspconfig'.dartls.setup{ cmd = { "dart", "./snapshots/analysis_server.dart.snapshot", "--lsp"  } }
  require'lspconfig'.dartls.setup{}
-
   vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 local on_attach = function(client, bufnr)
