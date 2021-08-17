@@ -21,6 +21,8 @@ source ./install-scripts/install-bin.sh
 cd $INSTALL_PWD
 source ./install-scripts/install-node.sh
 cd $INSTALL_PWD
+source ./install-scripts/install-lsp.sh
+cd $INSTALL_PWD
 source ./install-scripts/install-vim.sh
 cd $INSTALL_PWD
 source ./install-scripts/install-emacs.sh
