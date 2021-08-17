@@ -298,6 +298,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buffer.formatting()<CR>", opts);
+  buf_set_keymap('n', '<C-]>', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
 end
 EOF
@@ -368,6 +369,7 @@ map <leader>U <esc>gUiw
 map <C-n> :NERDTreeToggle<CR>
 map <C-_> <leader>cij
 map <C-\> :Ack! 
+map <C-]> :lua vim.lsp.buf.definition()<cr>
 
 imap jj <Esc>
 imap jk <Esc>

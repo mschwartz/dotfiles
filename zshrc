@@ -1,5 +1,7 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+export PATH=/opt/homebrew/bin:$PATH
+
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -76,19 +78,17 @@ fi
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 #
 #
-#if [ -f $HOME/.zshrc.local ]; then
-#    source $HOME/.zshrc.local
-#fi
+if [ -f $HOME/.zshrc.local ]; then
+    source $HOME/.zshrc.local
+fi
 
 if [ -e /usr/bin/fastfetch  ]; then
   fastfetch
 else
   DISPLAY_SAVE=$DISPLAY
   unset DISPLAY
-  echo DISPLAY $DISPLAY
   neofetch
   DISPLAY=$DISPLAY_SAVE
-  echo DISPLAY $DISPLAY
 fi
 
 
