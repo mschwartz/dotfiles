@@ -85,10 +85,8 @@ if [ -e /usr/bin/fastfetch  ]; then
 else
   DISPLAY_SAVE=$DISPLAY
   unset DISPLAY
-  echo DISPLAY $DISPLAY
   neofetch
   DISPLAY=$DISPLAY_SAVE
-  echo DISPLAY $DISPLAY
 fi
 
 
