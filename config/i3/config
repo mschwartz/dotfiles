@@ -362,7 +362,7 @@ bar {
 bar {
   position bottom
   tray_output primary
-  status_command bumblebee-status -m weather arch-update disk nic traffic sensors bluetooth -t iceberg-powerline -p weather.unit=imperial -p nic.exclude="br,virbr,docker,lo" -p traffic.exclude="br,virbr,docker,lo"
+  status_command bumblebee-status -m weather arch-update disk nic traffic -t iceberg-powerline -p weather.unit=imperial -p nic.exclude="br,virbr,docker,lo" -p traffic.exclude="br,virbr,docker,lo"
 }
 
 # Start i3bar to display a workspace bar (plus the system information i3status

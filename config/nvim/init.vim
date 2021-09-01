@@ -48,8 +48,8 @@ set number relativenumber
 set ignorecase
 set title
 set ttyfast
-set modeline
-set modelines=3
+"set modeline
+"set modelines=3
 set mouse=a
 syntax enable
 set wildmenu
@@ -231,22 +231,22 @@ Plug 'hrsh7th/nvim-compe'
 """ Theme
 "
 Plug 'NLKNguyen/papercolor-theme'
-"Plug 'hoob3rt/lualine.nvim'
-Plug 'itchyny/lightline.vim'
-  let g:lightline = {
-        \ 'colorscheme': 'PaperColor',
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] 
-        \   ]
-        \ },
-        \ 'component_function': {
-        \   'gitbranch': 'fugitive#head',
-        \   'filename': 'LightlineFilename'
-        \ },
-        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-      \ }
+Plug 'hoob3rt/lualine.nvim'
+"Plug 'itchyny/lightline.vim'
+"  let g:lightline = {
+"        \ 'colorscheme': 'PaperColor',
+"        \ 'active': {
+"        \   'left': [ [ 'mode', 'paste' ],
+"        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] 
+"        \   ]
+"        \ },
+"        \ 'component_function': {
+"        \   'gitbranch': 'fugitive#head',
+"        \   'filename': 'LightlineFilename'
+"        \ },
+"        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"      \ }
 
 
 call plug#end()
@@ -267,6 +267,9 @@ colorscheme PaperColor
 """
 
 lua << EOF
+require'lualine'.setup{ 
+options = { theme = 'auto'}
+}
  require'lspconfig'.bashls.setup{}
  require'lspconfig'.ccls.setup{}
  require'lspconfig'.cmake.setup{}
