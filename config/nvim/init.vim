@@ -222,6 +222,7 @@ Plug 'hrsh7th/nvim-compe'
   let g:compe.source.luasnip = v:true
   let g:compe.source.emoji = v:true
 
+
 "
 """ Flutter/Dart
 "
@@ -308,6 +309,44 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buffer.formatting()<CR>", opts);
   buf_set_keymap('n', '<C-]>', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
+  local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+
+-- Use (s-)tab toj
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif vim.fn['vsnip#available'](1) == 1 then
+    return t "<Plug>(vsnip-expand-or-jump)"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  elseif vim.fn['vsnip#jumpable'](-1) == 1 then
+    return t "<Plug>(vsnip-jump-prev)"
+  else
+    -- If <S-Tab> is not working in your terminal, change it to <C-h>
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 end
 EOF
 
