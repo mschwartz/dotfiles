@@ -43,20 +43,23 @@ alias make="make -j 20"
 if [ -f /usr/bin/bpytop ]; then
   alias top='bpytop'
 fi
-# vim
-if [ -f /usr/local/bin/vim ]; then
+
+# vim/nvim
+if [ -f /opt/homebrew/bin/nvim ]; then
+  alias vi='/opt/homebrew/bin/nvim'
+  alias vim='/opt/homebrew/bin/nvim'
+elif [ -f /usr/local/bin/nvim ]; then
+  alias vi='/usr/local/bin/nvim'
+  alias vim='/usr/local/bin/nvim'
+elif [ -f /usr/bin/nvim ]; then
+  alias vi='/usr/bin/nvim'
+  alias vim='/usr/bin/nvim'
+elif [ -f /usr/local/bin/vim ]; then
   alias vi='/usr/local/bin/vim'
   alias vim='/usr/local/bin/vim'
 elif [ -f /usr/bin/vim ]; then
   alias vi='/usr/bin/vim'
   alias vim='/usr/bin/vim'
-fi
-
-# nvim
-if [ -f /usr/local/bin/nvim ]; then
-  alias vi='/usr/local/bin/nvim'
-elif [ -f /usr/bin/nvim ]; then
-  alias vi='/usr/bin/nvim'
 fi
 
 # programs

@@ -27,21 +27,23 @@ if [ -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
   export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 elif [ -f /usr/bin/src-hilite-lesspipe.sh ]; then
   export LESSOPEN="|/usr/bin/src-hilite-lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
+if [ -f /opt/homebrew/bin/lesspipe.sh ]; then
+  export LESSOPEN="| /opt/homebrew/bin/lesspipe.sh %s"
 else
-  export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
+  export LESSOPEN="|/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 fi
 export LESS=' -R '
 
-if [ "$OS" = 'Darwin' ]; then
-  export EDITOR='/usr/local/bin/vim'
+#if [ "$OS" = 'Darwin' ]; then
+#  export EDITOR='/usr/local/bin/vim'
 #  if [ "$TERM" = "st-256color" ]; then
 #    export TERM="xterm-256color"
 #  fi
 #  if [ "$KONSOLE_PROFILE_NAME" != "" ]; then
 #    export TERM=konsole-256-color
 #  fi
-else
+#else
   export EDITOR='/usr/bin/vim'
 #  export TERM="xterm-256color"
-fi
+#fi
 
