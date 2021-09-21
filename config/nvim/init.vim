@@ -143,16 +143,6 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 "    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 "    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = '﵂'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    let g:NERDTreeFileExtensionHighlightFullName = 1
-    let g:NERDTreeExactMatchHighlightFullName = 1
-    let g:NERDTreePatternMatchHighlightFullName = 1
-    let s:brown = "905532"
-    let g:NERDTreeExtensionHighlightColor = {}
-    let g:NERDTreeExactMatchHighlightColor = {}
-    let g:NERDTreeExtensionHighlightColor['js'] = s:brown
-    let g:NERDTreeExtensionHighlightColor['yml'] = ''
-    let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
 
 "
 """ Search/fuzzy/grep
@@ -228,6 +218,16 @@ Plug 'hrsh7th/nvim-compe'
 "
 
 "
+""" pug
+"
+"Plug 'digitaltoad/vim-pug', {'for': ['jade', 'pug'] }
+Plug 'othree/html5.vim'
+Plug 'mustache/vim-mustache-handlebars'
+"Plug 'digitaltoad/vim-pug'
+"Plug 'dNitro/vim-pug-complete'
+"au BufRead,BufNewFile *.pug setfiletype html
+
+"
 """ Theme
 "
 Plug 'NLKNguyen/papercolor-theme'
@@ -266,6 +266,7 @@ colorscheme PaperColor
 """ https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#denols
 """
 
+" require'lspconfig'.tsserver.setup{}
 lua << EOF
 require'lualine'.setup{ 
 options = { theme = 'auto'}
@@ -278,7 +279,6 @@ options = { theme = 'auto'}
  require'lspconfig'.vimls.setup{}
  require'lspconfig'.yamlls.setup{}
  require'lspconfig'.dartls.setup{ cmd = { "dart", "./snapshots/analysis_server.dart.snapshot", "--lsp"  } }
- require'lspconfig'.dartls.setup{}
   vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 local on_attach = function(client, bufnr)

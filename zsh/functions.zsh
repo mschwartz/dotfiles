@@ -47,6 +47,10 @@ cd() {
     builtin cd "$@" && ls
 }
 
+close() {
+  osascript -e "quit app \"$@\""
+}
+
 ssh() {
     if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
         tmux rename-window "$(echo $* | cut -d . -f 1)"

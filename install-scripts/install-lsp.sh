@@ -6,7 +6,7 @@ echo "bash language server"
 npm i -g bash-language-server
 
 echo "cmake language server"
-sudo pip install cmake-language-server
+sudo pip3 install cmake-language-server
 
 echo "Dockerfile language server"
 npm install -g dockerfile-language-server-nodejs
@@ -18,7 +18,7 @@ echo "JSON langauge server"
 npm install -g vscode-langservers-extracted
 
 echo "python language server"
-sudo pip install python-language-server
+sudo pip3 install python-language-server
 
 echo "typescript language server"
 npm install -g typescript typescript-language-server

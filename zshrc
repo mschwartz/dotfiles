@@ -1,3 +1,8 @@
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the start of this file.
+[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
+#### END FIG ENV VARIABLES ####
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 export PATH=/opt/homebrew/bin:$PATH
@@ -132,3 +137,8 @@ fi
 
 #source $HOME/.cargo/env
 
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the end of this file.
+#[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####
