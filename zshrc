@@ -76,9 +76,9 @@ fi
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 #
 #
-#if [ -f $HOME/.zshrc.local ]; then
-#    source $HOME/.zshrc.local
-#fi
+if [ -f $HOME/.zshrc.local ]; then
+    source $HOME/.zshrc.local
+fi
 
 DISPLAY_SAVE=DISPLAY
 unset DISPLAY
