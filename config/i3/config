@@ -64,7 +64,8 @@ floating_modifier $mod
 
 # This is the base/default terminal application we use for i3.  Can be any of a number of them, including
 # urxvt, termite, xterm, and so on.
-set $term --no-startup-id /usr/bin/termite
+#set $term --no-startup-id /usr/bin/termite
+set $term --no-startup-id /usr/bin/alacritty
 
 ### Window mapping rules
 # These windows require specific rules to display in floating mode
@@ -251,6 +252,8 @@ bindsym $mod+b exec kitty -e ranger ~/github/other/wallpapers
 bindsym $mod+w exec kitty -e ranger ~/github/other/wallpapers
 #bindsym $sup+d exec kitty -e ranger ~/Downloads
 
+bindsym $sup+t exec alacritty -e bpytop
+
 ## shortcuts to run programs - can also use $mod+d/rofi to launch anything.
 bindsym $mod+F1 exec "google-chrome-stable"
 bindsym $mod+F2 exec "firefox"
@@ -359,7 +362,7 @@ bar {
 bar {
   position bottom
   tray_output primary
-  status_command bumblebee-status -m weather arch-update disk nic traffic nvidiagpu sensors bluetooth -t iceberg-powerline -p weather.unit=imperial -p nic.exclude="br,virbr,docker,lo" -p traffic.exclude="br,virbr,docker,lo"
+  status_command bumblebee-status -m weather arch-update disk nic traffic -t iceberg-powerline -p weather.unit=imperial -p nic.exclude="br,virbr,docker,lo" -p traffic.exclude="br,virbr,docker,lo"
 }
 
 # Start i3bar to display a workspace bar (plus the system information i3status

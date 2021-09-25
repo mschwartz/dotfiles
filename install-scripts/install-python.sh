@@ -13,4 +13,6 @@ elif [[ $platform_type == 'armv7l' ]]; then
 elif [[ $platform == 'linux' ]]; then
   sudo apt update
   sudo apt install -y python-dev
+elif [[ $platform == 'macos' ]]; then
+  brew install python3
 fi

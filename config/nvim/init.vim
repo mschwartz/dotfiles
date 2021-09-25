@@ -48,8 +48,8 @@ set number relativenumber
 set ignorecase
 set title
 set ttyfast
-set modeline
-set modelines=3
+"set modeline
+"set modelines=3
 set mouse=a
 syntax enable
 set wildmenu
@@ -82,7 +82,14 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'luochen1990/rainbow'
   let g:rainbow_active = 1
 
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
+"Plug 'cohama/lexima.vim'
+
+" insert matching delimeters
+Plug 'raimondi/delimitmate'
+
+" https://github.com/tpope/vim-surround
+Plug 'tpope/vim-surround'
 
 Plug 'Yggdroot/indentLine'
 
@@ -136,16 +143,6 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 "    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 "    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = '﵂'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    let g:NERDTreeFileExtensionHighlightFullName = 1
-    let g:NERDTreeExactMatchHighlightFullName = 1
-    let g:NERDTreePatternMatchHighlightFullName = 1
-    let s:brown = "905532"
-    let g:NERDTreeExtensionHighlightColor = {}
-    let g:NERDTreeExactMatchHighlightColor = {}
-    let g:NERDTreeExtensionHighlightColor['js'] = s:brown
-    let g:NERDTreeExtensionHighlightColor['yml'] = ''
-    let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
 
 "
 """ Search/fuzzy/grep
@@ -215,30 +212,41 @@ Plug 'hrsh7th/nvim-compe'
   let g:compe.source.luasnip = v:true
   let g:compe.source.emoji = v:true
 
+
 "
 """ Flutter/Dart
 "
 
 "
+""" pug
+"
+"Plug 'digitaltoad/vim-pug', {'for': ['jade', 'pug'] }
+Plug 'othree/html5.vim'
+Plug 'mustache/vim-mustache-handlebars'
+"Plug 'digitaltoad/vim-pug'
+"Plug 'dNitro/vim-pug-complete'
+"au BufRead,BufNewFile *.pug setfiletype html
+
+"
 """ Theme
 "
 Plug 'NLKNguyen/papercolor-theme'
-"Plug 'hoob3rt/lualine.nvim'
-Plug 'itchyny/lightline.vim'
-  let g:lightline = {
-        \ 'colorscheme': 'PaperColor',
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] 
-        \   ]
-        \ },
-        \ 'component_function': {
-        \   'gitbranch': 'fugitive#head',
-        \   'filename': 'LightlineFilename'
-        \ },
-        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-      \ }
+Plug 'hoob3rt/lualine.nvim'
+"Plug 'itchyny/lightline.vim'
+"  let g:lightline = {
+"        \ 'colorscheme': 'PaperColor',
+"        \ 'active': {
+"        \   'left': [ [ 'mode', 'paste' ],
+"        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] 
+"        \   ]
+"        \ },
+"        \ 'component_function': {
+"        \   'gitbranch': 'fugitive#head',
+"        \   'filename': 'LightlineFilename'
+"        \ },
+"        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"      \ }
 
 
 call plug#end()
@@ -252,32 +260,26 @@ endif
 
 set background=dark
 colorscheme PaperColor
-"lua <<EOF
-"require('lualine').setup{ 
-"  options = {
-"    theme = 'papercolor_dark'
-"  }
-"}
-
-"EOF
-
 """
 """ lsp configurations
 """
 """ https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#denols
 """
 
+" require'lspconfig'.tsserver.setup{}
 lua << EOF
+require'lualine'.setup{ 
+options = { theme = 'auto'}
+}
  require'lspconfig'.bashls.setup{}
  require'lspconfig'.ccls.setup{}
  require'lspconfig'.cmake.setup{}
  require'lspconfig'.denols.setup{}
- require'lspconfig'.pyls.setup{}
+ require'lspconfig'.pylsp.setup{}
  require'lspconfig'.vimls.setup{}
  require'lspconfig'.yamlls.setup{}
- --require'lspconfig'.dartls.setup{ cmd = { "dart", "./snapshots/analysis_server.dart.snapshot", "--lsp"  } }
- require'lspconfig'.dartls.setup{}
-EOF
+ require'lspconfig'.dartls.setup{ cmd = { "dart", "./snapshots/analysis_server.dart.snapshot", "--lsp"  } }
+  vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -308,7 +310,46 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buffer.formatting()<CR>", opts);
+  buf_set_keymap('n', '<C-]>', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
+  local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+
+-- Use (s-)tab toj
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif vim.fn['vsnip#available'](1) == 1 then
+    return t "<Plug>(vsnip-expand-or-jump)"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  elseif vim.fn['vsnip#jumpable'](-1) == 1 then
+    return t "<Plug>(vsnip-jump-prev)"
+  else
+    -- If <S-Tab> is not working in your terminal, change it to <C-h>
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 end
 EOF
 
@@ -368,8 +409,18 @@ map <leader>ir <esc>iimport React, {useState, useEffect, useRef} from 'react'<cr
 map <leader>iu <esc>iimport useConfig from "@/common/hooks/useConfig";<cr><esc>
 map <leader>itc <esc>otry {<cr>}<cr>catch(e) {<cr>console.log('exception', e)<cr><esc>ddjddkkkk==ko
 map <leader>v <esc>:read !xsel<cr>
-map <leader>. <esc>@:
+"map <leader>. <esc>@:
 
+map <leader>} ysiw}
+map <leader>{ ysiw{
+map <leader>] ysiw]
+map <leader>[ ysiw[
+map <leader>" ysiw"
+map <leader>' ysiw'
+map <leader>) ysiw)
+map <leader>( ysiw(
+
+map <leader>. <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 map <leader>f <esc>:lua vim.lsp.buf.formatting()<cr>
 
 map <leader>u <esc>guiw
@@ -378,6 +429,7 @@ map <leader>U <esc>gUiw
 map <C-n> :NERDTreeToggle<CR>
 map <C-_> <leader>cij
 map <C-\> :Ack! 
+map <C-]> :lua vim.lsp.buf.definition()<cr>
 
 imap jj <Esc>
 imap jk <Esc>
