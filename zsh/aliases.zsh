@@ -33,6 +33,8 @@ alias pi48='ssh pi48'
 alias nas1='ssh nas1'
 alias warpaint='ssh warpaint'
 
+alias atvremote='docker run -it --rm --network=host ghcr.io/postlund/pyatv:master atvremote'
+
 # tmux
 alias tlist='tmux list-sessions'
 ### see also tmuxx function in functions.sh

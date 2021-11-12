@@ -179,3 +179,12 @@ view() {
 	    /usr/bin/view $1
     esac
 }
+
+function encrypt {
+  echo "encrypting (recursively)" $@
+  ccencrypt -r $@
+}
+function decrypt  {
+  echo "decrypting (recursively)" $@
+  ccdecrypt -r $@
+}

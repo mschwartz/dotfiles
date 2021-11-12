@@ -7,7 +7,6 @@
 ZSH=$HOME/.oh-my-zsh
 export PATH=/opt/homebrew/bin:$PATH
 
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -57,7 +56,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(zsh-autosuggestions z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found)
+plugins=(zsh-autosuggestions z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools macos redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found)
 #plugins=(zsh-autosuggestions z vi-mode git sudo colorize brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting  vscode systemd fzf fasd command-not-found)
 source $ZSH/oh-my-zsh.sh
 
@@ -105,11 +104,11 @@ stty -ixon
 #fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
+PATH="/opt/homebrew/bin:/home/mschwartz/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/mschwartz/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/mschwartz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/mschwartz/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/mschwartz/perl5"; export PERL_MM_OPT;
 
 #if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
 #  source $HOME/github/other/emsdk/emsdk_env.sh
