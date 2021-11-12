@@ -7,13 +7,13 @@ figlet "Install security"
 if [[ $platform == 'arch' ]]; then
   sudo pacman --noconfirm -S intel-ucode
   sudo grub-mkconfig -o /boot/grub/grub.cfg
-  yay --noconfirm -Syy git-secrets
+  yay --noconfirm -Syy git-secrets ccrypt
 elif [[ $platform == 'macos' ]]; then
-  brew install git-secrets
+  brew install git-secrets ccrypt
 else 
   cd ~/github
-  git clone git@github.com:awslabs/git-secrets
-  cd git-secrets
+  git clone git@github.com:awslabs/git-secrets $HOME/github/other/git-secrets
+  cd $HOME/github/other/git-secrets
   make install
 fi
 git secrets --register-aws --global

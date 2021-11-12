@@ -47,6 +47,10 @@ cd() {
     builtin cd "$@" && ls
 }
 
+close() {
+  osascript -e "quit app \"$@\""
+}
+
 ssh() {
     if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
         tmux rename-window "$(echo $* | cut -d . -f 1)"
@@ -174,4 +178,13 @@ view() {
 	*)
 	    /usr/bin/view $1
     esac
+}
+
+function encrypt {
+  echo "encrypting (recursively)" $@
+  ccencrypt -r $@
+}
+function decrypt  {
+  echo "decrypting (recursively)" $@
+  ccdecrypt -r $@
 }
