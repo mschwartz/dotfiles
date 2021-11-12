@@ -18,7 +18,7 @@ set nowrap
 set autoread
 set nolazyredraw
 set backspace=2
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set textwidth=120
 set colorcolumn=+1
 
@@ -26,6 +26,7 @@ call matchadd('ColorColumn', '\%81v', 100)
 if $TMUX ==''
   set clipboard=unnamed
 endif
+
 set ls=1
 set showcmd
 set shiftwidth=2
@@ -40,8 +41,8 @@ set incsearch
 
 set ruler
 set nobackup
-set directory=$HOME/.local/vim/swapfiles
-set undodir=~/.local/nvim/undo-dir
+set directory=$HOME/.config/nvim/swapfiles//
+set undodir=~/.config/nvim/undo-dir
 set undofile
 set number relativenumber
 set ignorecase
@@ -70,7 +71,21 @@ set mat=2
 call plug#begin('~/.local/share/nvim/plugged')
     nmap <silent> <leader>p :PlugInstall<cr>
 
+"
 """ Editing helpers
+"
+
+" restore last cursor position when opening a file again
+Plug 'farmergreg/vim-lastplace'
+
+" color match parens/braces/etc.
+Plug 'luochen1990/rainbow'
+  let g:rainbow_active = 1
+
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'Yggdroot/indentLine'
+
 Plug 'fadein/vim-FIGlet'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
@@ -132,6 +147,9 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     let g:NERDTreeExtensionHighlightColor['yml'] = ''
     let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
 
+"
+""" Search/fuzzy/grep
+"
 Plug 'mileszs/ack.vim'
       if executable('ag') 
         let g:ackprg = 'ag --vimgrep'
@@ -140,9 +158,18 @@ Plug 'mileszs/ack.vim'
 Plug 'ctrlpvim/ctrlp.vim'
   map <leader>t <esc>:CtrlP<cr>
 
+Plug 'dyng/ctrlsf.vim'
+  let g:ctrlsf_position = 'bottom'
+  let g:ctrlsf_default_view_mode = 'compact'
+  let g:ctrlsf_auto_focus = {
+    \ "at": "start"
+    \ }
 
 Plug 'kyazdani42/nvim-web-devicons'
 
+"
+""" TMUX
+"
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -151,6 +178,13 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 """ LSP
 "
 Plug 'neovim/nvim-lspconfig'
+  " Jump to definition
+  nnoremap K <Cmd>lua vim.lsp.buf.hover()<CR>
+  " Jump to definition
+  nnoremap gd <Cmd>lua vim.lsp.buf.definition()<CR>
+  " Open code actions using the default lsp UI, if you want to change this please see the plugins above
+  nnoremap <leader>ca <Cmd>lua vim.lsp.buf.code_action()<CR>
+  " Open code actions for the selected visual range
 Plug 'hrsh7th/nvim-compe'
   " https://github.com/hrsh7th/nvim-compe#vim-script-config
   set completeopt=menuone,noselect
@@ -182,17 +216,50 @@ Plug 'hrsh7th/nvim-compe'
   let g:compe.source.emoji = v:true
 
 "
+""" Flutter/Dart
+"
+
+"
 """ Theme
 "
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'hoob3rt/lualine.nvim'
+"Plug 'hoob3rt/lualine.nvim'
+Plug 'itchyny/lightline.vim'
+  let g:lightline = {
+        \ 'colorscheme': 'PaperColor',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] 
+        \   ]
+        \ },
+        \ 'component_function': {
+        \   'gitbranch': 'fugitive#head',
+        \   'filename': 'LightlineFilename'
+        \ },
+        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \ }
+
 
 call plug#end()
 
 
+if (exists('+termguicolors'))
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
 set background=dark
 colorscheme PaperColor
-lua require('lualine').setup()
+"lua <<EOF
+"require('lualine').setup{ 
+"  options = {
+"    theme = 'papercolor_dark'
+"  }
+"}
+
+"EOF
 
 """
 """ lsp configurations
@@ -204,11 +271,12 @@ lua << EOF
  require'lspconfig'.bashls.setup{}
  require'lspconfig'.ccls.setup{}
  require'lspconfig'.cmake.setup{}
- require'lspconfig'.dartls.setup{}
  require'lspconfig'.denols.setup{}
  require'lspconfig'.pyls.setup{}
  require'lspconfig'.vimls.setup{}
  require'lspconfig'.yamlls.setup{}
+ --require'lspconfig'.dartls.setup{ cmd = { "dart", "./snapshots/analysis_server.dart.snapshot", "--lsp"  } }
+ require'lspconfig'.dartls.setup{}
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -252,6 +320,11 @@ autocmd FileType asm set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+augroup reload_init_vim
+    autocmd!
+    autocmd bufwritepost ~/.config/nvim/init.vim nested source ~/.config/nvim/init.vim
+augroup END
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -262,12 +335,16 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+map <C-f> :CtrlSF 
+
 " set leader
 let mapleader=","
 let g:mapleader=","
 
 nmap <leader>s :w!<cr>
 map <leader>j :j<cr>
+map <leader>c :CtrlSF 
+
 "map <leader>ai :ALEInfo<cr>
 "map <leader>ad :ALEDetail<cr>
 "map <leader>f :ALEFix<cr>
@@ -300,6 +377,13 @@ map <leader>U <esc>gUiw
 map <C-n> :NERDTreeToggle<CR>
 map <C-_> <leader>cij
 map <C-\> :Ack! 
+
+imap jj <Esc>
+imap jk <Esc>
+imap kkk <Esc>
+nmap <F1> :echo<CR>
+vnoremap <C-c> "+y
+map <C-v> "+P
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
