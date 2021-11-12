@@ -10,10 +10,10 @@ if [[ $platform == 'linux' ]]; then
   sudo apt-get update
   sudo apt-get install -y nodejs
 elif [[ $platform == 'arch' ]]; then
-  sudo pacman -S --noconfirm nodejs npm yarn
-  yay -S --noconfirm nvm
+  sudo pacman -S --noconfirm nodejs npm yarn deno
 elif [[ $platform == 'macos' ]]; then
-  install node
+  install node 
+  install deno
 fi
 
 npm config set prefix '/usr/local'

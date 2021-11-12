@@ -1,5 +1,12 @@
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the start of this file.
+[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
+#### END FIG ENV VARIABLES ####
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+export PATH=/opt/homebrew/bin:$PATH
+
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -50,8 +57,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(zsh-autosuggestions z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found deno)
-
+plugins=(zsh-autosuggestions z vi-mode git sudo colorize bower brew colored-man-pages node npm jsontools macos redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting vscode systemd fzf fasd command-not-found)
+#plugins=(zsh-autosuggestions z vi-mode git sudo colorize brew colored-man-pages node npm jsontools osx redis-cli rvm sublime themes tmux docker docker-compose zsh-syntax-highlighting  vscode systemd fzf fasd command-not-found)
 source $ZSH/oh-my-zsh.sh
 
 
@@ -80,7 +87,15 @@ if [ -f $HOME/.zshrc.local ]; then
     source $HOME/.zshrc.local
 fi
 
-neofetch
+if [ -e /usr/bin/fastfetch  ]; then
+  fastfetch
+else
+  DISPLAY_SAVE=$DISPLAY
+  unset DISPLAY
+  neofetch
+  DISPLAY=$DISPLAY_SAVE
+fi
+
 
 # disable ctrl-s (xon/xoff)
 stty -ixon
@@ -90,25 +105,18 @@ stty -ixon
 #fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-PATH="/home/mschwartz/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/mschwartz/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/mschwartz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/mschwartz/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/mschwartz/perl5"; export PERL_MM_OPT;
+PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 
-if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
-  source $HOME/github/other/emsdk/emsdk_env.sh
-fi
-PATH=~/go/bin:$PATH; export PATH
+#if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
+#  source $HOME/github/other/emsdk/emsdk_env.sh
+#fi
+#PATH=~/go/bin:$PATH; export PATH
 
 
-
-# Must be sourced at end of .zshrc
-if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [ -f /usr/share/zsh-syntax-highlighting.zsh ]; then
-  source /usr/share/zsh-syntax-highlighting.zsh
-fi
 
 
 if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
@@ -117,9 +125,21 @@ fi
 
 #[ ! -z "$KITTY_WINDOW_ID" ] && export TERM=xterm-kitty
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+PATH="$HOME/.pub-cache/bin:$PATH"
 
-source $HOME/.cargo/env
+# Must be sourced at end of .zshrc
+if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ -f /usr/share/zsh-syntax-highlighting.zsh ]; then
+  source /usr/share/zsh-syntax-highlighting.zsh
+fi
+
+#source $HOME/.cargo/env
 
 
 source /Users/mschwartz/.config/broot/launcher/bash/br
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the end of this file.
+#[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####

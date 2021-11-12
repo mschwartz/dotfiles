@@ -4,13 +4,36 @@
 
 # GIT
 master() {
+  git branch | grep -w master
+  if [[ $? ]]; then
     git checkout master
     upstream=`git remote | grep upstream`
     if [[ "$upstream" == "" ]]; then
-	git pull origin master
+	    git pull origin master
     else
-	git pull upstream master
-	git push origin master
+      git pull upstream master
+      git push origin master
+    fi
+  else
+    git checkout main
+    upstream=`git remote | grep upstream`
+    if [[ "$upstream" == "" ]]; then
+      git pull origin main
+    else
+      git pull upstream main
+      git push origin main
+    fi
+  fi
+}
+
+main() {
+    git checkout main
+    upstream=`git remote | grep upstream`
+    if [[ "$upstream" == "" ]]; then
+	git pull origin main
+    else
+	git pull upstream main
+	git push origin main
     fi
 }
 
@@ -22,6 +45,10 @@ develop() {
 # cd <dir> automatically does an ls after changing
 cd() {
     builtin cd "$@" && ls
+}
+
+close() {
+  osascript -e "quit app \"$@\""
 }
 
 ssh() {
@@ -96,25 +123,28 @@ sclack() {
     cd ~/github/other/sclack && cls && ./app.py
 }
 
+update-keys() {
+  echo ">>> Update Keys"
+  sudo pacman --noconfirm -S archlinux-keyring
+  sudo pacman-key --refresh-keys
+}
+
 update() {
-    if [[ "$OS" == "Darwin" ]]; then
-      brew update
-      brew upgrade
-    else
-      echo ">>> Update MirrorList"
-      sudo reflector --verbose --country 'US' -l 5 --sort rate --save /etc/pacman.d/mirrorlist
-      echo ">>> Update Keys"
-      sudo pacman --noconfirm -S archlinux-keyring
-      sudo pacman-key --refresh-keys
-      #    yay -R --noconfirm yay
-      echo ">>> PACMAN UPDATE"
-      sudo pacman --noconfirm -Syyu
-      #    cd ~/github/arch/yay
-      #    ggpull
-      #    makepkg -si --noconfirm
-      echo ">>> AUR UPDATE"
-      yay --noconfirm -Syyu
-    fi
+  if [[ "$OS" == "Darwin" ]]; then
+    brew update
+    brew upgrade
+  else
+    echo ">>> Update MirrorList"
+    sudo reflector --verbose --country 'US' -l 5 --sort rate --save /etc/pacman.d/mirrorlist
+    #    yay -R --noconfirm yay
+    echo ">>> PACMAN UPDATE"
+    sudo pacman --noconfirm -Syyu
+    #    cd ~/github/arch/yay
+    #    ggpull
+    #    makepkg -si --noconfirm
+    echo ">>> AUR UPDATE"
+    yay --noconfirm -Syyu
+  fi
 }
 
 get() {
@@ -148,4 +178,13 @@ view() {
 	*)
 	    /usr/bin/view $1
     esac
+}
+
+function encrypt {
+  echo "encrypting (recursively)" $@
+  ccencrypt -r $@
+}
+function decrypt  {
+  echo "decrypting (recursively)" $@
+  ccdecrypt -r $@
 }

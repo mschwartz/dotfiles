@@ -27,3 +27,7 @@ emacs.d/quelpa
 emacs.d/elpa
 emacs.d/projectile-bookmark.eld
 .#*
+.emacs.desktop.lock
+projectile-bookmarks.eld
+*~
+*#
