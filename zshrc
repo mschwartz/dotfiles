@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+export PATH=/opt/homebrew/bin:$PATH
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -76,19 +77,17 @@ fi
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 #
 #
-#if [ -f $HOME/.zshrc.local ]; then
-#    source $HOME/.zshrc.local
-#fi
+if [ -f $HOME/.zshrc.local ]; then
+    source $HOME/.zshrc.local
+fi
 
 if [ -e /usr/bin/fastfetch  ]; then
   fastfetch
 else
   DISPLAY_SAVE=$DISPLAY
   unset DISPLAY
-  echo DISPLAY $DISPLAY
   neofetch
   DISPLAY=$DISPLAY_SAVE
-  echo DISPLAY $DISPLAY
 fi
 
 
@@ -100,7 +99,7 @@ stty -ixon
 #fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-PATH="/home/mschwartz/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PATH="/opt/homebrew/bin:/home/mschwartz/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/mschwartz/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/mschwartz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/mschwartz/perl5\""; export PERL_MB_OPT;
