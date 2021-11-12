@@ -136,3 +136,5 @@ fi
 ###-tns-completion-end-###
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+source /Users/mschwartz/.config/broot/launcher/bash/br

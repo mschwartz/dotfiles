@@ -121,3 +121,5 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 source $HOME/.cargo/env
 
+
+source /Users/mschwartz/.config/broot/launcher/bash/br

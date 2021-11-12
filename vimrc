@@ -157,7 +157,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-repeat'
 
 Plug 'Shougo/vimproc.vim'
-Plug 'puremourning/vimspector'
+"Plug 'puremourning/vimspector'
 
 Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown'
@@ -338,6 +338,12 @@ function! COC_configure()
   " Remap for rename current word
   nmap <leader>rn <Plug>(coc-rename)
 endfunction
+
+Plug 'dart-lang/dart-vim-plugin'
+let dart_html_in_string = v:true
+let g:dart_style_guide = 2
+let g:dart_format_on_save = 1
+
 
 autocmd FileType cpp call CPP_config()
   function! CPP_config()
