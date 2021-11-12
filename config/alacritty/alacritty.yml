@@ -62,7 +62,8 @@ env:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  #decorations: full
+decorations: full
+  #decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -73,13 +74,13 @@ env:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: Windowed
+startup_mode: Windowed
 
   # Window title
   #title: Alacritty
 
   # Allow terminal applications to change Alacritty's window title.
-  #dynamic_title: true
+dynamic_title: true
 
   # Window class (Linux/BSD only):
   #class:

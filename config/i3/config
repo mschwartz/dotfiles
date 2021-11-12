@@ -65,7 +65,8 @@ floating_modifier $mod
 # This is the base/default terminal application we use for i3.  Can be any of a number of them, including
 # urxvt, termite, xterm, and so on.
 #set $term --no-startup-id /usr/bin/termite
-set $term --no-startup-id /usr/bin/alacritty
+#set $term --no-startup-id /usr/bin/alacritty
+set $term --no-startup-id /usr/bin/kitty
 
 ### Window mapping rules
 # These windows require specific rules to display in floating mode
@@ -352,40 +353,40 @@ bindsym $sup+minus scratchpad show
 ################################################################################
 
 ## TOP
-bar {
-  position top
-  tray_output primary
-  status_command bumblebee-status -m title cpu load memory amixer battery uptime date time -t iceberg-powerline -p interval=5
-}
+#bar {
+#  position top
+#  tray_output primary
+#  status_command bumblebee-status -m title cpu load memory amixer battery uptime date time -t iceberg-powerline -p interval=5
+#}
 
 ## BOTTOM
-bar {
-  position bottom
-  tray_output primary
-  status_command bumblebee-status -m weather arch-update disk nic traffic sensors bluetooth -t iceberg-powerline -p weather.unit=imperial -p nic.exclude="br,virbr,docker,lo" -p traffic.exclude="br,virbr,docker,lo"
-}
+#bar {
+#  position bottom
+#  tray_output primary
+#  status_command bumblebee-status -m weather arch-update disk nic traffic -t iceberg-powerline -p weather.unit=imperial -p nic.exclude="br,virbr,docker,lo" -p traffic.exclude="br,virbr,docker,lo"
+#}
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-#bar {
-#  font pango:System San Francisco Display 14
-#  position bottom
-##  status_command /home/$USER/.config/i3status-conky/i3status.sh
-#  status_command i3blocks -c ~/.config/i3/i3blocks.conf
-##    status_command i3status --config ~/.i3/i3status.conf
-##    status_command i3status 
-##    status_command ~/.config/polybar/launch.sh
-#
-#    colors {
-#        background          $bg  
-#        statusline          $fg
-#        separator           $hi
-#        focused_workspace   $gn        $bg        $ac
-#        active_workspace    $gn        $ac        $tx
-#        inactive_workspace  $bg        $bg        $ia
-#        urgent_workspace    $rd        $bg        $ac
-#    }
-#}
+bar {
+  font pango:System San Francisco Display 14
+  position bottom
+#  status_command /home/$USER/.config/i3status-conky/i3status.sh
+  status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#    status_command i3status --config ~/.i3/i3status.conf
+#    status_command i3status 
+#    status_command ~/.config/polybar/launch.sh
+
+    colors {
+        background          $bg  
+        statusline          $fg
+        separator           $hi
+        focused_workspace   $gn        $bg        $ac
+        active_workspace    $gn        $ac        $tx
+        inactive_workspace  $bg        $bg        $ia
+        urgent_workspace    $rd        $bg        $ac
+    }
+}
 
 
 ################################################################################
