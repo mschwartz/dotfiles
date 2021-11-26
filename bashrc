@@ -148,3 +148,5 @@ fi
 #### END FIG ENV VARIABLES ####
 
 source /home/mschwartz/.config/broot/launcher/bash/br
+
+source /Users/mschwartz/.config/broot/launcher/bash/br
