@@ -4,13 +4,16 @@
 #export NVM_DIR=~/.nvm
 #source $(brew --prefix nvm)/nvm.sh
 
-export PATH=$HOME/bin:$HOME/go/bin:/usr/local/mysql/bin:$PATH
+export PATH=$HOME/bin:$HOME/go/bin:$PATH
 # ANT
 #export ANT_HOME='/Users/mschwartz/apache-ant-1.9.2'
 #export PATH=$PATH:$ANT_HOME/bin
 # ANDROID SDK
-export ANDROID_SDK_HOME='/Users/mschwartz/android-sdk-macosx'
-export PATH=$PATH:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/platform-tools
+if [[ -e "/Users/mschwartz/android-sdk-macosx" ]]; then
+  export ANDROID_SDK_HOME='/Users/mschwartz/android-sdk-macosx'
+  export PATH=$PATH:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/platform-tools
+fi
+
 #
 
 #DOT_PATH_FILE=~/.path
