@@ -7,7 +7,6 @@
 ZSH=$HOME/.oh-my-zsh
 export PATH=/opt/homebrew/bin:$PATH
 
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -105,11 +104,11 @@ stty -ixon
 #fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
+PATH="/opt/homebrew/bin:/home/mschwartz/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/mschwartz/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/mschwartz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/mschwartz/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/mschwartz/perl5"; export PERL_MM_OPT;
 
 #if [ -f $HOME/github/other/emsdk/emsdk_env.sh ]; then
 #  source $HOME/github/other/emsdk/emsdk_env.sh
@@ -138,7 +137,9 @@ fi
 #source $HOME/.cargo/env
 
 
+source /Users/mschwartz/.config/broot/launcher/bash/br
 #### FIG ENV VARIABLES ####
 # Please make sure this block is at the end of this file.
 #[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
 #### END FIG ENV VARIABLES ####
+
