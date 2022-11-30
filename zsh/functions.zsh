@@ -3,25 +3,39 @@
 #
 
 # GIT
+function is_in_local() {
+
+    if [[ -z ${existed_in_local} ]]; then
+        echo 0
+    else
+        echo 1
+    fi
+  }
 master() {
-  git branch | grep -w master
-  if [[ $? ]]; then
+    local branch_exists=$(git branch --list master)
+
+  if [[ -z ${branch_exists} ]]; then
+    echo 'found master'
     git checkout master
     upstream=`git remote | grep upstream`
     if [[ "$upstream" == "" ]]; then
-	    git pull origin master
+      git pull origin master
     else
       git pull upstream master
       git push origin master
     fi
   else
-    git checkout main
-    upstream=`git remote | grep upstream`
-    if [[ "$upstream" == "" ]]; then
-      git pull origin main
-    else
-      git pull upstream main
-      git push origin main
+    local branch_exists=$(git branch --list main)
+    if [[ -z ${branch_exists} ]]; then
+      echo 'found main'
+      git checkout main
+      upstream=`git remote | grep upstream`
+      if [[ "$upstream" == "" ]]; then
+        git pull origin main
+      else
+        git pull upstream main
+        git push origin main
+      fi
     fi
   fi
 }

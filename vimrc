@@ -347,6 +347,12 @@ function! COC_configure()
   nmap <leader>rn <Plug>(coc-rename)
 endfunction
 
+Plug 'dart-lang/dart-vim-plugin'
+let dart_html_in_string = v:true
+let g:dart_style_guide = 2
+let g:dart_format_on_save = 1
+
+
 autocmd FileType cpp call CPP_config()
   function! CPP_config()
     setlocal tabstop=2

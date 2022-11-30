@@ -279,7 +279,7 @@ if (!exists('g:vscode'))
  "require'lspconfig'.denols.setup{}
 lua << EOF
 require'lualine'.setup{ 
-options = { theme = 'auto'}
+  options = { theme = 'auto'}
 }
  require'lspconfig'.bashls.setup{}
  require'lspconfig'.ccls.setup{}
