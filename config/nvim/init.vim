@@ -65,6 +65,7 @@ set t_vb=
 set showmatch
 set mat=2
 
+if !exists('g:vscode')
 "
 " Plugins
 " 
@@ -260,12 +261,14 @@ endif
 
 set background=dark
 colorscheme PaperColor
+endif
 """
 """ lsp configurations
 """
 """ https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#denols
 """
 
+if !exists('g:vscode')
 " require'lspconfig'.tsserver.setup{}
 lua << EOF
 require'lualine'.setup{ 
@@ -335,6 +338,7 @@ _G.tab_complete = function()
     return vim.fn['compe#complete']()
   end
 end
+
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
@@ -344,7 +348,7 @@ _G.s_tab_complete = function()
     -- If <S-Tab> is not working in your terminal, change it to <C-h>
     return t "<S-Tab>"
   end
-end
+endif
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
@@ -353,6 +357,7 @@ vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 end
 EOF
 
+end
 filetype plugin indent on
 
 " Use actual tab chars in Makefiles.
