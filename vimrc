@@ -786,3 +786,4 @@ map <C-j> :TmuxNavigateDown<cr>
 map <C-k> :TmuxNavigateUp<cr>
 map <C-l> :TmuxNavigateRight<cr>
 
+set rtp+=/opt/homebrew/opt/fzf

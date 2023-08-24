@@ -142,3 +142,4 @@ fi
 #[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
 #### END FIG ENV VARIABLES ####
 
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"

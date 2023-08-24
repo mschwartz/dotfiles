@@ -95,6 +95,7 @@ alias en='vi ~/dotfiles/config/nvim/init.vim'
 alias ep='vi ~/dotfiles/config/polybar/config'
 alias er='vi ~/dotfiles/config/ranger/rc.conf'
 alias ev='vi ~/.vimrc'
+alias en='vi ~/.config/nvim/init.vim'
 alias et='vi ~/dotfiles/tmux.conf'
 alias ez='vi ~/.zshrc.local ~/.zshrc'
 

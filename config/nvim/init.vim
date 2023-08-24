@@ -76,6 +76,27 @@ call plug#begin('~/.local/share/nvim/plugged')
 """ Editing helpers
 "
 
+if !exists('g:vscode')
+"
+""" Theme
+"
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'hoob3rt/lualine.nvim'
+"Plug 'itchyny/lightline.vim'
+"  let g:lightline = {
+"        \ 'colorscheme': 'PaperColor',
+"        \ 'active': {
+"        \   'left': [ [ 'mode', 'paste' ],
+"        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] 
+"        \   ]
+"        \ },
+"        \ 'component_function': {
+"        \   'gitbranch': 'fugitive#head',
+"        \   'filename': 'LightlineFilename'
+"        \ },
+"        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"      \ }
 " restore last cursor position when opening a file again
 Plug 'farmergreg/vim-lastplace'
 
@@ -173,6 +194,11 @@ Plug 'benmills/vimux'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 "
+""" React/JSX
+"
+Plug 'chemzqm/vim-jsx-improve'
+
+"
 """ LSP
 "
 Plug 'neovim/nvim-lspconfig'
@@ -228,27 +254,8 @@ Plug 'mustache/vim-mustache-handlebars'
 "Plug 'dNitro/vim-pug-complete'
 "au BufRead,BufNewFile *.pug setfiletype html
 
-"
-""" Theme
-"
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'hoob3rt/lualine.nvim'
-"Plug 'itchyny/lightline.vim'
-"  let g:lightline = {
-"        \ 'colorscheme': 'PaperColor',
-"        \ 'active': {
-"        \   'left': [ [ 'mode', 'paste' ],
-"        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] 
-"        \   ]
-"        \ },
-"        \ 'component_function': {
-"        \   'gitbranch': 'fugitive#head',
-"        \   'filename': 'LightlineFilename'
-"        \ },
-"        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-"        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-"      \ }
 
+endif
 
 call plug#end()
 
@@ -261,15 +268,25 @@ endif
 
 set background=dark
 colorscheme PaperColor
+<<<<<<< HEAD
 endif
+=======
+
+
+>>>>>>> 9705862fda645eb7553ec6b0fce464d92af45ef3
 """
 """ lsp configurations
 """
 """ https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#denols
 """
 
+<<<<<<< HEAD
 if !exists('g:vscode')
 " require'lspconfig'.tsserver.setup{}
+=======
+if (!exists('g:vscode'))
+ "require'lspconfig'.denols.setup{}
+>>>>>>> 9705862fda645eb7553ec6b0fce464d92af45ef3
 lua << EOF
 require'lualine'.setup{ 
   options = { theme = 'auto'}
@@ -277,7 +294,7 @@ require'lualine'.setup{
  require'lspconfig'.bashls.setup{}
  require'lspconfig'.ccls.setup{}
  require'lspconfig'.cmake.setup{}
- require'lspconfig'.denols.setup{}
+ require'lspconfig'.tsserver.setup{}
  require'lspconfig'.pylsp.setup{}
  require'lspconfig'.vimls.setup{}
  require'lspconfig'.yamlls.setup{}
@@ -318,7 +335,7 @@ local on_attach = function(client, bufnr)
   local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
-
+  
 local check_back_space = function()
     local col = vim.fn.col('.') - 1
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
@@ -337,8 +354,11 @@ _G.tab_complete = function()
   else
     return vim.fn['compe#complete']()
   end
+<<<<<<< HEAD
 end
 
+=======
+>>>>>>> 9705862fda645eb7553ec6b0fce464d92af45ef3
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
@@ -355,7 +375,9 @@ vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 end
+end
 EOF
+endif
 
 end
 filetype plugin indent on
@@ -388,9 +410,15 @@ map <C-f> :CtrlSF
 let mapleader=","
 let g:mapleader=","
 
+if exists('g:vscode')
+nmap <leader>s :Write<cr>
+nmap <leader>ci <cmd>call VSCodeCall('editor.action.commentLine')<cr>
+else
 nmap <leader>s :w!<cr>
+endif
+
 map <leader>j :j<cr>
-map <leader>c :CtrlSF 
+"map <leader>c :CtrlSF 
 
 "map <leader>ai :ALEInfo<cr>
 "map <leader>ad :ALEDetail<cr>
@@ -425,16 +453,21 @@ map <leader>' ysiw'
 map <leader>) ysiw)
 map <leader>( ysiw(
 
+
+if exists('g:vscode')
+map <leader>f <cmd>call VSCodeNotify('editor.action.formatDocument')<cr>
+else
+map <C-n> :NERDTreeToggle<CR>
 map <leader>. <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 map <leader>f <esc>:lua vim.lsp.buf.formatting()<cr>
+map <C-]> :lua vim.lsp.buf.definition()<cr>
+endif
 
 map <leader>u <esc>guiw
 map <leader>U <esc>gUiw
 
-map <C-n> :NERDTreeToggle<CR>
 map <C-_> <leader>cij
 map <C-\> :Ack! 
-map <C-]> :lua vim.lsp.buf.definition()<cr>
 
 imap jj <Esc>
 imap jk <Esc>
