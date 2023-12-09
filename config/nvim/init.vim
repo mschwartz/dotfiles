@@ -76,7 +76,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 """ Editing helpers
 "
 
-if !exists('g:vscode')
 "
 """ Theme
 "
@@ -255,8 +254,6 @@ Plug 'mustache/vim-mustache-handlebars'
 "au BufRead,BufNewFile *.pug setfiletype html
 
 
-endif
-
 call plug#end()
 
 
@@ -268,25 +265,14 @@ endif
 
 set background=dark
 colorscheme PaperColor
-<<<<<<< HEAD
-endif
-=======
 
-
->>>>>>> 9705862fda645eb7553ec6b0fce464d92af45ef3
 """
 """ lsp configurations
 """
 """ https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#denols
 """
 
-<<<<<<< HEAD
-if !exists('g:vscode')
-" require'lspconfig'.tsserver.setup{}
-=======
-if (!exists('g:vscode'))
  "require'lspconfig'.denols.setup{}
->>>>>>> 9705862fda645eb7553ec6b0fce464d92af45ef3
 lua << EOF
 require'lualine'.setup{ 
   options = { theme = 'auto'}
@@ -354,11 +340,8 @@ _G.tab_complete = function()
   else
     return vim.fn['compe#complete']()
   end
-<<<<<<< HEAD
 end
 
-=======
->>>>>>> 9705862fda645eb7553ec6b0fce464d92af45ef3
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
@@ -368,18 +351,17 @@ _G.s_tab_complete = function()
     -- If <S-Tab> is not working in your terminal, change it to <C-h>
     return t "<S-Tab>"
   end
-endif
+end
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 end
-end
 EOF
+
 endif
 
-end
 filetype plugin indent on
 
 " Use actual tab chars in Makefiles.
