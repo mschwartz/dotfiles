@@ -89,8 +89,8 @@ function = {
 
 # alias tmuxx='echo $1; ! tmux -2 detach-client -s $1; tmux -2 new -A -s $1'
 tmuxx() {
-    tmux -2 detach-client -s $1
-    tmux -2 new -A -s $1
+    TERM=$TERM tmux -2 detach-client -s $1
+    TERM=$TERM tmux -2 new -A -s $1
 }
 
 sh() {
@@ -145,7 +145,9 @@ update-keys() {
 
 update() {
   if [[ "$OS" == "Darwin" ]]; then
+    echo "doing brew update"
     brew update
+    echo "doing brew upgrade"
     brew upgrade
   else
     echo ">>> Update MirrorList"

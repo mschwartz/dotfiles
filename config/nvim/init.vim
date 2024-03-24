@@ -20,7 +20,7 @@ set nolazyredraw
 set backspace=2
 
 set textwidth=120
-set colorcolumn=+1
+"set colorcolumn=+1
 
 call matchadd('ColorColumn', '\%81v', 100)
 if $TMUX ==''
@@ -41,7 +41,7 @@ set incsearch
 
 set ruler
 set nobackup
-set directory=$HOME/.config/nvim/swapfiles//
+set directory=$HOME/.config/nvim/swapfiles/
 set undodir=~/.config/nvim/undo-dir
 set undofile
 set number relativenumber
@@ -148,6 +148,13 @@ let g:NERDTreeIgnore=['.git', 'node_modules', '\.o$', '\.a$', '.depend']
 "autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg)
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:bg .' guifg='. a:fg
+endfunction
+
+call NERDTreeHighlightFile('forrh', 'green', 'black')
 
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -161,9 +168,16 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     let g:NERDTreeExtensionHighlightColor['yml'] = ''
     let g:NERDTreeExactMatchHighlightColor['.gitignore'] = ''
 
-Plug 'ryanoasis/vim-devicons'
-"    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+
+
+
+"Plug 'ryanoasis/vim-devicons'
 "    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = '﵂'
+
+Plug 'kyazdani42/nvim-web-devicons'
+"let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+"let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['fth']  = 'F'
+
 
 "
 """ Search/fuzzy/grep
@@ -182,8 +196,6 @@ Plug 'dyng/ctrlsf.vim'
   let g:ctrlsf_auto_focus = {
     \ "at": "start"
     \ }
-
-Plug 'kyazdani42/nvim-web-devicons'
 
 "
 """ TMUX
@@ -253,6 +265,12 @@ Plug 'mustache/vim-mustache-handlebars'
 "Plug 'dNitro/vim-pug-complete'
 "au BufRead,BufNewFile *.pug setfiletype html
 
+"
+""" forth
+"
+au BufRead,BufNewFile *.fth setfiletype forth
+autocmd FileType forth set tabstop=4 shiftwidth=4 softtabstop=4
+
 
 endif
 
@@ -278,6 +296,56 @@ colorscheme PaperColor
 if (!exists('g:vscode'))
  "require'lspconfig'.denols.setup{}
 lua << EOF
+require'nvim-web-devicons'.setup {
+ -- your personnal icons can go here (to override)
+ -- you can specify color or cterm_color instead of specifying both of them
+ -- DevIcon will be appended to `name`
+ override = {
+  forth = {
+    icon = "",
+    color = "#428850",
+    cterm_color = "65",
+    name = "Forth"
+  },
+  fth = {
+    icon = "",
+    color = "#428850",
+    cterm_color = "65",
+    name = "Forth"
+  }
+ };
+
+ -- globally enable different highlight colors per icon (default to true)
+ -- if set to false all icons will have the default icon's color
+ color_icons = true;
+ -- globally enable default icons (default to false)
+ -- will get overriden by `get_icons` option
+ default = true;
+ -- globally enable "strict" selection of icons - icon will be looked up in
+ -- different tables, first by filename, and if not found by extension; this
+ -- prevents cases when file doesn't have any extension but still gets some icon
+ -- because its name happened to match some extension (default to false)
+ strict = true;
+ -- same as `override` but specifically for overrides by filename
+ -- takes effect when `strict` is true
+ override_by_filename = {
+  [".gitignore"] = {
+    icon = "",
+    color = "#f1502f",
+    name = "Gitignore"
+  }
+ };
+ -- same as `override` but specifically for overrides by extension
+ -- takes effect when `strict` is true
+ override_by_extension = {
+  ["fth"] = {
+    icon = "",
+    color = "#81e043",
+    name = "Log"
+  }
+ };
+}
+
 require'lualine'.setup{ 
   options = { theme = 'auto'}
 }
