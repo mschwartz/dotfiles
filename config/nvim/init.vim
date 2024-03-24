@@ -65,6 +65,7 @@ set t_vb=
 set showmatch
 set mat=2
 
+if !exists('g:vscode')
 "
 " Plugins
 " 
@@ -75,7 +76,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 """ Editing helpers
 "
 
-if !exists('g:vscode')
 "
 """ Theme
 "
@@ -272,8 +272,6 @@ au BufRead,BufNewFile *.fth setfiletype forth
 autocmd FileType forth set tabstop=4 shiftwidth=4 softtabstop=4
 
 
-endif
-
 call plug#end()
 
 
@@ -286,14 +284,12 @@ endif
 set background=dark
 colorscheme PaperColor
 
-
 """
 """ lsp configurations
 """
 """ https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#denols
 """
 
-if (!exists('g:vscode'))
  "require'lspconfig'.denols.setup{}
 lua << EOF
 require'nvim-web-devicons'.setup {
@@ -412,6 +408,8 @@ _G.tab_complete = function()
   else
     return vim.fn['compe#complete']()
   end
+end
+
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
@@ -428,8 +426,8 @@ vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 end
-end
 EOF
+
 endif
 
 filetype plugin indent on

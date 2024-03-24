@@ -20,9 +20,10 @@ set nolazyredraw
 set backspace=2
 
 set textwidth=120
-"set colorcolumn=+1
+set colorcolumn=+1
 
-"call matchadd('ColorColumn', '\%81v', 100)
+call matchadd('ColorColumn', '\%81v', 100)
+
 if $TMUX ==''
   set clipboard=unnamed
 endif
@@ -65,6 +66,7 @@ set t_vb=
 set showmatch
 set mat=2
 
+<<<<<<< HEAD
 " Plugins
 " 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -92,6 +94,8 @@ Plug 'scrooloose/nerdcommenter'
 
 call plug#end()
 
+=======
+>>>>>>> 88b56184da37ec481ba778ec2f8fe338feec0e8e
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -108,7 +112,11 @@ map <C-f> :CtrlSF
 let mapleader=","
 let g:mapleader=","
 
+<<<<<<< HEAD
 nmap <leader>s :w<cr>
+=======
+nmap <leader>s :w!<cr>
+>>>>>>> 88b56184da37ec481ba778ec2f8fe338feec0e8e
 map <leader>j :j<cr>
 map <leader>c :CtrlSF 
 
@@ -136,10 +144,13 @@ map <leader>itc <esc>otry {<cr>}<cr>catch(e) {<cr>console.log('exception', e)<cr
 map <leader>v <esc>:read !xsel<cr>
 "map <leader>. <esc>@:
 
+<<<<<<< HEAD
 nmap <leader>s :Write<cr>
 
 "nmap <leader>ci <cmd>call VSCodeCall('editor.action.commentLine')<cr>
 map <leader>ci <cmd>call VSCodeCall('editor.action.addCommentLine')<cr>
+=======
+>>>>>>> 88b56184da37ec481ba778ec2f8fe338feec0e8e
 map <leader>} ysiw}
 map <leader>{ ysiw{
 map <leader>] ysiw]
@@ -150,8 +161,12 @@ map <leader>) ysiw)
 map <leader>( ysiw(
 
 map <leader>. <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+<<<<<<< HEAD
 "map <leader>f <esc>:lua vim.lsp.buf.formatting()<cr>
 map <leader>f <cmd>call VSCodeCall('editor.action.format')<cr>
+=======
+map <leader>f <esc>:lua vim.lsp.buf.formatting()<cr>
+>>>>>>> 88b56184da37ec481ba778ec2f8fe338feec0e8e
 
 map <leader>u <esc>guiw
 map <leader>U <esc>gUiw
@@ -168,6 +183,13 @@ nmap <F1> :echo<CR>
 vnoremap <C-c> "+y
 map <C-v> "+P
 
+<<<<<<< HEAD
+=======
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+>>>>>>> 88b56184da37ec481ba778ec2f8fe338feec0e8e
 
 filetype plugin indent on
 

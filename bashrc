@@ -148,4 +148,10 @@ source /Users/mschwartz/.config/broot/launcher/bash/br
 [ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
 #### END FIG ENV VARIABLES ####
 
+<<<<<<< HEAD
+
+
+PATH=~/.console-ninja/.bin:$PATH
+=======
 #source /Users/mschwartz/.config/broot/launcher/bash/br
+>>>>>>> 9705862fda645eb7553ec6b0fce464d92af45ef3
