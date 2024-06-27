@@ -533,7 +533,7 @@ set nolazyredraw
 set backspace=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set textwidth=120
-set colorcolumn=+1
+" set colorcolumn=+1
 
 call matchadd('ColorColumn', '\%81v', 100)
 if $TMUX ==''
