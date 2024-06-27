@@ -58,7 +58,7 @@ develop() {
 
 # cd <dir> automatically does an ls after changing
 cd() {
-    builtin cd "$@" && ls
+    builtin cd "$@" && exa
 }
 
 close() {

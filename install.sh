@@ -27,9 +27,9 @@ source ./install-scripts/install-vim.sh
 cd $INSTALL_PWD
 source ./install-scripts/install-emacs.sh
 
-ln -sf ~/Dropbox/credentials/slack-term ~/.slack-term
-#cd $INSTALL_PWD
-#source ./install-scripts/install-docker.sh
+#ln -sf ~/Dropbox/credentials/slack-term ~/.slack-term
+cd $INSTALL_PWD
+source ./install-scripts/install-docker.sh
 #echo "ANGULAR/TYPESCRIPT"
 #cd $INSTALL_PWD
 #source ./install-scripts/install-ng.sh
