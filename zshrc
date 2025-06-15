@@ -87,7 +87,10 @@ if [ -f $HOME/.zshrc.local ]; then
 fi
 
 if [ -e /usr/bin/fastfetch  ]; then
+  DISPLAY_SAVE=$DISPLAY
+  unset DISPLAY
   fastfetch
+  DISPLAY=$DISPLAY_SAVE
 else
   DISPLAY_SAVE=$DISPLAY
   unset DISPLAY
