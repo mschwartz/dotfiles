@@ -88,6 +88,8 @@ fi
 
 if [ -e /usr/bin/fastfetch  ]; then
   fastfetch
+elif [ -e /usr/local/bin/fastfetch  ]; then
+  fastfetch
 else
   DISPLAY_SAVE=$DISPLAY
   unset DISPLAY
