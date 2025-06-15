@@ -10,6 +10,7 @@
 ;;   (setq user-emacs-directory "/home/mschwartz/.cache/user-emacs-directory/")
 ;;   )
 
+(setq warning-minimum-level :emergency)
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
 (desktop-save-mode 1)
@@ -214,7 +215,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default))
+   '("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e"
+     "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279"
+     "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa"
+     "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a"
+     default))
  '(display-line-numbers-type 'visual t)
  '(package-selected-packages nil))
 '()
@@ -549,12 +554,6 @@
   :ensure t
   )
 
-;; bind vim keys to magit: https://github.com/emacs-evil/evil-magit
-(use-package evil-magit
-  :ensure t
-  )
-(require 'evil-magit)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LSP
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -749,19 +748,8 @@
 (setq make-backup-files nil) ; stop creating those backup~ files
 (setq create-lockfiles nil)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(material-theme neotree which-key ccls lsp-ui lsp-mode lv markdown-mode ht f dash-functional evil-magit magit git-commit with-editor transient company helm-ag helm-projectile helm helm-core popup async projectile evil-surround evil-leader evil goto-chg evil-nerd-commenter rust-mode tide typescript-mode s rjsx-mode js2-mode format-all language-id use-package telephone-line quelpa flycheck find-file-in-project dired-subtree all-the-icons-dired)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 143 :width normal)))))
+
+
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
