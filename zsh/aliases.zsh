@@ -102,3 +102,8 @@ alias ez='vi ~/.zshrc.local ~/.zshrc'
 
 alias root='cd `git rev-parse --show-toplevel`'
 alias modus='cd $HOME/github/ModusCreateOrg'
+
+alias ls='eza'
+alias ll='eza -l'
+alias la='eza -la'
+

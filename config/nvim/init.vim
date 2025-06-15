@@ -76,6 +76,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 """ Editing helpers
 "
 
+if (!exists('g:vscode'))
 "
 """ Theme
 "
@@ -283,14 +284,16 @@ endif
 
 set background=dark
 colorscheme PaperColor
-
+endif
 """
 """ lsp configurations
 """
 """ https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#denols
 """
 
- "require'lspconfig'.denols.setup{}
+if !exists('g:vscode')
+" require'lspconfig'.tsserver.setup{}
+>>>>>>> 2640c9c4ef53ae7c3c612b3439c8066afb4d2b86
 lua << EOF
 require'nvim-web-devicons'.setup {
  -- your personnal icons can go here (to override)
@@ -419,7 +422,10 @@ _G.s_tab_complete = function()
     -- If <S-Tab> is not working in your terminal, change it to <C-h>
     return t "<S-Tab>"
   end
+<<<<<<< HEAD
+=======
 end
+>>>>>>> 2640c9c4ef53ae7c3c612b3439c8066afb4d2b86
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
@@ -427,9 +433,15 @@ vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 end
 EOF
+<<<<<<< HEAD
+
+end
+
+=======
 
 endif
 
+>>>>>>> 2640c9c4ef53ae7c3c612b3439c8066afb4d2b86
 filetype plugin indent on
 
 " Use actual tab chars in Makefiles.
