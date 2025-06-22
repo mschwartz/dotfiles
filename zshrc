@@ -91,7 +91,6 @@ unset DISPLAY
 fastfetch
 DISPLAY=$DISPLAY_SAVE
 
-
 # disable ctrl-s (xon/xoff)
 stty -ixon
 
