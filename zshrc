@@ -5,7 +5,7 @@
 #### END FIG ENV VARIABLES ####
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
-export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
